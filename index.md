@@ -18,6 +18,8 @@ title: {{ site.title }}
 + inRm3D 下载链接
 
   + [下载地址](https://github.com/inRm3D/inRm3D.github.io/tree/master/inRm3D%20%E6%96%87%E4%BB%B6)
+  
+  + [更具有仪式感的 release 页面](https://github.com/inRm3D/inRm3D.github.io/releases/)
 
 
 + 帮助文件地址
