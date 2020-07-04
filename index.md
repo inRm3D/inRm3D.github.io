@@ -41,3 +41,9 @@ title: {{ site.title }}
 1. 软件 bug 有些多，但是平时很少能遇到。
 2. 有问题请加 QQ 群 170568550
 3. 一个小论坛 <http://inrm3d.cn/index.php>
+
+---
+
+经过在 Web Archive - Internet Archive 上的查找后确认，inrm3d 的原主页是 inrm3d.cn, 现在已经被方老师覆盖成画板论坛的首页了。
+
+所幸还有备份，就打印了一份 [PDF](https://github.com/inRm3D/inRm3D.github.io/blob/master/help%20manuals/inRm3D%E3%80%8A%E8%8B%B1%E5%A3%AC%E7%94%BB%E6%9D%BF%E3%80%8B.pdf) 下来。
