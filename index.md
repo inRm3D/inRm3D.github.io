@@ -1,6 +1,5 @@
 ---
 layout: default
-title: {{ site.title }}
 ---
 
 # inRm3D 简易首页
@@ -30,9 +29,14 @@ title: {{ site.title }}
 下面是一些关于 能好怎 的说明：
 
 1. 开发语言是 Delphi ，体积很小（不到 3M）
-2. 只能在 Windows 平台下使用
-3. 上手非常容易，生成的 .sgf 文件是纯文本格式，可以用编辑器直接打开。
-4. 相关作品的图可在帮助文件中查看，为提高页面响应速度，这里不放图 <del>就是懒</del>
+2. 上手非常容易，生成的 .sgf 文件是纯文本格式，可以用编辑器直接打开。
+3. 相关作品的图可在帮助文件中查看，为提高页面响应速度，这里不放图 <del>就是懒</del>
+
+---
+
+关于跨平台：
+- windows 下正常使用
+- linux/mac 用 wine/crossover，配置好中文字体（fakechinese/https://www.crossoverchina.com/faq/rq-azzt.html ）后运行。假如出现卡顿或闪退，参照 https://bugs.winehq.org/show_bug.cgi?id=52456#c5 里的，`LIBGL_ALWAYS_SOFTWARE=1 wine inRm3D.exe`， [解释](https://askubuntu.com/questions/720402/how-to-enable-get-opengl-3-1)
 
 ---
 
