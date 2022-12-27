@@ -1,1 +1,1 @@
-# Some additionals things.
+# Some additional things.
