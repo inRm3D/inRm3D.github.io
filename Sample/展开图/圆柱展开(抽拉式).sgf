@@ -1,0 +1,162 @@
+inRm3D v2.867 
+Page     1   1
+PageNm   0  Page1
+Color  0 255 255 32768 16711680 255 32768 16711680
+Transp 0.2 0.2 0.2
+Mode   10 0 10 0 10 0
+Origin -0.1 0 257.5 286 0.5
+Origi  4 1 255
+Length 13.1 9.8 8.4 4.5 4.7 2.2
+Axis   1 2 1 2 1 2
+AxiTag o x y z
+Deep   35 29
+Scene 1111011100000001000
+Window 77 65 1029 739
+Pages  0 0
+End
+11
+Kind   1 2
+Tag   A
+TagPos -16 0 0 0 0
+TagS    16
+Font  Calibri
+Color  255 1
+Shape  1.4665 6 1 0
+Linker 0 3
+Slope  0 5.1 0 0
+Invert
+ObjSho1
+TagSho0
+End
+13
+Kind   11 1
+Tag   a
+TagPos 0 1 0 0 0
+TagS    16
+Font  Arial
+Color  255 1
+Shape  10.6808 1 2 0
+Point  49 125 48 15
+Angle  1
+Linker 11 11
+Slope  0 0 0 0
+FuncX A*pi*2+A
+FuncY a*pi*2+b
+ObjSho1
+TagSho0
+End
+14
+Kind   1 2
+Tag   B
+TagPos -16 1 0 0 0
+TagS    16
+Font  Calibri
+Color  255 1
+Shape  10.6808 6 1 0
+Linker 0 3 13
+Slope  0 5.1 0 0
+Invert
+ObjSho1
+TagSho0
+End
+12
+Kind   2 1
+Tag   b
+TagPos -16 1 0.7 0 0
+TagS    16
+Font  Calibri
+Color  16711680 1
+Shape  9.2143 1 0 0
+Linker 14 11
+Slope  6 0 0 0
+ObjSho1
+TagSho0
+End
+16
+Kind   1 2
+Tag   C
+TagPos -16 1 0 0 0
+TagS    16
+Font  Calibri
+Color  255 1
+Shape  0 6 1 0
+Linker 0 12
+Slope  0 1 0 0
+Shadow
+ObjSho1
+TagSho0
+End
+15
+Kind   2 1
+Tag   c
+TagPos -16 1 0.7 0 0
+TagS    16
+Font  Calibri
+Color  16776960 1
+Shape  0 2 0 0
+Linker 14 16
+Slope  6 0 0 0
+ObjSho1
+TagSho1
+End
+20
+Kind   2 3
+Tag   d
+TagPos -0.6 0.1 0.7 0 0
+TagS    16
+Font  Calibri
+Color  16776960 1
+Shape  4.5972 2 0 0
+Linker 11 4
+Slope  6 0 0 0
+ObjSho1
+TagSho0
+End
+17
+Kind   3 3
+Tag   O[1]
+TagPos -1.6 0.1 0.5 0 0
+TagS    16
+Font  Calibri
+Color  16711680 1
+ColorB 32768 1
+Shape  1.4665 1 0 0
+Thick  4.5972
+Angle  1.5708
+Linker 11 4 0 15 0 20
+Invert
+Return
+ObjSho1
+TagSho0
+End
+21
+Kind   4 2
+Tag   ¦Á
+TagPos 30.4 29.1 1 1 0
+TagS    16
+Font  Calibri
+Color  16711680 1
+ColorB 32768 1
+Shape  2 4 10 0
+Angle  1
+Linker 16 20
+Return
+ObjSho1
+TagSho0
+End
+18
+Kind   10 1
+Tag   e
+TagPos -16 1 0 0 255
+TagS    14
+Font  Arial
+Color  255 1
+Shape  1 0 0 0
+Point  54 173 0 0
+Slope  0 0 0 0
+FuncY 0202212202212205207182175198189195230 46 46 46
+ObjSho1
+TagSho0
+End
+Finish
+Termination

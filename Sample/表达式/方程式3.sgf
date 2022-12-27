@@ -1,0 +1,471 @@
+inRm3D v2.824 Beta 
+Page     1   1
+PageNm    0  Page1
+Color  16777215      255    32768 16711680      255      255    32768 16711680
+Transp   0.2000   0.2000   0.2000
+Mode     0   0   0   0   0   0
+Origin  -0.0352  -2.9215 244.0000 284.0000   0.0000
+Origi    4   1      255 o
+Length   6.0000   6.0000   6.0000
+Axis     2   2   2   2   2   2  ---  ---  ---
+Deep    27.0000  29.0000
+Scene 11010110000000011
+Pages    0   0
+End
+11
+Kind     9   1
+Tag   a
+TagPos   0.0000   0.1000   0.0000   0.00000
+Color     65280   1.0000
+ColorB 16711680   1.0000
+Shape    0.0000   0.0000   1   0.0000
+Linker   0
+FuncX 1
+FuncY 1
+FuncZ cos(pi*sin( x) + pi*sin(y))/4
+RuleX   -5.0000   4.0000  60.0000
+RuleY   -4.0000   5.0000  60.0000
+RuleZ    0.0000   0.0000   0.0000
+Param    0.0000   2.2000   4.1000
+Param1   0.0000   0.0000   1.0000
+Return
+Shadow
+ObjSho1
+TagSho1
+End
+12
+Kind     1   1
+Tag   ?
+TagPos   0.1000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   0   0.0000
+Point    0.0875  -0.4375   0.0658   0.0000
+Linker   0
+ObjSho1
+TagSho1
+End
+13
+Kind     2   2
+Tag   ?
+TagPos   0.1000   0.1000   0.7000   0.00000
+Color  16711680   1.0000
+ColorB 16711680   1.0000
+Shape    3.7676   1.0000   0   0.0000
+Slope    6.0500   1.5400
+Linker  12
+Invert
+ObjSho1
+TagSho1
+End
+14
+Kind     3   1
+Tag   
+TagPos   0.1000   0.1000   0.5000   0.00000
+Color  16711680   1.0000
+ColorB 16711680   1.0000
+Shape    3.3899   1.0000   0   0.0000
+Linker  12  13
+ObjSho1
+TagSho1
+End
+16
+Kind     1   2
+Tag   
+TagPos   0.1000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.3048   4.0000   0   0.0158
+Slope    0.0000   1.0000
+Linker   0   4
+Invert
+Shadow
+ObjSho1
+TagSho1
+End
+17
+Kind     1   4
+Tag   B
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Angle   14.0000
+Linker  14  11
+ObjSho1
+TagSho0
+End
+18
+Kind     1   4
+Tag   B_1
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+19
+Kind     1   4
+Tag   B_2
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+20
+Kind     1   4
+Tag   B_3
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+21
+Kind     1   4
+Tag   B_4
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+22
+Kind     1   4
+Tag   B_5
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+23
+Kind     1   4
+Tag   B_6
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+24
+Kind     1   4
+Tag   B_7
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+25
+Kind     1   4
+Tag   B_8
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+26
+Kind     1   4
+Tag   B_9
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+27
+Kind     1   4
+Tag   B_10
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+28
+Kind     1   4
+Tag   B_11
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+29
+Kind     1   4
+Tag   B_12
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+30
+Kind     1   4
+Tag   B_13
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+31
+Kind     1   4
+Tag   B_14
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+32
+Kind     1   4
+Tag   B_15
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+33
+Kind     1   4
+Tag   B_16
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+34
+Kind     1   4
+Tag   B_17
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+35
+Kind     1   4
+Tag   B_18
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+36
+Kind     1   4
+Tag   B_19
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+37
+Kind     1   4
+Tag   B_20
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+38
+Kind     1   4
+Tag   B_21
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+39
+Kind     1   4
+Tag   B_22
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+40
+Kind     1   4
+Tag   B_23
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+41
+Kind     1   4
+Tag   B_24
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+42
+Kind     1   4
+Tag   B_25
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+43
+Kind     1   4
+Tag   B_26
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+44
+Kind     1   4
+Tag   B_27
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+45
+Kind     1   4
+Tag   B_28
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+46
+Kind     1   4
+Tag   B_29
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+47
+Kind     1   4
+Tag   B_30
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+48
+Kind     1   4
+Tag   B_31
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   1  31.0000
+Linker  14  11  17
+Invert
+ObjSho1
+TagSho0
+End
+Finish
+Termination

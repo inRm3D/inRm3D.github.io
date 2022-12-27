@@ -1,0 +1,325 @@
+inRm3D v2.864 
+Page     1   1
+PageNm   0  Page1
+Color  16777215      255      255    32768 16711680      255    32768 16711680
+Transp   0.4200   0.6800   0.7600
+Mode     0   0   0   0   0   0
+Origin  -8.0141  -2.7271 323.5000 302.5000   0.0000
+Origi    4   1      255
+Length   8.9125  10.1000   5.1000   1.5125   2.1000   1.2000
+Axis     1   2   1   2   1   2
+AxiTago x y y 
+Deep    23.0000  29.0000
+Scene 1111011100001111000
+Window 170  661196 643
+Pages    0   0
+End
+11
+Kind     1   2
+Tag   A
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    1.0536   6.0000   1   0.0000
+Linker   0   4
+Slope    0.0000   3.9000   0.0000   0.0000
+Invert
+ObjSho1
+TagSho1
+End
+14
+Kind     1   2
+Tag   E
+TagPos -15.0000   0.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    1.6709   6.0000   1   0.0000
+Linker   0   3
+Slope    0.0000   8.0000   0.0000   0.0000
+Invert
+Shadow
+ObjSho1
+TagSho1
+End
+13
+Kind     1   2
+Tag   B
+TagPos  -8.0000 -27.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    3.6880   6.0000   1   0.2510
+Linker   0   2
+Slope    0.0000  18.0000   0.0000   0.0000
+Invert
+Return
+Shadow
+ObjSho1
+TagSho1
+End
+15
+Kind     1  12
+Tag   C
+TagPos -16.0000   2.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.1741   6.0000   1   0.0000
+Angle    1.0000
+Linker  13   1  11
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+16
+Kind     2   3
+Tag   a
+TagPos  -0.6000   0.1000   0.7000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color  16711680   1.0000
+ColorB        0   0.0000
+Shape    5.9108   1.0000   0   0.0000
+Linker  15   3
+Slope    6.0000   0.0000   0.0000   0.0000
+ObjSho1
+TagSho0
+End
+17
+Kind     1   2
+Tag   D
+TagPos -11.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    3.4194   6.0000   1   0.0245
+Linker   0  16
+Slope    0.0000   5.7200   0.0000   0.0000
+Invert
+Shadow
+ObjSho1
+TagSho1
+End
+21
+Kind    11   1
+Tag   d
+TagPos  -2.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape   12.8585   1.0000   2   0.0000
+Point  258.0000 188.0000  41.0000  15.0000
+Angle    1.0000
+Linker  17  14
+Slope    0.0000   0.0000   0.0000   0.0000
+FuncX D/F*2*Pi
+FuncY a/b*2*Pi
+ObjSho1
+TagSho0
+End
+12
+Kind    11   1
+Tag   c
+TagPos   0.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    3.5004   1.0000   2   0.0000
+Point  258.0000 164.0000  41.0000  15.0000
+Angle    1.0000
+Linker  13  11
+Slope    0.0000   0.0000   0.0000   0.0000
+FuncX C/A
+FuncY a/b
+ObjSho1
+TagSho0
+End
+19
+Kind     3   1
+Tag   O_1
+TagPos  -0.6000   0.1000   0.5000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    1.0536   2.0000   0   0.0000
+Angle    3.5004
+Linker  17  16  11   0  12
+Return
+ObjSho1
+TagSho0
+End
+20
+Kind     1   2
+Tag   F
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color       255   1.0000
+ColorB      255   1.0000
+Shape   12.8585   6.0000   1   0.0000
+Linker   0  19  21
+Slope    0.0000   6.2832   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+22
+Kind     5   1
+Tag   b
+TagPos   4.4000   2.1000   0.5000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color     32768   1.0000
+ColorB      255   1.0000
+Shape   23.3657   2.0000   0   5.0000
+Linker  20  17
+ObjSho1
+TagSho0
+End
+23
+Kind    11   1
+Tag   f
+TagPos   0.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    5.0712   1.0000   2   0.0000
+Point  261.0000 243.0000  38.0000  15.0000
+Angle    1.0000
+Linker  13  11
+Slope    0.0000   0.0000   0.0000   0.0000
+FuncX B/A+1.5708
+FuncY a/b+1.5708
+ObjSho1
+TagSho0
+End
+18
+Kind    11   1
+Tag   e
+TagPos   0.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.1929   1.0000   2   0.0000
+Point  258.0000 273.0000  41.0000  15.0000
+Angle    1.0000
+Linker  23  23
+Slope    0.0000   0.0000   0.0000   0.0000
+FuncX 1-(f-int(f/6.2832)*6.2832)/6.2832
+FuncY 1-(a-int(b/6.2832)*6.2832)/6.2832
+ObjSho1
+TagSho0
+End
+35
+Kind     1  12
+Tag   G'
+TagPos -18.0000   0.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    3.7776   6.0000   1   0.0000
+Angle    0.1929
+Linker  13   1  14  18
+Slope    0.0000   0.0000   0.0000   0.0000
+ObjSho1
+TagSho0
+End
+27
+Kind     5   1
+Tag   j
+TagPos  -0.6000   0.1000   0.5000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    3.8036   2.0000   0   1.0000
+Linker  35  13
+Locked
+Invert
+Return
+ObjSho1
+TagSho0
+End
+28
+Kind     5  12
+Tag   j'
+TagPos  -0.6000   0.1000   0.5000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    3.8036   2.0000   0   1.0000
+Angle    1.0000
+Linker  27   1  14
+Locked
+Invert
+Return
+ObjSho1
+TagSho0
+End
+29
+Kind     5  12
+Tag   j''
+TagPos  -0.6000   0.1000   0.5000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    3.8036   2.0000   0   1.0000
+Angle    1.0000
+Linker  28   1  14
+Locked
+Invert
+Return
+ObjSho1
+TagSho0
+End
+30
+Kind     5  12
+Tag   j'''
+TagPos  -0.6000   0.1000   0.5000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    3.8036   2.0000   0   1.0000
+Angle    1.0000
+Linker  29   1  14
+Locked
+Invert
+Return
+ObjSho1
+TagSho0
+End
+Finish
+Termination

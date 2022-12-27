@@ -1,0 +1,1393 @@
+inRm3D v2.853 
+Page     5   5
+PageNm   1  4面体
+Color  16777215      255    32768 16711680 16711680      255    32768 16711680
+Transp   0.1000   0.1000   0.1000
+Mode     4   0   4   0   4   0
+Origin   0.0000   0.0000 183.0000 305.5000   0.0000
+Origi    4   1      255 o
+Length   8.0000   8.0000   8.0000
+Axis     1   2   1   2   1   2  ---  ---  ---
+Deep    35.0000  29.0000
+Scene 10100110010100010
+Window  44  44 768 536
+Pages    1   1
+End
+11
+Kind     1   2
+Tag   
+TagPos   0.1000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.1464   4.0000   0   0.0000
+Linker   0   4
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho11
+TagSho00
+End
+12
+Kind     4   6
+Tag   
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     32896   0.6000
+ColorB    32896   0.6000
+Shape    3.6667   3.0000  10   6.3509
+Linker  11   4
+Invert
+Return
+ObjSho11
+TagSho00
+Edges   a  _4 _5 _6
+EdgesW   2   6    32896 16776960   0
+Names   13  14  15  45  46  47
+VctObjo0
+VctTagi0
+End
+16
+Kind     1   2
+Tag   
+TagPos   0.1000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    1.0000   4.0000   0   0.0000
+Angle    1.0000
+Linker   0  15
+Slope    0.0000   1.0000   0.0000   0.0000
+Shadow
+ObjSho10
+TagSho00
+End
+17
+Kind     1   8
+Tag   
+TagPos   0.1000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    1.0000   4.0000   0   0.0000
+Angle    1.0000
+Linker  16  14
+Slope    0.0000   0.0000   0.0000   0.0000
+ObjSho10
+TagSho00
+End
+18
+Kind     3   3
+Tag   
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     65280   1.0000
+ColorB    65280   1.0000
+Shape    5.5000   1.0000   0   1.9089
+Angle    3.1416
+Linker  17  14
+Shadow
+ObjSho10
+TagSho00
+End
+19
+Kind     1   2
+Tag   Drag Me
+TagPos   0.1000   0.1000   0.7000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.2400   4.0000   0   0.0200
+Linker   0  18
+Slope    0.0000   1.0000   0.0000   0.0000
+Return
+Shadow
+ObjSho11
+TagSho01
+End
+20
+Kind     4   2
+Tag   
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     32896   0.6000
+ColorB    32896   0.6000
+Shape    0.1000   3.0000  10   0.0000
+Angle    3.0000
+Linker  19  14
+ObjSho11
+TagSho00
+End
+21
+Kind     4   4
+Tag   
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color   8421376   0.6000
+ColorB  8421376   0.6000
+Shape    6.4333   4.0000  10   0.0000
+Angle    2.8333
+Linker  11  13
+ObjSho10
+TagSho00
+End
+22
+Kind     4   4
+Tag   
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color   8421376   0.6000
+ColorB  8421376   0.6000
+Shape    7.2000   4.0000  10   0.0000
+Angle    2.3000
+Linker  11  15
+ObjSho10
+TagSho00
+End
+23
+Kind     4   8
+Tag   
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     32896   0.6000
+ColorB    32896   0.6000
+Shape    0.1000   3.0000  10   0.0000
+Angle    1.0000
+Linker  20  21
+ObjSho11
+TagSho00
+End
+24
+Kind     4   8
+Tag   
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     32896   0.6000
+ColorB    32896   0.6000
+Shape    0.1000   3.0000  10   0.0000
+Angle    1.0000
+Linker  20  22
+ObjSho11
+TagSho00
+End
+Finish
+PageNm   2  6面体b
+Color  16777215      255    32768 16711680 16711680      255    32768 16711680
+Transp   0.1000   0.1000   0.1000
+Mode     4   0   4   0   4   0
+Origin   0.0000   0.0000 321.5000 305.0000   0.0000
+Origi    4   1      255 o
+Length   8.0000   8.0000   8.0000
+Axis     1   2   1   2   1   2  ---  ---  ---
+Deep    35.0000  29.0000
+Scene 10100110010100010
+Window  44  44 768 536
+Pages    1   1
+End
+11
+Kind     1   2
+Tag   
+TagPos   0.1000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape   -0.3130   4.0000   0   0.0000
+Linker   0   4
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho11
+TagSho00
+End
+12
+Kind     4   6
+Tag   b
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     32896   1.0000
+ColorB    32896   1.0000
+Shape    3.9000   4.0000  10   5.5154
+Linker  11   4
+Invert
+Return
+ObjSho11
+TagSho00
+Edges      b_5 b_6 b_7 b_8
+EdgesW   2   6    32896      255   0
+Names   13  14  15  16  27  28  29  30
+VctObjo`
+VctTag\`
+End
+17
+Kind     1   8
+Tag   
+TagPos   0.1000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape   -0.1559   4.0000   0   0.0000
+Angle    1.0000
+Linker  11  15
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho10
+TagSho00
+End
+18
+Kind     1   8
+Tag   
+TagPos   0.1000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.1682   4.0000   0   0.0000
+Angle    1.0000
+Linker  11  15
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho10
+TagSho00
+End
+19
+Kind     3   3
+Tag   
+TagPos   0.1500   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     65280   1.0000
+ColorB    65280   1.0000
+Shape    2.7577   1.0000   0   1.5690
+Angle    3.1416
+Linker  18  15
+Shadow
+ObjSho10
+TagSho11
+End
+20
+Kind     1   2
+Tag   Drag Me
+TagPos   0.1000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.3038   4.0000   0   0.0077
+Angle    1.0000
+Linker   0  19
+Slope    0.0000   1.0000   0.0000   0.0000
+Return
+Shadow
+ObjSho11
+TagSho11
+End
+21
+Kind     4   5
+Tag   
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     32896   0.6000
+ColorB    32896   0.6000
+Shape    2.0667   4.0000  10   0.0000
+Angle    4.6667
+Linker  20  11
+ObjSho10
+TagSho11
+End
+22
+Kind     4   8
+Tag   b
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     32896   1.0000
+ColorB    32896   1.0000
+Shape    3.9000   4.0000  10   0.0000
+Angle    1.0000
+Linker  12  21
+Return
+ObjSho11
+TagSho00
+End
+23
+Kind     4   8
+Tag   b
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     32896   1.0000
+ColorB    32896   1.0000
+Shape    3.9000   4.0000  10   0.0000
+Angle    1.0000
+Linker  22   5
+Return
+ObjSho11
+TagSho00
+End
+24
+Kind     4   8
+Tag   b
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     32896   1.0000
+ColorB    32896   1.0000
+Shape    3.9000   4.0000  10   0.0000
+Angle    1.0000
+Linker  23   4
+Return
+ObjSho11
+TagSho00
+End
+25
+Kind     4   8
+Tag   b
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     32896   1.0000
+ColorB    32896   1.0000
+Shape    3.9000   4.0000  10   0.0000
+Angle    1.0000
+Linker  22   4
+Return
+ObjSho11
+TagSho00
+End
+26
+Kind     4   8
+Tag   b
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     32896   1.0000
+ColorB    32896   1.0000
+Shape    3.9000   4.0000  10   0.0000
+Angle    1.0000
+Linker  25  21
+Return
+ObjSho11
+TagSho00
+End
+Finish
+PageNm   3  8面体
+Color  16777215      255    32768 16711680 16711680      255    32768 16711680
+Transp   0.1000   0.1000   0.1000
+Mode     4   0   4   0   4   0
+Origin   0.0000   0.0000 320.0000 303.0000   0.0000
+Origi    4   1      255 o
+Length   8.0000   8.0000   8.0000
+Axis     1   2   1   2   1   2  ---  ---  ---
+Deep    28.0000  29.0000
+Scene 10100110010100010
+Window  44  44 768 536
+Pages    1   1
+End
+11
+Kind     1   2
+Tag   a
+TagPos   0.1000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape   -1.4011   7.0000   0   0.0000
+Linker   0   4
+Slope    0.0000   1.0000   0.0000   0.0000
+Invert
+ObjSho11
+TagSho00
+End
+12
+Kind     4   6
+Tag   b
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16776960   0.6000
+ColorB 16776960   0.6000
+Shape   -2.6369   3.0000  10   4.5672
+Angle   -0.7000
+Linker  11   4
+Invert
+ObjSho11
+TagSho00
+Edges  b1 b2 b3 b_4 b_5 b_6
+EdgesW   2   6 16776960      255   0
+Names   13  14  15  30  31  32
+VctObjo0
+VctTag00
+End
+16
+Kind     1   8
+Tag   c
+TagPos   0.1000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape   -2.0238   4.0000   0   0.0000
+Angle    1.0000
+Linker  11  13
+Slope    0.0000   1.0000   0.0000   0.0000
+Invert
+ObjSho10
+TagSho00
+End
+17
+Kind     3   3
+Tag   d
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     65280   1.0000
+ColorB    65280   1.0000
+Shape    1.3184   1.0000   0   1.2327
+Angle    3.1416
+Linker  16  13
+Shadow
+ObjSho10
+TagSho00
+End
+18
+Kind     1   2
+Tag   Drag Me
+TagPos   0.1000   0.1000   0.7000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.1400   4.0000   0   0.0200
+Angle    1.0000
+Linker   0  17
+Slope    0.0000   1.0000   0.0000   0.0000
+Return
+Shadow
+ObjSho11
+TagSho01
+End
+19
+Kind     4   5
+Tag   f
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16711935   0.6000
+ColorB 16711935   0.6000
+Shape    1.3667   4.0000  10   0.0000
+Angle    5.1000
+Linker  11  18
+Return
+ObjSho10
+TagSho00
+End
+20
+Kind     4   8
+Tag   g
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16711680   0.6000
+ColorB 16711680   0.6000
+Shape   -2.6369   3.0000  10   0.0000
+Angle    1.0000
+Linker  12  19  11
+Return
+ObjSho11
+TagSho00
+End
+21
+Kind     4   4
+Tag   h
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color       255   0.6000
+ColorB      255   0.6000
+Shape   12.6333   4.0000  10   0.0000
+Angle    2.2667
+Linker  11  15
+Return
+ObjSho10
+TagSho00
+End
+22
+Kind     4   4
+Tag   i
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color       255   0.6000
+ColorB      255   0.6000
+Shape   10.3333   4.0000  10   0.0000
+Angle    2.4000
+Linker  11  14
+Return
+ObjSho10
+TagSho00
+End
+23
+Kind     4   8
+Tag   j
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16711680   0.6000
+ColorB 16711680   0.6000
+Shape   -2.6369   3.0000  10   0.0000
+Angle    1.0000
+Linker  20  21  11
+Return
+ObjSho11
+TagSho00
+End
+24
+Kind     4   8
+Tag   k
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16711680   0.6000
+ColorB 16711680   0.6000
+Shape   -2.6369   3.0000  10   0.0000
+Angle    1.0000
+Linker  20  22  11
+Return
+ObjSho11
+TagSho00
+End
+25
+Kind     4   8
+Tag   l
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color       255   0.6000
+ColorB      255   0.6000
+Shape   12.6333   4.0000  10   0.0000
+Angle    1.0000
+Linker  21  19
+Return
+ObjSho10
+TagSho00
+End
+26
+Kind     4   8
+Tag   m
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16776960   0.6000
+ColorB 16776960   0.6000
+Shape   -2.6369   3.0000  10   0.0000
+Angle    1.0000
+Linker  12  25  11
+Return
+ObjSho11
+TagSho00
+End
+27
+Kind     4   8
+Tag   p
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16776960   0.6000
+ColorB 16776960   0.6000
+Shape   -2.6369   3.0000  10   0.0000
+Angle    1.0000
+Linker  26  22  11
+Return
+ObjSho11
+TagSho00
+End
+28
+Kind     4   8
+Tag   q
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16776960   0.6000
+ColorB 16776960   0.6000
+Shape   -2.6369   3.0000  10   0.0000
+Angle    1.0000
+Linker  27  21  11
+Return
+ObjSho11
+TagSho00
+End
+29
+Kind     4   8
+Tag   r
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16711680   0.6000
+ColorB 16711680   0.6000
+Shape   -2.6369   3.0000  10   0.0000
+Angle    1.0000
+Linker  24  25  11
+Return
+ObjSho11
+TagSho00
+End
+Finish
+PageNm   4  12面体
+Color  16777215      255    32768 16711680 16711680      255    32768 16711680
+Transp   0.1000   0.1000   0.1000
+Mode     4   0   4   0   4   0
+Origin   0.0000   0.0000 216.5000 299.0000   0.0000
+Origi    4   1      255 o
+Length   8.0000   8.0000   8.0000
+Axis     1   2   1   2   1   2  ---  ---  ---
+Deep    31.0000  29.0000
+Scene 10100110010100010
+Window  44  44 768 536
+Pages   12  12
+End
+11
+Kind     1   2
+Tag   1
+TagPos  -0.8000   0.2000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color  16776960   1.0000
+ColorB 16776960   1.0000
+Shape    0.3069   4.0000   0   0.0000
+Linker   0   4
+Slope    0.0000   1.0000   0.0000   0.0000
+Invert
+ObjSho1111111111111
+TagSho1111110000000
+End
+12
+Kind     4   6
+Tag   2
+TagPos  -0.8000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    1.9791   5.0000  10   2.3266
+Linker  11   4
+Invert
+Return
+ObjSho1111111111111
+TagSho1000100000000
+Edges  b1 b2 b3   2_6 2_7 2_8 2_9 2_10
+EdgesW   2   6      255      255   0
+Names   13  14  15  16  17  35  36  37  38  39
+VctObjol
+VctTag6D
+End
+18
+Kind     1   8
+Tag   3
+TagPos  -0.7000  -0.5500   0.0000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape   -2.6415   4.0000   0   0.0000
+Angle    1.0000
+Linker  11  14
+Slope    0.0000   1.0000   0.0000   0.0000
+Invert
+ObjSho0111111110000
+TagSho0100000000000
+End
+19
+Kind     3   3
+Tag   4
+TagPos   0.3000  -0.3000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     65280   1.0000
+ColorB    65280   1.0000
+Shape    1.6011   1.0000   0   1.1036
+Angle    3.1416
+Linker  18  14
+Shadow
+ObjSho0111111110000
+TagSho0110000000000
+End
+20
+Kind     1   2
+Tag   5
+TagPos  -0.1500   0.3500   0.0000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0200   4.0000   0   0.0200
+Linker   0  19
+Slope    0.0000   1.0000   0.0000   0.0000
+Return
+Shadow
+ObjSho0011111111111
+TagSho1111111111111
+End
+21
+Kind     4   5
+Tag   6
+TagPos   0.2500   0.5000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16711680   0.6000
+ColorB 16711680   0.6000
+Shape    6.3333   4.0000  10   0.0000
+Angle    4.6000
+Linker  11  20
+Return
+ObjSho0001100010010
+TagSho0001100010010
+End
+22
+Kind     4   8
+Tag   7
+TagPos   0.4000  -0.0000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16711680   1.0000
+ColorB 16711680   1.0000
+Shape    1.9791   5.0000  10   0.0000
+Angle    1.0000
+Linker  12  21  11
+Return
+ObjSho0000111111111
+TagSho0000111100000
+End
+23
+Kind     4   4
+Tag   8
+TagPos  -0.8000  -0.7000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     32768   0.6000
+ColorB    32768   0.6000
+Shape    8.5667   4.0000  10   0.0000
+Angle    3.4000
+Linker  11  15
+Return
+ObjSho0000010111000
+TagSho0000010101000
+End
+24
+Kind     4   4
+Tag   10
+TagPos   0.3500  -0.9500   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16711935   0.6000
+ColorB 16711935   0.6000
+Shape    8.0666   4.0000  10   0.0000
+Angle    4.1667
+Linker  11  13
+Return
+ObjSho0000001111100
+TagSho0000001100100
+End
+25
+Kind     4   8
+Tag   12
+TagPos  -1.6000  -0.5000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16711680   1.0000
+ColorB 16711680   1.0000
+Shape    1.9791   5.0000  10   0.0000
+Angle    1.0000
+Linker  22  24  11
+Return
+ObjSho0000000111111
+TagSho0000000110000
+End
+26
+Kind     4   8
+Tag   9
+TagPos  -0.2000   0.3500   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     32896   1.0000
+ColorB    32896   1.0000
+Shape    1.9791   5.0000  10   0.0000
+Angle    1.0000
+Linker  22  23  11
+Return
+ObjSho0000011111111
+TagSho0000011010000
+End
+27
+Kind     4   8
+Tag   11
+TagPos  -0.0500   0.4000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16776960   1.0000
+ColorB 16776960   1.0000
+Shape    1.9791   5.0000  10   0.0000
+Angle    1.0000
+Linker  26  24  11
+Return
+ObjSho0000001111111
+TagSho0000001000000
+End
+28
+Kind     4   8
+Tag   13
+TagPos  -0.0500  -0.8500   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     32896   1.0000
+ColorB    32896   1.0000
+Shape    1.9791   5.0000  10   0.0000
+Angle    1.0000
+Linker  25  23  11
+Return
+ObjSho0000000111111
+TagSho0000000100000
+End
+29
+Kind     4   8
+Tag   14
+TagPos  -0.2000   0.2000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    1.9791   5.0000  10   0.0000
+Angle    1.0000
+Linker  26  21  11
+Return
+ObjSho0000000011111
+TagSho0000000011100
+End
+30
+Kind     4   8
+Tag   15
+TagPos   0.4000  -0.4000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16776960   1.0000
+ColorB 16776960   1.0000
+Shape    1.9791   5.0000  10   0.0000
+Angle    1.0000
+Linker  25  21  11
+Return
+ObjSho0000000011111
+TagSho0000000011100
+End
+31
+Kind     4   8
+Tag   16
+TagPos   0.1000   0.4000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16711680   1.0000
+ColorB 16711680   1.0000
+Shape    1.9791   5.0000  10   0.0000
+Angle    1.0000
+Linker  29  23  11
+Return
+ObjSho0000000001111
+TagSho0000000001000
+End
+32
+Kind     4   8
+Tag   18
+TagPos  -1.5000  -0.5000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    1.9791   5.0000  10   0.0000
+Angle    1.0000
+Linker  30  24  11
+Return
+ObjSho0000000000111
+TagSho0000000000100
+End
+33
+Kind     4   8
+Tag   17
+TagPos  -1.1000   0.1500   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16776960   1.0000
+ColorB 16776960   1.0000
+Shape    1.9791   5.0000  10   0.0000
+Angle    1.0000
+Linker  30  23  11
+Return
+ObjSho0000000001111
+TagSho0000000001010
+End
+34
+Kind     4   8
+Tag   19
+TagPos   0.3000   0.1500   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     32896   1.0000
+ColorB    32896   1.0000
+Shape    1.9791   5.0000  10   0.0000
+Angle    1.0000
+Linker  33  21  11
+Return
+ObjSho0000000000011
+TagSho0000000000010
+End
+Finish
+PageNm   1  20面体
+Color  16777215      255    32768 16711680 16711680      255    32768 16711680
+Transp   0.1000   0.1000   0.1000
+Mode     4   0   4   0   4   0
+Origin   0.0000   0.0000 138.0000 307.5000   0.0000
+Origi    4   1      255 o
+Length   8.0000   8.0000   8.0000
+Axis     1   2   1   2   1   2  ---  ---  ---
+Deep    30.0000  29.0000
+Scene 10100110010100010
+Window 195  99 768 536
+Pages    1   1
+End
+11
+Kind     1   2
+Tag   a
+TagPos   0.1000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color  16776960   1.0000
+ColorB 16776960   1.0000
+Shape    0.8383   4.0000   0   0.0000
+Linker   0   4
+Slope    0.0000   1.0000   0.0000   0.0000
+Invert
+ObjSho11
+TagSho00
+End
+12
+Kind     4   6
+Tag   b
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color       255   0.6000
+ColorB      255   0.6000
+Shape   -1.6617   3.0000  10   2.8781
+Angle   -0.7000
+Linker  11   4
+Invert
+Return
+ObjSho11
+TagSho00
+Edges  b1 b2 b3 b_4 b_5 b_6
+EdgesW   2   6      255      255   0
+Names   13  14  15  42  43  44
+VctObjo0
+VctTag00
+End
+16
+Kind     1   8
+Tag   c
+TagPos   0.1000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape   -2.0238   4.0000   0   0.0000
+Angle    1.0000
+Linker  11  13
+Slope    0.0000   1.0000   0.0000   0.0000
+Invert
+ObjSho10
+TagSho00
+End
+17
+Kind     3   3
+Tag   d
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     65280   1.0000
+ColorB    65280   1.0000
+Shape    0.8309   1.0000   0   0.7287
+Angle    3.1416
+Linker  16  13
+Shadow
+ObjSho10
+TagSho00
+End
+18
+Kind     1   2
+Tag   Drag Me
+TagPos   0.1000   0.1000   0.7000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.1400   4.0000   0   0.0200
+Angle    1.0000
+Linker   0  17
+Slope    0.0000   1.0000   0.0000   0.0000
+Return
+Shadow
+ObjSho11
+TagSho01
+End
+19
+Kind     4   5
+Tag   f
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color   8421376   0.6000
+ColorB  8421376   0.6000
+Shape    1.1000   4.0000  10   0.0000
+Angle    3.4667
+Linker  11  18
+Return
+ObjSho10
+TagSho00
+End
+20
+Kind     4   8
+Tag   g
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16711680   0.6000
+ColorB 16711680   0.6000
+Shape   -1.6617   3.0000  10   0.0000
+Angle    1.0000
+Linker  12  19  11
+Return
+ObjSho11
+TagSho00
+End
+21
+Kind     4   4
+Tag   h
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16711680   0.6000
+ColorB 16711680   0.6000
+Shape   12.6333   4.0000  10   0.0000
+Angle    2.2667
+Linker  11  15
+Return
+ObjSho10
+TagSho00
+End
+22
+Kind     4   4
+Tag   i
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16711680   0.6000
+ColorB 16711680   0.6000
+Shape   10.3333   4.0000  10   0.0000
+Angle    2.4000
+Linker  11  14
+Return
+ObjSho10
+TagSho00
+End
+23
+Kind     4   8
+Tag   j
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16776960   0.6000
+ColorB 16776960   0.6000
+Shape   -1.6617   3.0000  10   0.0000
+Angle    1.0000
+Linker  20  21  11
+Return
+ObjSho11
+TagSho00
+End
+24
+Kind     4   8
+Tag   k
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16776960   0.6000
+ColorB 16776960   0.6000
+Shape   -1.6617   3.0000  10   0.0000
+Angle    1.0000
+Linker  20  22  11
+Return
+ObjSho11
+TagSho00
+End
+25
+Kind     4   8
+Tag   l
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16711680   0.6000
+ColorB 16711680   0.6000
+Shape   12.6333   4.0000  10   0.0000
+Angle    1.0000
+Linker  21  19
+Return
+ObjSho10
+TagSho00
+End
+26
+Kind     4   8
+Tag   m
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16776960   0.6000
+ColorB 16776960   0.6000
+Shape   -1.6617   3.0000  10   0.0000
+Angle    1.0000
+Linker  12  25  11
+Return
+ObjSho11
+TagSho00
+End
+27
+Kind     4   8
+Tag   n
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color       255   0.6000
+ColorB      255   0.6000
+Shape   -1.6617   3.0000  10   0.0000
+Angle    1.0000
+Linker  23  25  11
+Return
+ObjSho11
+TagSho00
+End
+28
+Kind     4   8
+Tag   o
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color       255   0.6000
+ColorB      255   0.6000
+Shape   -1.6617   3.0000  10   0.0000
+Angle    1.0000
+Linker  26  22  11
+Return
+ObjSho11
+TagSho00
+End
+29
+Kind     4   8
+Tag   p
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16711680   0.6000
+ColorB 16711680   0.6000
+Shape   -1.6617   3.0000  10   0.0000
+Angle    1.0000
+Linker  27  22  11
+Return
+ObjSho11
+TagSho00
+End
+30
+Kind     4   8
+Tag   q
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16711680   0.6000
+ColorB 16711680   0.6000
+Shape   -1.6617   3.0000  10   0.0000
+Angle    1.0000
+Linker  28  21  11
+Return
+ObjSho11
+TagSho00
+End
+31
+Kind     4   8
+Tag   r
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16776960   0.6000
+ColorB 16776960   0.6000
+Shape   -1.6617   3.0000  10   0.0000
+Angle    1.0000
+Linker  30  22  11
+Return
+ObjSho11
+TagSho00
+End
+32
+Kind     4   8
+Tag   s
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16711680   0.6000
+ColorB 16711680   0.6000
+Shape   -1.6617   3.0000  10   0.0000
+Angle    1.0000
+Linker  24  25  11
+Return
+ObjSho11
+TagSho00
+End
+33
+Kind     4   8
+Tag   t
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16711680   0.6000
+ColorB 16711680   0.6000
+Shape   -1.6617   3.0000  10   0.0000
+Angle    1.0000
+Linker  32  22  11
+Return
+ObjSho11
+TagSho00
+End
+34
+Kind     4   8
+Tag   u
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color       255   0.6000
+ColorB      255   0.6000
+Shape   -1.6617   3.0000  10   0.0000
+Angle    1.0000
+Linker  30  25  11
+Return
+ObjSho11
+TagSho00
+End
+35
+Kind     4   8
+Tag   v
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color       255   0.6000
+ColorB      255   0.6000
+Shape   -1.6617   3.0000  10   0.0000
+Angle    1.0000
+Linker  34  22  11
+Return
+ObjSho11
+TagSho00
+End
+36
+Kind     4   8
+Tag   w
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color       255   0.6000
+ColorB      255   0.6000
+Shape   -1.6617   3.0000  10   0.0000
+Angle    1.0000
+Linker  28  25  11
+Return
+ObjSho11
+TagSho00
+End
+37
+Kind     4   8
+Tag   x
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16711680   0.6000
+ColorB 16711680   0.6000
+Shape   -1.6617   3.0000  10   0.0000
+Angle    1.0000
+Linker  33  25  11
+Return
+ObjSho11
+TagSho00
+End
+38
+Kind     4   8
+Tag   y
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16776960   0.6000
+ColorB 16776960   0.6000
+Shape   -1.6617   3.0000  10   0.0000
+Angle    1.0000
+Linker  36  22  11
+Return
+ObjSho11
+TagSho00
+End
+39
+Kind     4   8
+Tag   z
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16776960   0.6000
+ColorB 16776960   0.6000
+Shape   -1.6617   3.0000  10   0.0000
+Angle    1.0000
+Linker  35  25  11
+Return
+ObjSho11
+TagSho00
+End
+40
+Kind     4   8
+Tag   aa
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color  16776960   0.6000
+ColorB 16776960   0.6000
+Shape   -1.6617   3.0000  10   0.0000
+Angle    1.0000
+Linker  29  25  11
+Return
+ObjSho11
+TagSho00
+End
+41
+Kind     4   8
+Tag   ab
+TagPos   0.1000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color       255   0.6000
+ColorB      255   0.6000
+Shape   -1.6617   3.0000  10   0.0000
+Angle    1.0000
+Linker  40  22  11
+Return
+ObjSho11
+TagSho00
+End
+Finish
+Termination

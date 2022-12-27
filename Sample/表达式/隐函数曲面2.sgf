@@ -1,0 +1,29 @@
+inRm3D v2.729
+Color  16777215      255    32768 16711680
+Origin   0.0000   0.0000 322.5000 287.0000
+Length -16.0000 -16.0000 -16.0000   0.0000
+Window 196 138 731 550
+Deep    15.0000  30.0000
+Scene 1110011101
+Pages    0
+End
+11
+Kind     9  13
+Tag   a
+TagPos  -0.7000   0.2000   0.0000   0.00000
+Color     32768   1.0000
+Shape    3.5355   2.0000   1   5.0000
+Linker   0
+FuncX 0
+FuncY 0
+FuncZ 4*cos(9*r)-1*sin(9*n)*sin(9*m)-3
+RuleX   -0.0000   5.0000  40.0000
+RuleY   -1.5000   1.5000  40.0000
+RuleZ    0.0000   4.0000  12.0000
+Param    0.0000   0.0000   0.0000
+Param1   0.0000   0.0000   0.0000
+Return
+ObjSho1
+TagSho0
+End
+Finish

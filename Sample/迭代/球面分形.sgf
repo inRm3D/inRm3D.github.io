@@ -1,0 +1,134 @@
+inRm3D v2.813
+Color  16777215      255    32768 16711680
+Origin   0.0000   0.0000 245.5000 291.5000
+Length   8.0000   8.0000   8.0000   0.0000   2.0000
+Window  -1  13 792 601
+Deep    34.0000   0.0000
+Scene 1001000100
+Pages    1
+End
+14
+Kind     3   1
+Tag   O_1
+TagPos  -0.6000   0.1000   0.5000   0.00000
+Color     65280   1.0000
+Shape    6.2399   1.0000   0   0.0000
+Linker   1   5
+Return
+ObjSho00
+TagSho00
+End
+15
+Kind     1   2
+Tag   B
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+Shape    2.1031   8.0000   0   0.0000
+Slope    0.0000   6.2832
+Linker   0  14
+Shadow
+ObjSho10
+TagSho11
+End
+18
+Kind     1   2
+Tag   C
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+Shape    5.0221   8.0000   0   0.0000
+Slope    0.0000   6.2832
+Linker   0  14
+Shadow
+ObjSho10
+TagSho11
+End
+20
+Kind     1   5
+Tag   A
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+Shape    0.0000   8.0000   0   0.0000
+Linker  15  18
+ObjSho00
+TagSho00
+End
+21
+Kind     2   1
+Tag   b
+TagPos  -0.6000   0.1000   0.7000   0.00000
+Color  16711680   1.0000
+Shape    0.6929   1.5000   0   0.0000
+Linker  20   1
+ObjSho00
+TagSho00
+End
+22
+Kind     1   9
+Tag   D
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+Shape    2.1708   8.0000   0   0.0000
+Angle    1.5908
+Linker  15  21
+ObjSho10
+TagSho11
+End
+26
+Kind     2   1
+Tag   f
+TagPos  -0.6000   0.1000   0.7000   0.00000
+Color  16711680   1.0000
+Shape    8.6818   1.5000   0   0.0000
+Linker  22  18
+ObjSho10
+TagSho00
+End
+25
+Kind     2   1
+Tag   e
+TagPos  -0.6000   0.1000   0.7000   0.00000
+Color  16711680   1.0000
+Shape    8.8572   1.5000   0   0.0000
+Linker  15  22
+ObjSho10
+TagSho00
+End
+23
+Kind    11   2
+Tag   c
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Font  Arial
+Color         0   1.0000
+Shape    8.0000  41.0000   2   1.0000
+Point   36.0000  84.0000  41.0000  15.0000
+Angle    1.0000
+Slope    0.0000   0.0000
+Linker   0
+FuncX c =1.0000
+FuncY 
+ObjSho11
+TagSho00
+End
+24
+Kind    13   1
+Tag   d
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color         6   1.0000
+Shape    0.0000   2.0000   8   1.0000
+Linker  23  15  15  18  18  22  22
+Invert
+ObjSho11
+TagSho00
+End
+30
+Kind     6   1
+Tag   a
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     7
+Color  16711935   0.3000
+Shape    6.2399   0.0000  32   0.0000
+Linker   1   4  14
+ObjSho00
+TagSho00
+End
+Finish

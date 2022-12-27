@@ -1,0 +1,391 @@
+inRm3D v2.722
+Color  16777215      255    32768 16711680
+Origin  0.00000  0.00000 28.35277340.35065
+Length  8.00000  8.00000  8.00000  0.00000
+Window  88  88 768 558
+Deep   43.00000 35.00000
+Scene 1110111001
+Pages    0
+End
+47
+Kind    11   2
+Tag   h
+TagPos -0.60000  0.10000  0.00000  0.000000
+Font  Arial
+Color         0  1.00000
+Shape   1.42538 62.00000   5 15.00000
+Point  50.00000221.00000 62.00000 15.00000
+Angle   0.47513
+Slope   0.00000  0.00000
+Linker   0
+FuncX h =  1.0000
+FuncY 
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+48
+Kind    11   1
+Tag   m
+TagPos -0.60000  0.10000  0.00000  0.000000
+Font  Arial
+Color         0  1.00000
+Shape  65.56748 73.00000   5 15.00000
+Point  46.00000237.00000 73.00000 15.00000
+Linker  47
+FuncX h*random(99)
+FuncY a*random(99)
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+29
+Kind     1   2
+Tag   m_qw
+TagPos -0.60000  0.10000  0.00000999.000000
+TagS    16
+Font  Microsoft Sans Serif
+Color       255  1.00000
+Shape   6.96600  4.00000   0  0.16200
+Angle   3.28669
+Slope   0.00000  8.00000
+Linker   0   3
+Invert
+Shadow
+ObjSho1111111111111111
+TagSho1111111111111111
+End
+18
+Kind     1   1
+Tag   d
+TagPos -0.60000  0.10000  0.70000  0.000000
+Color       255  1.00000
+Shape   5.00000  4.00000   0  0.00000
+Point  -2.19137 -1.18595  1.16058999.00000
+Linker   0
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+17
+Kind     2   2
+Tag   e
+TagPos -0.60000  0.10000  0.70000  0.000000
+Color  16711680  1.00000
+Shape   2.08024  1.00000   0  0.00000
+Slope   5.35000 -0.02000
+Linker  18
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+12
+Kind     1   1
+Tag   a
+TagPos -0.60000  0.10000  0.70000  0.000000
+Color       255  1.00000
+Shape   5.00000  4.00000   0  0.00000
+Point  -1.42150 -0.52682  0.45545999.00000
+Linker   0
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+11
+Kind     2   2
+Tag   b
+TagPos -0.60000  0.10000  0.70000  0.000000
+Color  16711680  1.00000
+Shape   8.68422  1.00000   0  0.00000
+Slope   6.00000  0.00000
+Linker  12
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+13
+Kind     1   2
+Tag   c
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.72767  4.00000   0  0.01707
+Angle   0.16789
+Slope   0.00000  1.00000
+Linker   0  11
+Return
+Shadow
+ObjSho1111111111111111
+TagSho1111111111111111
+End
+22
+Kind     1   1
+Tag   f
+TagPos -0.60000  0.10000  0.50000  0.000000
+Color       255  1.00000
+Shape   4.00000  4.00000   0  0.00000
+Point   0.00000  2.11758  0.89859999.00000
+Linker   0
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+23
+Kind     1   1
+Tag   g
+TagPos -0.60000  0.10000  0.50000  0.000000
+Color       255  1.00000
+Shape   4.00000  4.00000   0  0.00000
+Point   1.31242  1.48491  2.34224  0.00000
+Linker   0
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+21
+Kind     3   1
+Tag   圆
+TagPos -1.30000  0.50000  5.09375255.000000
+TagS    16
+Font  仿宋_GB2312
+Color     65280  1.00000
+Shape   6.02897  2.60000   0  0.00000
+Linker  22  23
+Sected
+ObjSho1111111111111111
+TagSho1111111111111111
+End
+24
+Kind     1   2
+Tag   i
+TagPos -0.65000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   2.01612  7.00000   0  0.05250
+Angle   0.51369
+Slope   0.19500  5.84518
+Linker   0  21
+ObjSho1111111111111111
+TagSho1111111111111111
+End
+30
+Kind     2   1
+Tag   j
+TagPos -0.75000  0.10000  0.70000  0.000000
+Color  16711935  1.00000
+Shape  10.84314  3.20000   0  0.00000
+Linker  13  24
+Sected
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+32
+Kind     1   2
+Tag   k
+TagPos -0.60000  0.20000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.81600  4.00000   0  0.02040
+Angle   0.32997
+Slope   0.00000  1.00000
+Linker   0   2
+Return
+Shadow
+ObjSho1111111111111111
+TagSho1111111111111111
+End
+39
+Kind     1   1
+Tag   n
+TagPos -0.70000  0.20000  0.00000  0.000000
+Color       255  1.00000
+Shape   2.00000  8.00000   1  1.00000
+Point  -0.97814 -1.77336  3.04127  0.00000
+Linker   0
+Return
+ObjSho1111111111111111
+TagSho1111111111111111
+End
+41
+Kind     1   1
+Tag   l
+TagPos -0.60000  0.10000  0.50000  0.000000
+Color       255  1.00000
+Shape   5.00000  4.00000   1  0.00000
+Point   0.00000  0.74895  3.68156  0.00000
+Angle   3.00000
+Linker   0
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+42
+Kind     1   1
+Tag   而威_尔
+TagPos -3.09999  0.50000  0.50000999.00000255
+TagSty1010
+TagS    42
+Font  楷体_GB2312
+Color  16711680  1.00000
+Shape   5.00000  8.00000   1  0.00000
+Point   1.54741  6.12014  9.28452  0.00000
+Angle   3.00000
+Linker   0
+ObjSho1111111111111111
+TagSho1111111111111111
+End
+44
+Kind     1   1
+Tag   士大夫_12
+TagPos -0.60000  0.10000  0.00000999.000000
+TagSty1101
+TagS    22
+Font  楷体_GB2312
+Color       255  1.00000
+Shape   0.00000  3.51000   0  0.00000
+Point   0.00000  5.87681  2.82039  0.00000
+Linker   0
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+46
+Kind    14   1
+Tag   移动
+TagPos  0.00000  0.00000  0.00000  0.000000
+TagS     9
+Font  Arial
+Color         0  0.00000
+Shape   0.00000 90.00000   9 27.00000
+Point  47.00000164.00000 70.00000  0.00000
+Linker  29  13
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+51
+Kind    14   2
+Tag   计算 
+TagPos  0.00000  0.00000  0.00000  0.000000
+TagS     9
+Font  Arial
+Color         0  0.00000
+Shape   0.00000 90.00000   9 27.00000
+Point 134.00000226.00000 70.00000  0.00000
+Angle 200.00000
+Linker  48
+Trace   10
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+56
+Kind     1   1
+Tag   A
+TagPos -0.60000  0.10000  0.70000  0.000000
+Color       255  1.00000
+Shape   5.00000  3.00000   0  0.00000
+Point   0.00000 -5.46998  0.35740  0.00000
+Linker   0
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+55
+Kind     2   2
+Tag   q
+TagPos -0.60000  0.10000  0.70000  0.000000
+Color  16711680  1.00000
+Shape   5.00000  1.50000   0  0.00000
+Slope   6.00000  0.00000
+Linker  56
+Invert
+ObjSho0111111111111111
+TagSho0000000000000000
+End
+36
+Kind    14   1
+Tag   移动 k
+TagPos  0.00000  0.00000  0.00000999.000000
+TagS     9
+Font  宋体
+Color         0  1.00000
+Shape   0.00000 85.00000  18 27.00000
+Point 135.00000 55.00000 70.00000  0.00000
+Linker  13  32  24  29
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+59
+Kind    14   2
+Tag   参数a
+TagPos  0.00000  0.00000  0.00000  0.000000
+TagS     9
+Font  Arial
+Color         0  0.00000
+Shape   0.00000 90.00000   9 27.00000
+Point 134.00000196.00000 70.00000  0.00000
+Angle   5.00000
+Linker  47
+Trace   30
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+60
+Kind     1   2
+Tag   B
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   1.42538  4.00000   0  0.00000
+Slope   0.00000  8.00000
+Linker   0   3  47
+Invert
+Shadow
+ObjSho1111111111111111
+TagSho1111111111111111
+End
+61
+Kind     1   2
+Tag   C
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.65127  4.00000   0  0.00000
+Slope   0.00000  1.00000
+Linker   0  30
+Shadow
+ObjSho1111111111111111
+TagSho1111111111111111
+End
+62
+Kind     5   1
+Tag   p
+TagPos -0.60000  0.10000  0.50000  0.000000
+Color     32768  1.00000
+Shape   0.17400  1.00000   0  5.00000
+Linker  61  47
+Return
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+64
+Kind    10   2
+Tag   t
+TagPos -0.60000  0.10000  0.00000  0.000000
+TagS    14
+Font  Arial
+Color         0  1.00000
+Shape   0.34700  0.00000   0  0.00000
+Textur地球3.gif
+Point  29.00000457.00000999.00000512.00000
+Angle  -0.06200
+Linker   0
+FuncY 
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+63
+Kind    10   1
+Tag   r
+TagPos  0.10000  0.15000  0.00000  0.000008421376
+TagS    26
+Font  隶书
+Color   8421376  1.00000
+Shape   1.00000  0.00000   0  1.12330
+Point  38.40244125.81671216.00000 35.00000
+Angle   0.61100
+Linker   0
+FuncY 0176180194214192170203227183168181196
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+Finish

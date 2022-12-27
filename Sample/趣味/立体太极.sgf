@@ -1,0 +1,148 @@
+inRm3D v2.865 
+Page     1   1
+PageNm   0  Page1
+Color  8421504 255 255 32768 16711680 255 16776960 16711680
+Transp 0.2 0.2 0.2
+Mode   0 0 0 0 4 0
+Origin 0 0.0449 208 310 0
+Origi  6 1 255
+Length 15.5153 11.6027 6.2 7.1153 4.4 2.4
+Axis   1 2 1 2 1 2
+AxiTag o x y z
+Deep   37 15
+Scene 1101111110001101000
+Window 311 101 868 614
+Pages  1 0
+End
+11
+Kind   1 2
+Tag   A
+TagPos -16 1 0 0 55
+TagSty1000
+TagS    12
+Font  Times New Roman
+Color  255 1
+Shape  0.6524 6 1 0
+Linker 0 2
+Slope  0 1 0 0
+ObjSho11
+TagSho11
+End
+13
+Kind   3 3
+Tag   O_1
+TagPos -17 2 0.5 0 55
+TagSty1000
+TagS    12
+Font  Times New Roman
+Color  16711680 1
+ColorB 65280 1
+Shape  5.4799 1 0 3.1416
+Linker 11 1
+Return
+ObjSho10
+TagSho00
+End
+14
+Kind   1 10
+Tag   A'
+TagPos -16 1 0 0 55
+TagSty1000
+TagS    12
+Font  Times New Roman
+Color  255 1
+Shape  -0.5 6 1 0
+Angle  -0.5
+Linker 11 1
+ObjSho11
+TagSho11
+End
+20
+Kind   1 2
+Tag   D
+TagPos -16 1 0.7 0 55
+TagSty1000
+TagS    12
+Font  Times New Roman
+Color  255 1
+Shape  0.2964 6 1 0.05
+Linker 0 13
+Slope  0.04 0.99 0 0
+ObjSho10
+TagSho11
+End
+30
+Kind   1 9
+Tag   o'
+TagPos -12 -4 11 0 255
+TagS    14
+Font  Calibri
+Color  255 1
+Shape  0 6 1 0
+Angle  0.6316
+Linker 1 14 0 11 14 20
+ObjSho11
+TagSho00
+End
+32
+Kind   2 5
+Tag   d
+TagPos -0.6 0.1 0.7 0 0
+TagS    11
+Font  Calibri
+Color  32768 1
+Shape  5 1 0 0
+Angle0 0.5
+Linker 20 30
+Slope  6 0 0 0
+ObjSho11
+TagSho00
+End
+34
+Kind   3 1
+Tag   O[3]
+TagPos -0.6 0.1 0.5 0 0
+TagS    11
+Font  Calibri
+Color  32768 1
+ColorB 0 0
+Shape  2.3535 1 0 0.3
+Angle  3.1416
+Linker 32 20
+Return
+ObjSho11
+TagSho00
+End
+35
+Kind   7 4
+Tag   j
+TagPos -0.6 0.1 5 0 0
+TagS    11
+Font  Calibri
+Color  12632256 1
+ColorB 12632256 1
+Shape  31 0 32 0
+Linker 34 20
+Return
+ObjSho11
+TagSho00
+End
+37
+Kind   6 1
+Tag   k
+TagPos -0.6 0.1 0 0 0
+TagS    11
+Font  Calibri
+Color  12632256 1
+ColorB 16744576 1
+Shape  2.74 0.3 14 0
+Angle1 0 0 0
+Linker 1 11
+Invert
+Return
+Trace  10
+ObjSho11
+TagSho00
+End
+Finish
+Termination

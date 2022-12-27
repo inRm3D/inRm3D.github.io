@@ -1,0 +1,75 @@
+inRm3D v2.837 Beta 
+Page     1   1
+PageNm    1  Page1
+Color  16777215      255    32768 16711680 16711680      255    32768 16711680
+Transp   0.1000   0.1000   0.1000
+Mode     4   0   4   0   4   0
+Origin  -2.1429  -0.0000 251.9505 287.3569   0.0000
+Origi    0   1      255 o
+Length   8.0000   8.0000   8.0000
+Axis     1   2   1   2   1   2  ---  ---  ---
+Window  64  73 788 576
+Deep    34.0000  10.0000
+Scene 111101110000000
+Pages    0   0
+Spin     0  -1
+End
+12
+Kind     1   2
+Tag   A
+TagPos  -0.6000   0.1000   0.0000   0.0000255
+TagS    16
+Font  Times New Roman
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    4.8400   4.0000   1   0.0200
+Linker   0   3
+Slope    0.0000   6.2800   0.0000   0.0000
+Shadow
+ObjSho1
+TagSho1
+End
+11
+Kind     9   1
+Tag   a
+TagPos  -0.6000   2.1000   0.0000   0.0000255
+TagSty   1
+TagS    16
+Font  Times New Roman
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.3578   0.0000   0   5.0000
+Linker  12
+FuncX 0
+FuncY 0
+FuncZ (sin(x+a)+cos(y+a))/3+4
+RuleX   -8.0000   8.0000  40.0000
+RuleY   -8.0000   8.0000  40.0000
+RuleZ   -0.0172   0.0108  40.0000
+Param    2.3200   0.0000   0.0000
+Param1   0.0000   0.0000   0.0000
+Textur极光.jpg
+Invert
+Return
+ObjSho1
+TagSho0
+End
+13
+Kind    10   1
+Tag   b
+TagPos  -0.6000   0.1000   0.0000   0.0000255
+TagSty1000
+TagS    36
+Font  书体坊赵九江钢笔行书
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    1.0000   0.0000   0   0.0000
+Point   93.0000 112.0000   0.0000   0.0000
+Linker   0
+Slope    0.0000   0.0000   0.0000   0.0000
+FuncY 0176180 77188252198174198240192180
+ObjSho1
+TagSho0
+End
+Finish
+Termination

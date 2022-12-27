@@ -1,0 +1,571 @@
+inRm3D v2.864 
+Page     1   1
+PageNm   0  Page1
+Color  0 255 255 32768 16711680 255 32768 16711680
+Transp 0.1 0.1 0.1
+Mode   4 0 4 0 4 0
+Origin 0 0 196 305 1
+Origi  4 1 255
+Length 8 8.2 5.7 0 0 0
+Axis   1 2 1 2 1 2
+AxiTag o xX y z
+Deep   48 21.5
+Scene 1110111000000001000
+Window  72   1 894 686
+Pages  1 1
+End
+11
+Kind   4 6
+Tag   ¦Á
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16711680 0.4
+ColorB 16711680 0.4
+Shape  1.866 5 10 2.1936
+Linker 1 4
+Invert
+Return
+ObjSho11
+TagSho00
+Edges  ¦Á_1 ¦Á_2 ¦Á_3 ¦Á_4 ¦Á_5 ¦Á_6 ¦Á_7 ¦Á_8 ¦Á_9 ¦Á_10
+EdgesW   1   6    32896      255   0
+Names   12  13  14  15  16  17  18  19  20  21
+VctObjol
+VctTag00
+End
+25
+Kind   1 9
+Tag   ¦Á_8'
+TagPos 0 0 0.5 0 255
+TagS    16
+Font  Times New Roman
+Color  255 1
+ColorB 255 1
+Shape  60 6 1 0
+Angle  60
+Linker 19 20
+Locked
+Degree
+ObjSho10
+TagSho00
+End
+26
+Kind   3 3
+Tag   O_2
+TagPos -0.6 0.1 0.5 0 255
+TagS    16
+Font  Times New Roman
+Color  65280 1
+ColorB 0 0
+Shape  1.8997 2 0 0.651
+Angle  3.1416
+Linker 25 14
+Return
+Shadow
+ObjSho10
+TagSho00
+End
+27
+Kind   1 2
+Tag   MoveMe
+TagPos 9.4 2.1 0 0 255
+TagS    16
+Font  Times New Roman
+Color  255 1
+ColorB 0 0
+Shape  0.28 6 1 0.008
+Linker 0 26
+Slope  0.01 1 0 0
+Return
+Shadow
+ObjSho11
+TagSho01
+End
+28
+Kind   4 1
+Tag   ¦Â
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  0 3 10 0
+Angle  1
+Linker 27 20 19
+Return
+ObjSho10
+TagSho00
+End
+29
+Kind   4 6
+Tag   ¦Ã
+TagPos -1.6 1.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 0.4
+Shape  2.1936 6 10 2.1936
+Linker 27 28 19
+Invert
+Return
+ObjSho11
+TagSho00
+Edges  ¦Ã_1 ¦Ã_2 ¦Ã_3 ¦Ã_4 ¦Ã_5 ¦Ã_6 ¦Ã_7 ¦Ã_8 ¦Ã_9 ¦Ã_10 ¦Ã_11 ¦Ã_12
+EdgesW   1   6    32896      255   0
+Names   30  31  32  33  34  35  36  37  38  39  40  41
+VctObjoo0
+VctTag000
+End
+42
+Kind   4 4
+Tag   ¦Ä
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  5 4 10 3
+Angle  3
+Linker 20 12
+Return
+ObjSho10
+TagSho00
+End
+43
+Kind   4 8
+Tag   ¦Ã'
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 0.4
+Shape  2.1936 6 10 2.86
+Linker 29 42
+Return
+ObjSho11
+TagSho00
+End
+44
+Kind   4 8
+Tag   ¦Ã''
+TagPos -1.6 5.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 0.4
+Shape  2.1936 6 10 2.86
+Linker 43 6
+Return
+ObjSho11
+TagSho00
+End
+45
+Kind   4 8
+Tag   ¦Ã'''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 0.4
+Shape  2.1936 6 10 2.86
+Linker 44 42
+Return
+ObjSho11
+TagSho00
+End
+47
+Kind   4 8
+Tag   ¦Ã''''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 0.4
+Shape  2.1936 6 10 2.86
+Linker 45 6
+Return
+ObjSho11
+TagSho00
+End
+48
+Kind   4 4
+Tag   ¦Å
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  5 4 10 3
+Angle  3
+Linker 27 33
+Return
+ObjSho10
+TagSho00
+End
+49
+Kind   4 8
+Tag   ¦Á'
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16711680 1
+ColorB 16711680 0.4
+Shape  1.866 5 10 2.86
+Linker 11 48
+Return
+ObjSho11
+TagSho00
+End
+50
+Kind   4 8
+Tag   ¦Á''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16711680 1
+ColorB 16711680 0.4
+Shape  1.866 5 10 2.86
+Linker 49 6
+Return
+ObjSho11
+TagSho00
+End
+51
+Kind   4 8
+Tag   ¦Á'''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16711680 1
+ColorB 16711680 0.4
+Shape  1.866 5 10 2.86
+Linker 50 42
+Return
+ObjSho11
+TagSho00
+End
+52
+Kind   4 8
+Tag   ¦Á''''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16711680 1
+ColorB 16711680 0.4
+Shape  1.866 5 10 2.86
+Linker 51 6
+Return
+ObjSho11
+TagSho00
+End
+54
+Kind   4 8
+Tag   ¦Á'''''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16711680 1
+ColorB 16711680 0.4
+Shape  1.866 5 10 2.86
+Linker 52 42
+Return
+ObjSho11
+TagSho00
+End
+57
+Kind   4 8
+Tag   ¦Ã''''
+TagPos -0.6 2.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 0.4
+Shape  2.1936 6 10 2.86
+Linker 45 48
+Return
+ObjSho11
+TagSho00
+End
+60
+Kind   4 8
+Tag   ¦Ã'''''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 0.4
+Shape  2.1936 6 10 2.86
+Linker 47 48
+Return
+ObjSho11
+TagSho00
+End
+61
+Kind   4 8
+Tag   ¦Ã''''''
+TagPos -0.6 1.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 0.4
+Shape  2.1936 6 10 2.86
+Linker 60 6
+Return
+ObjSho11
+TagSho00
+End
+62
+Kind   4 8
+Tag   ¦Ã'''''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 0.4
+Shape  2.1936 6 10 2.86
+Linker 57 6
+Return
+ObjSho11
+TagSho00
+End
+63
+Kind   4 8
+Tag   ¦Ã''''''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 0.4
+Shape  2.1936 6 10 2.86
+Linker 62 42
+Return
+ObjSho11
+TagSho00
+End
+64
+Kind   4 8
+Tag   ¦Ã'''''''
+TagPos 4.4 1.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 0.4
+Shape  2.1936 6 10 2.86
+Linker 63 6
+Return
+ObjSho11
+TagSho00
+End
+65
+Kind   4 8
+Tag   ¦Ã'''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 0.4
+Shape  2.1936 6 10 2.86
+Linker 44 48
+Return
+ObjSho11
+TagSho00
+End
+66
+Kind   4 8
+Tag   ¦Ã'''''''
+TagPos -0.6 1.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 0.4
+Shape  2.1936 6 10 2.86
+Linker 61 42
+Return
+ObjSho11
+TagSho00
+End
+67
+Kind   4 8
+Tag   ¦Ã''''''''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 0.4
+Shape  2.1936 6 10 2.86
+Linker 66 6
+Return
+ObjSho11
+TagSho00
+End
+68
+Kind   4 8
+Tag   ¦Ã'''''''''
+TagPos -0.6 1.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 0.4
+Shape  2.1936 6 10 2.86
+Linker 67 42
+Return
+ObjSho11
+TagSho00
+End
+69
+Kind   4 8
+Tag   ¦Á''''''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16711680 1
+ColorB 16711680 0.4
+Shape  1.866 5 10 2.86
+Linker 54 48
+Return
+ObjSho11
+TagSho00
+End
+70
+Kind   4 8
+Tag   ¦Á'''''''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16711680 1
+ColorB 16711680 0.4
+Shape  1.866 5 10 2.86
+Linker 69 6
+Return
+ObjSho11
+TagSho00
+End
+72
+Kind   4 8
+Tag   ¦Á''''''''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16711680 1
+ColorB 16711680 0.4
+Shape  1.866 5 10 2.86
+Linker 70 42
+Return
+ObjSho11
+TagSho00
+End
+73
+Kind   4 8
+Tag   ¦Á'''''''''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16711680 1
+ColorB 16711680 0.4
+Shape  1.866 5 10 2.86
+Linker 72 6
+Return
+ObjSho11
+TagSho00
+End
+75
+Kind   4 8
+Tag   ¦Á'''''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16711680 1
+ColorB 16711680 0.4
+Shape  1.866 5 10 2.86
+Linker 52 48
+Return
+ObjSho11
+TagSho00
+End
+76
+Kind   4 8
+Tag   ¦Ã''''''''
+TagPos -1.6 1.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 0.4
+Shape  2.1936 6 10 2.86
+Linker 64 48
+Return
+ObjSho11
+TagSho00
+End
+77
+Kind   4 8
+Tag   ¦Ã'''''''''
+TagPos 0.4 2.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 0.4
+Shape  2.1936 6 10 2.86
+Linker 67 48
+Return
+ObjSho11
+TagSho00
+End
+78
+Kind   4 8
+Tag   ¦Ã''''''''''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 0.4
+Shape  2.1936 6 10 2.86
+Linker 68 48
+Return
+ObjSho11
+TagSho00
+End
+80
+Kind   4 8
+Tag   ¦Á''''''''''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16711680 1
+ColorB 16711680 0.4
+Shape  1.866 5 10 2.86
+Linker 73 48
+Return
+ObjSho11
+TagSho00
+End
+81
+Kind   4 8
+Tag   ¦Ã'''''''''''
+TagPos -0.6 1.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 0.4
+Shape  2.1936 6 10 2.86
+Linker 78 6
+Return
+ObjSho11
+TagSho00
+End
+82
+Kind   4 8
+Tag   ¦Ã''''''''''''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 0.4
+Shape  2.1936 6 10 2.86
+Linker 81 42
+Return
+ObjSho11
+TagSho00
+End
+Finish
+Termination

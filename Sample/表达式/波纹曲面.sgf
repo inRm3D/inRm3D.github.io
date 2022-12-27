@@ -1,0 +1,75 @@
+inRm3D v2.855 
+Page     1   1
+PageNm   0  Page1
+Color         0      255      255 16711680 16711680      255 16776960 16711680
+Transp   0.2000   0.2000   0.2000
+Mode     4   0   4   0   4   0
+Origin   0.0000   0.0000 254.0000 295.0000   0.0000
+Origi    6   1      255
+Length   5.9000   6.0000   4.5000
+Axis     1   2   1   2   1   2  ---  ---
+AxiTago x y z 
+Deep    19.0000  20.6000
+Scene 11000111010000010
+Window 170  59 904 600
+Pages    0   0
+End
+12
+Kind     1   2
+Tag   A
+TagPos  -0.6000   0.1000   0.0000   0.0000255
+TagSty1000
+TagS    12
+Font  Times New Roman
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    5.5358   6.0000   1   0.1000
+Angle    2.7358
+Linker   0   3
+Slope    0.0000   6.2832   0.0000   0.0000
+Invert
+Shadow
+ObjSho1
+TagSho1
+End
+14
+Kind     9   1
+Tag   b
+TagPos  -0.6000   0.1000   0.0000   0.0000255
+TagSty1000
+TagS    12
+Font  Times New Roman
+Color     32768   1.0000
+ColorB      255   1.0000
+Shape    3.0000   0.0000   0   5.0000
+Linker  12   0   6
+FuncX 0
+FuncY 0
+FuncZ sin(x^2+y^2+a)/(x^2+y^2+1)
+RuleX   -5.0000   5.0000  80.0000
+RuleY   -5.0000   5.0000  80.0000
+RuleZ    0.0000   4.5000  40.0000
+Param    2.4504   0.0000   3.0000
+Param1   0.0000   0.0000   0.0000
+Return
+ObjSho1
+TagSho0
+End
+15
+Kind    14   1
+Tag   ¶¯»­
+TagPos   0.0000   0.0000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   0.0000
+ColorB        0   0.0000
+Shape    0.0000  70.0000  50  24.0000
+Point   40.0000 100.0000  70.0000   0.0000
+Angle    0.1000
+Linker  12
+Return
+ObjSho1
+TagSho0
+End
+Finish
+Termination

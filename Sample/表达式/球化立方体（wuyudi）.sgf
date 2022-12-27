@@ -1,0 +1,91 @@
+inRm3D v2.866 
+Page     1   1
+PageNm   0  Page1
+Color  0 255 255 32768 16711680 255 32768 16711680
+Transp 0.1 0.1 0.1
+Mode   10 0 10 0 10 0
+Origin 0 0 285 306 0
+Origi  4 1 255
+Length 13 10 8.4 4.5 3 2.2
+Axis   2 2 2 2 2 2
+AxiTag o x y z
+Deep   7.5 29
+Scene 0101111110001111000
+Window 441 131 800 600
+Pages  0 0
+End
+40
+Kind   11 2
+Tag   b
+TagPos 0 1 0 1 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+Shape  0.75 1 4 1
+Point  44 92 70 0
+Angle  1
+Slope  0 1 0 0
+FuncX b =1.0000
+FuncY 
+Shadow
+Trace  100
+ObjSho1
+TagSho1
+End
+49
+Kind   11 1
+Tag   k
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+Shape  0.25 1 4 0
+Point  44 119 70 15
+Angle  1
+Linker 40
+Slope  0 100 10 0
+FuncX 1-b
+FuncY 1-a
+ObjSho1
+TagSho0
+End
+50
+Kind   9 13
+Tag   j
+TagPos -16 1 0 0 255
+TagS    16
+Font  Times New Roman
+Color  255 1
+Shape  1.7321 1 0 5
+Linker 40 49
+FuncX 0
+FuncY 0
+FuncZ a*(x+1)*(y-1)*(y+1)*(z-1)*(z+1)*(x-1)+b*(x^2+y^2+z^2-1)
+RuleX  -1 1 40
+RuleY  -1 1 40
+RuleZ  -1 1 40
+Param  1 0 0
+Param1 0 0 0
+Return
+ObjSho1
+TagSho0
+End
+52
+Kind   10 1
+Tag   m
+TagPos -16 1 0 0 255
+TagS    14
+Font  Arial
+Color  255 1
+Shape  1 0 0 0
+Point  495 529 0 0
+Slope  0 100 10 0
+FuncY 0199242187175193162183189204229163172206210181196203188194183 13 10201207186163 32206226211238181207
+Return
+ObjSho1
+TagSho0
+End
+Finish
+Termination

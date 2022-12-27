@@ -1,0 +1,264 @@
+inRm3D v2.861 
+Page     1   1
+PageNm   0  Page1
+Color  16777215      255      255    32768 16711680      255    32768 16711680
+Transp   0.4200   0.6800   0.7600
+Mode     0   0   0   0   0   0
+Origin  -0.2000   0.3000 234.6000 287.5000   0.0000
+Origi    4   1      255
+Length  12.0247  10.5873   6.9919   4.6247   4.4484   4.4728
+Axis     1   2   1   2   1   2
+AxiTago x y z 
+Deep    22.0000  29.0000
+Scene 110111111000111100
+Window 163   0 983 714
+Pages    1   1
+End
+14
+Kind     1   2
+Tag   B
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    4.7046   6.0000   1   0.0000
+Linker   0   2
+Slope    0.0000   7.4000   0.0000   0.0000
+Invert
+Shadow
+ObjSho11
+TagSho11
+End
+11
+Kind     6   1
+Tag   a
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color  16711680   1.0000
+ColorB    32768   1.0000
+Shape    4.7046   0.0000  13   0.0000
+Angle1   0.0000   0.5000   0.0000
+Linker   1   4  14
+ObjSho11
+TagSho00
+End
+16
+Kind     2   1
+Tag   b
+TagPos -16.0000   1.0000   0.7000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color  16711680   1.0000
+ColorB 16711680   1.0000
+Shape    4.7046   1.0000   0   0.0000
+Linker   1  14
+Slope    6.0000   0.0000   0.0000   0.0000
+ObjSho11
+TagSho00
+End
+18
+Kind     3   3
+Tag   O_2
+TagPos  -0.6000   0.1000   0.5000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color     65280   1.0000
+ColorB 16711680   1.0000
+Shape    4.7046   2.0000   0   2.0000
+Angle    3.1416
+Linker  14   3
+Return
+ObjSho10
+TagSho00
+End
+32
+Kind     1   9
+Tag   B'
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    3.7368   6.0000   1   0.0000
+Angle   60.0000
+Linker  14   4
+Slope    0.0000   7.4000   0.0000   0.0000
+Invert
+Degree
+ObjSho10
+TagSho11
+End
+33
+Kind     4   2
+Tag   ¦Ã
+TagPos  -0.6000   0.1000   1.0000   1.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color     32896   0.4000
+ColorB    32896   0.4000
+Shape    0.0000   3.0000  10   0.0000
+Angle    1.0000
+Linker  32   4
+Return
+ObjSho10
+TagSho00
+End
+35
+Kind     4   5
+Tag   ¦Å
+TagPos  -0.6000   0.1000   1.0000   1.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color     32896   0.4000
+ColorB    32896   0.4000
+Shape    5.0000   4.0000  10   3.0000
+Linker  33   7
+Return
+Shadow
+ObjSho10
+TagSho00
+End
+37
+Kind     2   6
+Tag   g
+TagPos  -0.6000   0.1000   0.7000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color       255   1.0000
+ColorB        0   0.0000
+Shape    5.0000   2.0000   0   0.0000
+Linker   6  35
+Slope    6.0000   0.0000   0.0000   0.0000
+Invert
+Return
+ObjSho10
+TagSho00
+End
+38
+Kind     1   4
+Tag   H
+TagPos  -0.6000   0.1000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color       255   1.0000
+ColorB        0   0.0000
+Shape    0.5000   6.0000   1   1.0000
+Angle    1.0000
+Linker  37  18
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho11
+TagSho11
+Croses H_1 ¦Æ
+CroShw   1
+End
+40
+Kind     4   4
+Tag   ¦Æ
+TagPos  -0.6000   0.1000   1.0000   1.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color     32896   0.4000
+ColorB    32896   0.4000
+Shape    5.0000   4.0000  10   3.0000
+Linker  38  37
+Return
+ObjSho10
+TagSho00
+End
+41
+Kind     4   5
+Tag   ¦Ç
+TagPos  -0.6000   0.1000   1.0000   1.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color     32896   0.4000
+ColorB    32896   0.4000
+Shape    5.0000   4.0000  10   3.0000
+Linker  33  40
+Return
+Shadow
+ObjSho10
+TagSho00
+End
+42
+Kind     1   4
+Tag   I
+TagPos  -0.6000   0.1000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color       255   1.0000
+ColorB        0   0.0000
+Shape    0.5000   6.0000   1   0.0000
+Linker  37  41
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho11
+TagSho11
+Croses h
+CroShw   1
+End
+43
+Kind     6   1
+Tag   h
+TagPos  -0.6000   0.1000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color   6324416   1.0000
+ColorB  6324416   1.0000
+Shape    1.8613   0.0000   2   0.0000
+Angle1   0.0000   0.0000   0.0000
+Linker  42   4  38
+Return
+ObjSho11
+TagSho00
+End
+44
+Kind     6   9
+Tag   h'
+TagPos  -0.6000   0.1000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color   6324416   1.0000
+ColorB  6324416   1.0000
+Shape    1.7070   1.0000   2   0.0000
+Angle  120.0000
+Linker  43   4
+Return
+Degree
+ObjSho11
+TagSho00
+End
+45
+Kind     6   9
+Tag   h''
+TagPos  -0.6000   0.1000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color   6324416   1.0000
+ColorB  6324416   1.0000
+Shape    1.7070   1.0000   2   0.0000
+Angle  120.0000
+Linker  44   4
+Return
+Degree
+ObjSho11
+TagSho00
+End
+Finish
+Termination

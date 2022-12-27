@@ -1,0 +1,159 @@
+inRm3D v2.865 
+Page     1   1
+PageNm   0  开的圆柱
+Color  16777215 255 32768 16711680 16711680 255 32768 16711680
+Transp 0.1 0.1 0.1
+Mode   4 0 4 0 4 0
+Origin -0.0341 0 249 289.5 0
+Origi  4 1 255
+Length 8 8 3.3404 0 0 0
+Axis   2 2 2 2 2 2
+AxiTag o x y z
+Deep   28 30.5
+Scene 1100011110011001000
+Window 223 79 944 712
+Pages  6 6
+End
+11
+Kind   1 2
+Tag   R
+TagPos -13.7 0.1 0 0 0
+TagS     9
+Font  Arial
+Color  255 1
+Shape  1.3824 6 1 0
+Linker 0 4
+Slope  0 8 0 0
+Invert
+Shadow
+ObjSho1111111
+TagSho1111111
+End
+12
+Kind   11 1
+Tag   b
+TagPos -0.6 0.1 0 0 0
+TagS     9
+Font  Arial
+Color  0 1
+Shape  8.6859 65 4 15
+Point  268 192 62 15
+Angle  10.6569
+Linker 11 15 11 11
+Slope  0 0 0 0
+FuncX 2*a*pi
+FuncY 2*a*pi
+ObjSho0111110
+TagSho0000000
+End
+15
+Kind   1 2
+Tag   Move
+TagPos -19.65 3.5 0 0 0
+TagS    14
+Font  Arial
+Color  255 1
+Shape  4.8797 8 1 0.056
+Angle  3.7597
+Linker 0 3 0 0 12
+Slope  0 8.6859 0 0
+Invert
+Return
+Shadow
+ObjSho0011111
+TagSho1111111
+End
+32
+Kind   11 1
+Tag   n
+TagPos -0.6 0.1 0 0 0
+TagS     9
+Font  Arial
+Color  0 1
+Shape  2.7533 61 4 15
+Point  388 192 55 15
+Angle  6.1512
+Linker 12 15 11 11
+Slope  0 0 0 0
+FuncX (b-Move)/R
+FuncY (a-b)/c
+ObjSho0001110
+TagSho0000000
+End
+16
+Kind   2 11
+Tag   x'
+TagPos -16 -5 0 0 55
+TagSty1000
+TagS    14
+Font  NS Math CN
+Color  32768 1
+Shape  8 1 0 0
+Trans  0 4.8797 1.3824
+Angle  1.6683
+Linker 2 0 15 11
+Slope  0 0 0 0
+ObjSho0000110
+TagSho1111111
+End
+17
+Kind   2 3
+Tag   H
+TagPos -13.6 -19.9 1 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  16711680 1
+Shape  4.4622 1 0 0
+Linker 15 2
+Slope  6 0 0 0
+ObjSho0001111
+TagSho0000001
+End
+20
+Kind   4 2
+Tag   α
+TagPos 0.4 0.1 1 1 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  16711680 1
+ColorB 32768 0.4
+Shape  2 4 10 0
+Angle  1
+Linker 1 17
+Return
+ObjSho0000111
+TagSho0000000
+End
+22
+Kind   7 1
+Tag   e
+TagPos -0.6 1.1 5 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  32768 1
+ColorB 16711680 1
+Shape  1 0 32 2.7533
+Linker 17 16 32
+Return
+ObjSho0000011
+TagSho0000000
+End
+13
+Kind   14 1
+Tag   动画
+TagPos 0 0 0 0 0
+TagS     9
+Font  Arial
+Color  0 0
+Shape  0 70 50 24
+Point  327 254 62 0
+Angle  0.1
+Linker 15
+ObjSho0000001
+TagSho0000000
+End
+Finish
+Termination

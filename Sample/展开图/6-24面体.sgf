@@ -1,0 +1,197 @@
+inRm3D v2.864 
+Page     1   1
+PageNm   0  Page1
+Color  0 255 32768 16711680 255 255 32768 16711680
+Transp 0.2 0.2 0.2
+Mode   0 0 0 0 0 0
+Origin 0 0 249 308.5 0
+Origi  4 1 255
+Length 6 6 6 0 0 0
+Axis   1 2 1 2 1 2
+AxiTag o xX y z
+Deep   23 29
+Scene 1101011000001111000
+Window 146 127 768 536
+Pages  0 0
+End
+32
+Kind   1 2
+Tag   A
+TagPos -0.6 0.1 0 0 255
+TagS    16
+Font  Times New Roman
+Color  255 1
+ColorB 255 1
+Shape  1.527 4 1 0
+Linker 0 4
+Slope  0 6 0 0
+Invert
+Shadow
+ObjSho1
+TagSho0
+End
+11
+Kind   6 4
+Tag   a
+TagPos -0.6 0.1 0 0 255
+TagS    16
+Font  Times New Roman
+Color  16711680 1
+ColorB 16711935 1
+Shape  2.15 0 4 1.527
+Linker 1 4 0 0 32
+Invert
+Return
+Trace   10
+ObjSho1
+TagSho0
+Edges  a_1 a_2 a_3 a_4 a_5 a_6 a_7 a_8 a_9 a_10 a_11 a_12 a_13 a_14 a_15 a_16 a_17 a_18 a_19 a_20
+EdgesW   1   6 16711680      255   0
+Names   12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31
+VctObjooo`
+VctTag00o`
+End
+34
+Kind   11 2
+Tag   b
+TagPos -0.6 0.1 0 0 255
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+ColorB 255 1
+Shape  0.33 1 4 1
+Point  499 357 70 0
+Angle  0.259
+Linker 0 0 0 0 0 0 0 0 0 0 0 35
+Slope  0 1 0 0
+FuncX b =1.0000
+FuncY 
+Parame   1  35   0.0000   1.0000   0.0000  90.0000
+Shadow
+Trace  100
+ObjSho1
+TagSho0
+End
+35
+Kind   1 9
+Tag   A'
+TagPos -0.6 0.1 0 0 255
+TagS    16
+Font  Times New Roman
+Color  255 1
+ColorB 255 1
+Shape  23.391 6 1 0
+Angle  29.7
+Linker 32 22
+Invert
+Degree
+ObjSho1
+TagSho0
+End
+36
+Kind   2 4
+Tag   c
+TagPos -0.6 0.1 0.7 0 0
+TagS     9
+Font  Arial
+Color  16711680 1
+ColorB 16711680 1
+Shape  5 1 0 0
+Linker 35 22
+Slope  6 0 0 0
+Invert
+ObjSho1
+TagSho0
+End
+37
+Kind   6 8
+Tag   a'
+TagPos -0.6 0.1 0 0 255
+TagS    16
+Font  Times New Roman
+Color  255 1
+ColorB 16711935 1
+Shape  2.15 0 4 1.988
+Linker 11 36
+Invert
+Return
+ObjSho1
+TagSho0
+End
+38
+Kind   2 8
+Tag   z'
+TagPos 0 -5 0 0 16711680
+TagS    16
+Font  Times New Roman
+Color  255 1
+ColorB 255 1
+Shape  6 1 0 0
+Linker 4 36
+Slope  0 1.57 0 0
+ObjSho1
+TagSho1
+End
+39
+Kind   6 8
+Tag   a'
+TagPos -0.6 0.1 0 0 255
+TagS    16
+Font  Times New Roman
+Color  16711680 1
+ColorB 16711935 1
+Shape  2.15 0 4 1.527
+Linker 11 38
+Invert
+Return
+ObjSho1
+TagSho0
+End
+41
+Kind   6 8
+Tag   a''
+TagPos -0.6 0.1 0 0 255
+TagS    16
+Font  Times New Roman
+Color  255 1
+ColorB 16711935 1
+Shape  2.15 0 4 1.988
+Linker 37 6
+Invert
+Return
+ObjSho1
+TagSho0
+End
+42
+Kind   6 8
+Tag   a''
+TagPos -0.6 0.1 0 0 255
+TagS    16
+Font  Times New Roman
+Color  255 1
+ColorB 16711935 1
+Shape  2.15 0 4 1.988
+Linker 37 5
+Invert
+Return
+ObjSho1
+TagSho0
+End
+43
+Kind   6 8
+Tag   a'''
+TagPos -0.6 0.1 0 0 255
+TagS    16
+Font  Times New Roman
+Color  255 1
+ColorB 16711935 1
+Shape  2.15 0 4 1.988
+Linker 41 5
+Invert
+Return
+ObjSho1
+TagSho0
+End
+Finish
+Termination

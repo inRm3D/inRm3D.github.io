@@ -1,0 +1,166 @@
+inRm3D v2.868 
+Page     1   1
+PageNm   0  Page1
+Color  16777215 255 255 16711680 16711680 255 16776960 16711680
+Transp 0.2 0.2 0.2
+Mode   4 0 4 0 4 0
+Origin -3.907 -1.5194 253 291 0
+Origi  6 1 255
+Length 6.1485 12.0475 5.3158 0 0 0
+Axis   2 2 2 2 2 2
+AxiTag o x y z
+ObjShO11111111
+ObjShX11111111
+ObjShY11111111
+ObjShZ11111111
+Deep   29 35
+Scene 1111011100010001000
+Window 23 54 904 600
+Pages  7 7
+End
+11
+Kind   1 2
+Tag   A
+TagPos 6.4 -0.9 0 0 55
+TagS    12
+Font  Times New Roman
+Color  255 1
+Shape  9.7526 6 1 0
+Linker 0 3
+Slope  0 12 0 0
+Invert
+Shadow
+ObjSho11111111
+TagSho11111111
+End
+13
+Kind   1 2
+Tag   B
+TagPos -15.6 -0.9 0 0 55
+TagS    12
+Font  Times New Roman
+Color  255 1
+Shape  3.3917 6 1 0
+Linker 0 4
+Slope  0 6 0 0
+Invert
+Shadow
+ObjSho11111111
+TagSho11111111
+End
+24
+Kind   1 2
+Tag   F
+TagPos 3.4 -23.9 0 0 55
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  16776960 1
+Shape  4.3836 8 1 0.06
+Angle  5.0868
+Linker 0 3 0 0 11
+Slope  0 9.7526 0 0
+Invert
+Return
+Shadow
+ObjSho00111111
+TagSho11111111
+End
+26
+Kind   11 1
+Tag   d
+TagPos -0.6 0.1 0 0 55
+TagSty1000
+TagS    12
+Font  Arial
+Shape  1.5522 1 2 0
+Point  192 252 70 15
+Angle  1
+Linker 11
+Slope  0 0 0 0
+FuncX A/(2*Pi)
+FuncY a/(2*Pi)
+ObjSho00111110
+TagSho00000000
+End
+27
+Kind   1 11
+Tag   G
+TagPos 0.4 -21.9 0 0 55
+TagS    12
+Font  Times New Roman
+Color  255 1
+Shape  3.0213 6 1 0
+Trans  1.5522 0 0
+Linker 24 26
+Locked
+Invert
+Shadow
+ObjSho00011110
+TagSho11111111
+End
+28
+Kind   3 3
+Tag   O_1
+TagPos -0.6 0.1 0.5 0 55
+TagS    12
+Font  Times New Roman
+Color  16711680 0.3
+ColorB 65280 0.3
+Shape  1.5522 2 0 4.3836
+Thick  3.3917
+Angle  3.1416
+Angle0 0
+Linker 24 27 0 24 0 13
+Invert
+Return
+ObjSho00001111
+TagSho10000000
+End
+66
+Kind   14 1
+Tag   ¶¯»­
+TagPos 0 0 0 0 0
+TagS     9
+Font  Arial
+Color  0 0
+Shape  0 70 50 24
+Point  186 199 70 0
+Angle  0.1
+Linker 24
+ObjSho11111111
+TagSho00000000
+End
+17
+Kind   1 12
+Tag   A'
+TagPos 6.4 -0.9 0 0 55
+TagS    12
+Font  Times New Roman
+Color  255 1
+Shape  10.3287 6 1 0
+Angle  1
+Linker 11 1 13
+Invert
+Shadow
+ObjSho11111111
+TagSho11111111
+End
+18
+Kind   4 1
+Tag   ¦Á
+TagPos -0.6 0.1 1 1 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  16711680 0.4
+ColorB 65280 0.4
+Shape  2 4 10 0
+Angle  1
+Linker 17 11 24
+Return
+ObjSho00000001
+TagSho00000000
+End
+Finish
+Termination

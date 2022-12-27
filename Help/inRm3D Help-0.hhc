@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD>
+<BODY>
+   <OBJECT type="text/site properties">
+     <param name="Window Styles" value="0x800025">
+     <param name="comment" value="title:联机帮助">
+     <param name="comment" value="base:index.htm">
+   </OBJECT>
+   <UL>
+      <LI><OBJECT type="text/sitemap">
+            <param name="Name" value="概述">
+            <param name="Local" value="SubWeb/概述.htm">
+          </OBJECT>
+      <LI><OBJECT type="text/sitemap">
+            <param name="Name" value="场景设置">
+            <param name="Local" value="SubWeb/界面-场景设置.htm">
+          </OBJECT>
+      <LI><OBJECT type="text/sitemap">
+            <param name="Name" value="工具栏、菜单">
+            <param name="Local" value="SubWeb/界面-工具栏.htm">
+          </OBJECT>
+      <LI><OBJECT type="text/sitemap">
+            <param name="Name" value="构造">
+            <param name="Local" value="SubWeb/构件.htm">
+          </OBJECT>
+      <UL>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="点">
+               <param name="Local" value="SubWeb/点.htm">
+             </OBJECT>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="直线">
+               <param name="Local" value="SubWeb/线.htm">
+             </OBJECT>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="曲线">
+               <param name="Local" value="SubWeb/曲线.htm">
+             </OBJECT>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="平面">
+               <param name="Local" value="SubWeb/面.htm">
+             </OBJECT>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="曲面">
+               <param name="Local" value="SubWeb/曲面.htm">
+             </OBJECT>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="实体">
+               <param name="Local" value="SubWeb/实体.htm">
+             </OBJECT>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="变换">
+               <param name="Local" value="SubWeb/变换.htm">
+             </OBJECT>
+         <LI><OBJECT type="text/sitemap">
+               <param name="Name" value="辅助对象">
+               <param name="Local" value="SubWeb/辅助构件.htm">
+             </OBJECT>
+      </UL>
+      <LI><OBJECT type="text/sitemap">
+            <param name="Name" value="快睫键">
+            <param name="Local" value="SubWeb/界面-快睫键.htm">
+          </OBJECT>
+      <LI><OBJECT type="text/sitemap">
+            <param name="Name" value="致谢">
+            <param name="Local" value="SubWeb/致谢.htm">
+          </OBJECT>
+   </UL>
+</BODY>
+</HTML>

@@ -1,0 +1,73 @@
+inRm3D v2.865 
+Page     1   1
+PageNm   0  Page1
+Color  0 255 255 32768 16711680 255 32768 16711680
+Transp 0.1 0.1 0.1
+Mode   10 0 10 0 10 0
+Origin -3.0271 -0.1056 0 0 0
+Origi  4 1 255
+Length 13.1568 10 8.4 4.5 3 2.2
+Axis   2 2 2 2 2 2
+AxiTag o x y z
+Mark  0
+Deep   25 29
+Scene 1001111110101111010
+Window 223 79 944 712
+Pages  0 0
+End
+13
+Kind   11 2
+Tag   a
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+Shape  8.94 1 2 1
+Point  605 174 70 1
+Angle  8.94
+Slope  0 16 0 0
+FuncX a =1.0000
+FuncY 
+Shadow
+Trace  170
+ObjSho1
+TagSho1
+End
+11
+Kind   1 2
+Tag   A
+TagPos -16 1 0 0 32768
+TagS    16
+Font  Calibri
+Color  16776960 1
+Shape  6.0149 6 1 0
+Linker 0 2
+Slope  0 8.5 0 0
+Invert
+ObjSho1
+TagSho1
+End
+16
+Kind   16 5
+Tag   b
+TagPos -16 0 0 0 32768
+TagS    16
+Font  Calibri
+Color  16776960 1
+Shape  21.3374 2 4 1
+Linker 11 13
+FuncX 0
+FuncY 0
+FuncZ sqrt(x^2+y^2)*sqrt((x-a)^2+y^2)-b
+RuleX  -2.2 8.2 100
+RuleY  -3 3 50
+RuleZ  0 0.1 0
+Param  6.0149 10.07 0
+Param1 0 0 0
+Return
+ObjSho1
+TagSho0
+End
+Finish
+Termination

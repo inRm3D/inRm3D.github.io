@@ -1,0 +1,35 @@
+inRm3D v2.826 Beta 
+Page     1   1
+PageNm    0  Page1
+Color  16777215      255    32768 16711680      255      255    32768 16711680
+Transp   0.2000   0.2000   0.2000
+Mode     0   0   0   0   0   0
+Origin  -0.0352  -2.9215 244.0000 284.0000   0.0000
+Origi    4   1      255 o
+Length   6.0000   6.0000   6.0000
+Axis     2   2   2   2   2   2  ---  ---  ---
+Deep    27.0000  29.0000
+Scene 11010110000000011
+Pages    0   0
+End
+11
+Kind     9   6
+Tag   a
+TagPos   0.1000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB    65535   1.0000
+Shape    0.0000   1.0000   0   0.0000
+Linker   0
+FuncX u
+FuncY 0.5+u*a+sin(v)*u*c
+FuncZ u*b+ cos(v)*u*c
+RuleX    0.0000  12.0000  70.0000
+RuleY    0.0000   6.3840  18.0000
+RuleZ    0.0000   0.0000   0.0000
+Param    0.3000   0.4000   0.1000
+Param1   0.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+Finish
+Termination

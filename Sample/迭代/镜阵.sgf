@@ -1,0 +1,117 @@
+inRm3D v2.864 
+Page     1   1
+PageNm   0  Page1
+Color  16777215 16711935 255 32768 16711680 255 32768 8388608
+Transp 0.1 0.15 0.25
+Mode   5 0 3 0 4 0
+Origin 0 -0.2 248.5 319 0
+Origi  6 1 16711935
+Length 5.5 8.2 8 0 0 0
+Axis   1 2 1 2 1 2
+AxiTag o xX y z
+Deep   29 29
+Scene 1111111000000011000
+Window 225 137 832 594
+Pages  0 0
+End
+12
+Kind   1 1
+Tag   A
+TagPos -15.6 2.1 0.5 0 255
+TagS    16
+Font  Arial
+Color  255 1
+ColorB 65280 1
+Shape  4.749 8 1 0
+Point  -4.289 -2.037 0.089 0
+Linker 0
+Return
+ObjSho1
+TagSho1
+End
+18
+Kind   1 11
+Tag   C
+TagPos -0.6 0.1 0.5 0 255
+TagS    16
+Font  Arial
+Color  255 1
+ColorB 65280 1
+Shape  4 8 1 0
+Trans  0 1.09 -0.02
+Linker 12
+Return
+ObjSho1
+TagSho1
+End
+21
+Kind   1 1
+Tag   B
+TagPos -0.6 0.1 0.5 0 255
+TagS    16
+Font  Arial
+Color  255 1
+ColorB 65280 1
+Shape  2.7994 8 1 0
+Point  -0.891 2.194 1.493 0
+Linker 0
+Return
+ObjSho1
+TagSho1
+End
+20
+Kind   3 1
+Tag   O_2
+TagPos -0.6 1.1 0.5 0 255
+TagS    16
+Font  Arial
+Color  65280 1
+ColorB 16711680 1
+Shape  0.535 2 10 0
+Linker 12 21
+ObjSho1
+TagSho0
+End
+23
+Kind   13 1
+Tag   b
+TagPos -0.6 0.1 0 0 255
+TagS    16
+Font  Arial
+Color  255 1
+ColorB 255 1
+Shape  0 1 8 0
+Linker 0 12 18
+ObjSho1
+TagSho0
+End
+25
+Kind   1 11
+Tag   D
+TagPos -25.6 -10.9 0.5 0 255
+TagS    16
+Font  Arial
+Color  255 1
+ColorB 65280 1
+Shape  4 8 1 0
+Trans  1.12 0 0
+Linker 12
+Return
+ObjSho1
+TagSho1
+End
+26
+Kind   13 1
+Tag   d
+TagPos -0.6 0.1 0 0 255
+TagS    16
+Font  Arial
+Color  255 1
+ColorB 255 1
+Shape  0 1 8 0
+Linker 0 12 25
+ObjSho1
+TagSho0
+End
+Finish
+Termination

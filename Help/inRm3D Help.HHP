@@ -1,0 +1,196 @@
+[OPTIONS]
+Auto Index=Yes
+Binary TOC=No
+Binary Index=Yes
+Compatibility=1.1
+Compiled File=inRm3D Help.chm
+Contents File=inRm3D Help.hhc
+Default Topic=SubWeb\概述.htm
+Error log file=ErrorLog.log
+Index File=
+Title=inRm3D 在线帮助
+Full-text search=Yes
+Display compile progress=Yes
+Display compile notes=Yes
+Default Window=main
+Default Font=微软雅黑, 11
+Language=0x804 中文(简体/中国)
+Create CHI file=No
+Full text search stop list file=
+
+[WINDOWS]
+main="inRm3D 在线帮助","inRm3D Help.hhc",,"SubWeb\概述.htm","SubWeb\概述.htm",,,,,0x2A520,222,0x1046,[10,10,780,560],0xB0000,,,,,,0
+
+[FILES]
+_errorlog.txt
+Delphi.htm
+farinfo.ini
+Picture\Copy_Custom.PNG
+Picture\Copy_Inversion.PNG
+Picture\Copy_Iterate.PNG
+Picture\Copy_Mirror.PNG
+Picture\Copy_Move.PNG
+Picture\Copy_Rotate.PNG
+Picture\Copy_Scale.PNG
+Picture\Copy_Shadow.PNG
+Picture\Copy_Trans.PNG
+Picture\Ctrl_AxisX.PNG
+Picture\Ctrl_AxisY.PNG
+Picture\Ctrl_AxisZ.PNG
+Picture\Ctrl_Button.PNG
+Picture\Ctrl_Cut.PNG
+Picture\Ctrl_DotBreak.PNG
+Picture\Ctrl_DotJoin.PNG
+Picture\Ctrl_Eye.PNG
+Picture\Ctrl_Lock.PNG
+Picture\Ctrl_Mark.PNG
+Picture\Ctrl_Max.PNG
+Picture\Ctrl_MoveID.PNG
+Picture\Ctrl_Pause.PNG
+Picture\Ctrl_Prop.PNG
+Picture\Ctrl_ReDo.PNG
+Picture\Ctrl_Spin.PNG
+Picture\Ctrl_Sport.PNG
+Picture\Ctrl_Start.PNG
+Picture\Ctrl_Stop.PNG
+Picture\Ctrl_UnDo.PNG
+Picture\Curve_Arc.PNG
+Picture\Curve_Arc3.PNG
+Picture\Curve_Circle.PNG
+Picture\Curve_Circle3.PNG
+Picture\Curve_Func.PNG
+Picture\Curve_Loca.PNG
+Picture\Curve_Path.PNG
+Picture\Dot.PNG
+Picture\Dot_Bound.PNG
+Picture\Dot_Mid.PNG
+Picture\Dot_Nodical.PNG
+Picture\Face_Along.PNG
+Picture\Face_Binary.PNG
+Picture\Face_Function.PNG
+Picture\Face_Roll.PNG
+Picture\Face_Rule.PNG
+Picture\File_Book.PNG
+Picture\File_Help.PNG
+Picture\File_New.PNG
+Picture\File_Open.PNG
+Picture\File_Save.PNG
+Picture\File_SaveAs.PNG
+Picture\File_SaveImg.PNG
+Picture\File_TextC.PNG
+Picture\File_TextE.PNG
+Picture\Geometer3D.jpg
+Picture\Geometer3D_00.gif
+Picture\Geometer3D_vert.JPG
+Picture\image001.png
+Picture\inRm3D_vert.JPG
+Picture\inRm3D-main.PNG
+Picture\Line_Cross.PNG
+Picture\Line_Deuce.PNG
+Picture\Line_One.PNG
+Picture\Line_Parallel.PNG
+Picture\Line_Two.PNG
+Picture\Line_Vertical.PNG
+Picture\Plane_DotLine.PNG
+Picture\Plane_Mid.PNG
+Picture\Plane_Parallel.PNG
+Picture\Plane_Polygon.PNG
+Picture\Plane_ThreeDot.PNG
+Picture\Plane_Vertical.PNG
+Picture\Prop_Arrow0.PNG
+Picture\Prop_ColorH.PNG
+Picture\Prop_ColorV.PNG
+Picture\Prop_CutLeft.PNG
+Picture\Prop_CutRight.PNG
+Picture\Show_Color.PNG
+Picture\Show_Font.PNG
+Picture\Show_LineStyle.PNG
+Picture\Solid_Cone.PNG
+Picture\Solid_Cube.PNG
+Picture\Solid_Sphere.PNG
+Picture\Solid_Table.PNG
+Picture\Title.jpg
+Picture\ToolBar.gif
+Picture\Up_Block.PNG
+Picture\Up_Caculator.PNG
+Picture\Up_DieDai.PNG
+Picture\Up_Image.PNG
+Picture\Up_Size.PNG
+Picture\Up_TextA.PNG
+Picture\Up_Var.PNG
+Picture\背景.jpg
+Picture\标题.gif
+Picture\复制-反演.bmp
+Picture\复制-仿射示例.gif
+Picture\高级-标注角度.gif
+Picture\高级-迭代规则.gif
+Picture\高级-迭代示例0.gif
+Picture\高级-迭代示例11.gif
+Picture\高级-迭代示例12.gif
+Picture\高级-迭代示例13.gif
+Picture\高级-迭代示例21.gif
+Picture\高级-迭代示例22.gif
+Picture\高级-迭代示例23.gif
+Picture\高级-迭代示例24.gif
+Picture\高级-迭代示例25.gif
+Picture\高级-迭代示例26.gif
+Picture\高级-迭代示例27.gif
+Picture\高级-迭代示例28.gif
+Picture\高级-迭代示例a.gif
+Picture\高级-迭代示例b.gif
+Picture\高级-度量.bmp
+Picture\高级-计算面板.gif
+Picture\高级-控制属性.gif
+Picture\高级-控制移动.gif
+Picture\高级-文本面板.gif
+Picture\国旗.gif
+Picture\界面.PNG
+Picture\界面-保存图像.gif
+Picture\界面-保存图像.PNG
+Picture\界面-工具栏.gif
+Picture\界面-工具栏.PNG
+Picture\控制-场景属性.PNG
+Picture\控制-构件.bmp
+Picture\控制-列表.bmp
+Picture\控制-页面.bmp
+Picture\控制-页面示例.gif
+Picture\面-截面示例.gif
+Picture\面-截面示例.jpg
+Picture\面-贴图示例.gif
+Picture\面-贴图示例.jpg
+Picture\面-形状示例.gif
+Picture\签名.gif
+Picture\曲面-复合曲面示例.gif
+Picture\曲面-轨迹面示例.gif
+Picture\曲面-函数曲面板.gif
+Picture\曲面-函数曲面示例.gif
+Picture\曲面-旋转曲面示例.gif
+Picture\曲面-直纹曲面示例.gif
+Picture\曲面-坐标系示例.gif
+Picture\实体-贴图示例.gif
+Picture\线-轨迹线示例.gif
+Picture\线-轨迹线示例.jpg
+Picture\线-轨迹线示例2.gif
+Picture\线-函数曲线.GIF
+Picture\线-函数曲线.JPG
+Picture\线-随点示例.jpg
+Picture\线-线形示例.gif
+Picture\线-相惯线示例.gif
+Picture\线-坐标系.gif
+Picture\心得-椭圆.gif
+Picture\心得-圆.gif
+SubWeb\变换.htm
+SubWeb\点.htm
+SubWeb\辅助构件.htm
+SubWeb\概述.htm
+SubWeb\构件.htm
+SubWeb\界面-场景设置.htm
+SubWeb\界面-工具栏.htm
+SubWeb\界面-快睫键.htm
+SubWeb\面.htm
+SubWeb\曲面.htm
+SubWeb\曲线.htm
+SubWeb\实体.htm
+SubWeb\线.htm
+SubWeb\致谢.htm
+

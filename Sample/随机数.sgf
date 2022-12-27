@@ -1,0 +1,80 @@
+inRm3D v2.727
+Color         0      255    32768 16711680
+Origin  0.00000  0.00000198.00000322.50000
+Length  8.00000  8.00000  8.00000  0.00000
+Window 229  96 792 594
+Deep   34.00000 29.00000
+Scene 1001010111
+Pages    0
+End
+11
+Kind    11   1
+Tag   a
+TagPos -0.60000  0.10000  0.00000  0.000000
+Font  Arial
+Color  16777215  1.00000
+Shape   4.70000  1.00000   4  0.00000
+Point 232.00000140.00000 55.00000 15.00000
+Linker   0
+FuncX random(100)/10
+FuncY random(100)/10
+ObjSho1111111111111111
+TagSho1111111111111111
+End
+13
+Kind    11   1
+Tag   b
+TagPos -0.60000  0.10000  0.00000  0.000000
+Font  Arial
+Color  16777215  1.00000
+Shape   5.00000  1.00000   4  0.00000
+Point 232.00000154.00000 55.00000 15.00000
+Linker   0
+FuncX random(100/10)
+FuncY random(100/10)
+ObjSho1111111111111111
+TagSho1111111111111111
+End
+14
+Kind    11   1
+Tag   c
+TagPos -0.60000  0.10000  0.00000  0.000000
+Font  Arial
+Color  16777215  1.00000
+Shape   2.30000  1.00000   4  0.00000
+Point 232.00000168.00000 55.00000 15.00000
+Linker   0
+FuncX random(100)/10
+FuncY random(100)/10
+ObjSho1111111111111111
+TagSho1111111111111111
+End
+16
+Kind    14   2
+Tag   ¿ØÖÆ...
+TagPos  0.00000  0.00000  0.00000  0.000000
+TagS     9
+Font  Arial
+Color         0  0.00000
+Shape   0.00000 70.00000   0 24.00000
+Point 233.00000170.00000 55.00000  0.00000
+Angle 100.00000
+Linker  14  11  13
+Trace    1
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+17
+Kind     1   1
+Tag   A
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   9.00000  4.00000   1  0.00000
+Point   4.70000  5.00000  2.30000  0.00000
+Linker  11  13  14
+Invert
+Trace   10
+ObjSho1111111111111111
+TagSho1111111111111111
+End
+Finish

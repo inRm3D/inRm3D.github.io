@@ -1,0 +1,206 @@
+inRm3D v2.854 
+Page     1   1
+PageNm   0  hopf link
+Color         0      255    32768 16711680 16711680      255    32768 16711680
+Transp   1.0000   0.1000   0.1000
+Mode     4   0   4   0   4   0
+Origin   0.0000   0.0000 245.7000 315.7000   0.0000
+Origi    4   1      255 o
+Length  12.0000  12.0000   5.1000
+Axis     1   2   1   2   1   2  ---  ---  ---
+Deep    59.5000  16.0000
+Scene 10000111010000010
+Window  78  72 824 600
+Pages   12  12
+End
+32
+Kind     1   2
+Tag   c
+TagPos  -0.0500  -0.5500   0.0000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    9.9086   4.0000   0   0.0000
+Linker   0   3
+Slope    0.0000   8.0000   0.0000   0.0000
+Invert
+Shadow
+ObjSho1111111100000
+TagSho1111111111000
+End
+47
+Kind     1   9
+Tag   ca
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.4050   4.0000   0   0.0000
+Angle    0.4050
+Linker  32   2
+Slope    0.0000   0.0000   0.0000   0.0000
+Invert
+ObjSho0111111100000
+TagSho0111111111000
+End
+49
+Kind     2   4
+Tag   h
+TagPos   0.2000   0.1500   0.7000   0.00000
+TagS     9
+Font  Arial
+Color  16711680   1.0000
+ColorB 16711680   1.0000
+Shape    3.9042   1.0000   0   0.0000
+Linker  47   7
+Slope    0.0000   0.0000   0.0000   0.0000
+ObjSho0011111100000
+TagSho0011111111111
+End
+50
+Kind     3   1
+Tag   i
+TagPos  -0.1000   0.1500   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     65280   1.0000
+ColorB    65280   1.0000
+Shape    3.9042   1.0000   0   0.0000
+Linker  32   2  49
+ObjSho0001111100000
+TagSho0001111111111
+End
+51
+Kind     4   2
+Tag   j
+TagPos  -0.6000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     32896   0.1750
+ColorB    32896   0.1750
+Shape    0.0000   3.0000  10   2.0000
+Angle    3.0000
+Linker  47   2
+ObjSho0000111100000
+TagSho0000111111111
+End
+52
+Kind     7   1
+Tag   l
+TagPos  -0.6000   0.1000   5.0000   0.00000
+TagS     9
+Font  Arial
+Color   6316128   1.0000
+ColorB  6316128   1.0000
+Shape  122.0000   1.0000 122   6.2832
+Linker  50   4
+ObjSho0000011000000
+TagSho0000000000000
+End
+53
+Kind    15   1
+Tag   m
+TagPos  -0.6000   0.1000   0.7000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape  124.2508   2.0000   0   0.0000
+Linker  51  52
+Invert
+ObjSho0000001100000
+TagSho0000000000000
+End
+59
+Kind     7   1
+Tag   d
+TagPos  -0.6000   0.1000   5.0000   0.00000
+TagS     9
+Font  Arial
+Color   8421376   1.0000
+ColorB  8421376   1.0000
+Shape   16.0000   1.0000   3   0.3000
+Linker  53   4
+Return
+ObjSho0000000111111
+TagSho0000000000000
+End
+60
+Kind     7   9
+Tag   da
+TagPos  -0.6000   0.1000   5.0000   0.00000
+TagS     9
+Font  Arial
+Color   8421376   1.0000
+ColorB  8421376   1.0000
+Shape    1.0000   1.0000   3   0.3000
+Angle    1.0000
+Linker  59   4
+Return
+ObjSho0000000011111
+TagSho0000000000000
+End
+61
+Kind     7   9
+Tag   daa
+TagPos  -0.6000   0.1000   5.0000   0.00000
+TagS     9
+Font  Arial
+Color   8421376   1.0000
+ColorB  8421376   1.0000
+Shape    1.0000   1.0000   3   0.3000
+Angle    1.0000
+Linker  60   4
+Return
+ObjSho0000000001111
+TagSho0000000000000
+End
+62
+Kind     7   9
+Tag   daaa
+TagPos  -0.6000   0.1000   5.0000   0.00000
+TagS     9
+Font  Arial
+Color   8421376   1.0000
+ColorB  8421376   1.0000
+Shape    0.9900   1.0000   3   0.3000
+Angle    0.9900
+Linker  61   4
+Return
+ObjSho0000000000111
+TagSho0000000000000
+End
+63
+Kind     7   9
+Tag   daaaa
+TagPos  -0.6000   0.1000   5.0000   0.00000
+TagS     9
+Font  Arial
+Color   8421376   1.0000
+ColorB  8421376   1.0000
+Shape    1.0000   1.0000   3   0.3000
+Angle    1.0000
+Linker  62   4
+Return
+ObjSho0000000000011
+TagSho0000000000000
+End
+64
+Kind     7   9
+Tag   daaaaa
+TagPos  -0.6000   0.1000   5.0000   0.00000
+TagS     9
+Font  Arial
+Color   8421376   1.0000
+ColorB  8421376   1.0000
+Shape    1.0000   1.0000   3   0.3000
+Angle    1.0000
+Linker  63   4
+Return
+ObjSho0000000000001
+TagSho0000000000000
+End
+Finish
+Termination

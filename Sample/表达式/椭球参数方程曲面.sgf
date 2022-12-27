@@ -1,0 +1,120 @@
+inRm3D v2.834 Beta 
+Page     1   1
+PageNm    1  Page1
+Color  16777215      255      255    32768 16711680      255 16776960 16711680
+Transp   0.2000   0.2000   0.2000
+Mode     4   0   4   0   4   0
+Origin   0.0000   0.0000 236.0000 292.5000   0.0000
+Origi    6   1      255 O
+Length  12.6000   9.3000   8.0000
+Axis     1   2   1   2   1   2  ---  ---  ---
+Window 147  72 735 592
+Deep    38.0000  29.0000
+Scene 110011111000000
+Pages    0   0
+End
+12
+Kind     1   2
+Tag   A
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     7
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    9.9345   6.0000   1   0.0000
+Slope    0.0000  12.6000
+Linker   0   2
+Invert
+Shadow
+ObjSho1
+TagSho1
+End
+13
+Kind     1   2
+Tag   B
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     7
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    6.0275   6.0000   1   0.0000
+Slope    0.0000   9.3000
+Linker   0   3
+Invert
+Shadow
+ObjSho1
+TagSho1
+End
+14
+Kind     1   2
+Tag   C
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     7
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    4.6381   6.0000   1   0.0000
+Slope    0.0000   8.0000
+Linker   0   4
+Invert
+Shadow
+ObjSho1
+TagSho1
+End
+20
+Kind    11   2
+Tag   u
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     7
+Font  Arial
+Color         0   1.0000
+ColorB      255   1.0000
+Shape    5.5292   1.0000   4   1.0000
+Point  265.0000 159.0000  55.0000  15.0000
+Slope    0.0000   6.2832
+Linker   0
+FuncX b =1.0000
+FuncY 
+Shadow
+Trace  100
+ObjSho1
+TagSho0
+End
+21
+Kind    11   2
+Tag   v
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     7
+Font  Arial
+Color         0   1.0000
+ColorB      255   1.0000
+Shape    2.4819   1.0000   4   1.0000
+Point  266.0000 179.0000  54.0000  15.0000
+Slope    0.0000   3.1416
+Linker   0
+FuncX b =1.0000
+FuncY 
+Shadow
+Trace  100
+ObjSho1
+TagSho0
+End
+16
+Kind     9   2
+Tag   a
+TagPos  -0.6500   0.1000   0.0000   0.00000
+TagS     7
+Color   2445864   1.0000
+ColorB      255   1.0000
+Shape    1.0000   2.0000   0   5.0000
+Linker  12  13  14   0   0   0   0   0  20   0  21
+FuncX a*cos(u)*sin(v)
+FuncY b*sin(u)*sin(v)
+FuncZ c*cos(v)
+RuleX    0.0000   5.5292  40.0000
+RuleY    0.0000   2.4819  40.0000
+RuleZ   -4.0000   4.0000  40.0000
+Param    9.9345   6.2701   5.8772
+Param1   0.0000   0.0000   0.0000
+ObjSho1
+TagSho0
+End
+Finish
+Termination

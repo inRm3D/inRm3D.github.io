@@ -1,0 +1,121 @@
+inRm3D v2.826 Beta 
+Page     1   1
+PageNm    0  Page1
+Color  16777215      255    32768 16711680      255      255    32768 16711680
+Transp   0.2000   0.2000   0.2000
+Mode     0   0   0   0   0   0
+Origin  -0.0352  -2.9215 244.0000 284.0000   0.0000
+Origi    4   1      255 o
+Length   6.0000   6.0000   6.0000
+Axis     2   2   2   2   2   2  ---  ---  ---
+Deep    27.0000  29.0000
+Scene 11010110000000011
+Pages    0   0
+End
+12
+Kind     1   2
+Tag   A
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    2.8441   4.0000   0   0.0720
+Angle    1.8000
+Slope    0.0000   6.2832
+Linker   0   3
+Invert
+Shadow
+Sected
+ObjSho1
+TagSho1
+End
+11
+Kind     9   5
+Tag   b
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color   1644025   1.0000
+ColorB  8421376   1.0000
+Shape    0.3166   2.0000   0   5.0000
+Linker  12
+FuncX v
+FuncY 2
+FuncZ sin(a+r*3)/4
+RuleX    0.0000   6.2832  60.0000
+RuleY    0.0000  12.0000  60.0000
+RuleZ    0.0000   0.0000   0.0000
+Param    6.1200   0.0000   0.0000
+Param1   0.0000   0.0000   0.0000
+Return
+Sected
+ObjSho1
+TagSho0
+End
+14
+Kind     1   1
+Tag   B
+TagPos  -0.6000   0.1000   1.0000   1.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    5.0000   4.0000   1   0.0000
+Point    0.0000  -5.0970   2.9091   0.0000
+Angle    3.0000
+Linker   0
+Return
+ObjSho1
+TagSho0
+End
+15
+Kind     1   1
+Tag   C
+TagPos  -0.6000   0.1000   1.0000   1.00000
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    5.0000   4.0000   1   0.0000
+Point    2.3810  -6.2052   4.1331   0.0000
+Angle    3.0000
+Linker   0
+Return
+ObjSho1
+TagSho0
+End
+13
+Kind     4   4
+Tag   ¦Á
+TagPos  -0.6000   0.1000   1.0000   1.00000
+Color     32896   0.4000
+ColorB    32896   0.4000
+Shape    5.0000   4.0000   4   2.0000
+Angle    3.0000
+Linker  14  15
+Return
+ObjSho1
+TagSho0
+End
+16
+Kind    15   1
+Tag   a
+TagPos  -0.6000   0.1000   0.7000   0.00000
+Color  16776960   1.0000
+ColorB 16776960   1.0000
+Shape   25.6447   2.0000   0   0.0000
+Linker  13  11
+Invert
+ObjSho1
+TagSho0
+End
+17
+Kind    14   1
+Tag   ¿ØÖÆ...
+TagPos   0.0000   0.0000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   0.0000
+ColorB        0   0.0000
+Shape    0.0000  70.0000   0  24.0000
+Point   20.0000  48.0000  70.0000   0.0000
+Angle  500.0000
+Linker  12
+ObjSho1
+TagSho0
+End
+Finish
+Termination

@@ -1,0 +1,235 @@
+inRm3D v2.867 
+Page     1   1
+PageNm   0  Page1
+Color  0 255 255 32768 16711680 255 32768 16711680
+Transp 0.2 0.2 0.2
+Mode   10 0 10 0 10 0
+Origin 0 0 352 296 0.5
+Origi  4 1 255
+Length 11.0401 10.0502 8.4 4.5 4.0379 2.2
+Axis   1 2 1 2 1 2
+AxiTag o x y z
+Deep   35 29
+Scene 1111001100000001000
+Window 29 73 1029 739
+Pages  0 0
+End
+11
+Kind   11 2
+Tag   a
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+Shape  1 1 2 1
+Point  40 100 70 0
+Angle  1
+Angle1 10
+Slope  -99 99 0 0
+FuncX a =1.0000
+FuncY 
+ObjSho1
+TagSho1
+End
+12
+Kind   11 1
+Tag   b
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+Shape  2 1 2 0
+Point  40 124 70 15
+Angle  1
+Linker 11
+Slope  0 0 0 0
+FuncX a+1
+FuncY a+1
+ObjSho1
+TagSho0
+End
+21
+Kind   11 1
+Tag   c
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+Shape  1 1 2 0
+Point  40 149 40 15
+Angle  1
+Linker 11 11
+Slope  0 0 0 0
+FuncX a/a
+FuncY a/b
+ObjSho1
+TagSho0
+End
+20
+Kind   11 1
+Tag   R
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+Shape  0.6 1 2 0
+Point  41 179 42 15
+Angle  1
+Linker 21
+Slope  0 0 0 0
+FuncX c*random(100)/100*1.2
+FuncY a*random(100)/100*1.2
+ObjSho1
+TagSho0
+End
+15
+Kind   1 1
+Tag   A
+TagPos -16 1 0 0 0
+TagS    16
+Font  Calibri
+Color  255 1
+Shape  7.7963 6 1 0
+Point  -3.1107 -4.2428 -5.7536 0
+ObjSho1
+TagSho1
+End
+13
+Kind   11 1
+Tag   x
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+Shape  9.8 1 2 0
+Point  43 253 41 15
+Angle  1
+Linker 21
+Slope  0 0 0 0
+FuncX random(c*100)*0.1
+FuncY random(a*100)*0.1
+ObjSho1
+TagSho0
+End
+16
+Kind   11 1
+Tag   y
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+Shape  5.7 1 2 0
+Point  46 279 40 15
+Angle  1
+Linker 21
+Slope  0 0 0 0
+FuncX random(c*100)*0.1
+FuncY random(a*100)*0.1
+ObjSho1
+TagSho0
+End
+17
+Kind   11 1
+Tag   z
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+Shape  5.9 1 2 0
+Point  44 307 40 15
+Angle  1
+Linker 21
+Slope  0 0 0 0
+FuncX random(c*150)*0.1
+FuncY random(a*150)*0.1
+ObjSho1
+TagSho0
+End
+22
+Kind   11 1
+Tag   Color
+TagPos -1 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+Shape  0.19 1 2 0
+Point  47 343 40 15
+Angle  1
+Linker 21
+Slope  0 0 0 0
+FuncX c*random(100)/100
+FuncY a*random(100)/100
+ObjSho1
+TagSho0
+End
+18
+Kind   1 11
+Tag   A'
+TagPos -13 14 0 0 0
+TagS    16
+Font  Calibri
+Color  255 1
+Shape  4.4391 6 1 0
+Trans  9.8 5.7 5.9
+Angle  8.5
+Linker 15 13 16 17
+ObjSho1
+TagSho1
+End
+19
+Kind   6 1
+Tag   d
+TagPos -0.6 0.1 0 0 0
+TagS    16
+Font  Calibri
+Color  -16777201 1
+ColorB 255 1
+ColorV 0 0 1
+Shape  0.6 0 2 0
+Angle1 0 0 0
+Linker 18 0 20 0 0 0 22
+Return
+ObjSho1
+TagSho0
+End
+23
+Kind   11 2
+Tag   n
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+Shape  75 1 0 1
+Point  47 367 40 0
+Angle  75
+Angle1 10
+Slope  1 99 0 0
+FuncX e =1.0000
+FuncY 
+Trace  146
+ObjSho1
+TagSho1
+End
+14
+Kind   13 1
+Tag   Z
+TagPos -20 1 0 0 0
+TagS    16
+Font  Calibri
+Color  255 1
+Shape  0 1 75 0
+Linker 23 11 12
+ObjSho1
+TagSho0
+End
+Finish
+Termination

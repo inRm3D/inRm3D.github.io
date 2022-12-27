@@ -1,0 +1,514 @@
+inRm3D v2.869 
+Page     1   1
+PageNm   0  长方体11种展开
+Color  0 255 32768 16711680 16711680 255 32768 16711680
+Transp 0.1 0.1 0.1
+Mode   4 0 4 0 4 0
+Origin 0 0 196.5 292.5 0
+Origi  4 1 255
+Length 8 8 5.4947 0 0 0
+Axis   2 2 2 2 2 2
+AxiTag o x y z
+ObjShO11111111111
+ObjShX11111111111
+ObjShY11111111111
+ObjShZ11111111111
+Mask  000000
+Deep   32 29
+Scene 110111100001000100000
+Window 230 -5 1042 728
+Pages  10 4
+End
+11
+Kind   1 2
+Tag   L
+TagPos -0.55 -0.8 0 0 0
+TagS     9
+Font  Arial
+Color  255 1
+Shape  5.1378 4 1 0
+Linker 0 2
+Slope  0 8 0 0
+Invert
+Shadow
+ObjSho11111111111
+TagSho11111111111
+End
+12
+Kind   1 2
+Tag   W
+TagPos -0.05 -0.65 0 0 0
+TagS     9
+Font  Arial
+Color  255 1
+Shape  3.6011 4 1 0
+Linker 0 3
+Slope  0 8 0 0
+Invert
+Shadow
+ObjSho11111111111
+TagSho11111111111
+End
+20
+Kind   4 1
+Tag   δ
+TagPos -0.6 0.1 1 1 0
+TagS     9
+Font  Arial
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  1 4 10 0
+Angle  1
+Linker 1 11 12
+Return
+ObjSho11111111111
+TagSho00000000000
+End
+13
+Kind   1 2
+Tag   H
+TagPos -0.6 0.1 0 0 0
+TagS     9
+Font  Arial
+Color  255 1
+Shape  2.1035 4 1 0
+Linker 0 4
+Slope  0 5.4947 0 0
+Invert
+Shadow
+ObjSho11111111111
+TagSho11111111111
+End
+14
+Kind   3 3
+Tag   O_1
+TagPos -0.6 0.1 0.5 0 0
+TagS     9
+Font  Arial
+Color  65280 1
+ColorB 65280 1
+Shape  2.1035 1 0 1.5623
+Angle  1.5708
+Angle0 0
+Linker 13 3
+Locked
+Return
+Shadow
+ObjSho11111111111
+TagSho00000000000
+End
+15
+Kind   1 2
+Tag   M
+TagPos 0.15 -0.05 0 0 0
+TagS     9
+Font  Arial
+Color  255 1
+Shape  0.0036 4 1 0.0106
+Linker 0 14
+Slope  0 1 0 0
+Return
+Shadow
+ObjSho11111111111
+TagSho00000000001
+End
+18
+Kind   4 1
+Tag   β
+TagPos -0.6 0.1 1 1 0
+TagS     9
+Font  Arial
+Color  16711680 0.4
+ColorB 16711680 0.4
+Shape  2 4 10 0
+Angle  1
+Linker 15 1 12
+Return
+ObjSho11111111111
+TagSho00000000000
+End
+29
+Kind   1 9
+Tag   M'
+TagPos 0.15 -0.05 0 0 0
+TagS     9
+Font  Arial
+Color  255 1
+Shape  90 4 1 0.0106
+Angle  90
+Linker 15 4
+Return
+Degree
+ObjSho00000000000
+TagSho00000000001
+End
+30
+Kind   4 1
+Tag   λ
+TagPos -0.6 0.1 1 1 32768
+TagSty1100
+TagS    16
+Font  Calibri
+Color  16711935 0.4
+ColorB 16711935 0.4
+Shape  2 4 10 0
+Angle  1
+Linker 29 1 11
+Return
+ObjSho11111111111
+TagSho00000000000
+End
+35
+Kind   4 5
+Tag   θ
+TagPos 2.4 2.1 1 1 32768
+TagSty1100
+TagS    16
+Font  Calibri
+Color  16711680 0.4
+ColorB 16711680 0.4
+Shape  5.3667 4 0 1.9
+Angle0 0.5
+Linker 29 1 11
+Return
+ObjSho00000000000
+TagSho00000000000
+End
+36
+Kind   1 8
+Tag   W'
+TagPos -0.05 -0.65 0 0 0
+TagS     9
+Font  Arial
+Color  255 1
+Shape  3.7014 4 1 0
+Linker 12 35
+Invert
+Shadow
+ObjSho00000000000
+TagSho11111111111
+End
+37
+Kind   4 1
+Tag   ζ
+TagPos -0.6 0.1 1 1 32768
+TagSty1100
+TagS    16
+Font  Calibri
+Color  16711680 0.4
+ColorB 16711680 0.4
+Shape  2 4 0 0
+Angle  1
+Linker 36 1 29
+Return
+ObjSho00000000000
+TagSho00000000000
+End
+39
+Kind   4 9
+Tag   ζ'
+TagPos -0.6 0.1 1 1 32768
+TagSty1100
+TagS    16
+Font  Calibri
+Color  16711680 0.4
+ColorB 16711680 0.4
+Shape  2 4 10 0
+Angle  180
+Linker 37 30
+Return
+Degree
+ObjSho01000111111
+TagSho00000000000
+End
+19
+Kind   4 9
+Tag   β'
+TagPos -1.6 0.1 1 1 0
+TagS     9
+Font  Arial
+Color  16711680 0.4
+ColorB 16711680 0.4
+Shape  2 4 10 0
+Angle  180
+Linker 18 20
+Return
+Degree
+ObjSho10001000000
+TagSho00000000000
+End
+21
+Kind   4 9
+Tag   δ'
+TagPos -1.6 0.1 1 1 0
+TagS     9
+Font  Arial
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  1 4 10 0
+Angle  180
+Linker 20 30
+Return
+Degree
+ObjSho11111110000
+TagSho00000000000
+End
+22
+Kind   4 9
+Tag   λ'
+TagPos -2.6 2.1 1 1 32768
+TagSty1100
+TagS    16
+Font  Calibri
+Color  16711935 0.4
+ColorB 16711935 0.4
+Shape  2 4 10 0
+Angle  180
+Linker 30 21
+Return
+Degree
+ObjSho11110000000
+TagSho00000000000
+End
+17
+Kind   4 9
+Tag   β'
+TagPos -0.6 0.1 1 1 0
+TagS     9
+Font  Arial
+Color  16711680 0.4
+ColorB 16711680 0.4
+Shape  2 4 10 0
+Angle  180
+Linker 18 30
+Return
+Degree
+ObjSho00100000000
+TagSho00000000000
+End
+28
+Kind   4 9
+Tag   λ'
+TagPos -1.6 0.1 1 1 32768
+TagSty1100
+TagS    16
+Font  Calibri
+Color  16711935 0.4
+ColorB 16711935 0.4
+Shape  2 4 10 0
+Angle  180
+Linker 30 20
+Return
+Degree
+ObjSho00001100000
+TagSho00000000000
+End
+16
+Kind   4 9
+Tag   λ'
+TagPos 1.4 1.1 1 1 32768
+TagSty1100
+TagS    16
+Font  Calibri
+Color  16711935 0.4
+ColorB 16711935 0.4
+Shape  2 4 10 0
+Angle  180
+Linker 30 39
+Return
+Degree
+ObjSho00000011101
+TagSho00000000000
+End
+24
+Kind   4 9
+Tag   ζ'
+TagPos -0.6 0.1 1 1 32768
+TagSty1100
+TagS    16
+Font  Calibri
+Color  16711680 0.4
+ColorB 16711680 0.4
+Shape  2 4 10 0
+Angle  180
+Linker 37 21
+Return
+Degree
+ObjSho00010000000
+TagSho00000000000
+End
+23
+Kind   4 9
+Tag   δ'
+TagPos 1.4 0.1 1 1 0
+TagS     9
+Font  Arial
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  1 4 10 0
+Angle  180
+Linker 20 39
+Return
+Degree
+ObjSho00000001000
+TagSho00000000000
+End
+27
+Kind   4 5
+Tag   γ
+TagPos 1.4 5.1 1 1 32768
+TagSty1100
+TagS    16
+Font  Calibri
+Color  35071 0.4
+ColorB 35071 0.4
+Shape  2.2667 4 0 6.3
+Angle0 0.5
+Linker 29 1 36
+Return
+ObjSho00000000000
+TagSho00000000000
+End
+31
+Kind   1 8
+Tag   L'
+TagPos -0.55 -0.8 0 0 0
+TagS     9
+Font  Arial
+Color  255 1
+Shape  5.1378 4 1 0
+Linker 11 27
+Invert
+Shadow
+ObjSho00000000000
+TagSho11111111111
+End
+32
+Kind   4 1
+Tag   ε
+TagPos -1.6 0.1 1 1 32768
+TagSty1100
+TagS    16
+Font  Calibri
+Color  6324416 0.4
+ColorB 6324416 0.4
+Shape  2 4 0 0
+Angle  1
+Linker 31 1 36
+Return
+ObjSho00000000000
+TagSho00000000000
+End
+33
+Kind   4 9
+Tag   ε'
+TagPos -0.6 0.1 1 1 32768
+TagSty1100
+TagS    16
+Font  Calibri
+Color  6324416 0.4
+ColorB 6324416 0.4
+Shape  2 4 10 0
+Angle  180
+Linker 32 30
+Return
+Degree
+ObjSho00000000110
+TagSho00000000000
+End
+26
+Kind   1 8
+Tag   M'
+TagPos 0.15 -0.05 0 0 0
+TagS     9
+Font  Arial
+Color  255 1
+Shape  0.6119 4 1 0.0106
+Linker 15 4
+Return
+Shadow
+ObjSho00000000000
+TagSho00000000001
+End
+34
+Kind   4 1
+Tag   α
+TagPos -0.6 0.1 1 1 32768
+TagSty1100
+TagS    16
+Font  Calibri
+Color  16711935 0.4
+ColorB 16711935 0.4
+Shape  2 4 0 0
+Angle  1
+Linker 26 1 31
+Return
+ObjSho00000000000
+TagSho00000000000
+End
+38
+Kind   4 9
+Tag   α'
+TagPos -0.6 0.1 1 1 32768
+TagSty1100
+TagS    16
+Font  Calibri
+Color  16711935 0.4
+ColorB 16711935 0.4
+Shape  2 4 0 0
+Angle  180
+Linker 34 32
+Return
+Degree
+ObjSho00000000000
+TagSho00000000000
+End
+40
+Kind   4 9
+Tag   α''
+TagPos -0.6 0.1 1 1 32768
+TagSty1100
+TagS    16
+Font  Calibri
+Color  16711935 0.4
+ColorB 16711935 0.4
+Shape  2 4 10 0
+Angle  180
+Linker 38 30
+Return
+Degree
+ObjSho00000000010
+TagSho00000000000
+End
+25
+Kind   4 9
+Tag   δ'
+TagPos -0.6 0.1 1 1 0
+TagS     9
+Font  Arial
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  1 4 10 0
+Angle  180
+Linker 20 18
+Return
+Degree
+ObjSho00000000001
+TagSho00000000000
+End
+86
+Kind   10 1
+Tag   c
+TagPos -1.6 0.1 0 0 6777215
+TagS    16
+Font  楷体_GB2312
+Color  255 1
+Shape  1 0 14 0
+Point  49 138 0 0
+Slope  0 0 0 0
+FuncY 0176180215243211210183189207242188252210212209161212241213185191170183189202189 13 10176180 77188252210212182175187173213185191170
+ObjSho11111111111
+TagSho00000000000
+End
+Finish
+Termination

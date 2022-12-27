@@ -1,0 +1,23 @@
+glut是为在Delphi使用glut3.6程序编写的单元申明文件。
+GLUT允许你创建跨平台的窗口管理程序，还有很多绘制
+物体的程序，例如绘制方块、球、茶壶等。
+  如果直接调用glutInit()进行初始化会发生错误。
+如果我们使用以下代码对GLUT进行初始化，就不会出错了。
+
+var
+  cmd: array [0..X] of PChar;
+  count: Integer;
+  i: Integer;
+begin
+
+  for i := 0 to ParamCount do cmd[i] := PChar(ParamStr(i));
+  count := ParamCount + 1;
+  glutInit(@count, @cmd);
+
+  ...
+
+end;
+
+    以上设置方法是必要的，因为GLUT假设你是使用C语言进行编程的,
+因此有一个通过main()函数得到的命令行参数。
+

@@ -1,0 +1,448 @@
+inRm3D v2.869 
+Page     1   1
+PageNm   0  Page1
+Color  0 255 255 32768 16711680 255 32768 16711680
+Transp 0.1 0.1 0.1
+Mode   10 0 10 0 10 0
+Origin -0.3168 -0.528 36.5 273.5 0
+Origi  4 1 255
+Length 13 10 8.4 4.5 3 2.2
+Axis   1 2 1 2 1 2
+AxiTag o x y z
+ObjShO11
+ObjShX11
+ObjShY11
+ObjShZ11
+Mask  000000
+Deep   34 29
+Scene 111111111000111000000
+Window 97 21 936 653
+Pages  1 1
+End
+11
+Kind   3 1
+Tag   O[1]
+TagPos -0.6 0.1 0.5 0 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  65280 1
+ColorB 0 0
+Shape  5.7559 6 4 0
+Angle0 0
+Linker 1 3
+Return
+ObjSho11
+TagSho00
+End
+22
+Kind   11 2
+Tag   f
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  15780518 1
+ColorB 0 1
+Shape  4.8922 1 4 0.02
+Point  87 104 70 0
+Angle  4.8922
+Angle1 10
+Slope  0 6.2832 0 0
+FuncX f =1.0000
+FuncY 
+Mask
+Sected
+Trace  131
+ObjSho11
+TagSho11
+End
+31
+Kind   11 2
+Tag   n
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  15780518 1
+ColorB 0 1
+Shape  2 1 0 1
+Point  75 140 55 0
+Angle  2
+Angle1 10
+Slope  0 36 0 0
+FuncX l =1.0000
+FuncY 
+Mask
+Trace  119
+ObjSho11
+TagSho11
+End
+28
+Kind   11 1
+Tag   i
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Shape  3 1 0 0
+Point  75 173 34 15
+Angle  1
+Linker 31
+Slope  0 0 0 0
+FuncX n+1
+FuncY a+1
+Mask
+ObjSho11
+TagSho00
+End
+34
+Kind   11 1
+Tag   m
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Shape  30 1 0 0
+Point  75 197 34 15
+Angle  1
+Linker 28
+Slope  0 0 0 0
+FuncX i*10
+FuncY a*10
+Mask
+ObjSho11
+TagSho00
+End
+12
+Kind   1 2
+Tag   A
+TagPos 5.4 -26.9 0 0 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  255 1
+Shape  30 6 1 0
+Angle  0.71
+Linker 0 11 34
+Slope  0 360.0008 0 0
+Degree
+ObjSho11
+TagSho11
+End
+13
+Kind   1 10
+Tag   A'
+TagPos -0.6 0.1 0 0 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  255 1
+Shape  0.45 6 1 0
+Angle  0.45
+Linker 12 1
+ObjSho11
+TagSho11
+End
+14
+Kind   2 4
+Tag   a
+TagPos -0.6 0.1 0.7 0 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  16711680 1
+Shape  2.4997 2 0 0
+Angle  1.5708
+Angle0 0.5
+Linker 12 3
+Slope  6 0 0 0
+Invert
+ObjSho10
+TagSho00
+End
+15
+Kind   1 9
+Tag   A''
+TagPos -0.6 0.1 0 0 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  255 1
+Shape  4.8922 6 1 0
+Angle  4.8922
+Linker 13 14 0 22
+ObjSho11
+TagSho11
+End
+16
+Kind   2 3
+Tag   b
+TagPos -0.6 0.1 0.7 0 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  16711680 1
+Shape  2.5412 2 0 0
+Linker 15 14
+Slope  6 0 0 0
+ObjSho10
+TagSho00
+End
+17
+Kind   3 3
+Tag   O[2]
+TagPos -7.6 0.1 0.5 0 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  6324416 1
+ColorB 0 0
+Shape  3.1657 4 4 2.0046
+Angle  0.1798
+Angle0 0
+Linker 12 16
+Return
+Shadow
+ObjSho11
+TagSho00
+End
+30
+Kind   3 8
+Tag   O[2]'
+TagPos -7.6 0.1 0.5 0 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  6324416 1
+ColorB 0 0
+Shape  3.1657 4 4 2.0046
+Angle  2.1463
+Linker 17 12
+Return
+Shadow
+ObjSho11
+TagSho00
+End
+24
+Kind   11 1
+Tag   e
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Shape  0.1 1 2 0
+Point  78 267 41 15
+Angle  1
+Linker 31
+Slope  0 0 0 0
+FuncX parity(n)*0.05+0.1
+FuncY parity(a)*0.05+0.1
+Mask
+ObjSho11
+TagSho00
+End
+18
+Kind   1 2
+Tag   B
+TagPos 8 -9 0 0 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  255 1
+Shape  0.1 6 1 0
+Angle  0.3
+Linker 0 17 24
+Slope  0 1 0 0
+ObjSho11
+TagSho11
+End
+33
+Kind   1 9
+Tag   B''
+TagPos 6 -1 0 0 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  255 1
+Shape  0.192 6 1 0
+Angle  0.192
+Linker 18 16
+Shadow
+ObjSho11
+TagSho11
+End
+25
+Kind   11 1
+Tag   g
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Shape  0.2 1 4 0
+Point  77 296 55 15
+Angle  1
+Linker 24
+Slope  0 0 0 0
+FuncX e+0.1
+FuncY a+0.1
+Mask
+ObjSho11
+TagSho00
+End
+29
+Kind   11 1
+Tag   j
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Shape  1 1 4 0
+Point  77 320 51 15
+Angle  1
+Linker 25
+Slope  0 0 0 0
+FuncX 1.2-g
+FuncY 1.2-a
+Mask
+ObjSho11
+TagSho00
+End
+20
+Kind   1 12
+Tag   B'
+TagPos -34 -27 0 0 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  255 1
+Shape  0.217 6 1 0
+Angle  1
+Linker 18 15 18 29
+Degree
+ObjSho11
+TagSho11
+End
+19
+Kind   2 4
+Tag   c
+TagPos -0.6 0.1 0.7 0 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  16711680 1
+Shape  2.0375 2 0 0
+Angle  0.9548
+Angle0 0.5
+Linker 20 16
+Slope  6 0 0 0
+Invert
+ObjSho10
+TagSho00
+End
+21
+Kind   1 2
+Tag   C
+TagPos -18 -5 0 0 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  255 1
+Shape  0.6656 6 1 0
+Angle  0.3
+Linker 0 19
+Slope  0 1 0 0
+ObjSho11
+TagSho11
+End
+23
+Kind   2 3
+Tag   d
+TagPos -0.6 0.1 0.7 0 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  16711680 1
+Shape  2.061 2 0 0
+Angle  0.3
+Linker 21 14
+Slope  6 0 0 0
+ObjSho10
+TagSho00
+End
+26
+Kind   3 3
+Tag   O[3]
+TagPos -0.6 0.1 0.5 0 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  65280 1
+ColorB 0 0
+Shape  1.3562 2 0 1
+Angle  0.9342
+Angle0 0
+Linker 20 23 0 29
+Invert
+Return
+ObjSho11
+TagSho00
+End
+32
+Kind   7 1
+Tag   l
+TagPos -0.6 0.1 5 0 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 1
+Shape  12 0 16 6.2832
+Linker 26 19
+Return
+ObjSho11
+TagSho00
+End
+35
+Kind   7 8
+Tag   l'
+TagPos -0.6 0.1 5 0 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  16777215 1
+ColorB 16777215 1
+Shape  12 0 16 6.2832
+Linker 32 12
+Return
+ObjSho11
+TagSho00
+End
+27
+Kind   13 1
+Tag   h
+TagPos -16 1 0 0 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  255 1
+Shape  1 1 8 0
+Linker 0 24 25
+ObjSho11
+TagSho00
+End
+36
+Kind   13 1
+Tag   k
+TagPos -16 1 0 0 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  255 1
+Shape  1 1 35 0
+Linker 0 31 28
+ObjSho01
+TagSho00
+End
+Finish
+Termination

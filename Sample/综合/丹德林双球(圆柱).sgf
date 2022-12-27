@@ -1,0 +1,317 @@
+inRm3D v2.869 
+Page     1   1
+PageNm   0  Ô²ÖùÀïµÄÇò
+Color  16777215 255 32768 16711680 16711680 255 32768 16711680
+Transp 0.2 0.2 0.2
+Mode   0 0 0 0 0 0
+Origin 0 0 269 293.5 0
+Origi  4 1 255
+Length 7.7141 8 8 0 0 0
+Axis   1 2 1 2 1 2
+AxiTag o x y z
+ObjShO1
+ObjShX1
+ObjShY1
+ObjShZ1
+Mask  000000
+Deep   45 35
+Scene 111111110000111100000
+Window 44 37 997 677
+Pages  0 0
+End
+12
+Kind   1 2
+Tag   b
+TagPos 0.2 0.1 0.5 0 0
+TagS     9
+Font  Arial
+Color  255 1
+Shape  4.9277 4 0 0
+Linker 0 3
+Slope  0 8 0 0
+Invert
+Shadow
+ObjSho1
+TagSho1
+End
+14
+Kind   2 3
+Tag   a
+TagPos -0.6 0.1 0.7 0 0
+TagS     9
+Font  Arial
+Color  16711680 1
+Shape  5 1 0 0
+Linker 12 4
+Slope  0 0 0 0
+ObjSho1
+TagSho0
+End
+22
+Kind   1 2
+Tag   j
+TagPos -0.6 0.1 0 0 0
+TagS     9
+Font  Arial
+Color  255 1
+Shape  -0.9096 4 0 0
+Linker 0 4
+Slope  0 1 0 0
+ObjSho1
+TagSho0
+End
+25
+Kind   6 2
+Tag   m
+TagPos -0.6 0.1 0 0 0
+TagS     9
+Font  Arial
+Color  16711680 1
+ColorB 32896 1
+Shape  4.9277 1 15 15.196
+Angle1 0 0 0
+Linker 22 4 12
+ObjSho1
+TagSho0
+End
+28
+Kind   1 2
+Tag   A
+TagPos 5.4 2.1 0 0 0
+TagSty1100
+TagS    20
+Font  Arial
+Color  255 1
+Shape  0.5741 12 1 0
+Linker 0 14
+Slope  0 1 0 0
+Shadow
+ObjSho1
+TagSho1
+End
+30
+Kind   2 1
+Tag   d
+TagPos -0.6 0.1 0.7 0 6711680
+TagSty1100
+TagS    16
+Font  Arial
+Color  16711680 1
+Shape  5.7029 1 0 0
+Linker 28 1
+Slope  6 0 0 0
+ObjSho1
+TagSho0
+End
+32
+Kind   2 5
+Tag   l
+TagPos -0.6 0.1 0.7 0 6711680
+TagSty1100
+TagS    16
+Font  Arial
+Color  16711680 1
+Shape  5 1 0 0
+Angle  0.5
+Angle0 0.5
+Linker 14 30
+Slope  6 0 0 0
+ObjSho1
+TagSho0
+End
+33
+Kind   1 4
+Tag   D
+TagPos -0.6 0.1 0 0 6711680
+TagSty1100
+TagS    16
+Font  Arial
+Color  255 1
+Shape  0.5 6 1 0
+Linker 4 32
+ObjSho1
+TagSho0
+Croses
+CroShw   1
+End
+34
+Kind   1 7
+Tag   D'
+TagPos -0.6 0.1 0 0 6711680
+TagSty1100
+TagS    16
+Font  Arial
+Color  255 1
+Shape  0.5 6 1 0
+Linker 33 30
+ObjSho1
+TagSho0
+End
+35
+Kind   6 1
+Tag   h
+TagPos -0.6 2.1 0 0 0
+TagSty1100
+TagS     9
+Font  Arial
+Color  32768 1
+ColorB 16711935 1
+Shape  4.9277 0 2 0
+Angle1 0 0 0
+Linker 33 4 34
+Return
+ObjSho1
+TagSho0
+End
+36
+Kind   6 8
+Tag   h'
+TagPos 0.4 0.1 0 0 0
+TagSty1100
+TagS     9
+Font  Arial
+Color  32768 1
+ColorB 32768 1
+Shape  4.1014 0 2 0
+Linker 35 1
+Return
+ObjSho1
+TagSho0
+End
+37
+Kind   4 3
+Tag   ¦Á
+TagPos -0.6 0.1 1 1 6711680
+TagSty1100
+TagS    16
+Font  Arial
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  13.1666 4 10 21.0333
+Linker 1 30 2
+Return
+ObjSho1
+TagSho0
+End
+11
+Kind   1 8
+Tag   D''
+TagPos -0.6 0.1 0 0 6711680
+TagSty1100
+TagS    16
+Font  Arial
+Color  255 1
+Shape  0.5 6 1 0
+Linker 34 1
+ObjSho1
+TagSho0
+End
+13
+Kind   15 1
+Tag   c
+TagPos -0.6 0.1 0.7 0 55
+TagS    14
+Font  NS Math CN
+Color  255 1
+Shape  33.437 3 4 0
+Linker 37 25
+Invert
+ObjSho1
+TagSho0
+End
+15
+Kind   1 2
+Tag   M
+TagPos -32 -2 0 0 55
+TagSty1000
+TagS    24
+Font  Calibri
+Color  255 1
+Shape  0.9634 12 1 0
+Linker 0 13
+Slope  0 1 0 0
+ObjSho1
+TagSho1
+End
+17
+Kind   2 1
+Tag   e
+TagPos -16 1 0.7 0 55
+TagS    14
+Font  NS Math CN
+Color  16711680 1
+Shape  6.3149 3 4 0
+Linker 34 15
+Slope  6 0 0 0
+ObjSho1
+TagSho0
+End
+18
+Kind   2 1
+Tag   f
+TagPos -16 1 0.7 0 55
+TagS    14
+Font  NS Math CN
+Color  16711680 1
+Shape  5.089 3 4 0
+Linker 15 11
+Slope  6 0 0 0
+ObjSho1
+TagSho0
+End
+24
+Kind   11 8
+Tag   n
+TagPos -0.6 0.1 0 0 55
+TagSty1000
+TagS     9
+Font  Arial
+Shape  6.3149 1 2 0
+Point  259 140 70 0
+Angle  1
+Linker 17
+Slope  0 0 0 0
+FuncX k =1.0000
+FuncY 
+Mask
+ObjSho1
+TagSho0
+End
+26
+Kind   11 8
+Tag   k
+TagPos -0.6 0.1 0 0 55
+TagSty1000
+TagS     9
+Font  Arial
+Shape  5.089 0 2 0
+Point  260 158 70 0
+Angle  1
+Linker 18
+Slope  0 0 0 0
+FuncX 
+FuncY 
+Mask
+ObjSho1
+TagSho0
+End
+27
+Kind   11 1
+Tag   p
+TagPos 0 1 0 0 55
+TagSty1000
+TagS    12
+Font  Arial
+Shape  11.4039 1 2 0
+Point  262 190 70 15
+Angle  1
+Linker 24 26
+Slope  0 0 0 0
+FuncX n+k
+FuncY a+b
+Mask
+ObjSho1
+TagSho0
+End
+Finish
+Termination

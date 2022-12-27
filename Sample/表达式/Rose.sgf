@@ -1,0 +1,90 @@
+inRm3D v2.854 
+Page     1   1
+PageNm   0  rose
+Color         0      255    32768 16711680 16711680      255 16776960 16711680
+Transp   0.2000   0.2000   0.2000
+Mode     4   0   4   0   4   0
+Origin   0.0000   0.0000 193.7448 295.5499   0.0000
+Origi    6   1      255
+Length  12.0000  12.0000   5.1000
+Axis     1   2   1   2   1   2  ---  ---
+AxiTago x y z 
+Deep    30.5000  16.0000
+Scene 10000111010000010
+Window 140  55 768 558
+Pages    0   0
+Spin   -24   0
+End
+11
+Kind     1   2
+Tag   Move me...
+TagPos   0.2000   0.2000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    3.5000   4.0000   0   0.1000
+Angle    7.2000
+Linker   0   3
+Slope    0.0000   8.0000   0.0000   0.0000
+Invert
+Return
+Shadow
+ObjSho1
+TagSho1
+End
+12
+Kind     1   2
+Tag   
+TagPos   0.1000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.7796   4.0000   0   0.0000
+Linker   0   2
+Slope    0.0000   1.0000   0.0000   0.0000
+Shadow
+ObjSho1
+TagSho1
+End
+13
+Kind     9   4
+Tag   a
+TagPos   0.0500   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color     65535   1.0000
+ColorB    65535   1.0000
+Shape    0.0000   1.0000   0   0.0000
+Linker  11  11
+FuncX u
+FuncY v
+FuncZ 5*sin(a*v+cos(5*u))
+RuleX    0.0000   6.2800 100.0000
+RuleY    0.0000   3.1420  50.0000
+RuleZ    0.0000   0.0000   0.0000
+Param    6.0000   6.0000   0.0000
+Param1   0.0000   0.0000   0.0000
+Return
+ObjSho1
+TagSho1
+End
+14
+Kind    14   1
+Tag   ¿ØÖÆ...
+TagPos   0.0000   0.0000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   0.0000
+ColorB        0   0.0000
+Shape    0.0000  70.0000   0  24.0000
+Point  122.0000 190.0000  70.0000   0.0000
+Angle  500.0000
+Linker  11
+Return
+ObjSho1
+TagSho0
+End
+Finish
+Termination

@@ -1,0 +1,403 @@
+inRm3D v2.866 
+Page     1   1
+PageNm   0  Page1
+Color  16777215 255 255 32768 16711680 255 32768 16711680
+Transp 0.42 0.68 0.76
+Mode   0 0 0 0 0 0
+Origin -0.935 -0.3358 249.5 310.5 0
+Origi  4 1 255
+Length 9.1 14.8188 4.5 1.7 2.1 1.2
+Axis   1 2 1 2 1 2
+AxiTag o x y z
+Deep   23 10
+Scene 1101110010001111000
+Window 50 22 959 644
+Pages  2 2
+End
+12
+Kind   1 1
+Tag   A
+TagPos -16 1 1 1 55
+TagSty0100
+TagS    14
+Font  微软雅黑
+Color  255 1
+Shape  5.3288 3 1 3
+Point  0.7685 4.9665 1.772 0
+Return
+noSel 
+ObjSho110
+TagSho000
+End
+11
+Kind   4 4
+Tag   α
+TagPos -16 1 1 1 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  32896 0.236
+ColorB 32896 0.4
+Shape  9.8 4 10 9.8
+Linker 12 4
+Return
+ObjSho111
+TagSho000
+End
+13
+Kind   1 2
+Tag   A
+TagPos -16 1 0 0 55
+TagSty0100
+TagS    14
+Font  微软雅黑
+Color  255 1
+Shape  1.7363 6 1 0
+Angle  1.9414
+Linker 0 11
+Slope  0 1 0 0
+ObjSho111
+TagSho111
+End
+14
+Kind   1 2
+Tag   B
+TagPos -17 1 0 0 55
+TagSty0100
+TagS    14
+Font  微软雅黑
+Color  255 1
+Shape  4.1042 6 1 0
+Angle  8.3415
+Linker 0 11
+Slope  0 1 0 0
+ObjSho111
+TagSho111
+End
+15
+Kind   1 2
+Tag   C
+TagPos -16 1 0 0 55
+TagSty0100
+TagS    14
+Font  微软雅黑
+Color  255 1
+Shape  7.7249 6 1 0
+Angle  1.5196
+Linker 0 11
+Slope  0 1 0 0
+ObjSho111
+TagSho111
+End
+17
+Kind   1 9
+Tag   D'
+TagPos -16 1 0 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  255 1
+Shape  60 6 1 0
+Angle  60
+Linker 15 14
+Degree
+ObjSho110
+TagSho000
+End
+18
+Kind   2 1
+Tag   a
+TagPos -16 0 0.7 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  16711680 1
+Shape  11.8002 1 1 0
+Linker 13 17
+Slope  6 0 0 0
+ObjSho100
+TagSho000
+End
+20
+Kind   1 9
+Tag   B'
+TagPos -16 1 0 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  255 1
+Shape  60 6 1 0
+Angle  60
+Linker 13 15
+Degree
+ObjSho110
+TagSho000
+End
+21
+Kind   2 1
+Tag   b
+TagPos -0.6 0.1 0.7 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  16711680 1
+Shape  11.8002 1 1 0
+Linker 20 14
+Slope  6 0 0 0
+ObjSho100
+TagSho000
+End
+22
+Kind   1 4
+Tag   Fermat
+TagPos -0.6 0.1 0 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  255 1
+Shape  0.5 6 1 0
+Linker 18 21
+ObjSho111
+TagSho001
+Croses
+CroShw   1
+End
+23
+Kind   2 1
+Tag   c
+TagPos -16 1 0.7 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  16711680 1
+Shape  4.0055 3 4 0
+Linker 22 15
+Slope  6 0 0 0
+ObjSho111
+TagSho000
+End
+25
+Kind   2 1
+Tag   e
+TagPos -16 1 0.7 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  16711680 1
+Shape  4.8976 3 4 0
+Linker 14 22
+Slope  6 0 0 0
+ObjSho111
+TagSho000
+End
+26
+Kind   2 1
+Tag   d
+TagPos -16 1 0.7 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  16711680 1
+Shape  2.8971 3 4 0
+Linker 13 22
+Slope  6 0 0 0
+ObjSho111
+TagSho000
+End
+28
+Kind   1 2
+Tag   L
+TagPos 8 1 0 0 55
+TagSty0100
+TagS    14
+Font  微软雅黑
+Color  255 1
+Shape  8.2783 6 1 0
+Linker 0 3
+Slope  0 12.7188 0 0
+Invert
+ObjSho111
+TagSho111
+End
+30
+Kind   1 2
+Tag   a
+TagPos -7 13 0 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  255 1
+Shape  2.8971 6 1 0
+Linker 0 3 26
+Slope  0 12.7188 0 0
+Invert
+ObjSho010
+TagSho111
+End
+32
+Kind   1 2
+Tag   b
+TagPos -2 5 0 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  255 1
+Shape  4.8976 6 1 0
+Linker 0 3 25
+Slope  0 12.7188 0 0
+Invert
+ObjSho010
+TagSho111
+End
+34
+Kind   1 2
+Tag   c
+TagPos -16 1 0 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  255 1
+Shape  4.0055 6 1 0
+Linker 0 3 23
+Slope  0 12.7188 0 0
+Invert
+ObjSho010
+TagSho111
+End
+36
+Kind   2 1
+Tag   f
+TagPos -16 1 0.7 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  16711680 1
+Shape  5.3812 1 0 0
+Linker 30 28
+Slope  6 0 0 0
+ObjSho010
+TagSho011
+End
+38
+Kind   2 4
+Tag   h
+TagPos -0.6 0.1 0.7 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  16711680 1
+Shape  5.3812 3 4 0
+Angle0 0
+Linker 13 7 36
+Slope  6 0 0 0
+Invert
+ObjSho011
+TagSho010
+End
+39
+Kind   2 1
+Tag   g
+TagPos -0.6 0.1 0.7 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  16711680 1
+Shape  3.3807 1 0 0
+Linker 32 28
+Slope  6 0 0 0
+ObjSho010
+TagSho011
+End
+40
+Kind   2 4
+Tag   i
+TagPos -0.6 0.1 0.7 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  16711680 1
+Shape  3.3807 3 4 0
+Angle0 0
+Linker 14 7 39
+Slope  6 0 0 0
+Invert
+ObjSho011
+TagSho000
+End
+43
+Kind   2 1
+Tag   l
+TagPos -3.6 -25.9 0.7 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  16711680 1
+Shape  4.2728 1 0 0
+Linker 34 28
+Slope  6 0 0 0
+ObjSho010
+TagSho011
+End
+42
+Kind   2 4
+Tag   k
+TagPos -0.6 0.1 0.7 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  16711680 1
+Shape  4.2728 3 4 0
+Angle0 0
+Linker 15 7 43
+Slope  6 0 0 0
+Invert
+ObjSho011
+TagSho000
+End
+44
+Kind   1 2
+Tag   D
+TagPos -16 1 0 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  255 1
+Shape  1 24 1 0
+Linker 0 38
+Slope  0 1 0 0
+Shadow
+ObjSho011
+TagSho000
+End
+46
+Kind   1 2
+Tag   G
+TagPos -16 1 0 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  255 1
+Shape  1 24 1 0
+Linker 0 42
+Slope  0 1 0 0
+Shadow
+ObjSho011
+TagSho000
+End
+48
+Kind   1 2
+Tag   H
+TagPos -16 1 0 0 55
+TagSty1000
+TagS    14
+Font  宋体
+Color  255 1
+Shape  1 24 1 0
+Linker 0 40
+Slope  0 1 0 0
+Shadow
+ObjSho011
+TagSho000
+End
+Finish
+Termination

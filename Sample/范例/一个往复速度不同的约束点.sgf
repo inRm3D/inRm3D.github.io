@@ -1,0 +1,108 @@
+inRm3D v2.818
+Color  16777215      255    32768 16711680
+Origin   0.0000   0.0000   0.0000   0.0000
+Length   8.0000   8.0000   8.0000   0.0000   2.0000
+Window  88  88 768 558
+Deep    34.0000  30.0000
+Scene 1010011001
+Pages    0
+End
+11
+Kind     1   2
+Tag   A
+TagPos  -0.6000  -0.8500   0.0000   0.00000
+Color       255   1.0000
+Shape    0.2566   4.0000   0   0.0000
+Slope    0.0000   1.0000
+Linker   0   2
+Shadow
+ObjSho1
+TagSho1
+End
+12
+Kind     1   2
+Tag   B
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+Shape    0.0874   4.0000   0   0.0042
+Angle    0.0874
+Slope    0.0000   1.0000
+Linker   0   2
+Shadow
+ObjSho1
+TagSho1
+End
+13
+Kind    11   1
+Tag   a
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Font  Arial
+Color         0   1.0000
+Shape    0.3404  55.0000   4  15.0000
+Point  447.0000 227.0000  55.0000  15.0000
+Linker  12  11  12  11  12  11  12  11  11
+FuncX lesse(B,A)*B/A+(1-lesse(B,A))*(1-(B-A)/(1-A))
+FuncY lesse(a,b)*c/d+(1-lesse(e,f))*(1-(g-h)/(1-i))
+ObjSho1
+TagSho0
+End
+15
+Kind     1   1
+Tag   C
+TagPos  -0.6000   0.1000   0.7000   0.00000
+Color       255   1.0000
+Shape    5.0000   4.0000   0   0.0000
+Point   -4.2469  -1.9554   0.0000   0.0000
+Linker   0
+ObjSho1
+TagSho0
+End
+16
+Kind     1   1
+Tag   D
+TagPos  -0.6000   0.1000   0.7000   0.00000
+Color       255   1.0000
+Shape   13.1348   4.0000   0   0.0000
+Point    8.9755  -1.9554   0.0000   0.0000
+Linker   0
+ObjSho1
+TagSho0
+End
+14
+Kind     2   1
+Tag   b
+TagPos  -0.6000   0.1000   0.7000   0.00000
+Color  16711680   1.0000
+Shape   13.2224   1.5000   0   0.0000
+Linker  15  16
+ObjSho1
+TagSho0
+End
+17
+Kind     1   2
+Tag   E
+TagPos  -0.6000   0.1000   0.0000   0.00000
+Color       255   1.0000
+Shape    0.3404   4.0000   0   0.0100
+Angle    0.3417
+Slope    0.0000   1.0000
+Linker   0  14  13
+Shadow
+ObjSho1
+TagSho1
+End
+19
+Kind    14   1
+Tag   ¿ØÖÆ...
+TagPos   0.0000   0.0000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   0.0000
+Shape    0.0000  70.0000   0  24.0000
+Point  438.0000 143.0000  70.0000   0.0000
+Angle  500.0000
+Linker  12
+ObjSho1
+TagSho0
+End
+Finish

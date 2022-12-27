@@ -1,0 +1,170 @@
+inRm3D v2.687
+Color  16777215
+Axis    8.00000 35.00000  30
+Rotate249.00000295.00000  0.00000
+ShowA    1
+ShowG    1
+Pages    0
+End
+12
+Kind     1   1
+Tag   a
+TagPos -0.60000  0.10000  0.70000
+Color       255  1.00000
+Shape   5.00000  4.00000   0  0.00000
+Point  -3.33078  0.70244  0.98694  0.00000
+Angle   0.00000
+Linker   0   0   0   0   0   0   0
+Invert   1
+Return   0
+Shadow   0
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+11
+Kind     2   2
+Tag   b
+TagPos -0.60000  0.10000  0.70000
+Color  16711680  1.00000
+Shape  10.97071  1.00000   0  0.00000
+Angle   0.00000
+Slope   6.42399 -0.10200
+Linker  12   0   0   0   0   0   0
+Invert   1
+Return   0
+Shadow   0
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+14
+Kind     1   1
+Tag   c
+TagPos -0.60000  0.10000  0.70000
+Color       255  1.00000
+Shape   5.00000  4.00000   0  0.00000
+Point   0.65884  1.11954  6.223078562247070321300820000000.00000
+Angle   0.00000
+Linker   0   0   0   0   0   0   0
+Invert   1
+Return   0
+Shadow   0
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+13
+Kind     2   2
+Tag   d
+TagPos -0.60000  0.10000  0.70000
+Color  16711680  1.00000
+Shape   7.08796  1.00000   0  0.00000
+Angle   0.00000
+Slope   7.57099  0.37600
+Linker  14   0   0   0   0   0   0
+Invert   1
+Return   1
+Shadow   0
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+16
+Kind     1   1
+Tag   e
+TagPos -0.60000  0.10000  0.70000
+Color       255  1.00000
+Shape   5.00000  4.00000   0  0.00000
+Point  -2.62949  3.68812  2.88396  0.00000
+Angle   0.00000
+Linker   0   0   0   0   0   0   0
+Invert   1
+Return   0
+Shadow   0
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+15
+Kind     2   2
+Tag   f
+TagPos -0.60000  0.10000  0.70000
+Color  16711680  1.00000
+Shape  10.50063  1.00000   0  0.00000
+Angle   0.00000
+Slope   5.39101  0.10700
+Linker  16   0   0   0   0   0   0
+Invert   1
+Return   0
+Shadow   0
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+20
+Kind     1   2
+Tag   g
+TagPos  0.20000  0.25000  0.50000
+Color       255  1.00000
+Shape   0.24539  4.00000   4  0.03270
+Angle   3.00000
+Slope   0.00000  1.00000
+Linker   0  13   0   0   0   0   0
+Invert   0
+Return   0
+Shadow   1
+ObjSho1111111111111111
+TagSho1111111111111111
+End
+21
+Kind     4   2
+Tag   j
+TagPos -0.70000  0.10000  0.50000
+Color     32896  0.38200
+Shape   0.00000  3.00000   4  0.00000
+Angle   3.00000
+Linker  20  15   0   0   0   0   0
+Invert   0
+Return   0
+Shadow   0
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+22
+Kind     1   4
+Tag   k
+TagPos -0.20000 -0.60000  0.00000
+Color       255  1.00000
+Shape   0.00000  4.00000   0  0.00000
+Angle   0.00000
+Linker  11  21   0   0   0   0   0
+Invert   0
+Return   0
+Shadow   0
+ObjSho1111111111111111
+TagSho1111111111111111
+End
+23
+Kind     2   1
+Tag   l
+TagPos -0.60000  0.10000  0.70000
+Color       255  1.00000
+Shape   5.20409  2.00000   0  0.00000
+Angle   0.00000
+Linker  20  22   0   0   0   0   0
+Invert   0
+Return   0
+Shadow   0
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+24
+Kind     7   4
+Tag   m
+TagPos -0.60000  0.10000  5.00000
+Color   8421376  1.00000
+Shape  16.00000  1.00000  32  0.00000
+Angle   0.00000
+Linker  23  20   0   0   0   0   0
+Invert   0
+Return   0
+Shadow   0
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+Finish

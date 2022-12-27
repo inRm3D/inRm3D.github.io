@@ -1,0 +1,155 @@
+inRm3D v2.866 
+Page     1   1
+PageNm   0  Page1
+Color  16777215 255 255 32768 16711680 255 32768 16711680
+Transp 0.1 0.1 0.1
+Mode   10 0 10 0 10 0
+Origin 0 0 17 323 0
+Origi  4 1 255
+Length 13 10 8.4 4.5 3 2.2
+Axis   1 2 1 2 1 2
+AxiTag o x y z
+Deep   30 29
+Scene 1110111110001111000
+Window 183 13 909 669
+Pages  0 0
+End
+11
+Kind   1 1
+Tag   A
+TagPos -17 -24 0 0 0
+TagS    16
+Font  Calibri
+Color  255 1
+Shape  7.9091 6 1 0
+Point  -7.8789 0.69 0 0
+ObjSho1
+TagSho1
+End
+13
+Kind   4 6
+Tag   ¦Á
+TagPos 2.4 14.1 1 1 0
+TagS    16
+Font  Calibri
+Color  16711680 1
+ColorB 6324416 0.4
+Shape  1.1667 99 10 0.6
+Thick  0.41
+Linker 11 4
+Invert
+Return
+ObjSho1
+TagSho0
+Edges  ¦Á_1 ¦Á_2 ¦Á_3 ¦Á_4 ¦Á_5 ¦Á_6 ¦Á_7 ¦Á_8
+EdgesW   1   6  6324416      255   0
+Names   14  15  16  17  18  19  20  21
+VctObjo`
+VctTag00
+End
+22
+Kind   11 2
+Tag   a
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+Shape  13.76 1 2 1
+Point  56 103 70 0
+Angle  11.35
+Angle1 10
+Slope  0 16 0 0
+FuncX a =1.0000
+FuncY 
+Trace  100
+ObjSho1
+TagSho1
+End
+24
+Kind   1 11
+Tag   B
+TagPos -9 -27 0 0 0
+TagS    16
+Font  Calibri
+Color  255 1
+Shape  8.3757 6 1 0
+Trans  1.4027 -0.3823 0
+Linker 11
+ObjSho1
+TagSho1
+End
+29
+Kind   1 11
+Tag   C
+TagPos -21 -11 0 0 0
+TagS    16
+Font  Calibri
+Color  255 1
+Shape  8.3757 6 1 0
+Trans  -0.0274 0.8009 0
+Linker 11
+ObjSho1
+TagSho1
+End
+27
+Kind   11 2
+Tag   d
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+Shape  0 1 2 1
+Point  56 149 70 0
+Angle1 10
+Slope  -99 99 0 0
+FuncX d =1.0000
+FuncY 
+ObjSho1
+TagSho1
+End
+28
+Kind   11 1
+Tag   e
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+Shape  1 1 2 0
+Point  56 168 70 15
+Angle  1
+Linker 27
+Slope  0 0 0 0
+FuncX d+1
+FuncY a+1
+ObjSho1
+TagSho0
+End
+12
+Kind   13 1
+Tag   b
+TagPos -30 -2 0 0 0
+TagS    16
+Font  Calibri
+Color  255 1
+Shape  0 1 0 1
+Linker 27 27 28 11 29
+ObjSho1
+TagSho0
+End
+26
+Kind   13 1
+Tag   f
+TagPos -16 1 0 0 0
+TagS    16
+Font  Calibri
+Color  255 1
+Shape  0 1 13 1
+Linker 22 27 28 11 24
+ObjSho1
+TagSho0
+End
+Finish
+Termination

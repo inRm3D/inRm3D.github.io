@@ -1,0 +1,50 @@
+inRm3D v2.730
+Color         0      255    32768 16711680
+Origin   3.0000  -0.2000 323.5000 324.5000
+Length -16.0000 -16.0000 -16.0000   0.0000
+Window  -4  -41032 752
+Deep    86.0000  29.0000
+Scene 0100011101
+Pages    0
+End
+11
+Kind     9   2
+Tag   a
+TagPos   0.1000   0.1000   0.0000   0.00000
+Color   8421376   1.0000
+Shape    0.0000   3.0000   0   0.0000
+Linker   0
+FuncX 6*cos(u)*(1+sin(u)) + 4*(1-cos(u)/2)*cos(v+pi)
+FuncY 16*sin(u)
+FuncZ 4*(1-cos(u)/2)*sin(v)
+RuleX    3.1420   6.2840  30.0000
+RuleY    0.0000   6.2840  24.0000
+RuleZ    0.0000   0.0000   0.0000
+Param    0.0000   0.0000   0.0000
+Param1   0.0000   0.0000   0.0000
+Return
+Shadow
+ObjSho1
+TagSho0
+End
+12
+Kind     9   2
+Tag   b
+TagPos   0.1000   0.1000   0.0000   0.00000
+Color   8421376   1.0000
+Shape    0.0000   3.0000   0   0.0000
+Linker   0
+FuncX 6*cos(u)*(1+sin(u)) + 4*(1-cos(u)/2)*cos(u)*cos(v)
+FuncY 16*sin(u) + 4*(1-cos(u)/2)*sin(u)*cos(v)
+FuncZ 4*(1-cos(u)/2)*sin(v)
+RuleX    0.0000   3.1420  30.0000
+RuleY    0.0000   6.2840  24.0000
+RuleZ    0.0000   0.0000   0.0000
+Param    0.0000   0.0000   0.0000
+Param1   0.0000   0.0000   0.0000
+Return
+Shadow
+ObjSho1
+TagSho0
+End
+Finish

@@ -1,0 +1,393 @@
+inRm3D v2.837 Beta 
+Page     1   1
+PageNm    1  Ë¹Ì¹¸£Ô²Á´
+Color  16777215      255    32768 16711680 16711680      255    32768 16711680
+Transp   0.1000   0.1000   0.1000
+Mode     4   0   4   0   4   0
+Origin   0.0000   0.0000 229.1523 306.0505   0.0000
+Origi    4   1      255 o
+Length   8.0000   8.0000   8.0000
+Axis     1   2   1   2   1   2  ---  ---  ---
+Window 215 131 792 594
+Deep    26.0000  29.0000
+Scene 101011100101000
+Pages    2   2
+End
+11
+Kind    11   2
+Tag   n
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   1.0000
+ColorB        0   1.0000
+Shape   11.0000   1.0000   0   1.0000
+Point   38.0000  70.0000  31.0000  15.0000
+Angle   11.0000
+Linker   0
+Slope  -99.0000  99.0000   0.0000   0.0000
+Textura =1.0000
+FuncX a =1.0000
+FuncY 
+ObjSho111
+TagSho000
+End
+12
+Kind    11   1
+Tag   n1
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   1.0000
+ColorB        0   1.0000
+Shape  110.0000   1.0000   0   0.0000
+Point   31.0000  90.0000  45.0000  15.0000
+Angle  110.0000
+Linker  11  11  11
+Slope    0.0000   0.0000   0.0000   0.0000
+Textura*a-a
+FuncX a*a-a
+FuncY a*b-c
+ObjSho111
+TagSho000
+End
+13
+Kind    11   1
+Tag   A
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   1.0000
+ColorB        0   1.0000
+Shape    0.5712   1.0000   4   0.0000
+Point   37.0000 112.0000  56.0000  15.0000
+Angle    0.5712
+Linker  11  11  11
+Slope    0.0000   0.0000   0.0000   0.0000
+Textur2*pi/n
+FuncX 2*pi/n
+FuncY 2*pi/a
+ObjSho111
+TagSho000
+End
+14
+Kind    11   1
+Tag   a
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   1.0000
+ColorB        0   1.0000
+Shape    0.2856   1.0000   4   0.0000
+Point   37.0000 131.0000  55.0000  15.0000
+Angle    0.2856
+Linker  13  11  11
+Slope    0.0000   0.0000   0.0000   0.0000
+Textura/2
+FuncX a/2
+FuncY a/2
+ObjSho111
+TagSho000
+End
+30
+Kind    11   1
+Tag   Sa
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   1.0000
+ColorB        0   1.0000
+Shape    0.2817   1.0000   4   0.0000
+Point   31.0000 150.0000  63.0000  15.0000
+Angle    0.2817
+Linker  14  14  14  14  14
+Slope    0.0000   0.0000   0.0000   0.0000
+Textursin(a)
+FuncX sin(a)
+FuncY sin(a)
+ObjSho111
+TagSho000
+End
+31
+Kind    11   1
+Tag   Ca
+TagPos  -0.6000   0.0500   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   1.0000
+ColorB        0   1.0000
+Shape    0.9595   1.0000   4   0.0000
+Point   31.0000 169.0000  63.0000  15.0000
+Angle    0.9595
+Linker  14  14  14  14  14
+Slope    0.0000   0.0000   0.0000   0.0000
+Texturcos(a)
+FuncX cos(a)
+FuncY cos(a)
+ObjSho111
+TagSho000
+End
+15
+Kind    11   2
+Tag   t
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   1.0000
+ColorB        0   1.0000
+Shape    0.0000   1.0000   4   1.0000
+Point  120.0000  72.0000  52.0000  15.0000
+Linker   0
+Slope  -99.0000  99.0000   0.0000   0.0000
+Texturb =1.0000
+FuncX b =1.0000
+FuncY 
+ObjSho111
+TagSho000
+End
+16
+Kind    11   1
+Tag   t1
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   1.0000
+ColorB        0   1.0000
+Shape    1.0000   1.0000   4   0.0000
+Point  111.0000  92.0000  59.0000  15.0000
+Angle    1.0000
+Linker  15  11  11
+Slope    0.0000   0.0000   0.0000   0.0000
+Texturt+1
+FuncX t+1
+FuncY a+1
+ObjSho111
+TagSho000
+End
+17
+Kind    11   1
+Tag   k
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   1.0000
+ColorB        0   1.0000
+Shape    0.0000   1.0000   4   0.0000
+Point  201.0000  71.0000  55.0000  15.0000
+Linker  15  11  11
+Slope    0.0000   0.0000   0.0000   0.0000
+Texturint(t/n)
+FuncX int(t/n)
+FuncY int(a/b)
+ObjSho111
+TagSho000
+End
+18
+Kind    11   1
+Tag   k1
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   1.0000
+ColorB        0   1.0000
+Shape    0.0000   1.0000   4   0.0000
+Point  195.0000  92.0000  62.0000  15.0000
+Linker  17  17  11
+Slope    0.0000   0.0000   0.0000   0.0000
+Texturround(k/2-int(k/2))
+FuncX round(k/2-int(k/2))
+FuncY round(a/2-int(b/2))
+ObjSho111
+TagSho000
+End
+19
+Kind    11   1
+Tag   k2
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   1.0000
+ColorB        0   1.0000
+Shape    0.0000   1.0000   4   0.0000
+Point  195.0000 112.0000  62.0000  15.0000
+Linker  15  11  17
+Slope    0.0000   0.0000   0.0000   0.0000
+Texturt-n*k
+FuncX t-n*k
+FuncY a-b*c
+ObjSho111
+TagSho000
+End
+20
+Kind     1   2
+Tag   L_0
+TagPos -19.4000  -3.0000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    5.8111   4.0000   1   0.0000
+Linker   0   2
+Slope    0.0000   8.0000   0.0000   0.0000
+Invert
+ObjSho111
+TagSho111
+End
+21
+Kind    11   1
+Tag   w
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   1.0000
+ColorB        0   1.0000
+Shape    0.6056   1.0000   4   0.0000
+Point   25.0000 200.0000  58.0000  15.0000
+Angle    0.6056
+Linker  31  30  30  31  31
+Slope    0.0000   0.0000   0.0000   0.0000
+Textur(Ca+Sa^2-Sa*sqrt(2*Ca+1))/Ca^2
+FuncX (Ca+Sa^2-Sa*sqrt(2*Ca+1))/Ca^2
+FuncY (a+b^2-c*sqrt(2*d+1))/e^2
+ObjSho111
+TagSho000
+End
+22
+Kind    11   1
+Tag   L
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   1.0000
+ColorB        0   1.0000
+Shape    5.8111   1.0000   4   0.0000
+Point   29.0000 224.0000  55.0000  15.0000
+Angle    5.8111
+Linker  20  21  17  14  14
+Slope    0.0000   0.0000   0.0000   0.0000
+TexturL_0*w^k
+FuncX L_0*w^k
+FuncY a*b^c
+ObjSho111
+TagSho000
+End
+23
+Kind    11   1
+Tag   R
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   1.0000
+ColorB        0   1.0000
+Shape    1.6372   1.0000   4   0.0000
+Point  103.0000 202.0000  56.0000  15.0000
+Angle    1.6372
+Linker  20  30  17  18  14
+Slope    0.0000   0.0000   0.0000   0.0000
+TexturL_0*Sa
+FuncX L_0*Sa
+FuncY a*b
+ObjSho111
+TagSho000
+End
+24
+Kind    11   1
+Tag   r
+TagPos  -0.6500   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   1.0000
+ColorB        0   1.0000
+Shape    1.6372   1.0000   4   0.0000
+Point  104.0000 224.0000  53.0000  15.0000
+Angle    1.6372
+Linker  22  30  13  18  14
+Slope    0.0000   0.0000   0.0000   0.0000
+TexturL*Sa
+FuncX L*Sa
+FuncY a*b
+ObjSho111
+TagSho000
+End
+25
+Kind    11   1
+Tag   x
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   1.0000
+ColorB        0   1.0000
+Shape    5.8111   1.0000   4   0.0000
+Point   34.0000 255.0000  55.0000  15.0000
+Angle    5.8111
+Linker  22  19  13  18  14
+Slope    0.0000   0.0000   0.0000   0.0000
+TexturL*cos(k2*A+k1*a)
+FuncX L*cos(k2*A+k1*a)
+FuncY a*cos(b*c+d*e)
+ObjSho111
+TagSho000
+End
+26
+Kind    11   1
+Tag   y
+TagPos  -0.6000   0.0500   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         0   1.0000
+ColorB        0   1.0000
+Shape    0.0000   1.0000   4   0.0000
+Point   35.0000 274.0000  54.0000  15.0000
+Linker  22  19  13  18  14
+Slope    0.0000   0.0000   0.0000   0.0000
+TexturL*sin(k2*A+k1*a)
+FuncX L*sin(k2*A+k1*a)
+FuncY a*sin(b*c+d*e)
+ObjSho111
+TagSho000
+End
+27
+Kind     1   1
+Tag   B
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0000   4.0000   0   0.0000
+Point    5.8111   0.0000   0.0000   0.0000
+Linker  25  26
+Slope    0.0000   1.0000   0.0000   0.0000
+Locked
+ObjSho111
+TagSho111
+End
+28
+Kind     6   1
+Tag   b
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color  16711935   1.0000
+ColorB 16711935   1.0000
+Shape    1.6372   0.0000  32   0.0000
+Linker  27   7  24
+Return
+ObjSho011
+TagSho000
+End
+32
+Kind    13   1
+Tag   d
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color         6   1.0000
+ColorB        6   1.0000
+Shape    2.0000   1.0000 110   0.0000
+Linker  12  15  16
+ObjSho001
+TagSho000
+End
+Finish
+Termination

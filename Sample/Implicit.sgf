@@ -1,0 +1,393 @@
+inRm3D v2.714
+Color         0      255    32768 16711680
+Origin  0.00000  0.00000287.50000296.50000
+Length  5.00000  5.00000  5.00000  0.00000
+Window 127 104 768 558
+Deep   27.30000 30.00000
+Scene 1110011001
+Pages    0
+End
+11
+Kind     1   2
+Tag   A
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   1.68830  4.00000   0  0.00000
+Slope   0.00000  8.00000
+Linker   0   3
+Invert
+ObjSho1111111111111111
+TagSho1111111111111111
+End
+13
+Kind     9  13
+Tag   a
+TagPos  0.50000 -0.05000  0.00000  0.000000
+Color   8421376  1.00000
+Shape   0.71258  1.00000   0  5.00000
+Linker  11
+FuncX 0
+FuncY 0
+FuncZ (x*x+a)*(y*y+a)*(z*z+a)-33*(x*y*z+1)
+RuleX  -4.00000  4.00000 20.00000
+RuleY  -4.00000  4.00000 20.00000
+RuleZ  -4.00000  4.00000 20.00000
+Param   1.68830  0.00000  0.00000
+Param1  0.00000  0.00000  0.00000
+Return
+Sected
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+16
+Kind     1   4
+Tag   C
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13
+ObjSho1111111111111111
+TagSho1111111111111111
+End
+17
+Kind     1   4
+Tag   C_1
+TagPos  0.05000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho1111111111111111
+End
+18
+Kind     1   4
+Tag   C_2
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+19
+Kind     1   4
+Tag   C_3
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+20
+Kind     1   4
+Tag   C_4
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+21
+Kind     1   4
+Tag   C_5
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+22
+Kind     1   4
+Tag   C_6
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+23
+Kind     1   4
+Tag   C_7
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+24
+Kind     1   4
+Tag   C_8
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+25
+Kind     1   4
+Tag   C_9
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+26
+Kind     1   4
+Tag   C_10
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+27
+Kind     1   4
+Tag   C_11
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+28
+Kind     1   4
+Tag   C_12
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+29
+Kind     1   4
+Tag   C_13
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+30
+Kind     1   4
+Tag   C_14
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+31
+Kind     1   4
+Tag   C_15
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+32
+Kind     1   4
+Tag   C_16
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+33
+Kind     1   4
+Tag   C_17
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+34
+Kind     1   4
+Tag   C_18
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+35
+Kind     1   4
+Tag   C_19
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+36
+Kind     1   4
+Tag   C_20
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+37
+Kind     1   4
+Tag   C_21
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+38
+Kind     1   4
+Tag   C_22
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+39
+Kind     1   4
+Tag   C_23
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+40
+Kind     1   4
+Tag   C_24
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+41
+Kind     1   4
+Tag   C_25
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+42
+Kind     1   4
+Tag   C_26
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+43
+Kind     1   4
+Tag   C_27
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+44
+Kind     1   4
+Tag   C_28
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+45
+Kind     1   4
+Tag   C_29
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+46
+Kind     1   4
+Tag   C_30
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+47
+Kind     1   4
+Tag   C_31
+TagPos -0.60000  0.10000  0.00000  0.000000
+Color       255  1.00000
+Shape   0.00000  4.00000  31  0.00000
+Linker   4  13  16
+Invert
+ObjSho1111111111111111
+TagSho0000000000000000
+End
+Finish

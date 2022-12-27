@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+</HEAD><BODY>
+<OBJECT TYPE="text/site properties">
+</OBJECT>
+<UL>
+    <LI> <OBJECT type="text/sitemap">
+      <param name="Keyword" value="1">
+      <param name="Name" value="1">
+      <param name="Local" value="Delphi.htm">
+      </OBJECT></LI>
+    <LI> <OBJECT type="text/sitemap">
+      <param name="Keyword" value="圆">
+      <param name="Name" value="圆">
+      <param name="Local" value="SubWeb/曲线.htm">
+      </OBJECT></LI>
+    <LI> <OBJECT type="text/sitemap">
+      <param name="Keyword" value="场景设置">
+      <param name="Name" value="场景设置">
+      <param name="Local" value="SubWeb/界面-场景设置.htm">
+      </OBJECT></LI>
+    <LI> <OBJECT type="text/sitemap">
+      <param name="Keyword" value="安装和注册">
+      <param name="Name" value="安装和注册">
+      <param name="Local" value="SubWeb/致谢.htm">
+      <param name="Name" value="安装和注册">
+      <param name="Local" value="SubWeb/安装和注册.htm">
+      </OBJECT></LI>
+    <LI> <OBJECT type="text/sitemap">
+      <param name="Keyword" value="实体">
+      <param name="Name" value="实体">
+      <param name="Local" value="SubWeb/实体.htm">
+      <param name="Name" value="实体">
+      <param name="Local" value="SubWeb/变换.htm">
+      <param name="Name" value="实体">
+      <param name="Local" value="SubWeb/曲面.htm">
+      </OBJECT></LI>
+    <LI> <OBJECT type="text/sitemap">
+      <param name="Keyword" value="工具栏">
+      <param name="Name" value="工具栏">
+      <param name="Local" value="SubWeb/界面-工具栏.htm">
+      </OBJECT></LI>
+    <LI> <OBJECT type="text/sitemap">
+      <param name="Keyword" value="快睫键">
+      <param name="Name" value="快睫键">
+      <param name="Local" value="SubWeb/界面-快睫键.htm">
+      </OBJECT></LI>
+    <LI> <OBJECT type="text/sitemap">
+      <param name="Keyword" value="构件">
+      <param name="Name" value="构件">
+      <param name="Local" value="SubWeb/构件.htm">
+      </OBJECT></LI>
+    <LI> <OBJECT type="text/sitemap">
+      <param name="Keyword" value="概述">
+      <param name="Name" value="概述">
+      <param name="Local" value="SubWeb/概述.htm">
+      </OBJECT></LI>
+    <LI> <OBJECT type="text/sitemap">
+      <param name="Keyword" value="点">
+      <param name="Name" value="点">
+      <param name="Local" value="SubWeb/点.htm">
+      </OBJECT></LI>
+    <LI> <OBJECT type="text/sitemap">
+      <param name="Keyword" value="界面">
+      <param name="Name" value="界面">
+      <param name="Local" value="SubWeb/界面.htm">
+      </OBJECT></LI>
+    <LI> <OBJECT type="text/sitemap">
+      <param name="Keyword" value="线构件">
+      <param name="Name" value="线构件">
+      <param name="Local" value="SubWeb/线.htm">
+      </OBJECT></LI>
+    <LI> <OBJECT type="text/sitemap">
+      <param name="Keyword" value="面">
+      <param name="Name" value="面">
+      <param name="Local" value="SubWeb/面.htm">
+      </OBJECT></LI>
+    <LI> <OBJECT type="text/sitemap">
+      <param name="Keyword" value="高级">
+      <param name="Name" value="高级">
+      <param name="Local" value="SubWeb/辅助构件.htm">
+      </OBJECT></LI>
+</UL></BODY></HTML>

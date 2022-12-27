@@ -1,0 +1,161 @@
+inRm3D v2.864 
+Page     1   1
+PageNm   0  Page1
+Color  16777215 16711935 255 32768 16711680 255 32768 8388608
+Transp 0.1 0.15 0.25
+Mode   5 0 3 0 4 0
+Origin 0 0 242 303.5 0
+Origi  6 1 16711935
+Length 5.5 8.2 6.3 0 0 0
+Axis   1 2 1 2 1 2
+AxiTag o xX y z
+Deep   45 29
+Scene 1111111000000000000
+Window 182 182 800 600
+Pages  0 0
+End
+32
+Kind   4 6
+Tag   ¦Á
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Arial
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  5 4 10 7.0711
+Linker 1 4
+Invert
+Return
+ObjSho1
+TagSho0
+Edges  ¦Á_1 ¦Á_2 ¦Á_3 ¦Á_4 ¦Á_5 ¦Á_6 ¦Á_7 ¦Á_8
+EdgesW   1   8    32896      255   0
+Names   33  34  35  36  37  38  39  40
+VctObjo`
+VctTag00
+End
+41
+Kind   4 9
+Tag   ¦Á'
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Arial
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  5 4 10 0
+Angle  90
+Linker 32 34
+Return
+Degree
+ObjSho1
+TagSho0
+End
+43
+Kind   4 9
+Tag   ¦Á'
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Arial
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  5 4 10 0
+Angle  90
+Linker 32 36
+Return
+Degree
+ObjSho1
+TagSho0
+End
+44
+Kind   4 9
+Tag   ¦Á'
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Arial
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  5 4 10 0
+Angle  90
+Linker 32 35
+Return
+Degree
+ObjSho1
+TagSho0
+End
+45
+Kind   4 9
+Tag   ¦Á'
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Arial
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  5 4 10 0
+Angle  116.1
+Linker 32 33
+Return
+Degree
+ObjSho1
+TagSho0
+End
+46
+Kind   2 9
+Tag   ¦Á_4'
+TagPos 0 0 0.5 0 255
+TagS    16
+Font  Arial
+Color  32896 1
+ColorB 0 0
+Shape  7.0711 1 0 0
+Angle  90
+Linker 36 34
+Slope  0 0 0 0
+Degree
+ObjSho1
+TagSho0
+End
+47
+Kind   4 9
+Tag   ¦Á''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Arial
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  5 4 10 0
+Angle  180
+Linker 41 46
+Return
+Degree
+ObjSho1
+TagSho0
+End
+48
+Kind   11 2
+Tag   b
+TagPos -0.6 0.1 0 0 255
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+ColorB 255 1
+Shape  3.71 1 2 1
+Point  396 473 70 0
+Angle  3.012
+Linker 0 0 0 0 0 0 0 0 0 0 0 41 46 43 44 45 47
+Slope  0 5 0 0
+FuncX b =1.0000
+FuncY 
+Parame   1  41   0.0000   1.0000 180.0000  90.0000
+Parame   2  46   0.0000   1.0000 180.0000  90.0000
+Parame   3  43   1.0000   2.0000 180.0000  90.0000
+Parame   4  44   2.0000   3.0000 180.0000  90.0000
+Parame   5  45   3.0000   4.0000 180.0000  90.0000
+Parame   6  47   4.0000   5.0000 180.0000 270.0000
+Shadow
+Trace  234
+ObjSho1
+TagSho0
+End
+Finish
+Termination

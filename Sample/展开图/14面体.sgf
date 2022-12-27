@@ -1,0 +1,299 @@
+inRm3D v2.869 
+Page     1   1
+PageNm   0  Page1
+Color  0 255 255 32768 16711680 255 32768 16711680
+Transp 0.1 0.1 0.1
+Mode   10 0 10 0 10 0
+Origin 0 0 299.5 323 0
+Origi  4 1 255
+Length 13 10 8.4 4.5 3 2.2
+Axis   1 2 1 2 1 2
+AxiTag o x y z
+ObjShO11
+ObjShX11
+ObjShY11
+ObjShZ11
+Mask  000000
+Deep   34 29
+Scene 111111111000111100000
+Window 148 37 944 654
+Pages  1 1
+End
+11
+Kind   4 6
+Tag   ¦Á
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  2.7667 4 10 3.9127
+Linker 1 4
+Rand
+Return
+Shadow
+ObjSho11
+TagSho00
+Edges  ¦Á_1 ¦Á_2 ¦Á_3 ¦Á_4 ¦Á_5 ¦Á_6 ¦Á_7 ¦Á_8
+EdgesW   1   6    32896      255   0
+Names   12  13  14  15  16  17  18  19
+VctObjo`
+VctTag3`
+End
+27
+Kind   1 9
+Tag   ¦Á_5'
+TagPos 0 0 0.5 0 255
+TagS    16
+Font  Times New Roman
+Color  255 1
+Shape  60 6 1 0
+Angle  60
+Linker 16 17
+Degree
+ObjSho10
+TagSho11
+End
+28
+Kind   4 1
+Tag   ¦Ã
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  0 3 10 0
+Angle  1
+Linker 17 16 27
+Return
+ObjSho10
+TagSho00
+End
+29
+Kind   4 9
+Tag   ¦Ã'
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  16711680 0.4
+ColorB 16711680 0.4
+Shape  0 3 10 0
+Angle  -20
+Linker 28 12
+Return
+Degree
+ObjSho11
+TagSho00
+End
+30
+Kind   4 9
+Tag   ¦Ã''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  0 3 10 0
+Angle  90
+Linker 29 11
+Return
+Degree
+ObjSho11
+TagSho00
+End
+31
+Kind   4 9
+Tag   ¦Ã'''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  0 3 10 0
+Angle  90
+Linker 30 11
+Return
+Degree
+ObjSho11
+TagSho00
+End
+32
+Kind   4 9
+Tag   ¦Ã''''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  0 3 10 0
+Angle  90
+Linker 31 11
+Return
+Degree
+ObjSho11
+TagSho00
+End
+33
+Kind   2 3
+Tag   a
+TagPos -0.6 0.1 0.7 0 255
+TagS    16
+Font  Times New Roman
+Color  16711680 1
+Shape  5 2 0 0
+Linker 17 2
+Slope  6 0 0 0
+ObjSho10
+TagSho00
+End
+35
+Kind   4 9
+Tag   ¦Á'
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  2.7667 4 10 5.3269
+Angle  120
+Linker 11 29
+Rand
+Return
+Degree
+ObjSho11
+TagSho00
+End
+36
+Kind   4 9
+Tag   ¦Á''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  2.7667 4 10 5.3269
+Angle  90
+Linker 35 11
+Rand
+Return
+Degree
+ObjSho11
+TagSho00
+End
+37
+Kind   4 9
+Tag   ¦Á'''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  2.7667 4 10 5.3269
+Angle  90
+Linker 36 11
+Rand
+Return
+Degree
+ObjSho11
+TagSho00
+End
+38
+Kind   4 9
+Tag   ¦Á''''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  2.7667 4 10 5.3269
+Angle  90
+Linker 37 11
+Rand
+Return
+Degree
+ObjSho11
+TagSho00
+End
+43
+Kind   4 9
+Tag   ¦Ã'''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  0 3 10 0
+Angle  180
+Linker 30 36
+Return
+Degree
+ObjSho11
+TagSho00
+End
+44
+Kind   4 9
+Tag   ¦Ã''''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  0 3 10 0
+Angle  90
+Linker 43 4
+Return
+Degree
+ObjSho11
+TagSho00
+End
+45
+Kind   4 9
+Tag   ¦Ã'''''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  0 3 10 0
+Angle  90
+Linker 44 4
+Return
+Degree
+ObjSho11
+TagSho00
+End
+46
+Kind   4 9
+Tag   ¦Ã''''''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  0 3 10 0
+Angle  90
+Linker 45 4
+Return
+Degree
+ObjSho11
+TagSho00
+End
+47
+Kind   4 9
+Tag   ¦Á'''
+TagPos -0.6 0.1 1 1 255
+TagS    16
+Font  Times New Roman
+Color  32896 0.4
+ColorB 32896 0.4
+Shape  2.7667 4 10 5.3269
+Angle  240
+Linker 36 43
+Rand
+Return
+Degree
+ObjSho11
+TagSho00
+End
+Finish
+Termination

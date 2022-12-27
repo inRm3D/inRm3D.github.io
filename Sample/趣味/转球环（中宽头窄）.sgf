@@ -1,0 +1,203 @@
+inRm3D v2.854 
+Page     1   1
+PageNm   0  转球环（中宽头窄）
+Color         0      255    32768 16711680 16711680      255 16776960 16711680
+Transp   0.2000   0.2000   0.2000
+Mode     4   0   4   0   4   0
+Origin   0.0000   0.0000 232.5000 300.8495   0.0000
+Origi    6   1      255
+Length   9.6000   9.6000   9.6000
+Axis     1   2   1   2   1   2  ---  ---
+AxiTago x y z 
+Deep    40.0000  16.0000
+Scene 11000111000000010
+Window 229  96 792 594
+Pages   10   7
+End
+11
+Kind     1   2
+Tag   a
+TagPos   0.1000   0.1500   0.0000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.6913   4.0000   0   0.0156
+Linker   0   3
+Slope    0.0000   1.0000   0.0000   0.0000
+Shadow
+ObjSho11111111110
+TagSho11111111111
+End
+12
+Kind     6   1
+Tag   b
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color     32896   1.0000
+ColorB    32896   1.0000
+Shape    4.7800   0.0000   2   0.0000
+Linker   1   4
+ObjSho11110000000
+TagSho00000000000
+End
+13
+Kind    11   1
+Tag   c
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color  16777215   1.0000
+ColorB 16777215   1.0000
+Shape    8.6871  61.0000   4  15.0000
+Point  528.0000 212.0000  55.0000  15.0000
+Linker  11
+Slope    0.0000   0.0000   0.0000   0.0000
+FuncX a*pi*4
+FuncY a*pi*4
+ObjSho00111111111
+TagSho00000000000
+End
+15
+Kind    11   1
+Tag   e
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color  16777215   1.0000
+ColorB 16777215   1.0000
+Shape    0.6010  61.0000   4  15.0000
+Point  528.0000 233.0000  55.0000  15.0000
+Linker  11
+Slope    0.0000   0.0000   0.0000   0.0000
+FuncX a*pi-pi/2
+FuncY a*pi-pi/2
+ObjSho00111111111
+TagSho00000000000
+End
+14
+Kind     1   2
+Tag   d
+TagPos  -0.6500   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    8.6871   4.0000   1   0.6010
+Angle    0.6010
+Linker  15  12  13  15  15  15
+Slope    0.6010   0.6010   0.0000   0.0000
+Shadow
+ObjSho00011111110
+TagSho11111111111
+End
+18
+Kind     2   1
+Tag   h
+TagPos  -0.6000   0.1000   0.7000   0.00000
+TagS     9
+Font  Arial
+Color  16711680   1.0000
+ColorB 16711680   1.0000
+Shape    4.7800   1.0000   0   0.0000
+Linker   1  14
+Slope    0.0000   0.0000   0.0000   0.0000
+ObjSho00011111110
+TagSho00000000000
+End
+19
+Kind     2   4
+Tag   g
+TagPos  -0.6000   0.1000   0.7000   0.00000
+TagS     9
+Font  Arial
+Color  16711680   1.0000
+ColorB 16711680   1.0000
+Shape    5.4344   2.0000   0   0.0000
+Linker   1  18   0   7
+Slope    0.0000   0.0000   0.0000   0.0000
+Invert
+ObjSho00001111110
+TagSho00000000000
+End
+20
+Kind    11   1
+Tag   i
+TagPos  -0.6000   0.1000   0.0000   0.00000
+TagS     9
+Font  Arial
+Color  16777215   1.0000
+ColorB 16777215   1.0000
+Shape    1.2123  57.0000   4  15.0000
+Point  531.0000 251.0000  51.0000  15.0000
+Linker  15
+Slope    0.0000   0.0000   0.0000   0.0000
+FuncX (pi/2-abs(e))/0.8
+FuncY (pi/2-abs(a))/0.8
+ObjSho00000111111
+TagSho00000000000
+End
+21
+Kind     3   3
+Tag   f
+TagPos  -0.6000   0.1000   0.5000   0.00000
+TagS     9
+Font  Arial
+Color     65280   1.0000
+ColorB    65280   1.0000
+Shape    4.7800   2.0000   0   1.2123
+Angle    0.6010
+Linker  14  19  20
+Invert
+ObjSho00000011111
+TagSho00000000000
+End
+22
+Kind     7   4
+Tag   j
+TagPos   1.4000   0.1000   5.0000   0.00000
+TagS     9
+Font  Arial
+Color   8421376   1.0000
+ColorB  8421376   1.0000
+Shape    4.0000   2.0000  32   0.0000
+Linker  21  11
+Return
+ObjSho00000001111
+TagSho00000000000
+End
+23
+Kind     7   9
+Tag   j'
+TagPos  -0.6000   0.1000   5.0000   0.00000
+TagS     9
+Font  Arial
+Color   8421376   1.0000
+ColorB  8421376   1.0000
+Shape  120.0000   2.0000  32   0.0000
+Angle  120.0000
+Linker  22   4
+Return
+Degree
+ObjSho00000001111
+TagSho00000000000
+End
+25
+Kind     7   9
+Tag   j''
+TagPos  -0.6000   0.1000   5.0000   0.00000
+TagS     9
+Font  Arial
+Color   8421376   1.0000
+ColorB  8421376   1.0000
+Shape  120.0000   2.0000  32   0.0000
+Angle  120.0000
+Linker  23   4
+Return
+Degree
+ObjSho00000001111
+TagSho00000000000
+End
+Finish
+Termination

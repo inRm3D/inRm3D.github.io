@@ -1,0 +1,463 @@
+inRm3D v2.868 
+Page     1   1
+PageNm   0  Page1
+Color  16777215 255 255 32768 16711680 255 32768 16711680
+Transp 0.1 0.1 0.1
+Mode   0 0 0 0 0 0
+Origin 0.3872 -2.8511 277.5 327.5 0
+Origi  4 1 255
+Length 8 8 6.0243 0 0 0
+Axis   1 2 1 2 1 2
+AxiTag o x y z
+Deep   21 29
+Scene 0100111110001110000
+Window 52 10 916 649
+Pages  1 1
+End
+12
+Kind   1 2
+Tag   A
+TagPos -18.6 -18.9 0.7 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  255 1
+Shape  -0.8726 6 1 0
+Linker 0 3
+Slope  0 1 0 0
+ObjSho10
+TagSho00
+End
+13
+Kind   1 2
+Tag   B
+TagPos 4.4 -17.9 0.7 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  255 1
+Shape  1.0856 6 1 0
+Linker 0 3
+Slope  0 1 0 0
+ObjSho10
+TagSho00
+End
+11
+Kind   2 1
+Tag   a
+TagPos -0.6 0.1 0.7 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  16711680 1
+Shape  15.6656 1 0 0
+Linker 12 13
+Slope  6 0 0 0
+ObjSho10
+TagSho00
+End
+15
+Kind   1 2
+Tag   C
+TagPos -5.6 -21.9 0 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  16776960 1
+Shape  0.2189 8 1 0.02
+Linker 0 11
+Slope  0 1 0 0
+Shadow
+ObjSho10
+TagSho00
+End
+17
+Kind   1 2
+Tag   M
+TagPos -7.6 -30.9 0 0 6777215
+TagSty1000
+TagS    16
+Font  Verdana
+Color  16776960 1
+Shape  0.4006 6 1 0
+Linker 0 11
+Slope  0 1 0 0
+Shadow
+ObjSho10
+TagSho11
+End
+19
+Kind   1 2
+Tag   F
+TagPos -16.6 1.1 0 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  255 1
+Shape  0.2189 6 1 0
+Linker 0 11 17 0 15
+Slope  0 0.2189 0 0
+Shadow
+ObjSho10
+TagSho00
+End
+21
+Kind   1 2
+Tag   G
+TagPos 5.4 -0.9 0 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  255 1
+Shape  0.4006 6 1 0
+Linker 0 11 17 15
+Slope  0.2189 1 0 0
+Shadow
+ObjSho10
+TagSho00
+End
+23
+Kind   2 3
+Tag   b
+TagPos -0.6 0.1 0.7 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  16711680 1
+Shape  2.0892 2 0 0
+Linker 12 4
+Slope  6 0 0 0
+ObjSho10
+TagSho00
+End
+24
+Kind   1 2
+Tag   R
+TagPos -18.6 -6.9 0 0 6777215
+TagSty1000
+TagS    12
+Font  Verdana
+Color  16776960 1
+Shape  0.7299 6 1 0
+Linker 0 23
+Slope  0 5 0 0
+Invert
+Shadow
+ObjSho10
+TagSho11
+End
+26
+Kind   1 2
+Tag   I
+TagPos -14.6 -8.9 0 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  16776960 1
+Shape  0.0158 6 1 0
+Linker 0 23
+Slope  0 1 0 0
+Shadow
+ObjSho10
+TagSho00
+End
+28
+Kind   1 2
+Tag   J
+TagPos -0.6 0.1 0 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  255 1
+Shape  0.7299 6 1 0
+Linker 0 11 24
+Slope  0 21.0633 0 0
+Invert
+Shadow
+ObjSho10
+TagSho00
+End
+30
+Kind   1 10
+Tag   J'
+TagPos -0.6 0.1 0 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  255 1
+Shape  6.2832 6 1 0
+Angle  6.2832
+Linker 28 12
+Invert
+Shadow
+ObjSho10
+TagSho00
+End
+33
+Kind   1 12
+Tag   G'
+TagPos 5.4 -0.9 0 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  255 1
+Shape  0.6659 6 1 0
+Angle  1
+Linker 21 12 24
+Shadow
+ObjSho10
+TagSho00
+End
+35
+Kind   1 10
+Tag   I'
+TagPos -15.6 0.1 0 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  255 1
+Shape  3.4159 6 1 0
+Angle  3.4159
+Linker 26 12 0 12 30 13
+Shadow
+ObjSho10
+TagSho00
+End
+36
+Kind   1 12
+Tag   G''
+TagPos 5.4 -0.9 0 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  255 1
+Shape  0.6659 6 1 0
+Angle  1
+Linker 33 26 35
+Shadow
+ObjSho10
+TagSho00
+End
+39
+Kind   1 10
+Tag   G'''
+TagPos 5.4 -0.9 0 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  65535 1
+Shape  0.4006 6 1 0
+Angle  0.4006
+Linker 36 33 0 17
+Shadow
+ObjSho10
+TagSho00
+End
+41
+Kind   1 12
+Tag   E'
+TagPos -5.6 -22.9 0 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  65535 1
+Shape  0.6582 6 1 0
+Angle  1
+Linker 17 30 12
+Shadow
+ObjSho10
+TagSho00
+End
+51
+Kind   1 12
+Tag   C'
+TagPos 10.4 -10.9 0 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  16776960 1
+Shape  0.578 4 1 0
+Angle  1
+Linker 15 12 24
+Shadow
+ObjSho10
+TagSho00
+End
+52
+Kind   1 12
+Tag   C''
+TagPos 10.4 -10.9 0 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  16776960 1
+Shape  0.578 4 1 0
+Angle  1
+Linker 51 33 39
+Shadow
+ObjSho10
+TagSho00
+End
+63
+Kind   11 7
+Tag   h
+TagPos -0.6 0.1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Shape  0.6207 1 4 0
+Point  40 100 70 0
+Angle  1
+Linker 17 41 19
+Slope  0 0 0 0
+FuncX g =1.0000
+FuncY 
+ObjSho10
+TagSho00
+End
+64
+Kind   11 1
+Tag   g
+TagPos -0.6 0.1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Shape  223.4397 1 4 0
+Point  40 124 70 15
+Angle  1
+Linker 63
+Slope  0 0 0 0
+FuncX h*360
+FuncY a*360
+ObjSho10
+TagSho00
+End
+71
+Kind   1 10
+Tag   C''
+TagPos -27.6 -8.9 0 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  255 1
+Shape  0.4536 6 1 0
+Angle  0.4536
+Linker 51 52 0 17 12 19
+Shadow
+ObjSho10
+TagSho00
+End
+72
+Kind   2 4
+Tag   i
+TagPos -0.6 0.1 0.7 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  16711680 1
+Shape  2.3358 2 0 0
+Angle  90
+Angle0 0
+Linker 71 11
+Slope  6 0 0 0
+Invert
+Degree
+ObjSho10
+TagSho00
+End
+73
+Kind   1 9
+Tag   C'
+TagPos -5.6 -21.9 0 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  65535 1
+Shape  223.4397 8 1 0
+Angle  223.4397
+Linker 15 72 0 64
+Degree
+ObjSho10
+TagSho00
+End
+74
+Kind   1 12
+Tag   C''
+TagPos -5.6 -21.9 0 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  65535 1
+Shape  135.5261 8 1 0
+Angle  1
+Linker 73 71 39
+ObjSho10
+TagSho00
+End
+75
+Kind   5 1
+Tag   j
+TagPos -0.6 0.1 0.5 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  32896 1
+Shape  15.7539 1 0 5
+Linker 74 15
+Return
+ObjSho10
+TagSho00
+End
+76
+Kind   5 11
+Tag   j'
+TagPos -0.6 0.1 0.5 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  32896 1
+Shape  15.7539 1 0 5
+Trans  -8 0 0
+Linker 75
+Return
+ObjSho10
+TagSho00
+End
+77
+Kind   7 2
+Tag   k
+TagPos -0.6 0.1 5 0 6777215
+TagSty1000
+TagS    11
+Font  Verdana
+Color  16777215 1
+ColorB 16777215 1
+Shape  24 0 16 0
+Linker 75 76
+Invert
+Return
+ObjSho11
+TagSho00
+End
+78
+Kind   11 2
+Tag   l
+TagPos -0.6 0.1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+ColorB 255 1
+Shape  0.4 1 4 0.01
+Point  578 487 70 0
+Linker 0 0 0 0 0 0 0 0 0 0 0 17
+Slope  0 1 0 0
+FuncX l =1.0000
+FuncY 
+Parame 1 17 0 1 0.001 1
+Trace  197
+ObjSho11
+TagSho00
+End
+Finish
+Termination

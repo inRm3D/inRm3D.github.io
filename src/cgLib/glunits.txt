@@ -1,0 +1,8 @@
+    将该目录中的文件都拷贝到Delphi的Lib目录中去。
+如果你使用的不是Microsoft自带的OpenGL库，你可以
+编辑gldriver.inc文件。
+在gldriver.inc文件中加入：
+   {$DEFINE SGIGL}        // 如果你使用SGI的OpenGL
+   {$DEFINE 3DFXGL}       // 如果你使用3dfx的OpenGL
+如果没有定义，即没有{$DEFINE}语句，则默认使用Microsoft的OpenGL驱动。
+

@@ -1,0 +1,666 @@
+inRm3D v2.867 
+Page     1   1
+PageNm   0  Page1
+Color  16777215 32768 16711935 32768 16711680 255 0 0
+Transp 0.1 0.1 0.1
+Mode   10 0 10 0 10 0
+Origin 0 0 111 315 0
+Origi  6 1 32768
+Length 13 10 8.4 4.5 3 2.2
+Axis   1 2 1 2 1 2
+AxiTag o x y z
+Deep   48 29
+Scene 1100011110000001000
+Window 350 5 1038 761
+Pages  0 0
+End
+11
+Kind   4 6
+Tag   ¦Á
+TagPos -2.6 0.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  0 0.4
+ColorB 6324416 0.4
+Shape  1.533 5 10 1.8021
+Angle  90
+Linker 1 4
+Locked
+Invert
+Degree
+ObjSho1
+TagSho0
+Edges  ¦Á_1 ¦Á_2 ¦Á_3 ¦Á_4 ¦Á_5 ¦Á_6 ¦Á_7 ¦Á_8 ¦Á_9 ¦Á_10
+EdgesW   1   6  6324416 16711680   0
+Names   12  13  14  15  16  17  18  19  20  21
+VctObjol
+VctTag00
+End
+22
+Kind   1 9
+Tag   ¦Á_9'
+TagPos 0 0 0.5 0 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  16711680 1
+Shape  60 6 1 0
+Angle  60
+Linker 20 19
+Degree
+ObjSho1
+TagSho0
+End
+23
+Kind   11 2
+Tag   a
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+Shape  169.56 1 2 0.5
+Point  627 577 70 0
+Angle  169.56
+Angle1 100
+Slope  142.74 180 0 0
+FuncX a =1.0000
+FuncY 
+Return
+Trace  100
+ObjSho1
+TagSho1
+End
+24
+Kind   1 9
+Tag   ¦Á_9''
+TagPos 0 0 0.5 0 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  16711680 1
+Shape  169.56 6 1 0
+Angle  169.56
+Linker 22 14 0 23
+Degree
+ObjSho1
+TagSho0
+End
+25
+Kind   2 4
+Tag   b
+TagPos -0.6 0.1 0.7 0 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  16711680 1
+Shape  2.827 1 0 0
+Angle  1.5708
+Angle0 0
+Linker 24 14
+Slope  6 0 0 0
+Invert
+ObjSho1
+TagSho0
+End
+26
+Kind   4 6
+Tag   ¦Â
+TagPos -0.6 0.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  16711680 0.4
+ColorB 6324416 0.4
+Shape  1.8021 106 10 1.8021
+Angle  60
+Linker 24 25 19
+Locked
+Invert
+Return
+Degree
+ObjSho1
+TagSho0
+End
+41
+Kind   4 9
+Tag   ¦Â'
+TagPos 0.4 2.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  6324416 0.4
+ColorB 6324416 0.4
+Shape  1.8021 6 10 1.802
+Angle  72
+Linker 26 4
+Return
+Degree
+ObjSho1
+TagSho0
+End
+44
+Kind   4 9
+Tag   ¦Â''
+TagPos -0.6 0.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  6324416 0.4
+ColorB 6324416 0.4
+Shape  1.8021 6 10 1.802
+Angle  72
+Linker 41 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+46
+Kind   4 9
+Tag   ¦Â'''
+TagPos -0.6 0.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  6324416 0.4
+ColorB 6324416 0.4
+Shape  1.8021 6 10 1.802
+Angle  72
+Linker 44 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+48
+Kind   4 9
+Tag   ¦Â''''
+TagPos -0.6 0.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  6324416 0.4
+ColorB 6324416 0.4
+Shape  1.8021 6 10 1.802
+Angle  72
+Linker 46 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+71
+Kind   4 9
+Tag   ¦Á'
+TagPos -1.6 0.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  0 0.4
+ColorB 6324416 0.4
+Shape  1.533 5 10 1.8021
+Angle  240
+Linker 11 26
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+73
+Kind   4 9
+Tag   ¦Â'
+TagPos -0.6 0.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  16711680 0.4
+ColorB 6324416 0.4
+Shape  1.8021 6 10 1.8021
+Angle  72
+Linker 26 71
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+74
+Kind   4 9
+Tag   ¦Â''
+TagPos -0.6 0.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  16711680 0.4
+ColorB 6324416 0.4
+Shape  1.8021 6 10 1.8021
+Angle  72
+Linker 73 71
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+75
+Kind   4 9
+Tag   ¦Á''
+TagPos -0.6 1.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  0 0.4
+ColorB 6324416 0.4
+Shape  1.533 5 10 1.8021
+Angle  120
+Linker 71 74
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+76
+Kind   4 9
+Tag   ¦Â'''
+TagPos -0.6 0.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  16711680 0.4
+ColorB 6324416 0.4
+Shape  1.8021 6 10 1.8021
+Angle  -144
+Linker 74 75
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+77
+Kind   4 9
+Tag   ¦Á''
+TagPos -0.6 1.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  0 0.4
+ColorB 6324416 0.4
+Shape  1.533 5 10 1.8021
+Angle  72
+Linker 71 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+78
+Kind   4 9
+Tag   ¦Â''
+TagPos -0.6 0.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  16711680 0.4
+ColorB 6324416 0.4
+Shape  1.8021 6 10 1.8021
+Angle  72
+Linker 73 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+79
+Kind   4 9
+Tag   ¦Â'''
+TagPos 12.4 2.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  16711680 0.4
+ColorB 6324416 0.4
+Shape  1.8021 6 10 1.8021
+Angle  72
+Linker 74 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+80
+Kind   4 9
+Tag   ¦Á'''
+TagPos 0.4 1.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  0 0.4
+ColorB 6324416 0.4
+Shape  1.533 5 10 1.8021
+Angle  72
+Linker 75 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+81
+Kind   4 9
+Tag   ¦Â''''
+TagPos 8.4 0.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  16711680 0.4
+ColorB 6324416 0.4
+Shape  1.8021 6 10 1.8021
+Angle  72
+Linker 76 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+90
+Kind   4 9
+Tag   ¦Á'''
+TagPos 4.4 3.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  0 0.4
+ColorB 6324416 0.4
+Shape  1.533 5 10 1.8021
+Angle  72
+Linker 77 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+91
+Kind   4 9
+Tag   ¦Â'''
+TagPos 1.4 3.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  16711680 0.4
+ColorB 6324416 0.4
+Shape  1.8021 6 10 1.8021
+Angle  72
+Linker 78 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+92
+Kind   4 9
+Tag   ¦Â''''
+TagPos 3.4 3.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  16711680 0.4
+ColorB 6324416 0.4
+Shape  1.8021 6 10 1.8021
+Angle  72
+Linker 79 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+93
+Kind   4 9
+Tag   ¦Á''''
+TagPos 0.4 1.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  0 0.4
+ColorB 6324416 0.4
+Shape  1.533 5 10 1.8021
+Angle  72
+Linker 80 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+94
+Kind   4 9
+Tag   ¦Â'''''
+TagPos -0.6 0.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  16711680 0.4
+ColorB 6324416 0.4
+Shape  1.8021 6 10 1.8021
+Angle  72
+Linker 81 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+99
+Kind   4 9
+Tag   ¦Á''''
+TagPos -0.6 0.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  0 0.4
+ColorB 6324416 0.4
+Shape  1.533 5 10 1.8021
+Angle  72
+Linker 90 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+100
+Kind   4 9
+Tag   ¦Â''''
+TagPos -0.6 0.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  16711680 0.4
+ColorB 6324416 0.4
+Shape  1.8021 6 10 1.8021
+Angle  72
+Linker 91 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+101
+Kind   4 9
+Tag   ¦Â'''''
+TagPos 1.4 1.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  16711680 0.4
+ColorB 6324416 0.4
+Shape  1.8021 6 10 1.8021
+Angle  72
+Linker 92 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+102
+Kind   4 9
+Tag   ¦Á'''''
+TagPos 1.4 1.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  0 0.4
+ColorB 6324416 0.4
+Shape  1.533 5 10 1.8021
+Angle  72
+Linker 93 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+103
+Kind   4 9
+Tag   ¦Â''''''
+TagPos 2.4 3.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  16711680 0.4
+ColorB 6324416 0.4
+Shape  1.8021 6 10 1.8021
+Angle  72
+Linker 94 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+104
+Kind   4 9
+Tag   ¦Á'''''
+TagPos -2.6 0.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  0 0.4
+ColorB 6324416 0.4
+Shape  1.533 5 10 1.8021
+Angle  72
+Linker 99 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+105
+Kind   4 9
+Tag   ¦Â'''''
+TagPos 0.4 3.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  16711680 0.4
+ColorB 6324416 0.4
+Shape  1.8021 6 10 1.8021
+Angle  72
+Linker 100 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+106
+Kind   4 9
+Tag   ¦Â''''''
+TagPos -0.6 0.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  16711680 0.4
+ColorB 6324416 0.4
+Shape  1.8021 6 10 1.8021
+Angle  72
+Linker 101 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+107
+Kind   4 9
+Tag   ¦Á''''''
+TagPos -1.6 1.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  0 0.4
+ColorB 6324416 0.4
+Shape  1.533 5 10 1.8021
+Angle  72
+Linker 102 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+108
+Kind   4 9
+Tag   ¦Â'''''''
+TagPos -0.6 0.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  16711680 0.4
+ColorB 6324416 0.4
+Shape  1.8021 6 10 1.8021
+Angle  72
+Linker 103 4
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+109
+Kind   4 9
+Tag   ¦Á'''
+TagPos -1.6 1.1 1 1 32768
+TagSty0100
+TagS    18
+Font  Arial
+Color  0 0.4
+ColorB 6324416 0.4
+Shape  1.533 5 10 1.8021
+Angle  -120
+Linker 75 76
+Locked
+Return
+Degree
+ObjSho1
+TagSho0
+End
+Finish
+Termination

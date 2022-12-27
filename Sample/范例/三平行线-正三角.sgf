@@ -1,0 +1,155 @@
+inRm3D v2.864 
+Page     1   1
+PageNm   0  三平行线-正三角
+Color  16777215 255 32768 16711680 0 0 0 0
+Transp 0.21 0.21 0.15
+Mode   0 0 0 0 0 0
+Origin 0 0 321 298.5 0
+Origi  6 1 255
+Length 12 12 5.1 0 0 0
+Axis   1 2 1 2 1 2
+AxiTag o xX y z
+Deep   30.5 16
+Scene 0000011101001111000
+Window 104 104 956 600
+Pages  9 9
+End
+12
+Kind   1 1
+Tag   A
+TagPos -0.6 0.1 0.7 0 0
+TagS     9
+Font  Arial
+Color  255 1
+ColorB 255 1
+Shape  4.16 4 0 0
+Point  0.3214 2.295 3.4548 0
+Linker 0
+Invert
+ObjSho1111111111
+TagSho1111111111
+End
+15
+Kind   2 2
+Tag   b
+TagPos -0.6 0.1 0.7 0 0
+TagSty1000
+TagS    18
+Font  Arial
+Color  16711680 1
+ColorB 16711680 1
+Shape  13.095 1.5 0 0
+Linker 12
+Slope  4.0299 -0.06 0 0
+Invert
+Return
+ObjSho1111111111
+TagSho0000000001
+End
+65
+Kind   1 1
+Tag   E
+TagPos -0.6 0.1 0.7 0 0
+TagS     9
+Font  Arial
+Color  255 1
+ColorB 255 1
+Shape  1.253 4 0 0
+Point  0.3477 0.0803 -1.2011 0
+Linker 0
+ObjSho1111111111
+TagSho0000000001
+End
+64
+Kind   2 3
+Tag   h
+TagPos -0.7 0.15 0.7 0 0
+TagSty1000
+TagS    18
+Font  Arial
+Color  16711680 1
+ColorB 16711680 1
+Shape  12.2753 1.5 0 0
+Linker 65 15
+Slope  0 0 0 0
+Return
+ObjSho1111111111
+TagSho0000000001
+End
+67
+Kind   1 1
+Tag   G
+TagPos -0.6 0.1 0.7 0 0
+TagS     9
+Font  Arial
+Color  255 1
+ColorB 255 1
+Shape  3.0356 4 0 0
+Point  -0.9467 2.2782 1.7688 999
+Linker 0
+ObjSho1111111111
+TagSho0000000001
+End
+66
+Kind   2 3
+Tag   i
+TagPos -0.6 -0.9 0.7 0 0
+TagSty1000
+TagS    18
+Font  Arial
+Color  16711680 1
+ColorB 16711680 1
+Shape  13.1267 1.5 0 0
+Linker 67 15
+Slope  0 0 0 0
+Return
+ObjSho1111111111
+TagSho0000000001
+End
+68
+Kind   1 2
+Tag   H
+TagPos -0.6 0.1 0 0 0
+TagS     9
+Font  Arial
+Color  255 1
+ColorB 255 1
+Shape  -0.5378 4 0 0.0997
+Linker 0 64
+Slope  -1 1 0 0
+ObjSho0111111110
+TagSho0111111111
+End
+13
+Kind   4 5
+Tag   α
+TagPos -0.6 0.1 1 1 255
+TagSty1000
+TagS    18
+Font  Calibri
+Color  6324416 0.4
+ColorB 6324416 0.4
+Shape  5 4 10 3
+Angle0 0.5
+Linker 68 12
+Return
+ObjSho0000000001
+TagSho0000000000
+End
+14
+Kind   1 4
+Tag   D
+TagPos -0.6 0.1 0 0 255
+TagSty1000
+TagS    18
+Font  Calibri
+Color  16711680 1
+ColorB 0 0
+Shape  0.52 6 1 0
+Linker 66 13
+ObjSho0000000001
+TagSho0000000000
+Croses
+End
+Finish
+Termination

@@ -1,0 +1,755 @@
+inRm3D v2.860 
+Page     1   1
+PageNm   0  Page1
+Color  16777215      255      255    32768 16711680      255    32768 16711680
+Transp   0.4200   0.6800   0.7600
+Mode     0   0   0   0   0   0
+Origin  -0.2000   0.3000 202.6000 312.5000   0.0000
+Origi    4   1      255
+Length   9.1000  10.1000   5.9052   1.7000   2.1000   1.2000
+Axis     1   2   1   2   1   2
+AxiTago x y z 
+Deep    29.0000  29.0000
+Scene 110101111000111100
+Window 199  73 959 644
+Pages    0   0
+End
+11
+Kind     1   2
+Tag   A
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.2616   6.0000   1   0.0000
+Linker   0   2
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+12
+Kind     1   2
+Tag   B
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.5447   6.0000   1   0.0000
+Linker   0   2
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+13
+Kind     1   2
+Tag   C
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.8550   6.0000   1   0.0000
+Linker   0   2
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+14
+Kind     1   2
+Tag   D
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.4431   6.0000   1   0.0000
+Linker   0   4
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+15
+Kind     1   2
+Tag   E
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.2163   6.0000   1   0.0000
+Linker   0   4
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+17
+Kind     1   2
+Tag   G
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.7184   6.0000   1   0.0000
+Linker   0   4
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+19
+Kind     1  12
+Tag   C'
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.5996   6.0000   1   0.0000
+Angle    1.0000
+Linker  13   1  15
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+20
+Kind     1  12
+Tag   B'
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.3687   6.0000   1   0.0000
+Angle    1.0000
+Linker  12   1  15
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+21
+Kind     1  12
+Tag   B'
+TagPos -25.0000 -18.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.3687   6.0000   1   0.0000
+Angle    1.0000
+Linker  12   1  14
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+22
+Kind     1  12
+Tag   A_1
+TagPos -23.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.1679   6.0000   1   0.0000
+Angle    1.0000
+Linker  11   1  14
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+23
+Kind     1  12
+Tag   A_2
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.1679   6.0000   1   0.0000
+Angle    1.0000
+Linker  22  14  17
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+26
+Kind     2   3
+Tag   a
+TagPos  -0.6000   0.1000   0.7000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color  16711680   1.0000
+ColorB        0   0.0000
+Shape    5.0000   1.0000   0   0.0000
+Linker  23   3
+Slope    6.0000   0.0000   0.0000   0.0000
+ObjSho1
+TagSho0
+End
+27
+Kind     1   9
+Tag   A_3
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape  -90.0000   6.0000   1   0.0000
+Angle  -90.0000
+Linker  22  26
+Slope    0.0000   1.0000   0.0000   0.0000
+Degree
+ObjSho1
+TagSho1
+End
+28
+Kind     1  12
+Tag   A_4
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.1679   6.0000   1   0.0000
+Angle    1.0000
+Linker  27  22  21
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+29
+Kind     1  12
+Tag   A_5
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.1679   6.0000   1   0.0000
+Angle    1.0000
+Linker  28  21  20
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+30
+Kind     2   3
+Tag   c
+TagPos  -0.6000   0.1000   0.7000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color  16711680   1.0000
+ColorB        0   0.0000
+Shape    5.0000   1.0000   0   0.0000
+Linker  28   3
+Slope    6.0000   0.0000   0.0000   0.0000
+ObjSho1
+TagSho0
+End
+31
+Kind     1   9
+Tag   A_6
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape  -90.0000   6.0000   1   0.0000
+Angle  -90.0000
+Linker  29  30
+Slope    0.0000   1.0000   0.0000   0.0000
+Degree
+ObjSho1
+TagSho1
+End
+32
+Kind     1  12
+Tag   A_7
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.1679   6.0000   1   0.0000
+Angle    1.0000
+Linker  31  20  19
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+33
+Kind     1  12
+Tag   A_8
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.1679   6.0000   1   0.0000
+Angle    1.0000
+Linker  32  19  13
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+34
+Kind     2   3
+Tag   d
+TagPos  -0.6000   0.1000   0.7000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color  16711680   1.0000
+ColorB        0   0.0000
+Shape    5.0000   1.0000   0   0.0000
+Linker  32   3
+Slope    6.0000   0.0000   0.0000   0.0000
+ObjSho1
+TagSho0
+End
+35
+Kind     1   9
+Tag   A_9
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape  -90.0000   6.0000   1   0.0000
+Angle  -90.0000
+Linker  33  34
+Slope    0.0000   1.0000   0.0000   0.0000
+Degree
+ObjSho1
+TagSho1
+End
+37
+Kind    11   2
+Tag   f
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS     9
+Font  Arial
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    3.0000   1.0000   2   1.0000
+Point  697.0000 255.0000  70.0000   0.0000
+Angle    3.0000
+Linker   0   0   0   0   0   0   0   0   0   0   0  27  31  35
+Slope    0.0000   3.0000   0.0000   0.0000
+FuncX f =1.0000
+FuncY 
+Parame   1  27   0.0000   1.0000   0.0000 -90.0000
+Parame   2  31   1.0000   2.0000   0.0000 -90.0000
+Parame   3  35   2.0000   3.0000   0.0000 -90.0000
+Shadow
+Trace  100
+ObjSho1
+TagSho1
+End
+38
+Kind     1   2
+Tag   F
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.5017   6.0000   1   0.0000
+Linker   0   3
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+42
+Kind     1  12
+Tag   A_2'
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.1679   6.0000   1   0.0000
+Angle    1.0000
+Linker  23   1  38
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+43
+Kind     1  12
+Tag   B''
+TagPos -25.0000 -18.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.3687   6.0000   1   0.0000
+Angle    1.0000
+Linker  21   1  38
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+44
+Kind     1  12
+Tag   C''
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.5996   6.0000   1   0.0000
+Angle    1.0000
+Linker  19   1  38
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+45
+Kind     4   1
+Tag   α
+TagPos  -0.6000   0.1000   1.0000   1.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color     32896   0.4000
+ColorB    32896   0.4000
+Shape    2.0000   4.0000  10   0.0000
+Angle    1.0000
+Linker  42  23  17
+Return
+ObjSho1
+TagSho0
+End
+46
+Kind     4   1
+Tag   β
+TagPos  -0.6000   0.1000   1.0000   1.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color     32896   0.4000
+ColorB    32896   0.4000
+Shape    2.0000   4.0000  10   0.0000
+Angle    1.0000
+Linker  42  23  22
+Return
+ObjSho1
+TagSho0
+End
+47
+Kind     4   1
+Tag   γ
+TagPos  -0.6000   0.1000   1.0000   1.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color     32896   0.4000
+ColorB    32896   0.4000
+Shape    2.0000   4.0000  10   0.0000
+Angle    1.0000
+Linker  43  21  22
+Return
+ObjSho1
+TagSho0
+End
+48
+Kind     4   1
+Tag   δ
+TagPos  -0.6000   0.1000   1.0000   1.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color     32896   0.4000
+ColorB    32896   0.4000
+Shape    2.0000   4.0000  10   0.0000
+Angle    1.0000
+Linker  43  21  20
+Return
+ObjSho1
+TagSho0
+End
+49
+Kind     4   1
+Tag   ε
+TagPos  -0.6000   0.1000   1.0000   1.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color     32896   0.4000
+ColorB    32896   0.4000
+Shape    2.0000   4.0000  10   0.0000
+Angle    1.0000
+Linker  44  19  20
+Return
+ObjSho1
+TagSho0
+End
+50
+Kind     4   1
+Tag   θ
+TagPos  -0.6000   0.1000   1.0000   1.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color     32896   0.4000
+ColorB    32896   0.4000
+Shape    2.0000   4.0000  10   0.0000
+Angle    1.0000
+Linker  44  19  13
+Return
+ObjSho1
+TagSho0
+End
+51
+Kind     1  12
+Tag   A_4'
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.1679   6.0000   1   0.0000
+Angle    1.0000
+Linker  28   1  38
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+52
+Kind     1  12
+Tag   A_7'
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.1679   6.0000   1   0.0000
+Angle    1.0000
+Linker  32   1  38
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+53
+Kind     4   1
+Tag   ζ
+TagPos  -0.6000   0.1000   1.0000   1.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color     32896   0.4000
+ColorB    32896   0.4000
+Shape    2.0000   4.0000  10   0.0000
+Angle    1.0000
+Linker  51  28  27
+Return
+ObjSho1
+TagSho0
+End
+55
+Kind     4   1
+Tag   ι
+TagPos  -0.6000   0.1000   1.0000   1.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color     32896   0.4000
+ColorB    32896   0.4000
+Shape    2.0000   4.0000  10   0.0000
+Angle    1.0000
+Linker  51  28  31
+Return
+ObjSho1
+TagSho0
+End
+56
+Kind     4   1
+Tag   κ
+TagPos  -0.6000   0.1000   1.0000   1.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color     32896   0.4000
+ColorB    32896   0.4000
+Shape    2.0000   4.0000  10   0.0000
+Angle    1.0000
+Linker  42  23  27
+Return
+ObjSho1
+TagSho0
+End
+57
+Kind     4   1
+Tag   λ
+TagPos  -0.6000   0.1000   1.0000   1.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color     32896   0.4000
+ColorB    32896   0.4000
+Shape    2.0000   4.0000  10   0.0000
+Angle    1.0000
+Linker  52  32  31
+Return
+ObjSho1
+TagSho0
+End
+58
+Kind     4   1
+Tag   μ
+TagPos  -0.6000   0.1000   1.0000   1.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color     32896   0.4000
+ColorB    32896   0.4000
+Shape    2.0000   4.0000  10   0.0000
+Angle    1.0000
+Linker  52  32  35
+Return
+ObjSho1
+TagSho0
+End
+59
+Kind     1  12
+Tag   G'
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.7184   6.0000   1   0.0000
+Angle    1.0000
+Linker  17   1  38
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho1
+End
+61
+Kind     1   2
+Tag   H
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.0916   6.0000   1   0.0000
+Angle    2.4364
+Linker   0  34
+Slope    0.0000   1.0000   0.0000   0.0000
+Shadow
+ObjSho1
+TagSho1
+End
+63
+Kind     1   2
+Tag   J
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.3735   6.0000   1   0.0000
+Linker   0  30
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho0
+End
+64
+Kind     1   2
+Tag   I
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    0.6435   6.0000   1   0.0000
+Linker   0  26
+Slope    0.0000   1.0000   0.0000   0.0000
+ObjSho1
+TagSho0
+End
+66
+Kind     1   2
+Tag   L
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    2.0947   6.0000   1   0.0000
+Angle    2.6965
+Linker   0  53
+Slope    0.0000   1.0000   0.0000   0.0000
+Shadow
+ObjSho1
+TagSho0
+End
+67
+Kind     1   2
+Tag   K
+TagPos -16.0000   1.0000   0.0000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+Shape    2.2964   6.0000   1   0.0000
+Angle    1.3995
+Linker   0  57
+Slope    0.0000   1.0000   0.0000   0.0000
+Shadow
+ObjSho1
+TagSho0
+End
+70
+Kind    17   1
+Tag   i
+TagPos  -0.6000   0.1000   0.5000   0.0000255
+TagSty1000
+TagS    14
+Font  宋体
+Color       255   1.0000
+ColorB      255   1.0000
+ColorV   0   0.0000   0.0000
+Shape   10.5052   2.0000   0   5.0000
+Linker  35  61  67  63  66  64  59
+ObjSho1
+TagSho0
+End
+Finish
+Termination

@@ -1,0 +1,59 @@
+inRm3D v2.869 
+Page     1   1
+PageNm   0  Page1
+Color  16777215 255 32768 16711680 255 255 32768 16711680
+Transp 0.2 0.2 0.2
+Mode   0 0 0 0 0 0
+Origin -0.0352 -2.9215 244 293 0
+Origi  4 1 255
+Length 6 6 6 0 0 0
+Axis   2 2 2 2 2 2
+AxiTag o x y z
+ObjShO1
+ObjShX1
+ObjShY1
+ObjShZ1
+Deep   27 29
+Scene 110101100000111100000
+Window 137 129 800 600
+Pages  0 0
+End
+12
+Kind   1 2
+Tag   A
+TagPos 4 -4 0 0 255
+TagSty1000
+TagS    16
+Font  Times New Roman
+Color  255 1
+Shape  3.4055 6 1 0
+Linker 0 3
+Slope  0 6 0 0
+Invert
+ObjSho1
+TagSho1
+End
+11
+Kind   9 2
+Tag   a
+TagPos -0.7 0.05 0 0 0
+TagS     9
+Font  Arial
+Color  255 1
+ColorB 16711935 1
+Shape  1.8125 1 0 0
+Linker 0 12
+FuncX (b/2+a*v*cos(u/2))*sin(u)*2
+FuncY (b/2+a*v*cos(u/2))*cos(u)*2
+FuncZ c*v*sin(u/2)
+RuleX  0 6.284 80
+RuleY  -1 1 8
+RuleZ  0 0.1 1
+Param  0.5 2.4397 1
+Param1 0 0 0
+Return
+ObjSho1
+TagSho0
+End
+Finish
+Termination

@@ -1,0 +1,211 @@
+inRm3D v2.866 
+Page     1   1
+PageNm   0  Page1
+Color  16777215 255 255 32768 16711680 255 32768 16711680
+Transp 0.1 0.1 0.1
+Mode   10 0 10 0 10 0
+Origin 0 0 347 317.5 0
+Origi  4 1 255
+Length 13 10 8.4 4.5 3 2.2
+Axis   1 2 1 2 1 2
+AxiTag o x y z
+Deep   30 29
+Scene 1111111110001111000
+Window 411 68 909 669
+Pages  0 0
+End
+17
+Kind   11 2
+Tag   f
+TagPos 0 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+Shape  5 1 0 1
+Point  118 197 70 0
+Angle  5
+Angle1 10
+Slope  3 12 0 0
+FuncX f =1.0000
+FuncY 
+Trace  100
+ObjSho1
+TagSho1
+End
+11
+Kind   4 6
+Tag   ¦Á
+TagPos -0.6 0.1 1 1 0
+TagSty1000
+TagS    16
+Font  Calibri
+Color  32768 0.4
+ColorB 32768 0.4
+Shape  6.3 105 1 7.4061
+Linker 1 4 0 0 0 0 0 0 0 0 17
+Invert
+Return
+ObjSho1
+TagSho0
+End
+12
+Kind   11 8
+Tag   a
+TagPos 0 1 0 0 0
+TagSty1000
+TagS    11
+Font  Arial
+Color  255 1
+Shape  37.0303 1 2 0
+Point  120 138 70 0
+Angle  1
+Linker 11
+Slope  0 0 0 0
+FuncX a =1.0000
+FuncY 
+ObjSho1
+TagSho0
+End
+13
+Kind   11 1
+Tag   b
+TagPos 0 1 0 0 0
+TagSty1000
+TagS    11
+Font  Arial
+Color  255 1
+Shape  5.8936 1 2 0
+Point  120 162 70 15
+Angle  1
+Linker 12
+Slope  0 0 0 0
+FuncX a/pi/2
+FuncY a/pi/2
+ObjSho1
+TagSho0
+End
+14
+Kind   3 1
+Tag   O[1]
+TagPos -0.6 0.1 0.5 0 0
+TagSty1000
+TagS    16
+Font  Calibri
+Color  16711680 1
+ColorB 0 0
+Shape  5.8936 1 1 0
+Linker 1 4 13
+Return
+ObjSho1
+TagSho0
+End
+16
+Kind   1 2
+Tag   A
+TagPos -16 1 0.7 0 0
+TagSty1000
+TagS    16
+Font  Calibri
+Color  255 1
+Shape  0.76 6 1 0.01
+Linker 0 14
+Slope  0 6.2832 0 0
+ObjSho1
+TagSho1
+End
+15
+Kind   2 1
+Tag   c
+TagPos -15 1 0.7 0 0
+TagSty1000
+TagS    16
+Font  Calibri
+Color  32768 1
+Shape  12 1 1 0
+Linker 1 16
+Slope  6 0 0 0
+Invert
+ObjSho1
+TagSho0
+End
+18
+Kind   1 4
+Tag   C
+TagPos -18.6 -13.9 0 0 0
+TagSty1000
+TagS    16
+Font  Calibri
+Color  255 1
+Shape  0.36 6 1 1
+Angle  1
+Linker 15 11
+ObjSho1
+TagSho1
+Croses C[1
+CroShw   1   2
+End
+20
+Kind   2 1
+Tag   d
+TagPos -16 1 0.7 0 0
+TagSty1000
+TagS    16
+Font  Calibri
+Color  32768 1
+Shape  0.7523 1 0 0
+Linker 18 16
+Slope  6 0 0 0
+ObjSho1
+TagSho0
+End
+22
+Kind   1 2
+Tag   B
+TagPos 3.4 -20.9 0 0 0
+TagSty1000
+TagS    16
+Font  Calibri
+Color  255 1
+Shape  0.34 6 1 0
+Linker 0 20
+Slope  0 1 0 0
+Shadow
+ObjSho1
+TagSho1
+End
+23
+Kind   5 1
+Tag   e
+TagPos -0.6 0.1 0.5 0 0
+TagSty1000
+TagS    16
+Font  Calibri
+Color  255 1
+Shape  36.4503 2 4 5
+Linker 22 16
+ObjSho1
+TagSho0
+End
+21
+Kind   11 2
+Tag   g
+TagPos -1 1 0 0 0
+TagSty1000
+TagS     9
+Font  Arial
+Color  255 1
+Shape  0.34 1 2 1
+Point  119 232 70 0
+Angle1 10
+Linker 0 0 0 0 0 0 0 0 0 0 0 22
+Slope  0 1 0 0
+FuncX g =1.0000
+FuncY 
+Parame 1 22 0 1 0 1
+Trace  100
+ObjSho1
+TagSho1
+End
+Finish
+Termination
