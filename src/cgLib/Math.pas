@@ -168,6 +168,8 @@ function SumInt(const Data: array of Integer): Integer register;
 function SumOfSquares(const Data: array of Double): Extended;
 procedure SumsAndSquares(const Data: array of Double; var Sum, SumOfSquares: Extended);
 function TotalVariance(const Data: array of Double): Extended;
+function PopnStdDev(const Data: array of Double): Extended;
+function PopnVariance(const Data: array of Double): Extended;
 
 { Norm:  The Euclidean L2-norm.  Sqrt(SumOfSquares) }
 function Norm(const Data: array of Double): Extended;
