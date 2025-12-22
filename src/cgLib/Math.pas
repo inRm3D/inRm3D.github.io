@@ -985,7 +985,7 @@ begin
       Result := Data[I];
 end;
 
-function Min(const A, B: Integer): Integer;
+function Min(const A, B: Integer): Integer; overload;
 begin
   if A < B then
     Result := A
@@ -993,7 +993,7 @@ begin
     Result := B;
 end;
 
-function Min(const A, B: Int64): Int64;
+function Min(const A, B: Int64): Int64; overload;
 begin
   if A < B then
     Result := A
@@ -1001,7 +1001,7 @@ begin
     Result := B;
 end;
 
-function Min(const A, B: Single): Single;
+function Min(const A, B: Single): Single; overload;
 begin
   if A < B then
     Result := A
@@ -1009,7 +1009,7 @@ begin
     Result := B;
 end;
 
-function Min(const A, B: Double): Double;
+function Min(const A, B: Double): Double; overload;
 begin
   if A < B then
     Result := A
@@ -1017,7 +1017,7 @@ begin
     Result := B;
 end;
 
-function Min(const A, B: Extended): Extended;
+function Min(const A, B: Extended): Extended; overload;
 begin
   if A < B then
     Result := A
@@ -1045,7 +1045,7 @@ begin
       Result := Data[I];
 end;
 
-function Max(const A, B: Integer): Integer;
+function Max(const A, B: Integer): Integer; overload;
 begin
   if A > B then
     Result := A
@@ -1053,7 +1053,7 @@ begin
     Result := B;
 end;
 
-function Max(const A, B: Int64): Int64;
+function Max(const A, B: Int64): Int64; overload;
 begin
   if A > B then
     Result := A
@@ -1061,7 +1061,7 @@ begin
     Result := B;
 end;
 
-function Max(const A, B: Single): Single;
+function Max(const A, B: Single): Single; overload;
 begin
   if A > B then
     Result := A
@@ -1069,7 +1069,7 @@ begin
     Result := B;
 end;
 
-function Max(const A, B: Double): Double;
+function Max(const A, B: Double): Double; overload;
 begin
   if A > B then
     Result := A
@@ -1077,7 +1077,7 @@ begin
     Result := B;
 end;
 
-function Max(const A, B: Extended): Extended;
+function Max(const A, B: Extended): Extended; overload;
 begin
   if A > B then
     Result := A
