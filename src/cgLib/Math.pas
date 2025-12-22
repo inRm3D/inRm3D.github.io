@@ -205,11 +205,15 @@ function IsInfinite(const AValue: Double): Boolean;
 
 type
   TValueSign = -1..1;
+  TValueRelationship = -1..1;
 
 const
   NegativeValue = Low(TValueSign);
   ZeroValue = 0;
   PositiveValue = High(TValueSign);
+  LessThanValue = Low(TValueRelationship);
+  EqualsValue = 0;
+  GreaterThanValue = High(TValueRelationship);
 
 function Sign(const AValue: Integer): TValueSign; overload;
 function Sign(const AValue: Int64): TValueSign; overload;
