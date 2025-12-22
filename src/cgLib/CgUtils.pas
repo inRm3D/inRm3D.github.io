@@ -63,13 +63,31 @@ begin
 end;
 
 function ArcTan2(Y, X: Extended): Extended;
-asm
-
-  FLD Y
-  FLD X
-  FPATAN
-  FWAIT
-
+const
+  PiValue = 3.1415926535897932384626433832795;
+  HalfPi = PiValue / 2;
+var
+  Angle: Extended;
+begin
+  if X > 0 then
+    Result := ArcTan(Y / X)
+  else if X < 0 then
+  begin
+    Angle := ArcTan(Y / X);
+    if Y >= 0 then
+      Result := Angle + PiValue
+    else
+      Result := Angle - PiValue;
+  end
+  else
+  begin
+    if Y > 0 then
+      Result := HalfPi
+    else if Y < 0 then
+      Result := -HalfPi
+    else
+      Result := 0.0;
+  end;
 end;
 
 function cgArcCos(x: Single): Single;

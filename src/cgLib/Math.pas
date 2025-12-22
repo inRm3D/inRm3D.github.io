@@ -166,46 +166,7 @@ function Mean(const Data: array of Double): Extended;
 function Sum(const Data: array of Double): Extended register;
 function SumInt(const Data: array of Integer): Integer register;
 function SumOfSquares(const Data: array of Double): Extended;
-procedure SumsAndSquares(const Data: array of Double;
-  var Sum, SumOfSquares: Extended) register;
-
-{ MinValue: Returns the smallest signed value in the data array (MIN) }
-function MinValue(const Data: array of Double): Double;
-function MinIntValue(const Data: array of Integer): Integer;
-
-function Min(const A, B: Integer): Integer; overload;
-function Min(const A, B: Int64): Int64; overload;
-function Min(const A, B: Single): Single; overload;
-function Min(const A, B: Double): Double; overload;
-function Min(const A, B: Extended): Extended; overload;
-
-{ MaxValue: Returns the largest signed value in the data array (MAX) }
-function MaxValue(const Data: array of Double): Double;
-function MaxIntValue(const Data: array of Integer): Integer;
-
-function Max(const A, B: Integer): Integer; overload;
-function Max(const A, B: Int64): Int64; overload;
-function Max(const A, B: Single): Single; overload;
-function Max(const A, B: Double): Double; overload;
-function Max(const A, B: Extended): Extended; overload;
-
-{ Standard Deviation (STD): Sqrt(Variance). aka Sample Standard Deviation }
-function StdDev(const Data: array of Double): Extended;
-
-{ MeanAndStdDev calculates Mean and StdDev in one call. }
-procedure MeanAndStdDev(const Data: array of Double; var Mean, StdDev: Extended);
-
-{ Population Standard Deviation (STDP): Sqrt(PopnVariance).
-  Used in some business and financial calculations. }
-function PopnStdDev(const Data: array of Double): Extended;
-
-{ Variance (VARS): TotalVariance / (N-1). aka Sample Variance }
-function Variance(const Data: array of Double): Extended;
-
-{ Population Variance (VAR or VARP): TotalVariance/ N }
-function PopnVariance(const Data: array of Double): Extended;
-
-{ Total Variance: SUM(i=1,N)[(X(i) - Mean)**2] }
+procedure SumsAndSquares(const Data: array of Double; var Sum, SumOfSquares: Extended);
 function TotalVariance(const Data: array of Double): Extended;
 
 { Norm:  The Euclidean L2-norm.  Sqrt(SumOfSquares) }
@@ -443,16 +404,16 @@ uses SysConst;
 
 procedure DivMod(Dividend: Integer; Divisor: Word;
   var Result, Remainder: Word);
-asm
-        PUSH    EBX
-        MOV     EBX,EDX
-        MOV     EDX,EAX
-        SHR     EDX,16
-        DIV     BX
-        MOV     EBX,Remainder
-        MOV     [ECX],AX
-        MOV     [EBX],DX
-        POP     EBX
+var
+  Q: Integer;
+  R: Integer;
+begin
+  if Divisor = 0 then
+    raise EDivByZero.Create(SDivByZero);
+  Q := Dividend div Integer(Divisor);
+  R := Dividend mod Integer(Divisor);
+  Result := Word(Q);
+  Remainder := Word(R);
 end;
 
 function RoundTo(const AValue: Double; const ADigit: TRoundToRange): Double;
@@ -550,21 +511,10 @@ begin
 end;
 
 function LnXP1(const X: Extended): Extended;
-{ Return ln(1 + X).  Accurate for X near 0. }
-asm
-        FLDLN2
-        MOV     AX,WORD PTR X+8               { exponent }
-        FLD     X
-        CMP     AX,$3FFD                      { .4225 }
-        JB      @@1
-        FLD1
-        FADD
-        FYL2X
-        JMP     @@2
-@@1:
-        FYL2XP1
-@@2:
-        FWAIT
+begin
+  if X <= -1.0 then
+    raise EInvalidArgument.Create('LnXP1 domain error');
+  Result := Ln(1 + X);
 end;
 
 { Invariant: Y >= 0 & Result*X**Y = X**I.  Init Y = I and Result = 1. }
@@ -586,28 +536,28 @@ begin
   if I < 0 then Result := 1.0 / Result
 end;
 }
-function IntPower(const Base: Extended; const Exponent: Integer): Extended;
-asm
-        mov     ecx, eax
-        cdq
-        fld1                      { Result := 1 }
-        xor     eax, edx
-        sub     eax, edx          { eax := Abs(Exponent) }
-        jz      @@3
-        fld     Base
-        jmp     @@2
-@@1:    fmul    ST, ST            { X := Base * Base }
-@@2:    shr     eax,1
-        jnc     @@1
-        fmul    ST(1),ST          { Result := Result * X }
-        jnz     @@1
-        fstp    st                { pop X from FPU stack }
-        cmp     ecx, 0
-        jge     @@3
-        fld1
-        fdivrp                    { Result := 1 / Result }
-@@3:
-        fwait
+function IntPower(const Base: Extended; const Exponent: Integer): Extended; register;
+var
+  Power: Integer;
+  Factor: Extended;
+  Negative: Boolean;
+begin
+  Power := Exponent;
+  Negative := Power < 0;
+  if Negative then
+    Power := -Power;
+  Result := 1.0;
+  Factor := Base;
+  while Power > 0 do
+  begin
+    if Odd(Power) then
+      Result := Result * Factor;
+    Power := Power shr 1;
+    if Power > 0 then
+      Factor := Factor * Factor;
+  end;
+  if Negative then
+    Result := 1.0 / Result;
 end;
 
 function Compound(const R: Extended; N: Integer): Extended;
@@ -697,152 +647,107 @@ begin
 end;
 
 function ArcTan2(const Y, X: Extended): Extended;
-asm
-        FLD     Y
-        FLD     X
-        FPATAN
-        FWAIT
+const
+  PiValue = Pi;
+  HalfPi = Pi / 2;
+var
+  Angle: Extended;
+begin
+  if X > 0 then
+    Result := ArcTan(Y / X)
+  else if X < 0 then
+  begin
+    Angle := ArcTan(Y / X);
+    if Y >= 0 then
+      Result := Angle + PiValue
+    else
+      Result := Angle - PiValue;
+  end
+  else
+  begin
+    if Y > 0 then
+      Result := HalfPi
+    else if Y < 0 then
+      Result := -HalfPi
+    else
+      Result := 0.0;
+  end;
 end;
 
 function Tan(const X: Extended): Extended;
-{  Tan := Sin(X) / Cos(X) }
-asm
-        FLD    X
-        FPTAN
-        FSTP   ST(0)      { FPTAN pushes 1.0 after result }
-        FWAIT
+begin
+  Result := Sin(X) / Cos(X);
 end;
 
 function CoTan(const X: Extended): Extended;
-{ CoTan := Cos(X) / Sin(X) = 1 / Tan(X) }
-asm
-        FLD   X
-        FPTAN
-        FDIVRP
-        FWAIT
+begin
+  Result := Cos(X) / Sin(X);
 end;
 
 function Secant(const X: Extended): Extended;
-{ Secant := 1 / Cos(X) }
-asm
-        FLD   X
-        FCOS
-        FLD1
-        FDIVRP
-        FWAIT
+begin
+  Result := 1 / Cos(X);
 end;
 
 function Cosecant(const X: Extended): Extended;
-{ Cosecant := 1 / Sin(X) }
-asm
-        FLD   X
-        FSIN
-        FLD1
-        FDIVRP
-        FWAIT
+begin
+  Result := 1 / Sin(X);
 end;
 
 function Hypot(const X, Y: Extended): Extended;
-{ formula: Sqrt(X*X + Y*Y)
-  implemented as:  |Y|*Sqrt(1+Sqr(X/Y)), |X| < |Y| for greater precision
 var
-  Temp: Extended;
+  AbsX, AbsY, Temp: Extended;
 begin
-  X := Abs(X);
-  Y := Abs(Y);
-  if X > Y then
+  AbsX := Abs(X);
+  AbsY := Abs(Y);
+  if AbsX > AbsY then
   begin
-    Temp := X;
-    X := Y;
-    Y := Temp;
+    Temp := AbsX;
+    AbsX := AbsY;
+    AbsY := Temp;
   end;
-  if X = 0 then
-    Result := Y
-  else         // Y > X, X <> 0, so Y > 0
-    Result := Y * Sqrt(1 + Sqr(X/Y));
-end;
-}
-asm
-        FLD     Y
-        FABS
-        FLD     X
-        FABS
-        FCOM
-        FNSTSW  AX
-        TEST    AH,$45
-        JNZ      @@1        // if ST > ST(1) then swap
-        FXCH    ST(1)      // put larger number in ST(1)
-@@1:    FLDZ
-        FCOMP
-        FNSTSW  AX
-        TEST    AH,$40     // if ST = 0, return ST(1)
-        JZ      @@2
-        FSTP    ST         // eat ST(0)
-        JMP     @@3
-@@2:    FDIV    ST,ST(1)   // ST := ST / ST(1)
-        FMUL    ST,ST      // ST := ST * ST
-        FLD1
-        FADD               // ST := ST + 1
-        FSQRT              // ST := Sqrt(ST)
-        FMUL               // ST(1) := ST * ST(1); Pop ST
-@@3:    FWAIT
+  if AbsX = 0 then
+    Result := AbsY
+  else
+    Result := AbsY * Sqrt(1 + Sqr(AbsX / AbsY));
 end;
 
 
 procedure SinCos(const Theta: Extended; var Sin, Cos: Extended);
-asm
-        FLD     Theta
-        FSINCOS
-        FSTP    tbyte ptr [edx]    // Cos
-        FSTP    tbyte ptr [eax]    // Sin
-        FWAIT
+begin
+  Sin := System.Sin(Theta);
+  Cos := System.Cos(Theta);
 end;
 
 { Extract exponent and mantissa from X }
-procedure Frexp(const X: Extended; var Mantissa: Extended; var Exponent: Integer);
-{ Mantissa ptr in EAX, Exponent ptr in EDX }
-asm
-        FLD     X
-        PUSH    EAX
-        MOV     dword ptr [edx], 0    { if X = 0, return 0 }
-
-        FTST
-        FSTSW   AX
-        FWAIT
-        SAHF
-        JZ      @@Done
-
-        FXTRACT                 // ST(1) = exponent, (pushed) ST = fraction
-        FXCH
-
-// The FXTRACT instruction normalizes the fraction 1 bit higher than
-// wanted for the definition of frexp() so we need to tweak the result
-// by scaling the fraction down and incrementing the exponent.
-
-        FISTP   dword ptr [edx]
-        FLD1
-        FCHS
-        FXCH
-        FSCALE                  // scale fraction
-        INC     dword ptr [edx] // exponent biased to match
-        FSTP ST(1)              // discard -1, leave fraction as TOS
-
-@@Done:
-        POP     EAX
-        FSTP    tbyte ptr [eax]
-        FWAIT
+procedure Frexp(const X: Extended; var Mantissa: Extended; var Exponent: Integer); register;
+var
+  Value: Extended;
+begin
+  if X = 0 then
+  begin
+    Mantissa := 0;
+    Exponent := 0;
+    Exit;
+  end;
+  Value := X;
+  Exponent := 0;
+  while Abs(Value) >= 1 do
+  begin
+    Value := Value / 2;
+    Inc(Exponent);
+  end;
+  while Abs(Value) < 0.5 do
+  begin
+    Value := Value * 2;
+    Dec(Exponent);
+  end;
+  Mantissa := Value;
 end;
 
-function Ldexp(const X: Extended; const P: Integer): Extended;
-  { Result := X * (2^P) }
-asm
-        PUSH    EAX
-        FILD    dword ptr [ESP]
-        FLD     X
-        FSCALE
-        POP     EAX
-        FSTP    ST(1)
-        FWAIT
+function Ldexp(const X: Extended; const P: Integer): Extended; register;
+begin
+  Result := X * IntPower(2.0, P);
 end;
 
 function Ceil(const X: Extended): Integer;
@@ -862,33 +767,18 @@ end;
 { Conversion of bases:  Log.b(X) = Log.a(X) / Log.a(b)  }
 
 function Log10(const X: Extended): Extended;
-  { Log.10(X) := Log.2(X) * Log.10(2) }
-asm
-        FLDLG2     { Log base ten of 2 }
-        FLD     X
-        FYL2X
-        FWAIT
+begin
+  Result := Ln(X) / Ln(10);
 end;
 
 function Log2(const X: Extended): Extended;
-asm
-        FLD1
-        FLD     X
-        FYL2X
-        FWAIT
+begin
+  Result := Ln(X) / Ln(2);
 end;
 
 function LogN(const Base, X: Extended): Extended;
-{ Log.N(X) := Log.2(X) / Log.2(N) }
-asm
-        FLD1
-        FLD     X
-        FYL2X
-        FLD1
-        FLD     Base
-        FYL2X
-        FDIV
-        FWAIT
+begin
+  Result := Ln(X) / Ln(Base);
 end;
 
 function Poly(const X: Extended; const Coefficients: array of Double): Extended;
@@ -1510,46 +1400,19 @@ end;
 
 procedure RaiseOverflowError; forward;
 
-function SumInt(const Data: array of Integer): Integer;
-
-
-
-
-
-
-
-
-
-asm  // IN: EAX = ptr to Data, EDX = High(Data) = Count - 1
-     // loop unrolled 4 times, 5 clocks per loop, 1.2 clocks per datum
-      PUSH EBX
-      MOV  ECX, EAX         // ecx = ptr to data
-      MOV  EBX, EDX
-      XOR  EAX, EAX
-      AND  EDX, not 3
-      AND  EBX, 3
-      SHL  EDX, 2
-      JMP  @Vector.Pointer[EBX*4]
-@Vector:
-      DD @@1
-      DD @@2
-      DD @@3
-      DD @@4
-@@4:
-      ADD  EAX, [ECX+12+EDX]
-      JO   RaiseOverflowError
-@@3:
-      ADD  EAX, [ECX+8+EDX]
-      JO   RaiseOverflowError
-@@2:
-      ADD  EAX, [ECX+4+EDX]
-      JO   RaiseOverflowError
-@@1:
-      ADD  EAX, [ECX+EDX]
-      JO   RaiseOverflowError
-      SUB  EDX,16
-      JNS  @@4
-      POP  EBX
+function SumInt(const Data: array of Integer): Integer; register;
+var
+  Acc: Int64;
+  I: Integer;
+begin
+  Acc := 0;
+  for I := Low(Data) to High(Data) do
+  begin
+    Acc := Acc + Data[I];
+    if (Acc < Low(Integer)) or (Acc > High(Integer)) then
+      RaiseOverflowError;
+  end;
+  Result := Integer(Acc);
 end;
 
 
@@ -1558,49 +1421,14 @@ begin
   raise EIntOverflow.Create(SIntOverflow);
 end;
 
-function SUM(const Data: array of Double): Extended;
-
-
-
-
-
-
-
-
-
-asm  // IN: EAX = ptr to Data, EDX = High(Data) = Count - 1
-     // Uses 4 accumulators to minimize read-after-write delays and loop overhead
-     // 5 clocks per loop, 4 items per loop = 1.2 clocks per item
-       FLDZ
-       MOV      ECX, EDX
-       FLD      ST(0)
-       AND      EDX, not 3
-       FLD      ST(0)
-       AND      ECX, 3
-       FLD      ST(0)
-       SHL      EDX, 3      // count * sizeof(Double) = count * 8
-       JMP      @Vector.Pointer[ECX*4]
-@Vector:
-       DD @@1
-       DD @@2
-       DD @@3
-       DD @@4
-@@4:   FADD     qword ptr [EAX+EDX+24]    // 1
-       FXCH     ST(3)                     // 0
-@@3:   FADD     qword ptr [EAX+EDX+16]    // 1
-       FXCH     ST(2)                     // 0
-@@2:   FADD     qword ptr [EAX+EDX+8]     // 1
-       FXCH     ST(1)                     // 0
-@@1:   FADD     qword ptr [EAX+EDX]       // 1
-       FXCH     ST(2)                     // 0
-       SUB      EDX, 32
-       JNS      @@4
-       FADDP    ST(3),ST                  // ST(3) := ST + ST(3); Pop ST
-       FADD                               // ST(1) := ST + ST(1); Pop ST
-       FADD                               // ST(1) := ST + ST(1); Pop ST
-       FWAIT
+function Sum(const Data: array of Double): Extended; register;
+var
+  I: Integer;
+begin
+  Result := 0.0;
+  for I := Low(Data) to High(Data) do
+    Result := Result + Data[I];
 end;
-
 
 function SumOfSquares(const Data: array of Double): Extended;
 var
@@ -1612,69 +1440,19 @@ begin
 end;
 
 procedure SumsAndSquares(const Data: array of Double; var Sum, SumOfSquares: Extended);
-
-
-
-
-
-
-
-
-
-
-
-
-
-asm  // IN:  EAX = ptr to Data
-     //      EDX = High(Data) = Count - 1
-     //      ECX = ptr to Sum
-     // Est. 17 clocks per loop, 4 items per loop = 4.5 clocks per data item
-       FLDZ                 // init Sum accumulator
-       PUSH     ECX
-       MOV      ECX, EDX
-       FLD      ST(0)       // init Sqr1 accum.
-       AND      EDX, not 3
-       FLD      ST(0)       // init Sqr2 accum.
-       AND      ECX, 3
-       FLD      ST(0)       // init/simulate last data item left in ST
-       SHL      EDX, 3      // count * sizeof(Double) = count * 8
-       JMP      @Vector.Pointer[ECX*4]
-@Vector:
-       DD @@1
-       DD @@2
-       DD @@3
-       DD @@4
-@@4:   FADD                            // Sqr2 := Sqr2 + Sqr(Data4); Pop Data4
-       FLD     qword ptr [EAX+EDX+24]  // Load Data1
-       FADD    ST(3),ST                // Sum := Sum + Data1
-       FMUL    ST,ST                   // Data1 := Sqr(Data1)
-@@3:   FLD     qword ptr [EAX+EDX+16]  // Load Data2
-       FADD    ST(4),ST                // Sum := Sum + Data2
-       FMUL    ST,ST                   // Data2 := Sqr(Data2)
-       FXCH                            // Move Sqr(Data1) into ST(0)
-       FADDP   ST(3),ST                // Sqr1 := Sqr1 + Sqr(Data1); Pop Data1
-@@2:   FLD     qword ptr [EAX+EDX+8]   // Load Data3
-       FADD    ST(4),ST                // Sum := Sum + Data3
-       FMUL    ST,ST                   // Data3 := Sqr(Data3)
-       FXCH                            // Move Sqr(Data2) into ST(0)
-       FADDP   ST(3),ST                // Sqr1 := Sqr1 + Sqr(Data2); Pop Data2
-@@1:   FLD     qword ptr [EAX+EDX]     // Load Data4
-       FADD    ST(4),ST                // Sum := Sum + Data4
-       FMUL    ST,ST                   // Sqr(Data4)
-       FXCH                            // Move Sqr(Data3) into ST(0)
-       FADDP   ST(3),ST                // Sqr1 := Sqr1 + Sqr(Data3); Pop Data3
-       SUB     EDX,32
-       JNS     @@4
-       FADD                         // Sqr2 := Sqr2 + Sqr(Data4); Pop Data4
-       POP     ECX
-       FADD                         // Sqr1 := Sqr2 + Sqr1; Pop Sqr2
-       FXCH                         // Move Sum1 into ST(0)
-       MOV     EAX, SumOfSquares
-       FSTP    tbyte ptr [ECX]      // Sum := Sum1; Pop Sum1
-       FSTP    tbyte ptr [EAX]      // SumOfSquares := Sum1; Pop Sum1
-       FWAIT
+var
+  I: Integer;
+  Value: Extended;
+begin
+  Sum := 0.0;
+  SumOfSquares := 0.0;
+  for I := Low(Data) to High(Data) do
+  begin
+    Value := Data[I];
+    Sum := Sum + Value;
+    SumOfSquares := SumOfSquares + Value * Value;
+  end;
 end;
-
 
 function TotalVariance(const Data: array of Double): Extended;
 var
@@ -1947,16 +1725,8 @@ var
   Reverse: Boolean;
 
   function LostPrecision(X: Extended): Boolean;
-  asm
-        XOR     EAX, EAX
-        MOV     BX,WORD PTR X+8
-        INC     EAX
-        AND     EBX, $7FF0
-        JZ      @@1
-        CMP     EBX, $7FF0
-        JE      @@1
-        XOR     EAX,EAX
-  @@1:
+  begin
+    Result := (X = 0.0) or IsNan(X) or (X = Infinity) or (X = NegInfinity);
   end;
 
 begin
@@ -1994,7 +1764,7 @@ begin
   for Count := 1 to MaxIterations do
   begin
     EnT := Exp(NPeriods * T);
-    if {LostPrecision(EnT)} ent=(ent+1) then
+    if LostPrecision(EnT) then
     begin
       Result := -Pmt / First;
       if Reverse then
@@ -2155,12 +1925,13 @@ begin
 end;
 
 procedure ClearExceptions(RaisePending: Boolean);
-asm
-  cmp al, 0
-  jz @@clear
-  fwait
-@@clear:
-  fnclex
+var
+  ControlWord: Word;
+begin
+  ControlWord := Get8087CW;
+  if RaisePending then
+    Set8087CW(ControlWord and $FFC0);
+  Set8087CW(ControlWord);
 end;
 
 end.

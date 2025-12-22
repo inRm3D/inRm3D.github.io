@@ -1062,15 +1062,23 @@ begin
       Result := c;
 end;
 
-{Invert bytes using assembly}
+{Invert bytes without using assembly}
 function ByteSwap(const a: integer): integer;
-asm
-  bswap eax
+var
+  Value: Cardinal;
+begin
+  Value := Cardinal(a);
+  Result := Integer(
+    (Value shr 24) or
+    ((Value shr 8) and $0000FF00) or
+    ((Value shl 8) and $00FF0000) or
+    (Value shl 24)
+  );
 end;
+
 function ByteSwap16(inp:word): word;
-asm
-  bswap eax
-  shr   eax, 16
+begin
+  Result := ((inp and $FF00) shr 8) or ((inp and $00FF) shl 8);
 end;
 
 {Calculates number of bytes for the number of pixels using the}

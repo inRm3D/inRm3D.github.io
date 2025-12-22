@@ -85,7 +85,7 @@ function cgLineCircleCross(pa,na, pb:TcgVector; R:single; var px,py:TcgVector):i
 function cgTowCircleCross(pa,pb, Normal:TcgVector; La,Lb:double; var px,py:TcgVector):integer;//两圆交点
 function cgTowLineCross2( pA,pB, vA,vB:TcgVector ):TcgVector; //One,Tow 两直线端点 aa,bb两直线的向量
 function cgTowLineCross( One,Tow, va,vb:TcgVector ):TcgVector; //One,Tow 两直线端点 aa,bb两直线的向量
-function cgDeterminant2D( a1,b1,a2,b2:single) :single; assembler;
+function cgDeterminant2D( a1,b1,a2,b2:single) :single;
 function cgDeterminant3D(a1,b1,c1, a2,b2,c2, a3,b3,c3 :single) :single;
 function cgDeterminant3D1( a,b,c :TcgVector) :single;
 function cgDistance2D(x,y:integer; pp:TcgVector):single; //屏幕平面上两点之间距
@@ -127,163 +127,75 @@ begin
   p.x:=-p.x; p.y:=-p.y; p.z:=-p.z; 
 end;
 
-function cgVecSub(v1, v2: TCGVector): TCGVector; assembler;
-asm  //result:=cgVector(v1.x-v2.x, v1.y-v2.y, v1.z-v2.z)
- fld v1.x
- fsub v2.x
- fstp Result.x
-
- fld v1.y
- fsub v2.y
- fstp Result.y
-
- fld v1.z
- fsub v2.z
- fstp Result.z
+function cgVecSub(v1, v2: TCGVector): TCGVector;
+begin
+  Result.x := v1.x - v2.x;
+  Result.y := v1.y - v2.y;
+  Result.z := v1.z - v2.z;
+  Result.w := 0;
 end;
 
-function cgVecAdd(v1, v2: TCGVector): TCGVector; assembler;
-asm  //result:=cgVector(v1.x+v2.x, v1.y+v2.y, v1.z+v2.z)
- fld v1.x
- fadd v2.x
- fstp Result.x
-
- fld v1.y
- fadd v2.y
- fstp Result.y
-
- fld v1.z
- fadd v2.z
- fstp Result.z
-
- fld v1.w
- fadd v2.w
- fstp Result.w
+function cgVecAdd(v1, v2: TCGVector): TCGVector;
+begin
+  Result.x := v1.x + v2.x;
+  Result.y := v1.y + v2.y;
+  Result.z := v1.z + v2.z;
+  Result.w := v1.w + v2.w;
 end;
 
-function cgVecMid(v1, v2: TCGVector): TCGVector; //
-  const mid:single = 0.5;
-asm
-  fld v1.x
-  fadd v2.x
-  fmul mid  //v.x*0.5
-  fstp Result.x
-
-  fld v1.y
-  fadd v2.y
-  fmul mid  //v.x*0.5
-  fstp Result.y
-
-  fld v1.z
-  fadd v2.z
-  fmul mid  //v.x*0.5
-  fstp Result.z
+function cgVecMid(v1, v2: TCGVector): TCGVector;
+const
+  Half = 0.5;
+begin
+  Result.x := (v1.x + v2.x) * Half;
+  Result.y := (v1.y + v2.y) * Half;
+  Result.z := (v1.z + v2.z) * Half;
+  Result.w := 0;
 end;
 
 function cgVecPower(v :TcgVector): single;
-asm  //v.x*v.x + v.y*v.y + v.z*v.z
-  fld v.x
-  fmul v.x  //v.x*v.x
-
-  fld v.y
-  fmul v.y  //v.y*v.y
-  faddp     //v.x*v.x + v.y*v.y
-
-  fld v.z
-  fmul v.z  //v.z*v.z
-  faddp     //v.x*v.x + v.y*v.y + v.z*v.z
-  fstp Result
+begin
+  Result := Sqr(v.x) + Sqr(v.y) + Sqr(v.z);
 end;
 
 function cgVecMult(v1,v2 :TCGVector):TCGVector;
-asm //result:=cgVector(v1.x*v2.x, v1.y*v2.y, v1.z*v2.z)
-  fld v1.x
-  fmul v2.x
-  fstp Result.x
-
-  fld v1.y
-  fmul v2.y
-  fstp Result.y
-
-  fld v1.z
-  fmul v2.z
-  fstp Result.z
+begin
+  Result.x := v1.x * v2.x;
+  Result.y := v1.y * v2.y;
+  Result.z := v1.z * v2.z;
+  Result.w := 0;
 end;
 
-function cgVecScale(v1 : TCGVector ; scale : Single): TCGVector; assembler;
-asm //result:=cgVector(v.x*scale, v.y*scale, v.z*scale)
- fld v1.x
- fmul scale
- fstp Result.x
-
- fld v1.y
- fmul scale
- fstp Result.y
-
- fld v1.z
- fmul scale
- fstp Result.z
-
- fld v1.w
- fmul scale
- fstp Result.w
+function cgVecScale(v1 : TCGVector ; scale : Single): TCGVector;
+begin
+  Result.x := v1.x * scale;
+  Result.y := v1.y * scale;
+  Result.z := v1.z * scale;
+  Result.w := v1.w * scale;
 end;
+
 function cgVecAddMult(v1,v2 : TCGVector; scale : Single): TCGVector;
-asm //result:=cgVector(v1.x+v2.x*scale, v1.y+v2.y*scale, v1.z+v2.z*scale)
-  fld v2.x
-  fmul scale
-  fadd v1.x
-  fstp Result.x
-
-  fld v2.y
-  fmul scale
-  fadd v1.y
-  fstp Result.y
-
-  fld v2.z
-  fmul scale
-  fadd v1.z
-  fstp Result.z
+begin
+  Result.x := v1.x + v2.x * scale;
+  Result.y := v1.y + v2.y * scale;
+  Result.z := v1.z + v2.z * scale;
+  Result.w := 0;
 end;
+
 function cgVecSubMult(v1,v2 : TCGVector; scale : Single): TCGVector;
-asm //result:=cgVector(v1.x-v2.x*scale, v1.y-v2.y*scale, v1.z-v2.z*scale)
-  fld v1.x
-  fld v2.x
-  fmul scale
-  fsubp
-  fstp Result.x
-
-  fld v1.y
-  fld v2.y
-  fmul scale
-  fsubp
-  fstp Result.y
-
-  fld v1.z
-  fld v2.z
-  fmul scale
-  fsubp
-  fstp Result.z
+begin
+  Result.x := v1.x - v2.x * scale;
+  Result.y := v1.y - v2.y * scale;
+  Result.z := v1.z - v2.z * scale;
+  Result.w := 0;
 end;
+
 function cgVecMultSub(v1,v2 : TCGVector; scale : Single): TCGVector;
-asm //result:=cgVector(v1.x*scale-v2.x, v1.y*scale-v2.y, v1.z*scale-v2.z)
-  fld v1.x
-  fmul scale
-  fld v2.x
-  fsubp
-  fstp Result.x
-
-  fld v1.y
-  fmul scale
-  fld v2.y
-  fsubp
-  fstp Result.y
-
-  fld v1.z
-  fmul scale
-  fld v2.z
-  fsubp
-  fstp Result.z
+begin
+  Result.x := v1.x * scale - v2.x;
+  Result.y := v1.y * scale - v2.y;
+  Result.z := v1.z * scale - v2.z;
+  Result.w := 0;
 end;
 
 procedure cgSetPrecision(_eps: Single);
@@ -373,125 +285,40 @@ begin
   result.x:=Min(v1.x,v2.x); result.y:=Min(v1.y,v2.y); result.z:=Min(v1.z,v2.z);
 end;
 
-procedure cgTranslate(var v: TCGVector; t: TCGVector); assembler;
-asm   //v.x:=v.x+t.x  v.y:=v.y+t.y  v.z:=v.z+t.z
-    fld v.x
-    fadd t.x
-    fstp v.x
-
-    fld v.y
-    fadd t.y
-    fstp v.y
-
-    fld v.z
-    fadd t.z
-    fstp v.z
+procedure cgTranslate(var v: TCGVector; t: TCGVector);
+begin
+  v.x := v.x + t.x;
+  v.y := v.y + t.y;
+  v.z := v.z + t.z;
 end;
 
 procedure cgMirror(var v: TCGVector; mx, my, mz: Boolean);
-
-label __my , __mz , __exit;
-
-asm
-          test dl,dl
-          jz __my
-          fld v.x
-          fchs
-          fstp v.x
-
-    __my :
-          test cl,cl
-          jz __mz
-          fld v.y
-          fchs
-          fstp v.y
-
-    __mz :
-          cmp mz,$00
-          jz __exit
-          fld v.z
-          fchs
-          fstp v.z
-          jb __exit
-
-    __exit:
+begin
+  if mx then v.x := -v.x;
+  if my then v.y := -v.y;
+  if mz then v.z := -v.z;
 end;
 
-procedure cgScale(var v: TCGVector; sx, sy, sz: Single); assembler;
-asm { Scale v with the given scale factors for each axis. }
-  fld v.x
-  fmul sx
-  fstp v.x
-
-  fld v.y
-  fmul sy
-  fstp v.y
-
-  fld v.z
-  fmul sz
-  fstp v.z
+procedure cgScale(var v: TCGVector; sx, sy, sz: Single);
+begin
+  v.x := v.x * sx;
+  v.y := v.y * sy;
+  v.z := v.z * sz;
 end;
-function cgModelLength( a,b,c :single): single; assembler;
-asm
-  fld a
-  fmul a
 
-  fld b
-  fmul b
-  faddp
-
-  fld c
-  fmul c
-  faddp
-
-  fsqrt
-  fstp Result
+function cgModelLength( a,b,c :single): single;
+begin
+  Result := Sqrt(Sqr(a) + Sqr(b) + Sqr(c));
 end;
-function cgVecLength(v: TCGVector): Single; assembler;
-asm
-  fld v.x
-  fmul v.x
 
-  fld v.y
-  fmul v.y
-  faddp
-
-  fld v.z
-  fmul v.z
-  faddp
-
-  fsqrt
-  fstp Result
+function cgVecLength(v: TCGVector): Single;
+begin
+  Result := Sqrt(Sqr(v.x) + Sqr(v.y) + Sqr(v.z));
 end;
 
 function cgDistance(v1, v2: TCGVector): Single;
-begin { Calculate the distance between two points. }
-  asm
-    fld v1.x
-    fchs        // working faster - no if conditions!
-    fstp v1.x
-
-    fld v1.y
-    fchs
-    fstp v1.y
-
-    fld v1.z
-    fchs
-    fstp v1.z
-
-    fld v1.x
-    fadd v2.x
-    fstp v2.x
-
-    fld v1.y
-    fadd v2.y
-    fstp v2.y
-
-    fld v1.z
-    fadd v2.z
-    fstp v2.z
-  end;
-  Result := cgVecLength(v2);
+begin
+  Result := cgVecLength(cgVecSub(v1, v2));
 end;
 
 function cgDistanceDotLine(p1,p2, v2:TcgVector): single; //点到直线之距离
@@ -510,144 +337,53 @@ begin
   v.x:=v.x/v.w; v.y:=v.y/v.w; v.z:=v.z/v.w;
 end;
 
-procedure cgNormalize2(var v: TCGVector); assembler;
-  LABEL _EXIT;  //向量格式化
-asm
-  fld v.x
-  fmul v.x  //v.x*v.x
-
-  fld v.y
-  fmul v.y  //v.y*v.y
-  faddp     //v.x*v.x + v.y*v.y
-
-  fld v.z
-  fmul v.z  //v.z*v.z
-  faddp     //v.x*v.x + v.y*v.y + v.z*v.z
-
-  fsqrt     //sqrt(v.x*v.x + v.y*v.y + v.z*v.z)
-
-  ftst
-  jz _EXIT
-  fstp v.w  //  fstp L
-
-  fld v.x
-  fdiv v.w
-  fstp v.x
-
-  fld v.y
-  fdiv v.w
-  fstp v.y
-
-  fld v.z
-  fdiv v.w
-  fstp v.z
-
-  _EXIT:
+procedure cgNormalize2(var v: TCGVector);
+begin
+  v.w := cgVecLength(v);
+  if EP(v.w) then
+    Exit;
+  v.x := v.x / v.w;
+  v.y := v.y / v.w;
+  v.z := v.z / v.w;
 end;
 
-procedure cgRotateX(var v: TCGVector; a: Single); assembler;
-var temp: TCGVector;
-    sin_ , cos_ : Single;
-asm
-  fld a
-  fcos
-  fstp cos_
-
-  fld a
-  fsin
-  fstp sin_
-
-  fld v.y//dword ptr [v.y]          //    y := (v.y * cos_) + (v.z * -sin_);
-  fmul cos_
-
-  fld v.z//dword ptr [v.z]
-  fmul sin_
-  fsubp
-  fstp temp.y
-
-  fld v.y//dword ptr [v.y]
-  fmul sin_
-
-  fld v.z//dword ptr [v.z]
-  fmul cos_
-  faddp
-  fstp v.z//dword ptr [v.z]
-
-  fld1
-  fstp v.w//dword ptr [v.w]
-
-  fld temp.y
-  fstp v.y//dword ptr [v.y]
+procedure cgRotateX(var v: TCGVector; a: Single);
+var
+  sin_, cos_, newY, newZ: Single;
+begin
+  sin_ := Sin(a);
+  cos_ := Cos(a);
+  newY := v.y * cos_ - v.z * sin_;
+  newZ := v.y * sin_ + v.z * cos_;
+  v.y := newY;
+  v.z := newZ;
+  v.w := 1;
 end;
 
-procedure cgRotateY(var v: TCGVector; a: Single); assembler;
-var temp: TCGVector;
-    sin_ , cos_ : Single;
-asm
-   fld a
-   fcos
-   fstp cos_
-
-   fld a
-   fsin
-   fstp sin_
-
-   fld v.x//dword ptr [v.x]
-   fmul cos_
-
-   fld v.z//dword ptr [v.z]
-   fmul sin_
-   faddp
-   fstp temp.x
-
-   fld v.z//dword ptr [v.z]
-   fmul cos_
-
-   fld v.x//dword ptr [v.x]
-   fmul sin_
-   fsubp
-   fstp v.z//dword ptr [v.z]
-
-   fld1
-   fstp v.w//dword ptr [v.w]
-
-   fld temp.x
-   fstp v.x//dword ptr [v.x]
+procedure cgRotateY(var v: TCGVector; a: Single);
+var
+  sin_, cos_, newX, newZ: Single;
+begin
+  sin_ := Sin(a);
+  cos_ := Cos(a);
+  newX := v.x * cos_ + v.z * sin_;
+  newZ := -v.x * sin_ + v.z * cos_;
+  v.x := newX;
+  v.z := newZ;
+  v.w := 1;
 end;
 
-procedure cgRotateZ(var v: TCGVector; a: Single); assembler;
-var temp: TCGVector;
-    sin_ , cos_ : Single;
- asm
-   fld a
-   fcos
-   fstp cos_
-
-   fld a
-   fsin
-   fstp sin_
-
-   fld v.x//dword ptr [v.x]
-   fmul cos_
-
-   fld v.y//dword ptr [v.y]
-   fmul sin_
-   fsubp
-   fstp temp.x
-
-   fld v.x//dword ptr [v.x]
-   fmul sin_
-
-   fld v.y//dword ptr [v.y]
-   fmul cos_
-   faddp
-   fstp v.y//dword ptr [v.y]
-
-   fld1
-   fstp v.w//dword ptr [v.w]
-
-   fld temp.x
-   fstp v.x//dword ptr [v.x]
+procedure cgRotateZ(var v: TCGVector; a: Single);
+var
+  sin_, cos_, newX, newY: Single;
+begin
+  sin_ := Sin(a);
+  cos_ := Cos(a);
+  newX := v.x * cos_ - v.y * sin_;
+  newY := v.x * sin_ + v.y * cos_;
+  v.x := newX;
+  v.y := newY;
+  v.w := 1;
 end;
 
 procedure cgRotate(var v: TCGVector; P, Q: TCGVector; a: Single);
@@ -679,97 +415,29 @@ begin { Rotate v over a radians around axis PQ. }
 
 end;
 
-function cgDotProduct(v1, v2: TCGVector): Single; assembler;
-asm // Result := v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
-  fld v1.x
-  fmul v2.x
-
-  fld v1.y
-  fmul v2.y
-  faddp
-
-  fld v1.z
-  fmul v2.z
-  faddp
-  fstp Result
+function cgDotProduct(v1, v2: TCGVector): Single;
+begin
+  Result := v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 end;
 
-function cgCrossProduct(v1, v2: TCGVector): TCGVector; assembler;
-asm       //Result := cgVector(v1.y * v2.z - v2.y * v1.z,
-          //                   v2.x * v1.z - v1.x * v2.z,
-          //                   v1.x * v2.y - v2.x * v1.y);
-  fld v2.y
-  fmul v1.z
-
-  fld v1.y
-  fmul v2.z
-  fsubp
-  fstp Result.x
-
-  fld v1.x
-  fmul v2.z
-
-  fld v2.x
-  fmul v1.z
-  fsubp
-  fstp Result.y
-
-  fld v2.x
-  fmul v1.y
-
-  fld v1.x
-  fmul v2.y
-  fsubp
-  fstp Result.z
-
-  fld1
-  fstp Result.w
+function cgCrossProduct(v1, v2: TCGVector): TCGVector;
+begin
+  Result.x := v1.y * v2.z - v2.y * v1.z;
+  Result.y := v2.x * v1.z - v1.x * v2.z;
+  Result.z := v1.x * v2.y - v2.x * v1.y;
+  Result.w := 1;
 end;
 
 function cgIIF(b:boolean; v1,v2:TcgVector): TCGVector;
 begin if b then result:=v1 else result:=v2; end;
 
 function cgGetNormal(v1, v2, v3: TCGVector): TCGVector;
-begin // Return the normal vector to the plane defined by v1, v2 and v3.
-  asm
-    //cgMirror(v2, TRUE, TRUE, TRUE);
-    fld v2.x
-    fchs                             // working faster - no if conditions!
-    fstp v2.x
-
-    fld v2.y
-    fchs
-    fstp v2.y
-
-    fld v2.z
-    fchs
-    fstp v2.z
-    //  cgTranslate(v1, v2);
-    fld v1.x
-    fadd v2.x
-    fstp v1.x
-
-    fld v1.y
-    fadd v2.y
-    fstp v1.y
-
-    fld v1.z
-    fadd v2.z
-    fstp v1.z
-   // cgTranslate(v3, v2);
-    fld v3.x
-    fadd v2.x
-    fstp v3.x
-
-    fld v3.y
-    fadd v2.y
-    fstp v3.y
-
-    fld v3.z
-    fadd v2.z
-    fstp v3.z
-  end;
-  Result := cgCrossProduct(v1, v3);
+var
+  a, b: TCGVector;
+begin
+  a := cgVecSub(v1, v2);
+  b := cgVecSub(v3, v2);
+  Result := cgCrossProduct(a, b);
   cgNormalize(Result);
 end;
 
@@ -1222,15 +890,9 @@ begin
   result:=cgVecAddMult(One,va,t);
 end;
 
-function cgDeterminant2D( a1,b1,a2,b2:single) :single; assembler;
-asm  //二阶行列式的值 a1*b2-a2*b1
-  fld a1
-  fmul b2
-  fld a2
-  fmul b1
-
-  fsubp
-  fstp Result
+function cgDeterminant2D( a1,b1,a2,b2:single) :single;
+begin
+  Result := a1 * b2 - a2 * b1;
 end;
 
 function cgDeterminant3D(a1,b1,c1, a2,b2,c2, a3,b3,c3 :single) :single;

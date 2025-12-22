@@ -1361,38 +1361,58 @@ function getInt(st:string; k:integer):integer; //从字串中提取整数
   end;
 
 function ArcTan2(const Y, X: Extended): Extended;
-  asm
-        FLD     Y
-        FLD     X
-        FPATAN
-        FWAIT
+const
+  PiValue = Pi;
+  HalfPi = Pi / 2;
+var
+  Angle: Extended;
+begin
+  if X > 0 then
+    Result := System.ArcTan(Y / X)
+  else if X < 0 then
+  begin
+    Angle := System.ArcTan(Y / X);
+    if Y >= 0 then
+      Result := Angle + PiValue
+    else
+      Result := Angle - PiValue;
+  end
+  else
+  begin
+    if Y > 0 then
+      Result := HalfPi
+    else if Y < 0 then
+      Result := -HalfPi
+    else
+      Result := 0.0;
   end;
+end;
 function ArcCos(const X: Extended): Extended;
   begin Result := ArcTan2(Sqrt(1 - X * X), X); end;
 function ArcSin(const X: Extended): Extended;
   begin Result := ArcTan2(X, Sqrt(1 - X * X))  end;
 function IntPower(const Base: Extended; const Exponent: Integer): Extended;
-asm
-        mov     ecx, eax
-        cdq
-        fld1                      { Result := 1 }
-        xor     eax, edx
-        sub     eax, edx          { eax := Abs(Exponent) }
-        jz      @@3
-        fld     Base
-        jmp     @@2
-@@1:    fmul    ST, ST            { X := Base * Base }
-@@2:    shr     eax,1
-        jnc     @@1
-        fmul    ST(1),ST          { Result := Result * X }
-        jnz     @@1
-        fstp    st                { pop X from FPU stack }
-        cmp     ecx, 0
-        jge     @@3
-        fld1
-        fdivrp                    { Result := 1 / Result }
-@@3:
-        fwait
+var
+  Power: Integer;
+  Factor: Extended;
+  Negative: Boolean;
+begin
+  Power := Exponent;
+  Negative := Power < 0;
+  if Negative then
+    Power := -Power;
+  Result := 1.0;
+  Factor := Base;
+  while Power > 0 do
+  begin
+    if Odd(Power) then
+      Result := Result * Factor;
+    Power := Power shr 1;
+    if Power > 0 then
+      Factor := Factor * Factor;
+  end;
+  if Negative then
+    Result := 1.0 / Result;
 end;
 function Power(const Base, Exponent: Extended): Extended;
 begin
