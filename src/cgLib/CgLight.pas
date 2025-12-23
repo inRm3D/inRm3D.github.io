@@ -5,7 +5,7 @@ unit CgLight;
 interface
 
 uses
-  CgTypes, GL;
+  CgTypes, cgGL;
 
 type
   TCGLight = class(TObject)      // OpenGL light source.

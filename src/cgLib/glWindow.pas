@@ -1,4 +1,5 @@
 unit glWindow;
+{$codepage utf8}
 
 interface
 

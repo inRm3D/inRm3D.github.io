@@ -1,0 +1,1 @@
+// 在此文件中定义使用SGIGL或3DFXGL表明使用其他OpenGL驱动

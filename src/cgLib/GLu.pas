@@ -17,10 +17,18 @@ unit GLu;
 
 interface
 
+{$MACRO ON}
+
 uses
-  GL;
+  cgGL;
 
 {$INCLUDE GLDRIVER.INC}
+
+{$IFDEF MSWINDOWS}
+  {$DEFINE GLUCALL := stdcall}
+{$ELSE}
+  {$DEFINE GLUCALL := cdecl}
+{$ENDIF}
 
 const
   {$IFDEF SGIGL}
@@ -29,7 +37,11 @@ const
     {$IFDEF 3DFXGL}
       GLUDLL = '';   //*** 3dfx does not have a GLU library!!!
     {$ELSE}
-      GLUDLL = 'GLU32.DLL';
+      {$IFDEF MSWINDOWS}
+        GLUDLL = 'GLU32.DLL';
+      {$ELSE}
+        GLUDLL = 'GLU';
+      {$ENDIF}
     {$ENDIF}
   {$ENDIF}
 
@@ -43,35 +55,35 @@ type
   PPointer = ^Pointer;
 
 function gluErrorString(errCode: GLenum): PGLubyte;
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 function gluErrorUnicodeStringEXT(errCode: GLenum): PWideChar;
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 function gluGetString(name: GLenum): PGLubyte;
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluOrtho2D(left,right, bottom, top: GLdouble);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluPerspective(fovy, aspect, zNear, zFar: GLdouble);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluPickMatrix(x, y, width, height: GLdouble; viewport: TViewPortArray);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluLookAt(eyex, eyey, eyez, centerx, centery, centerz, upx, upy, upz: GLdouble);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 function gluProject(objx, objy, objz: GLdouble; const modelMatrix, projMatrix: T16dArray;
                     viewport: TViewPortArray; winx, winy, winz: PGLdouble): Integer;
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 function gluUnProject(winx, winy, winz: GLdouble; const modelMatrix, projMatrix: T16dArray;
                       viewport: TViewPortArray; objx, objy, objz: PGLdouble): Integer;
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 function gluScaleImage(format: GLenum; widthin, heightin: GLint; typein: GLenum;
                        const datain: Pointer; widthout, heightout: GLint; typeout: GLenum;
                        dataout: Pointer): Integer;
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 function gluBuild1DMipmaps(target: GLenum; components, width: GLint; format,
                            atype: GLenum; const data: Pointer): Integer;
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 function gluBuild2DMipmaps(target: GLenum; components, width, height: GLint; format,
                            atype: GLenum; const data: Pointer): Integer;
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 
 type
   GLUnurbs = record end;                PGLUnurbs = ^GLUnurbs;
@@ -85,87 +97,87 @@ type
   GLUtriangulatorObj = GLUtesselator;   PGLUtriangulatorObj = PGLUtesselator;
 
 function gluNewQuadric: PGLUquadric;
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluDeleteQuadric(state: PGLUquadric);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluQuadricNormals(quadObject: PGLUquadric; normals: GLenum);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluQuadricTexture(quadObject: PGLUquadric; textureCoords: GLboolean);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluQuadricOrientation(quadObject: PGLUquadric; orientation: GLenum);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluQuadricDrawStyle(quadObject: PGLUquadric; drawStyle: GLenum);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluCylinder(qobj: PGLUquadric; baseRadius, topRadius, height: GLdouble;
                       slices, stacks: GLint);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluDisk(qobj: PGLUquadric; innerRadius, outerRadius: GLdouble;
                   slices, loops: GLint);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluPartialDisk(qobj: PGLUquadric; innerRadius, outerRadius: GLdouble;
                          slices, loops: GLint; startAngle, sweepAngle: GLdouble);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluSphere(qobj: PGLuquadric; radius: GLdouble; slices, stacks: GLint);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluQuadricCallback(qobj: PGLUquadric; which: GLenum; fn: TCallBack);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 function gluNewTess: PGLUtesselator;
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluDeleteTess(tess: PGLUtesselator);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluTessBeginPolygon(tess: PGLUtesselator; polygon_data: Pointer);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluTessBeginContour(tess: PGLUtesselator);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluTessVertex(tess: PGLUtesselator; coords: T3dArray; data: Pointer);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluTessEndContour(tess: PGLUtesselator);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluTessEndPolygon(tess: PGLUtesselator);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluTessProperty(tess: PGLUtesselator; which: GLenum; value: GLdouble);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluTessNormal(tess: PGLUtesselator; x, y, z: GLdouble);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluTessCallback(tess: PGLUtesselator; which: GLenum;fn: TCallBack);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluGetTessProperty(tess: PGLUtesselator; which: GLenum; value: PGLdouble);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 function gluNewNurbsRenderer: PGLUnurbs;
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluDeleteNurbsRenderer(nobj: PGLUnurbs);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluBeginSurface(nobj: PGLUnurbs);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluBeginCurve(nobj: PGLUnurbs);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluEndCurve(nobj: PGLUnurbs);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluEndSurface(nobj: PGLUnurbs);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluBeginTrim(nobj: PGLUnurbs);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluEndTrim(nobj: PGLUnurbs);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluPwlCurve(nobj: PGLUnurbs; count: GLint; aarray: PGLfloat; stride: GLint;
                       atype: GLenum);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluNurbsCurve(nobj: PGLUnurbs; nknots: GLint; knot: PGLfloat; stride: GLint;
                         ctlarray: PGLfloat; order: GLint; atype: GLenum);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluNurbsSurface(nobj: PGLUnurbs; sknot_count: GLint; sknot: PGLfloat;
                           tknot_count: GLint; tknot: PGLfloat; s_stride, t_stride: GLint;
                           ctlarray: PGLfloat; sorder, torder: GLint; atype: GLenum);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluLoadSamplingMatrices(nobj: PGLUnurbs; const modelMatrix, projMatrix:
                                   T16dArray; viewport: TViewPortArray);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluNurbsProperty(nobj: PGLUnurbs; aproperty: GLenum; value: GLfloat);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluGetNurbsProperty(nobj: PGLUnurbs; aproperty: GLenum; value: PGLfloat);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluNurbsCallback(nobj: PGLUnurbs; which: GLenum; fn: TCallBack);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 
 
 (****           Callback function prototypes    ****)
@@ -175,19 +187,19 @@ type
   GLUquadricErrorProc = procedure(p: GLenum);
 
   // gluTessCallback
-  GLUtessBeginProc = procedure(p: GLenum); stdcall;
-  GLUtessEdgeFlagProc = procedure(p: GLboolean); stdcall;
-  GLUtessVertexProc = procedure(p: Pointer); stdcall;
-  GLUtessEndProc = procedure; stdcall;
-  GLUtessErrorProc = procedure(p: GLenum); stdcall;
-  GLUtessCombineProc = procedure(p1: T3dArray; p2: T4pArray; p3: T4fArray; p4: PPointer); stdcall;
-  GLUtessBeginDataProc = procedure(p1: GLenum; p2: Pointer); stdcall;
-  GLUtessEdgeFlagDataProc = procedure(p1: GLboolean; p2: Pointer); stdcall;
-  GLUtessVertexDataProc = procedure(p1, p2: Pointer); stdcall;
-  GLUtessEndDataProc = procedure(p: Pointer); stdcall;
-  GLUtessErrorDataProc = procedure(p1: GLenum; p2: Pointer); stdcall;
+  GLUtessBeginProc = procedure(p: GLenum); GLUCALL;
+  GLUtessEdgeFlagProc = procedure(p: GLboolean); GLUCALL;
+  GLUtessVertexProc = procedure(p: Pointer); GLUCALL;
+  GLUtessEndProc = procedure; GLUCALL;
+  GLUtessErrorProc = procedure(p: GLenum); GLUCALL;
+  GLUtessCombineProc = procedure(p1: T3dArray; p2: T4pArray; p3: T4fArray; p4: PPointer); GLUCALL;
+  GLUtessBeginDataProc = procedure(p1: GLenum; p2: Pointer); GLUCALL;
+  GLUtessEdgeFlagDataProc = procedure(p1: GLboolean; p2: Pointer); GLUCALL;
+  GLUtessVertexDataProc = procedure(p1, p2: Pointer); GLUCALL;
+  GLUtessEndDataProc = procedure(p: Pointer); GLUCALL;
+  GLUtessErrorDataProc = procedure(p1: GLenum; p2: Pointer); GLUCALL;
   GLUtessCombineDataProc = procedure(p1: T3dArray; p2: T4pArray; p3: T4fArray;
-                                     p4: PPointer; p5: Pointer); stdcall;
+                                     p4: PPointer; p5: Pointer); GLUCALL;
 
   // gluNurbsCallback
   GLUnurbsErrorProc = procedure(p: GLenum);
@@ -366,11 +378,11 @@ const
 //***           Backwards compatibility for old tesselator           ****/
 
 procedure gluBeginPolygon(tess: PGLUtesselator);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluNextContour(tess: PGLUtesselator; atype: GLenum);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 procedure gluEndPolygon(tess: PGLUtesselator);
-                      stdcall; external GLUDLL;
+                      GLUCALL; external GLUDLL;
 
 const
   // Contours types -- obsolete!

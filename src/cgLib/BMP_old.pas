@@ -1,7 +1,8 @@
 unit BMP;
+{$codepage utf8}
 interface
 uses
-  Windows, SysUtils,  Graphics, GL, JPEG, GIFimage;   // OpenGL,Dialogs,
+  Windows, SysUtils,  Graphics, cgGL, JPEG, GIFimage;   // OpenGL,Dialogs,
                                                                            
 type TRGBA= Record R,G,B,A :Byte; end;
      TRGB = Record B,G,R :Byte; end;
@@ -13,18 +14,19 @@ procedure glGenTextures(n: integer; var textures: Cardinal); stdcall; external o
 implementation
 //uses Geometer;
 procedure SwapRGB(data : Pointer; Size : Integer);
-asm              {--------------------------------------}
-  mov ebx, eax   {  Swap bitmap format from BGR to RGB  }
-  mov ecx, size  {--------------------------------------}
-
-@@loop :
-  mov al,[ebx+0]
-  mov ah,[ebx+2]
-  mov [ebx+2],al
-  mov [ebx+0],ah
-  add ebx,3
-  dec ecx
-  jnz @@loop
+var
+  Pixels: ^TRGB;
+  I: Integer;
+  Temp: Byte;
+begin
+  Pixels := data;
+  for I := 0 to Size - 1 do
+  begin
+    Temp := Pixels^.R;
+    Pixels^.R := Pixels^.B;
+    Pixels^.B := Temp;
+    Inc(Pixels);
+  end;
 end;
 //将图片尺寸圆整到2的整数幂
 procedure SetNewSize(w,h: Integer; var newW,newH: integer);

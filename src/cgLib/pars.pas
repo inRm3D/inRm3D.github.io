@@ -1,11 +1,12 @@
 unit Pars;
+{$codepage utf8}
 {$F+}
 {$IFDEF WIN32}
 {$H-}
 {$ENDIF}
 interface
 
-uses Build, Parsglb, SysUtils, Math;
+uses Build, Parsglb, SysUtils, cgMath;
 
 type
 

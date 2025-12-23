@@ -20,6 +20,7 @@
       { *****************************************************************}
 
 unit GDIPOBJ;
+{$codepage utf8}
 
 interface
 uses
@@ -199,7 +200,7 @@ type
     function GetLastStatus: TStatus;
   end;
 
-  TGPInstalledFontCollection = class(TGPFontCollection)  //±íÊ¾°²×°ÔÚÏµÍ³ÉÏµÄ×ÖÌå
+  TGPInstalledFontCollection = class(TGPFontCollection)  //è¡¨ç¤ºå®‰è£…åœ¨ç³»ç»Ÿä¸Šçš„å­—ä½“
   public
     constructor Create; reintroduce;
     destructor Destroy; override;
@@ -7219,13 +7220,13 @@ implementation
   end;
 
   function TGPGraphicsPath.AddString(
-      string_: WideString;                   //ÒªÌí¼ÓµÄ String
+      string_: WideString;                   //è¦æ·»åŠ çš„ String
       length: Integer;                       //
-      family : TGPFontFamily;                //±íÊ¾»æÖÆÎÄ±¾ËùÓÃ×ÖÌåµÄÃû³Æ
-      style  : Integer;                      //Ò»¸ö FontStyle Ã¶¾Ù£¬Ëü±íÊ¾ÓĞ¹ØÎÄ±¾µÄÑùÊ½ĞÅÏ¢£¨´ÖÌå¡¢Ğ±ÌåµÈ£©¡£Ëü±ØĞëÎªÕûÊı
-      emSize : Single;  // World units       //ÏŞ¶¨×Ö·ûµÄ Em£¨×ÖÌå´óĞ¡£©·½¿òµÄ¸ß¶È
-      origin : TGPPointF;                    //Ò»¸ö Point£¬Ëü±íÊ¾ÎÄ±¾´ÓÆäÆğÊ¼µÄµã
-      format : TGPStringFormat): TStatus;    //Ö¸¶¨ÎÄ±¾¸ñÊ½ÉèÖÃĞÅÏ¢£¨ÈçĞĞ¼ä¾àºÍ¶ÔÆë·½Ê½£©µÄ StringFormat
+      family : TGPFontFamily;                //è¡¨ç¤ºç»˜åˆ¶æ–‡æœ¬æ‰€ç”¨å­—ä½“çš„åç§°
+      style  : Integer;                      //ä¸€ä¸ª FontStyle æšä¸¾ï¼Œå®ƒè¡¨ç¤ºæœ‰å…³æ–‡æœ¬çš„æ ·å¼ä¿¡æ¯ï¼ˆç²—ä½“ã€æ–œä½“ç­‰ï¼‰ã€‚å®ƒå¿…é¡»ä¸ºæ•´æ•°
+      emSize : Single;  // World units       //é™å®šå­—ç¬¦çš„ Emï¼ˆå­—ä½“å¤§å°ï¼‰æ–¹æ¡†çš„é«˜åº¦
+      origin : TGPPointF;                    //ä¸€ä¸ª Pointï¼Œå®ƒè¡¨ç¤ºæ–‡æœ¬ä»å…¶èµ·å§‹çš„ç‚¹
+      format : TGPStringFormat): TStatus;    //æŒ‡å®šæ–‡æœ¬æ ¼å¼è®¾ç½®ä¿¡æ¯ï¼ˆå¦‚è¡Œé—´è·å’Œå¯¹é½æ–¹å¼ï¼‰çš„ StringFormat
   var
     rect : TGPRectF;
     gpff : GPFONTFAMILY;
@@ -7960,7 +7961,7 @@ implementation
 
   constructor TGPPathGradientBrush.Create;
   begin
-     // écrase la fonction parent
+     // é–rase la fonction parent
   end;
 
 initialization

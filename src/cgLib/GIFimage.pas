@@ -1505,22 +1505,15 @@ function GDICheck(Value: Cardinal): Cardinal;
 var
   ErrorCode		: integer;
   Buf			: array [byte] of char;
-
-  function ReturnAddr: Pointer;
-  // From classes.pas
-  asm
-    MOV		EAX,[EBP+4] // sysutils.pas says [EBP-4], but this works !
-  end;
-
 begin
   if (Value = 0) then
   begin
     ErrorCode := GetLastError;
     if (ErrorCode <> 0) and (FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, nil,
       ErrorCode, LOCALE_USER_DEFAULT, Buf, sizeof(Buf), nil) <> 0) then
-      raise EOutOfResources.Create(Buf) at ReturnAddr
+      raise EOutOfResources.Create(Buf)
     else
-      raise EOutOfResources.Create(SOutOfResources) at ReturnAddr;
+      raise EOutOfResources.Create(SOutOfResources);
   end;
   Result := Value;
 end;
@@ -1533,13 +1526,8 @@ end;
 **  Raise error condition
 *)
 procedure Error(msg: string);
-  function ReturnAddr: Pointer;
-  // From classes.pas
-  asm
-    MOV		EAX,[EBP+4] // sysutils.pas says [EBP-4] !
-  end;
 begin
-  raise GIFException.Create(msg) at ReturnAddr;
+  raise GIFException.Create(msg);
 end;
 
 (*
@@ -2208,25 +2196,23 @@ end;
 { CompareMem performs a binary compare of Length bytes of memory referenced
   by P1 to that of P2.  CompareMem returns True if the memory referenced by
   P1 is identical to that of P2. }
-function CompareMem(P1, P2: Pointer; Length: Integer): Boolean; assembler;
-asm
-        PUSH    ESI
-        PUSH    EDI
-        MOV     ESI,P1
-        MOV     EDI,P2
-        MOV     EDX,ECX
-        XOR     EAX,EAX
-        AND     EDX,3
-        SHR     ECX,1
-        SHR     ECX,1
-        REPE    CMPSD
-        JNE     @@2
-        MOV     ECX,EDX
-        REPE    CMPSB
-        JNE     @@2
-@@1:    INC     EAX
-@@2:    POP     EDI
-        POP     ESI
+function CompareMem(P1, P2: Pointer; Length: Integer): Boolean;
+var
+  Bytes1, Bytes2: PByte;
+  I: Integer;
+begin
+  if Length <= 0 then
+    Exit(True);
+  Bytes1 := P1;
+  Bytes2 := P2;
+  for I := 0 to Length - 1 do
+  begin
+    if Bytes1^ <> Bytes2^ then
+      Exit(False);
+    Inc(Bytes1);
+    Inc(Bytes2);
+  end;
+  Result := True;
 end;
 
 // Dummy ASSERT procedure since ASSERT does not exist in Delphi 2.x
@@ -2437,42 +2423,21 @@ var
   SrcColors		: WORD;
 //  ScreenDC		: HDC;
 
-  // From Delphi 3.02 graphics.pas
-  // There is a bug in the ByteSwapColors from Delphi 3.0!
   procedure ByteSwapColors(var Colors; Count: Integer);
-  var   // convert RGB to BGR and vice-versa.  TRGBQuad <-> TPaletteEntry
-    SysInfo: TSystemInfo;
+  var
+    I: Integer;
+    Entries: PRGBQuad;
+    Temp: Byte;
   begin
-    GetSystemInfo(SysInfo);
-    asm
-          MOV   EDX, Colors
-          MOV   ECX, Count
-          DEC   ECX
-          JS    @@END
-          LEA   EAX, SysInfo
-          CMP   [EAX].TSystemInfo.wProcessorLevel, 3
-          JE    @@386
-    @@1:  MOV   EAX, [EDX+ECX*4]
-          BSWAP EAX
-          SHR   EAX,8
-          MOV   [EDX+ECX*4],EAX
-          DEC   ECX
-          JNS   @@1
-          JMP   @@END
-    @@386:
-          PUSH  EBX
-    @@2:  XOR   EBX,EBX
-          MOV   EAX, [EDX+ECX*4]
-          MOV   BH, AL
-          MOV   BL, AH
-          SHR   EAX,16
-          SHL   EBX,8
-          MOV   BL, AL
-          MOV   [EDX+ECX*4],EBX
-          DEC   ECX
-          JNS   @@2
-          POP   EBX
-      @@END:
+    if Count <= 0 then
+      Exit;
+    Entries := @Colors;
+    for I := 0 to Count - 1 do
+    begin
+      Temp := Entries^.rgbRed;
+      Entries^.rgbRed := Entries^.rgbBlue;
+      Entries^.rgbBlue := Temp;
+      Inc(Entries);
     end;
   end;
 {$ENDIF}
@@ -11290,17 +11255,16 @@ var
   Prog			,
   MaxProg		: integer;
 
-  function Scan(Buf: PChar; Value: Byte; Count: integer): boolean; assembler;
-  asm
-    PUSH	EDI
-    MOV		EDI, Buf
-    MOV		ECX, Count
-    MOV		AL, Value
-    REPNE	SCASB
-    MOV		EAX, False
-    JNE		@@1
-    MOV		EAX, True
-@@1:POP		EDI
+  function Scan(Buf: PChar; Value: Byte; Count: integer): boolean;
+  var
+    I: Integer;
+  begin
+    Result := False;
+    for I := 0 to Count - 1 do
+    begin
+      if Byte(Buf[I]) = Value then
+        Exit(True);
+    end;
   end;
 
 begin
@@ -12436,5 +12400,3 @@ finalization
     DummyThread.Free;
 {$ENDIF}
 end.
-
-

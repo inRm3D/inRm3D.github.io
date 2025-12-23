@@ -1,9 +1,16 @@
 unit Splash;
+{$codepage utf8}
 interface
-uses Windows, Forms, SysUtils, ExtCtrls, Classes, Controls, StdCtrls,
+uses
+{$IFDEF MSWINDOWS}
+  Windows, Forms, SysUtils, ExtCtrls, Classes, Controls, StdCtrls,
   Registry, jpeg;//, GIFimage; //   , jpeg
+{$ELSE}
+  Forms, SysUtils, ExtCtrls, Classes, Controls, StdCtrls, Dialogs;
+{$ENDIF}
 const RegFile='License.txt';
 type
+{$IFDEF MSWINDOWS}
   TfrmSplash = class(TForm)
     Image0: TImage;
     Label4: TLabel;
@@ -22,7 +29,6 @@ type
     Label8: TLabel;
     Label9: TLabel;
     procedure setWindow(bb :boolean);
-//    procedure butt2Click(Sender: TObject);
     procedure butt1Click(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormHide(Sender: TObject);
@@ -32,18 +38,34 @@ type
     procedure Image0MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure butt2Click(Sender: TObject);
   public
-//    procedure regSet(regKey:cardinal; regSt,path:string);
   end;
+{$ELSE}
+  TfrmSplash = class(TForm)
+  public
+    procedure setWindow(bb:boolean);
+    procedure butt1Click(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormHide(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure MakeTimer;
+    procedure myTimerTimer(Sender: TObject);
+    procedure Image0MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure butt2Click(Sender: TObject);
+  end;
+{$ENDIF}
 type
   PtsType = array [0..51, 0..1] of Integer;
 var frmSplash: TfrmSplash;
-  serial:string; //注册识别码
-  pw:string;     //注册号
+  serial:string; //æ³¨åè¯å«ç 
+  pw:string;     //æ³¨åå·
+{$IFDEF MSWINDOWS}
   reg: Tregistry;
+{$ENDIF}
   G: TextFile;
 implementation
 
 
+{$IFDEF MSWINDOWS}
 uses inRm3Dunit; // ;
 
 {$R *.DFM}
@@ -269,5 +291,50 @@ procedure TfrmSplash.butt2Click(Sender: TObject);
 begin
   frmSplash.Hide;
 end;
+
+{$ELSE}
+
+procedure TfrmSplash.setWindow(bb:boolean);
+begin
+end;
+
+procedure TfrmSplash.butt1Click(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TfrmSplash.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if Key = 27 then Close;
+end;
+
+procedure TfrmSplash.FormHide(Sender: TObject);
+begin
+end;
+
+procedure TfrmSplash.FormCreate(Sender: TObject);
+begin
+  Caption := 'Splash';
+end;
+
+procedure TfrmSplash.MakeTimer;
+begin
+end;
+
+procedure TfrmSplash.myTimerTimer(Sender: TObject);
+begin
+end;
+
+procedure TfrmSplash.Image0MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  Close;
+end;
+
+procedure TfrmSplash.butt2Click(Sender: TObject);
+begin
+  Close;
+end;
+
+{$ENDIF}
 
 end.

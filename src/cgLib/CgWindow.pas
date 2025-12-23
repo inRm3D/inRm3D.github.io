@@ -1,11 +1,12 @@
 unit CgWindow;
+{$codepage utf8}
 
 { CgLib: Window management. }
 
 interface
 
 uses
-  Forms, Classes, Windows, GL;
+  Forms, Classes, Windows, cgGL;
 
 type
   TCGForm = class(TForm)

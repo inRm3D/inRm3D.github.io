@@ -1,4 +1,5 @@
 unit Parsglb;
+{$codepage utf8}
 {$O+,F+}
 {$IFDEF WIN32}
 {$H-}
@@ -322,23 +323,24 @@ const
 
 type
   TPlaneStiple=array[2..9,0..31]of longword;
-  TstMode=array[1..20, 1..19]of string[24];
-  TstAxis=array[1..7]of string[10];
+  TUTF8Str = UTF8String;
+  TstMode=array[1..20, 1..19]of TUTF8Str;
+  TstAxis=array[1..7]of TUTF8Str;
   TmNum=array[1..26]of pAnsiChar;
 const
-  mNumC:TmNum  //ÖÐÎÄ¹â±êÃû³Æ
+  mNumC:TmNum  //ä¸­æ–‡å…‰æ ‡åç§°
     =('hDot',  'hLine', 'hCircle','hPlane','hLoca','hSolid',
       'hFace', 'hBlock','hFunc', 'hText',  'hVar',  'hSize',
       'hIterate','hTrace','hCurve','hPath','hMarker','hImage',
       'hPen','hPen2','hErase','hPaint','hLock','hDefault',
       'hAppend','hView');
-  mNumE:TmNum  //Ó¢ÎÄ¹â±êÃû³Æ
+  mNumE:TmNum  //è‹±æ–‡å…‰æ ‡åç§°
     =('hDot_E',  'hLine_E', 'hCircle_E','hPlane_E','hLoca_E','hSolid_E',
       'hFace_E', 'hBlock_E','hFunc_E', 'hText_E',  'hVar_E',  'hSize_E',
       'hIterate_E','hTrace_E','hCurve_E','hPath_E','hMarker_E','hImage_E',
       'hPen','hPen2','hErase','hPaint_E','hLock','hDefault',
       'hAppend','hView_E');
-  nPlaneStyle:TPlaneStiple=(   //Ìî³äÄ£Ê½
+  nPlaneStyle:TPlaneStiple=(   //å¡«å……æ¨¡å¼
     ($c003c003,$300c300c,$0c300c30,$03c003c0, $00000000,$00000000,$00000000,$00000000,$c003c003,$300c300c,$0c300c30,$03c003c0, $00000000,$00000000,$00000000,$00000000,$c003c003,$300c300c,$0c300c30,$03c003c0, $00000000,$00000000,$00000000,$00000000,$c003c003,$300c300c,$0c300c30,$03c003c0, $00000000,$00000000,$00000000,$00000000),
     ($01010101,$02020202,$04040404,$08080808, $10101010,$20202020,$40404040,$80808080,$01010101,$02020202,$04040404,$08080808, $10101010,$20202020,$40404040,$80808080,$01010101,$02020202,$04040404,$08080808, $10101010,$20202020,$40404040,$80808080,$01010101,$02020202,$04040404,$08080808, $10101010,$20202020,$40404040,$80808080),
     ($10101010,$10101010,$20202020,$20202020, $40404040,$40404040,$80808080,$80808080,$80808080,$80808080,$40404040,$40404040, $20202020,$20202020,$10101010,$10101010,$10101010,$10101010,$20202020,$20202020, $40404040,$40404040,$80808080,$80808080,$80808080,$80808080,$40404040,$40404040, $20202020,$20202020,$10101010,$10101010),
@@ -348,48 +350,48 @@ const
     ($1c1c1c1c,$22222222,$41414141,$80808080, $80808080,$80808080,$41414141,$22222222,$1c1c1c1c,$22222222,$41414141,$80808080, $80808080,$80808080,$41414141,$22222222,$1c1c1c1c,$22222222,$41414141,$80808080, $80808080,$80808080,$41414141,$22222222,$1c1c1c1c,$22222222,$41414141,$80808080, $80808080,$80808080,$41414141,$22222222),
     ($38823882,$44444444,$82388238,$82008200, $82388238,$44444444,$38823882,$00820082,$38823882,$44444444,$82388238,$82008200, $82388238,$44444444,$38823882,$00820082,$38823882,$44444444,$82388238,$82008200, $82388238,$44444444,$38823882,$00820082,$38823882,$44444444,$82388238,$82008200, $82388238,$44444444,$38823882,$00820082));
   stModeC :TstMode=
-   ((('×ÔÓÉµã'),('Ô¼Êøµã'),('×î½üµã'),('½»µã'),('ÖÐµã'),('µÈ·Öµã'),('Í¶Ó°±ä»»µã'),('¶Ô³Æ±ä»»µã'),('Ðý×ª±ä»»µã'),('Ëõ·Å±ä»»µã'),('Æ½ÒÆ±ä»»µã'),('ÏòÁ¿±ä»»µã'),('¶¥µã'),('×Ô¶¨Òå±ä»»µã'),('·´ÑÝ±ä»»µã'),('·ÂÉä±ä»»µã'),(''),('ÈýÊÓÍ¼'),('')),
-{ 2}(('Ïß¶Î'),('Ê¸Á¿'),('Æ½ÐÐÏß'),('´¹Ïß'),('ÖÐÏß'),('Ïà¹áÏß/½¥½üÏß'),('Í¶Ó°±ä»»Ö±Ïß'),('¶Ô³Æ±ä»»Ö±Ïß'),('Ðý×ª±ä»»Ö±Ïß'),('Ëõ·Å±ä»»Ö±Ïß'),('Æ½ÒÆ±ä»»Ö±Ïß'),('ÏòÁ¿±ä»»Ö±Ïß'),('Àâ±ß'),('×Ô¶¨Òå±ä»»Ö±Ïß'),('·´ÑÝ±ä»»Ö±Ïß'),('·ÂÉä±ä»»Ö±Ïß'),(''),('ÈýÊÓÍ¼'),('ÇÐÏß')),
-    (('µã·¨Ô²'),('ÈýµãÔ²'),('µã·¨»¡'),('Èýµã»¡'),(''),(''),('Í¶Ó°±ä»»Ô²'),('¶Ô³Æ±ä»»Ô²'),('Ðý×ª±ä»»Ô²'),('Ëõ·Å±ä»»Ô²'),('Æ½ÒÆ±ä»»Ô²'),('ÏòÁ¿±ä»»Ô²'),(''),('×Ô¶¨Òå±ä»»Ô²'),('·´ÑÝ±ä»»Ô²'),('·ÂÉä±ä»»Ô²'),(''),('ÈýÊÓÍ¼'),('')),
-{ 4}(('Æ½Ãæ'),('Æ½Ãæ'),('Æ½ÐÐÃæ'),('´¹Ãæ'),('ÖÐÃæ'),('¶à±ßÐÎ'),('Í¶Ó°±ä»»Æ½Ãæ'),('¶Ô³Æ±ä»»Æ½Ãæ'),('Ðý×ª±ä»»Æ½Ãæ'),('Ëõ·Å±ä»»Æ½Ãæ'),('Æ½ÒÆ±ä»»Æ½Ãæ'),('ÏòÁ¿±ä»»Æ½Ãæ'),(''),('×Ô¶¨Òå±ä»»Æ½Ãæ'),('·´ÑÝ±ä»»Æ½Ãæ'),('·ÂÉä±ä»»Æ½Ãæ'),(''),('ÈýÊÓÍ¼'),('')),
-    (('¹ì¼£Ïß'),(''),(''),(''),(''),(''),('Í¶Ó°±ä»»¹ì¼£Ïß'),('¶Ô³Æ±ä»»¹ì¼£Ïß'),('Ðý×ª±ä»»¹ì¼£Ïß'),('Ëõ·Å±ä»»¹ì¼£Ïß'),('Æ½ÒÆ±ä»»¹ì¼£Ïß'),('ÏòÁ¿±ä»»¹ì¼£Ïß'),(''),('×Ô¶¨Òå±ä»»¹ì¼£Ïß'),('·´ÑÝ±ä»»¹ì¼£Ïß'),('·ÂÉä±ä»»ÇúÏß'),(''),('ÈýÊÓÍ¼'),('')),
-{06}(('ÇòÌå'),('Ô²Ì¨'),('Õý¶àÃæÌå'),('ÀâÌ¨'),('Í¹¶àÃæÌå'),('ÈýµãÇò'),('Í¶Ó°±ä»»ÊµÌå'),('¶Ô³Æ±ä»»ÊµÌå'),('Ðý×ª±ä»»ÊµÌå'),('Ëõ·Å±ä»»ÊµÌå'),('Æ½ÒÆ±ä»»ÊµÌå'),('ÏòÁ¿±ä»»ÊµÌå'),(''),('×Ô¶¨Òå±ä»»ÊµÌå'),('·´ÑÝ±ä»»Çò'),('·ÂÉä±ä»»ÊµÌå'),(''),('ÈýÊÓÍ¼'),('')),
-    (('Ðý×ªÇúÃæ'),('Ö±ÎÆÇúÃæ'),('¸´ºÏÇúÃæ'),('¹ì¼£Ãæ '),(''),(''),('Í¶Ó°±ä»»ÇúÃæ'),('¶Ô³Æ±ä»»ÇúÃæ'),('Ðý×ª±ä»»ÇúÃæ'),('Ëõ·Å±ä»»ÇúÃæ'),('Æ½ÒÆ±ä»»ÇúÃæ'),('ÏòÁ¿±ä»»ÇúÃæ'),(''),('×Ô¶¨Òå±ä»»ÇúÃæ'),('·´ÑÝ±ä»»ÇúÃæ'),('·ÂÉä±ä»»ÇúÃæ'),(''),('ÈýÊÓÍ¼'),('')),
-{08}(('ºÏ²¢/·ÖÀë'),('±ê¼ÇÖÐÐÄ/Öá'),('±ê¼Ç¾µÃæ'),('±ê¼ÇÏòÁ¿'),('±ê¼Ç¾àÀë'),('±ê¼Ç½Ç¶È'),('±ê¼Ç±È'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
-    (('Ò»°ãÊ½ÇúÃæ'),('²ÎÊýÊ½ÇúÃæ'),('Ò»°ãÊ½ÇúÃæ'),('²ÎÊýÊ½ÇúÃæ'),('Ò»°ãÊ½ÇúÃæ'),('²ÎÊýÊ½ÇúÃæ'),('Í¶Ó°±ä»»ÇúÃæ'),('¶Ô³Æ±ä»»ÇúÃæ'),('Ðý×ª±ä»»ÇúÃæ'),('Ëõ·Å±ä»»ÇúÃæ'),('Æ½ÒÆ±ä»»ÇúÃæ'),('ÏòÁ¿±ä»»ÇúÃæ'),('Òþº¯ÊýÇúÃæ'),('×Ô¶¨Òå±ä»»ÇúÃæ'),('·´ÑÝ±ä»»ÇúÃæ'),('·ÂÉä±ä»»ÇúÃæ'),(''),('ÈýÊÓÍ¼'),('')),
-{10}(('ÎÄ±¾'),('Í¼Æ¬'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
-    (('¼ÆËã'),('²ÎÊý'),('Ãæ»ý'),('Ìå»ý'),('¾àÀë'),('½Ç¶È'),('±ÈÖµ'),('³¤¶È'),('Ð±ÂÊ'),(''),(''),(''),('µãµÄÖµ'),('Ö±¾¶'),('×ø±ê'),('ÏòÁ¿'),('Ê¸Á¿ÔËËã'),(''),('·½³ÌÊ½')),
-{12}((''),(''),(''),(''),(''),(''),('Í¶Ó°±ä»»'),('¶Ô³Æ±ä»»'),('Ðý×ª±ä»»'),('Ëõ·Å±ä»»'),('Æ½ÒÆ±ä»»'),('ÏòÁ¿±ä»»'),(''),('×Ô¶¨Òå±ä»»'),('·´ÑÝ±ä»»'),('·ÂÉä±ä»»'),(''),(''),('')), //¸´ÖÆ¹¹¼þ
-    (('µü´ú'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
-{14}(('¶¯»­'),('ÒÆ¶¯'),('Òþ²Ø/ÏÔÊ¾'),('ÏµÁÐ'),(''),('Á´½Ó'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
-    (('Ïà¹áÏß'),(''),(''),(''),(''),(''),('Í¶Ó°±ä»»Ïà¹áÏß'),('¶Ô³Æ±ä»»Ïà¹áÏß'),('Ðý×ª±ä»»Ïà¹áÏß'),('Ëõ·Å±ä»»Ïà¹áÏß'),('Æ½ÒÆ±ä»»Ïà¹áÏß'),('ÏòÁ¿±ä»»Ïà¹áÏß'),(''),('×Ô¶¨Òå±ä»»Ïà¹áÏß'),('·´ÑÝÏà¹áÏß'),('·ÂÉä±ä»»Ïà¹áÏß'),(''),(''),('')),
-{16}(('Ò»°ãÊ½ÇúÏß'),('²ÎÊýÊ½ÇúÏß'),('Ò»°ãÊ½ÇúÏß'),('²ÎÊýÊ½ÇúÏß'),('Òþº¯ÊýÇúÏß'),('Òþº¯ÊýÇúÏß'),('Í¶Ó°±ä»»ÇúÏß'),('¶Ô³Æ±ä»»ÇúÏß'),('Ðý×ª±ä»»ÇúÏß'),('Ëõ·Å±ä»»ÇúÏß'),('Æ½ÒÆ±ä»»ÇúÏß'),('ÏòÁ¿±ä»»ÇúÏß'),(''),('×Ô¶¨Òå±ä»»ÇúÏß'),('·´ÑÝ±ä»»ÇúÏß'),('·ÂÉä±ä»»ÇúÏß'),(''),(''),('')),
-    (('Â·¾¶'),('ÈýÊÓÍ¼'),(''),(''),(''),(''),('Í¶Ó°±ä»»Â·¾¶'),('¶Ô³Æ±ä»»Â·¾¶'),('Ðý×ª±ä»»Â·¾¶'),('Ëõ·Å±ä»»Â·¾¶'),('Æ½ÒÆ±ä»»Â·¾¶'),('ÏòÁ¿±ä»»Â·¾¶'),(''),('×Ô¶¨Òå±ä»»Â·¾¶'),('·´ÑÝ±ä»»Â·¾¶'),('·ÂÉä±ä»»Â·¾¶'),(''),(''),('')),
-{18}(('Ïß±ê×¢'),('½Ç±ê×¢'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
-    (('Ô²×¶ÇúÏß(Ò»)'),('Ô²×¶ÇúÏß(¶þ)'),(''),(''),(''),(''),('Í¶Ó°±ä»»ÇúÏß'),('¶Ô³Æ±ä»»ÇúÏß'),('Ðý×ª±ä»»ÇúÏß'),('Ëõ·Å±ä»»ÇúÏß'),('Æ½ÒÆ±ä»»ÇúÏß'),('ÏòÁ¿±ä»»ÇúÏß'),(''),('×Ô¶¨Òå±ä»»ÇúÏß'),('·´ÑÝ±ä»»ÇúÏß'),('·ÂÉä±ä»»ÇúÏß'),(''),(''),('')),
-{20}(('ÈýÊÓÍ¼'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''))
+   ((('è‡ªç”±ç‚¹'),('çº¦æŸç‚¹'),('æœ€è¿‘ç‚¹'),('äº¤ç‚¹'),('ä¸­ç‚¹'),('ç­‰åˆ†ç‚¹'),('æŠ•å½±å˜æ¢ç‚¹'),('å¯¹ç§°å˜æ¢ç‚¹'),('æ—‹è½¬å˜æ¢ç‚¹'),('ç¼©æ”¾å˜æ¢ç‚¹'),('å¹³ç§»å˜æ¢ç‚¹'),('å‘é‡å˜æ¢ç‚¹'),('é¡¶ç‚¹'),('è‡ªå®šä¹‰å˜æ¢ç‚¹'),('åæ¼”å˜æ¢ç‚¹'),('ä»¿å°„å˜æ¢ç‚¹'),(''),('ä¸‰è§†å›¾'),('')),
+{ 2}(('çº¿æ®µ'),('çŸ¢é‡'),('å¹³è¡Œçº¿'),('åž‚çº¿'),('ä¸­çº¿'),('ç›¸è´¯çº¿/æ¸è¿‘çº¿'),('æŠ•å½±å˜æ¢ç›´çº¿'),('å¯¹ç§°å˜æ¢ç›´çº¿'),('æ—‹è½¬å˜æ¢ç›´çº¿'),('ç¼©æ”¾å˜æ¢ç›´çº¿'),('å¹³ç§»å˜æ¢ç›´çº¿'),('å‘é‡å˜æ¢ç›´çº¿'),('æ£±è¾¹'),('è‡ªå®šä¹‰å˜æ¢ç›´çº¿'),('åæ¼”å˜æ¢ç›´çº¿'),('ä»¿å°„å˜æ¢ç›´çº¿'),(''),('ä¸‰è§†å›¾'),('åˆ‡çº¿')),
+    (('ç‚¹æ³•åœ†'),('ä¸‰ç‚¹åœ†'),('ç‚¹æ³•å¼§'),('ä¸‰ç‚¹å¼§'),(''),(''),('æŠ•å½±å˜æ¢åœ†'),('å¯¹ç§°å˜æ¢åœ†'),('æ—‹è½¬å˜æ¢åœ†'),('ç¼©æ”¾å˜æ¢åœ†'),('å¹³ç§»å˜æ¢åœ†'),('å‘é‡å˜æ¢åœ†'),(''),('è‡ªå®šä¹‰å˜æ¢åœ†'),('åæ¼”å˜æ¢åœ†'),('ä»¿å°„å˜æ¢åœ†'),(''),('ä¸‰è§†å›¾'),('')),
+{ 4}(('å¹³é¢'),('å¹³é¢'),('å¹³è¡Œé¢'),('åž‚é¢'),('ä¸­é¢'),('å¤šè¾¹å½¢'),('æŠ•å½±å˜æ¢å¹³é¢'),('å¯¹ç§°å˜æ¢å¹³é¢'),('æ—‹è½¬å˜æ¢å¹³é¢'),('ç¼©æ”¾å˜æ¢å¹³é¢'),('å¹³ç§»å˜æ¢å¹³é¢'),('å‘é‡å˜æ¢å¹³é¢'),(''),('è‡ªå®šä¹‰å˜æ¢å¹³é¢'),('åæ¼”å˜æ¢å¹³é¢'),('ä»¿å°„å˜æ¢å¹³é¢'),(''),('ä¸‰è§†å›¾'),('')),
+    (('è½¨è¿¹çº¿'),(''),(''),(''),(''),(''),('æŠ•å½±å˜æ¢è½¨è¿¹çº¿'),('å¯¹ç§°å˜æ¢è½¨è¿¹çº¿'),('æ—‹è½¬å˜æ¢è½¨è¿¹çº¿'),('ç¼©æ”¾å˜æ¢è½¨è¿¹çº¿'),('å¹³ç§»å˜æ¢è½¨è¿¹çº¿'),('å‘é‡å˜æ¢è½¨è¿¹çº¿'),(''),('è‡ªå®šä¹‰å˜æ¢è½¨è¿¹çº¿'),('åæ¼”å˜æ¢è½¨è¿¹çº¿'),('ä»¿å°„å˜æ¢æ›²çº¿'),(''),('ä¸‰è§†å›¾'),('')),
+{06}(('çƒä½“'),('åœ†å°'),('æ­£å¤šé¢ä½“'),('æ£±å°'),('å‡¸å¤šé¢ä½“'),('ä¸‰ç‚¹çƒ'),('æŠ•å½±å˜æ¢å®žä½“'),('å¯¹ç§°å˜æ¢å®žä½“'),('æ—‹è½¬å˜æ¢å®žä½“'),('ç¼©æ”¾å˜æ¢å®žä½“'),('å¹³ç§»å˜æ¢å®žä½“'),('å‘é‡å˜æ¢å®žä½“'),(''),('è‡ªå®šä¹‰å˜æ¢å®žä½“'),('åæ¼”å˜æ¢çƒ'),('ä»¿å°„å˜æ¢å®žä½“'),(''),('ä¸‰è§†å›¾'),('')),
+    (('æ—‹è½¬æ›²é¢'),('ç›´çº¹æ›²é¢'),('å¤åˆæ›²é¢'),('è½¨è¿¹é¢ '),(''),(''),('æŠ•å½±å˜æ¢æ›²é¢'),('å¯¹ç§°å˜æ¢æ›²é¢'),('æ—‹è½¬å˜æ¢æ›²é¢'),('ç¼©æ”¾å˜æ¢æ›²é¢'),('å¹³ç§»å˜æ¢æ›²é¢'),('å‘é‡å˜æ¢æ›²é¢'),(''),('è‡ªå®šä¹‰å˜æ¢æ›²é¢'),('åæ¼”å˜æ¢æ›²é¢'),('ä»¿å°„å˜æ¢æ›²é¢'),(''),('ä¸‰è§†å›¾'),('')),
+{08}(('åˆå¹¶/åˆ†ç¦»'),('æ ‡è®°ä¸­å¿ƒ/è½´'),('æ ‡è®°é•œé¢'),('æ ‡è®°å‘é‡'),('æ ‡è®°è·ç¦»'),('æ ‡è®°è§’åº¦'),('æ ‡è®°æ¯”'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
+    (('ä¸€èˆ¬å¼æ›²é¢'),('å‚æ•°å¼æ›²é¢'),('ä¸€èˆ¬å¼æ›²é¢'),('å‚æ•°å¼æ›²é¢'),('ä¸€èˆ¬å¼æ›²é¢'),('å‚æ•°å¼æ›²é¢'),('æŠ•å½±å˜æ¢æ›²é¢'),('å¯¹ç§°å˜æ¢æ›²é¢'),('æ—‹è½¬å˜æ¢æ›²é¢'),('ç¼©æ”¾å˜æ¢æ›²é¢'),('å¹³ç§»å˜æ¢æ›²é¢'),('å‘é‡å˜æ¢æ›²é¢'),('éšå‡½æ•°æ›²é¢'),('è‡ªå®šä¹‰å˜æ¢æ›²é¢'),('åæ¼”å˜æ¢æ›²é¢'),('ä»¿å°„å˜æ¢æ›²é¢'),(''),('ä¸‰è§†å›¾'),('')),
+{10}(('æ–‡æœ¬'),('å›¾ç‰‡'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
+    (('è®¡ç®—'),('å‚æ•°'),('é¢ç§¯'),('ä½“ç§¯'),('è·ç¦»'),('è§’åº¦'),('æ¯”å€¼'),('é•¿åº¦'),('æ–œçŽ‡'),(''),(''),(''),('ç‚¹çš„å€¼'),('ç›´å¾„'),('åæ ‡'),('å‘é‡'),('çŸ¢é‡è¿ç®—'),(''),('æ–¹ç¨‹å¼')),
+{12}((''),(''),(''),(''),(''),(''),('æŠ•å½±å˜æ¢'),('å¯¹ç§°å˜æ¢'),('æ—‹è½¬å˜æ¢'),('ç¼©æ”¾å˜æ¢'),('å¹³ç§»å˜æ¢'),('å‘é‡å˜æ¢'),(''),('è‡ªå®šä¹‰å˜æ¢'),('åæ¼”å˜æ¢'),('ä»¿å°„å˜æ¢'),(''),(''),('')), //å¤åˆ¶æž„ä»¶
+    (('è¿­ä»£'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
+{14}(('åŠ¨ç”»'),('ç§»åŠ¨'),('éšè—/æ˜¾ç¤º'),('ç³»åˆ—'),(''),('é“¾æŽ¥'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
+    (('ç›¸è´¯çº¿'),(''),(''),(''),(''),(''),('æŠ•å½±å˜æ¢ç›¸è´¯çº¿'),('å¯¹ç§°å˜æ¢ç›¸è´¯çº¿'),('æ—‹è½¬å˜æ¢ç›¸è´¯çº¿'),('ç¼©æ”¾å˜æ¢ç›¸è´¯çº¿'),('å¹³ç§»å˜æ¢ç›¸è´¯çº¿'),('å‘é‡å˜æ¢ç›¸è´¯çº¿'),(''),('è‡ªå®šä¹‰å˜æ¢ç›¸è´¯çº¿'),('åæ¼”ç›¸è´¯çº¿'),('ä»¿å°„å˜æ¢ç›¸è´¯çº¿'),(''),(''),('')),
+{16}(('ä¸€èˆ¬å¼æ›²çº¿'),('å‚æ•°å¼æ›²çº¿'),('ä¸€èˆ¬å¼æ›²çº¿'),('å‚æ•°å¼æ›²çº¿'),('éšå‡½æ•°æ›²çº¿'),('éšå‡½æ•°æ›²çº¿'),('æŠ•å½±å˜æ¢æ›²çº¿'),('å¯¹ç§°å˜æ¢æ›²çº¿'),('æ—‹è½¬å˜æ¢æ›²çº¿'),('ç¼©æ”¾å˜æ¢æ›²çº¿'),('å¹³ç§»å˜æ¢æ›²çº¿'),('å‘é‡å˜æ¢æ›²çº¿'),(''),('è‡ªå®šä¹‰å˜æ¢æ›²çº¿'),('åæ¼”å˜æ¢æ›²çº¿'),('ä»¿å°„å˜æ¢æ›²çº¿'),(''),(''),('')),
+    (('è·¯å¾„'),('ä¸‰è§†å›¾'),(''),(''),(''),(''),('æŠ•å½±å˜æ¢è·¯å¾„'),('å¯¹ç§°å˜æ¢è·¯å¾„'),('æ—‹è½¬å˜æ¢è·¯å¾„'),('ç¼©æ”¾å˜æ¢è·¯å¾„'),('å¹³ç§»å˜æ¢è·¯å¾„'),('å‘é‡å˜æ¢è·¯å¾„'),(''),('è‡ªå®šä¹‰å˜æ¢è·¯å¾„'),('åæ¼”å˜æ¢è·¯å¾„'),('ä»¿å°„å˜æ¢è·¯å¾„'),(''),(''),('')),
+{18}(('çº¿æ ‡æ³¨'),('è§’æ ‡æ³¨'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
+    (('åœ†é”¥æ›²çº¿(ä¸€)'),('åœ†é”¥æ›²çº¿(äºŒ)'),(''),(''),(''),(''),('æŠ•å½±å˜æ¢æ›²çº¿'),('å¯¹ç§°å˜æ¢æ›²çº¿'),('æ—‹è½¬å˜æ¢æ›²çº¿'),('ç¼©æ”¾å˜æ¢æ›²çº¿'),('å¹³ç§»å˜æ¢æ›²çº¿'),('å‘é‡å˜æ¢æ›²çº¿'),(''),('è‡ªå®šä¹‰å˜æ¢æ›²çº¿'),('åæ¼”å˜æ¢æ›²çº¿'),('ä»¿å°„å˜æ¢æ›²çº¿'),(''),(''),('')),
+{20}(('ä¸‰è§†å›¾'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''))
     );
-  stModeT :TstMode= //·±ÌåÖÐÎÄ
-   ((('×ÔÓÉüc'),('¼sÊøüc'),('×î½üüc'),('½»üc'),('ÖÐüc'),('µÈ·Öüc'),('Í¶Ó°×ƒ“Qüc'),('Œ¦·Q×ƒ“Qüc'),('ÐýÞD×ƒ“Qüc'),('¿s·Å×ƒ“Qüc'),('Æ½ÒÆ×ƒ“Qüc'),('ÏòÁ¿×ƒ“Qüc'),('í”üc'),('×Ô¶¨Áx×ƒ“Qüc'),('·´ÑÝ×ƒ“Qüc'),(''),(''),(''),('')),
-{ 2}(('¾€¶Î'),('Ê¸Á¿'),('Æ½ÐÐ¾€'),('´¹¾€'),('ÖÐ¾€'),('Ïà¹á¾€/u½ü¾€'),('Í¶Ó°×ƒ“QÖ±¾€'),('Œ¦·Q×ƒ“QÖ±¾€'),('ÐýÞD×ƒ“QÖ±¾€'),('Ëõ·Å×ƒ“QÖ±¾€'),('Æ½ÒÆ×ƒ“QÖ±¾€'),('ÏòÁ¿×ƒ“QÖ±¾€'),('Àâß…'),('×Ô¶¨Áx×ƒ“QÖ±¾€'),('·´ÑÝ×ƒ“QÖ±¾€'),(''),(''),(''),('ÇÐ¾€')),
-    (('üc·¨ˆA'),('ÈýücˆA'),('üc·¨»¡'),('Èýüc»¡'),(''),(''),('Í¶Ó°×ƒ“QˆA'),('Œ¦·Q×ƒ“QˆA'),('ÐýÞD×ƒ“QˆA'),('Ëõ·Å×ƒ“QˆA'),('Æ½ÒÆ×ƒ“QˆA'),('ÏòÁ¿×ƒ“QˆA'),(''),('×Ô¶¨Áx×ƒ“QˆA'),('·´ÑÝ×ƒ“QˆA'),(''),(''),(''),('')),
-{ 4}(('Æ½Ãæ'),('Æ½Ãæ'),('Æ½ÐÐÃæ'),('´¹Ãæ'),('ÖÐÃæ'),('¶à±ßÐÎ'),('Í¶Ó°×ƒ“QÆ½Ãæ'),('Œ¦·Q×ƒ“QÆ½Ãæ'),('ÐýÞD×ƒ“QÆ½Ãæ'),('Ëõ·Å×ƒ“QÆ½Ãæ'),('Æ½ÒÆ×ƒ“QÆ½Ãæ'),('ÏòÁ¿×ƒ“QÆ½Ãæ'),(''),('×Ô¶¨Áx×ƒ“QÆ½Ãæ'),(''),(''),(''),(''),('')),
-    (('Ü‰ÛE¾€'),(''),(''),(''),(''),(''),('Í¶Ó°×ƒ“QÜ‰ÛE¾€'),('Œ¦·Q×ƒ“QÜ‰ÛE¾€'),('ÐýÞD×ƒ“QÜ‰ÛE¾€'),('¿s·ÅËõ·Å×ƒ“QÜ‰ÛE¾€'),('Æ½ÒÆ×ƒ“QÜ‰ÛE¾€'),('ÏòÁ¿×ƒ“QÜ‰ÛE¾€'),(''),('×Ô¶¨Áx×ƒ“QÜ‰ÛE¾€'),('·´ÑÝ×ƒ“QÜ‰ÛE¾€'),(''),(''),(''),('')),
-{06}(('Çòów'),('ˆAÅ_'),('Õý¶àÃæów'),('ÀâÅ_'),('Í¹¶àÃæów'),('ÈýµãÇò'),('Í¶Ó°×ƒ“QŒów'),('Œ¦·Q×ƒ“QŒów'),('ÐýÞD×ƒ“QŒów'),('¿s·Å×ƒ“QŒów'),('Æ½ÒÆ×ƒ“QŒów'),('ÏòÁ¿×ƒ“QŒów'),(''),('×Ô¶¨Áx×ƒ“QŒów'),('·´ÑÝ×ƒ“QÇò'),(''),(''),(''),('')),
-    (('ÐýÞDÇúÃæ'),('Ö±¼yÇúÃæ'),('Ñ}ºÏÇúÃæ'),('Ü‰ÛEÃæ '),(''),(''),('Í¶Ó°×ƒ“QÇúÃæ'),('Œ¦·Q×ƒ“QÇúÃæ'),('ÐýÞD×ƒ“QÇúÃæ'),('¿s·Å×ƒ“QÇúÃæ'),('Æ½ÒÆ×ƒ“QÇúÃæ'),('ÏòÁ¿×ƒ“QÇúÃæ'),(''),('×Ô¶¨Áx×ƒ“QÇúÃæ'),('·´ÑÝ×ƒ“QÇúÃæ'),(''),(''),(''),('')),
-{08}(('ºÏã/·Öëx'),('˜ËÓ›ÖÐÐÄ/ÝS'),('˜ËÓ›çRÃæ'),('˜ËÓ›ÏòÁ¿'),('˜ËÓ›¾àëx'),('˜ËÓ›½Ç¶È'),('˜ËÓ›±È'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
-    (('Ò»°ãÊ½ÇúÃæ'),('…¢”µÊ½ÇúÃæ'),('Ò»°ãÊ½ÇúÃæ'),('…¢”µÊ½ÇúÃæ'),('Ò»°ãÊ½ÇúÃæ'),('…¢”µÊ½ÇúÃæ'),('Í¶Ó°×ƒ“QÇúÃæ'),('Œ¦·Q×ƒ“QÇúÃæ'),('ÐýÞD×ƒ“QÇúÃæ'),('¿s·Å×ƒ“QÇúÃæ'),('Æ½ÒÆ×ƒ“QÇúÃæ'),('ÏòÁ¿×ƒ“QÇúÃæ'),('ë[º¯”µÇúÃæ'),('×Ô¶¨Áx×ƒ“QÇúÃæ'),('·´ÑÝ×ƒ“QÇúÃæ'),(''),(''),(''),('')),
-{10}(('ÎÄ±¾'),('ˆDÆ¬'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
-    (('Ó‹Ëã'),('…¢”µ'),('Ãæ·e'),('ów·e'),('¾àëx'),('½Ç¶È'),('±ÈÖµ'),('éL¶È'),('Ð±ÂÊ'),(''),(''),(''),('¼sÊøÖµ'),('Ö±½'),('×ù˜Ë'),('ÏòÁ¿'),('Ê¸Á¿ÔËËã'),(''),('')),
-{12}((''),(''),(''),(''),(''),(''),('Í¶Ó°×ƒ“Q'),('Œ¦·Q×ƒ“Q'),('ÐýÞD×ƒ“Q'),('¿s·Å×ƒ“Q'),('Æ½ÒÆ×ƒ“Q'),('ÏòÁ¿×ƒ“Q'),(''),('×Ô¶¨Áx×ƒ“Q'),('·´ÑÝ×ƒ“Q'),(''),(''),(''),('')), //¸´ÖÆ¹¹¼þ
-    (('¯B´ú'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
-{14}(('„Ó®‹'),('ÒÆ„Ó'),('ë[²Ø/ï@Ê¾'),('ÏµÁÐ'),(''),('æœ½Ó'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
-    (('Ïà¹á¾€'),(''),(''),(''),(''),(''),('Í¶Ó°×ƒ“QÏà¹á¾€'),('Œ¦·Q×ƒ“QÏà¹á¾€'),('ÐýÞD×ƒ“QÏà¹á¾€'),('¿s·Å×ƒ“QÏà¹á¾€'),('Æ½ÒÆ×ƒ“QÏà¹á¾€'),('ÏòÁ¿×ƒ“QÏà¹á¾€'),(''),('×Ô¶¨Áx×ƒ“QÏà¹á¾€'),('·´ÑÝÏà¹á¾€'),(''),(''),(''),('')),
-{16}(('Ò»°ãÊ½Çú¾€'),('…¢”µÊ½Çú¾€'),('Ò»°ãÊ½Çú¾€'),('…¢”µÊ½Çú¾€'),('ë[º¯”µÇú¾€'),('ë[º¯”µÇú¾€'),('Í¶Ó°×ƒ“QÇú¾€'),('Œ¦·Q×ƒ“QÇú¾€'),('ÐýÞD×ƒ“QÇú¾€'),('¿s·Å×ƒ“QÇú¾€'),('Æ½ÒÆ×ƒ“QÇú¾€'),('ÏòÁ¿×ƒ“QÇú¾€'),(''),('×Ô¶¨Áx×ƒ“QÇú¾€'),('·´ÑÝ×ƒ“QÇú¾€'),(''),(''),(''),('')),
-    (('Â·½'),(''),(''),(''),(''),(''),('Í¶Ó°×ƒ“QÂ·¾¶'),('Œ¦·Q×ƒ“QÂ·¾¶'),('ÐýÞD×ƒ“QÂ·¾¶'),('¿s·Å×ƒ“QÂ·¾¶'),('Æ½ÒÆ×ƒ“QÂ·¾¶'),('ÏòÁ¿×ƒ“QÂ·¾¶'),('·ÂÉä×ƒ“Q'),('×Ô¶¨Áx×ƒ“QÂ·¾¶'),('·´ÑÝ×ƒ“QÂ·¾¶'),(''),(''),(''),('')),
-{18}(('¾€±ê×¢'),('½Ç±ê×¢'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
-    (('ˆAåFÇú¾€(Ò»)'),('ˆAåFÇú¾€(¶þ)'),(''),(''),(''),(''),('Í¶Ó°×ƒ“QˆA×¶Çú¾€'),('Œ¦·Q×ƒ“QˆA×¶Çú¾€'),('ÐýÞD×ƒ“QˆA×¶Çú¾€'),('¿s·Å×ƒ“QˆA×¶Çú¾€'),('Æ½ÒÆ×ƒ“QˆA×¶Çú¾€'),('ÏòÁ¿×ƒ“QˆA×¶Çú¾€'),(''),('×Ô¶¨Áx×ƒ“QÇú¾€'),('·´ÑÝ×ƒ“QÇú¾€'),(''),(''),(''),('')),
-{20}(('ÈýÒ•ˆD'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''))
+  stModeT :TstMode= //ç¹ä½“ä¸­æ–‡
+   ((('è‡ªç”±é»ž'),('ç´„æŸé»ž'),('æœ€è¿‘é»ž'),('äº¤é»ž'),('ä¸­é»ž'),('ç­‰åˆ†é»ž'),('æŠ•å½±è®Šæ›é»ž'),('å°ç¨±è®Šæ›é»ž'),('æ—‹è½‰è®Šæ›é»ž'),('ç¸®æ”¾è®Šæ›é»ž'),('å¹³ç§»è®Šæ›é»ž'),('å‘é‡è®Šæ›é»ž'),('é ‚é»ž'),('è‡ªå®šç¾©è®Šæ›é»ž'),('åæ¼”è®Šæ›é»ž'),(''),(''),(''),('')),
+{ 2}(('ç·šæ®µ'),('çŸ¢é‡'),('å¹³è¡Œç·š'),('åž‚ç·š'),('ä¸­ç·š'),('ç›¸è´¯ç·š/æ¼¸è¿‘ç·š'),('æŠ•å½±è®Šæ›ç›´ç·š'),('å°ç¨±è®Šæ›ç›´ç·š'),('æ—‹è½‰è®Šæ›ç›´ç·š'),('ç¼©æ”¾è®Šæ›ç›´ç·š'),('å¹³ç§»è®Šæ›ç›´ç·š'),('å‘é‡è®Šæ›ç›´ç·š'),('æ£±é‚Š'),('è‡ªå®šç¾©è®Šæ›ç›´ç·š'),('åæ¼”è®Šæ›ç›´ç·š'),(''),(''),(''),('åˆ‡ç·š')),
+    (('é»žæ³•åœ“'),('ä¸‰é»žåœ“'),('é»žæ³•å¼§'),('ä¸‰é»žå¼§'),(''),(''),('æŠ•å½±è®Šæ›åœ“'),('å°ç¨±è®Šæ›åœ“'),('æ—‹è½‰è®Šæ›åœ“'),('ç¼©æ”¾è®Šæ›åœ“'),('å¹³ç§»è®Šæ›åœ“'),('å‘é‡è®Šæ›åœ“'),(''),('è‡ªå®šç¾©è®Šæ›åœ“'),('åæ¼”è®Šæ›åœ“'),(''),(''),(''),('')),
+{ 4}(('å¹³é¢'),('å¹³é¢'),('å¹³è¡Œé¢'),('åž‚é¢'),('ä¸­é¢'),('å¤šè¾¹å½¢'),('æŠ•å½±è®Šæ›å¹³é¢'),('å°ç¨±è®Šæ›å¹³é¢'),('æ—‹è½‰è®Šæ›å¹³é¢'),('ç¼©æ”¾è®Šæ›å¹³é¢'),('å¹³ç§»è®Šæ›å¹³é¢'),('å‘é‡è®Šæ›å¹³é¢'),(''),('è‡ªå®šç¾©è®Šæ›å¹³é¢'),(''),(''),(''),(''),('')),
+    (('è»Œè·¡ç·š'),(''),(''),(''),(''),(''),('æŠ•å½±è®Šæ›è»Œè·¡ç·š'),('å°ç¨±è®Šæ›è»Œè·¡ç·š'),('æ—‹è½‰è®Šæ›è»Œè·¡ç·š'),('ç¸®æ”¾ç¼©æ”¾è®Šæ›è»Œè·¡ç·š'),('å¹³ç§»è®Šæ›è»Œè·¡ç·š'),('å‘é‡è®Šæ›è»Œè·¡ç·š'),(''),('è‡ªå®šç¾©è®Šæ›è»Œè·¡ç·š'),('åæ¼”è®Šæ›è»Œè·¡ç·š'),(''),(''),(''),('')),
+{06}(('çƒé«”'),('åœ“è‡º'),('æ­£å¤šé¢é«”'),('æ£±è‡º'),('å‡¸å¤šé¢é«”'),('ä¸‰ç‚¹çƒ'),('æŠ•å½±è®Šæ›å¯¦é«”'),('å°ç¨±è®Šæ›å¯¦é«”'),('æ—‹è½‰è®Šæ›å¯¦é«”'),('ç¸®æ”¾è®Šæ›å¯¦é«”'),('å¹³ç§»è®Šæ›å¯¦é«”'),('å‘é‡è®Šæ›å¯¦é«”'),(''),('è‡ªå®šç¾©è®Šæ›å¯¦é«”'),('åæ¼”è®Šæ›çƒ'),(''),(''),(''),('')),
+    (('æ—‹è½‰æ›²é¢'),('ç›´ç´‹æ›²é¢'),('è¤‡åˆæ›²é¢'),('è»Œè·¡é¢ '),(''),(''),('æŠ•å½±è®Šæ›æ›²é¢'),('å°ç¨±è®Šæ›æ›²é¢'),('æ—‹è½‰è®Šæ›æ›²é¢'),('ç¸®æ”¾è®Šæ›æ›²é¢'),('å¹³ç§»è®Šæ›æ›²é¢'),('å‘é‡è®Šæ›æ›²é¢'),(''),('è‡ªå®šç¾©è®Šæ›æ›²é¢'),('åæ¼”è®Šæ›æ›²é¢'),(''),(''),(''),('')),
+{08}(('åˆä½µ/åˆ†é›¢'),('æ¨™è¨˜ä¸­å¿ƒ/è»¸'),('æ¨™è¨˜é¡é¢'),('æ¨™è¨˜å‘é‡'),('æ¨™è¨˜è·é›¢'),('æ¨™è¨˜è§’åº¦'),('æ¨™è¨˜æ¯”'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
+    (('ä¸€èˆ¬å¼æ›²é¢'),('åƒæ•¸å¼æ›²é¢'),('ä¸€èˆ¬å¼æ›²é¢'),('åƒæ•¸å¼æ›²é¢'),('ä¸€èˆ¬å¼æ›²é¢'),('åƒæ•¸å¼æ›²é¢'),('æŠ•å½±è®Šæ›æ›²é¢'),('å°ç¨±è®Šæ›æ›²é¢'),('æ—‹è½‰è®Šæ›æ›²é¢'),('ç¸®æ”¾è®Šæ›æ›²é¢'),('å¹³ç§»è®Šæ›æ›²é¢'),('å‘é‡è®Šæ›æ›²é¢'),('éš±å‡½æ•¸æ›²é¢'),('è‡ªå®šç¾©è®Šæ›æ›²é¢'),('åæ¼”è®Šæ›æ›²é¢'),(''),(''),(''),('')),
+{10}(('æ–‡æœ¬'),('åœ–ç‰‡'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
+    (('è¨ˆç®—'),('åƒæ•¸'),('é¢ç©'),('é«”ç©'),('è·é›¢'),('è§’åº¦'),('æ¯”å€¼'),('é•·åº¦'),('æ–œçŽ‡'),(''),(''),(''),('ç´„æŸå€¼'),('ç›´å¾‘'),('åº§æ¨™'),('å‘é‡'),('çŸ¢é‡è¿ç®—'),(''),('')),
+{12}((''),(''),(''),(''),(''),(''),('æŠ•å½±è®Šæ›'),('å°ç¨±è®Šæ›'),('æ—‹è½‰è®Šæ›'),('ç¸®æ”¾è®Šæ›'),('å¹³ç§»è®Šæ›'),('å‘é‡è®Šæ›'),(''),('è‡ªå®šç¾©è®Šæ›'),('åæ¼”è®Šæ›'),(''),(''),(''),('')), //å¤åˆ¶æž„ä»¶
+    (('ç–Šä»£'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
+{14}(('å‹•ç•«'),('ç§»å‹•'),('éš±è—/é¡¯ç¤º'),('ç³»åˆ—'),(''),('éˆæŽ¥'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
+    (('ç›¸è´¯ç·š'),(''),(''),(''),(''),(''),('æŠ•å½±è®Šæ›ç›¸è´¯ç·š'),('å°ç¨±è®Šæ›ç›¸è´¯ç·š'),('æ—‹è½‰è®Šæ›ç›¸è´¯ç·š'),('ç¸®æ”¾è®Šæ›ç›¸è´¯ç·š'),('å¹³ç§»è®Šæ›ç›¸è´¯ç·š'),('å‘é‡è®Šæ›ç›¸è´¯ç·š'),(''),('è‡ªå®šç¾©è®Šæ›ç›¸è´¯ç·š'),('åæ¼”ç›¸è´¯ç·š'),(''),(''),(''),('')),
+{16}(('ä¸€èˆ¬å¼æ›²ç·š'),('åƒæ•¸å¼æ›²ç·š'),('ä¸€èˆ¬å¼æ›²ç·š'),('åƒæ•¸å¼æ›²ç·š'),('éš±å‡½æ•¸æ›²ç·š'),('éš±å‡½æ•¸æ›²ç·š'),('æŠ•å½±è®Šæ›æ›²ç·š'),('å°ç¨±è®Šæ›æ›²ç·š'),('æ—‹è½‰è®Šæ›æ›²ç·š'),('ç¸®æ”¾è®Šæ›æ›²ç·š'),('å¹³ç§»è®Šæ›æ›²ç·š'),('å‘é‡è®Šæ›æ›²ç·š'),(''),('è‡ªå®šç¾©è®Šæ›æ›²ç·š'),('åæ¼”è®Šæ›æ›²ç·š'),(''),(''),(''),('')),
+    (('è·¯å¾‘'),(''),(''),(''),(''),(''),('æŠ•å½±è®Šæ›è·¯å¾„'),('å°ç¨±è®Šæ›è·¯å¾„'),('æ—‹è½‰è®Šæ›è·¯å¾„'),('ç¸®æ”¾è®Šæ›è·¯å¾„'),('å¹³ç§»è®Šæ›è·¯å¾„'),('å‘é‡è®Šæ›è·¯å¾„'),('ä»¿å°„è®Šæ›'),('è‡ªå®šç¾©è®Šæ›è·¯å¾„'),('åæ¼”è®Šæ›è·¯å¾„'),(''),(''),(''),('')),
+{18}(('ç·šæ ‡æ³¨'),('è§’æ ‡æ³¨'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
+    (('åœ“éŒæ›²ç·š(ä¸€)'),('åœ“éŒæ›²ç·š(äºŒ)'),(''),(''),(''),(''),('æŠ•å½±è®Šæ›åœ“é”¥æ›²ç·š'),('å°ç¨±è®Šæ›åœ“é”¥æ›²ç·š'),('æ—‹è½‰è®Šæ›åœ“é”¥æ›²ç·š'),('ç¸®æ”¾è®Šæ›åœ“é”¥æ›²ç·š'),('å¹³ç§»è®Šæ›åœ“é”¥æ›²ç·š'),('å‘é‡è®Šæ›åœ“é”¥æ›²ç·š'),(''),('è‡ªå®šç¾©è®Šæ›æ›²ç·š'),('åæ¼”è®Šæ›æ›²ç·š'),(''),(''),(''),('')),
+{20}(('ä¸‰è¦–åœ–'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''))
     );
   stModeE :TstMode=
    ((('Free Point'),('Bound Point'),('Closest Point'),('Intersection Point'),('Midpoint'),('Equidistant Points'),('Projective Point'),('Symmetrical Point'),('Rotate Point'),('Scale Point'),('Translate Point'),('Vector TransForm Point'),('Vertex'),('Custom Transform Point'),('Inversion Point'),(''),(''),(''),('')),
@@ -403,7 +405,7 @@ const
     (('Equartion Surface'),('Parametric Surface'),('General Surface'),('Parametric Surface'),('General Surface'),('Parametric Surface'),('Projective Surface'),('Symmetrical Surface'),('Rotate Surface'),('Scale Surface'),('Translate Surface'),('Vector Transform Surface'),('Implicit Funtion Surface'),('Custom Transform Surface'),('Inversion Surface'),(''),(''),(''),('')),
 {10}(('Text'),('Image'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
     (('Calculator'),('Parameter'),('Area'),('Volume'),('Distance'),('Angle'),('Ratio'),('Length'),('Slope'),(''),(''),(''),('Bound Value'),('Diameter'),('Coordinates'),('Vector'),('Vector Operations'),(''),('')),
-{12}((''),(''),(''),(''),(''),(''),('Projection'),('Symmetry'),('Rotation'),('Delation'),('Translation'),('Vertor'),(''),('Custom Translation'),('Inversion'),(''),(''),(''),('')), //¸´ÖÆ¹¹¼þ
+{12}((''),(''),(''),(''),(''),(''),('Projection'),('Symmetry'),('Rotation'),('Delation'),('Translation'),('Vertor'),(''),('Custom Translation'),('Inversion'),(''),(''),(''),('')), //å¤åˆ¶æž„ä»¶
     (('Iteration'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
 {14}(('Animation'),('Movement'),('Hide/Show'),('Presentation'),(''),('Link'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('')),
     (('Intersection Curve'),(''),(''),(''),(''),(''),('Projective Curve'),('Symmetrical Curve'),('Rotage Curve'),('Scale Curve'),('Translate Curve'),('Vector Transform Curve'),(''),('Custom Transform Curve'),('Inversion Curve'),(''),(''),(''),('')),
@@ -413,31 +415,31 @@ const
     (('Conic Curve(1)'),('Conic Curve(2)'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),('Inversion Curve'),(''),(''),(''),('')),
 {20}(('Three-view drawings'),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''),(''))
     );
-  stLineStyle:array[0..3]of integer= ($ffff, $1f1f, $1111, $11ff); //¾€ÐÎ
-  SolidEdge:array[1..6]of integer=(6,12,12,30,30,12); //Õý¶àÃæówµÄÀâ±ßÊý
-  SolidVct :array[1..6]of integer=(4, 8, 6,20,12, 8); //Õý¶àÃæów¶¥üc×ÜÊý
+  stLineStyle:array[0..3]of integer= ($ffff, $1f1f, $1111, $11ff); //ç·šå½¢
+  SolidEdge:array[1..6]of integer=(6,12,12,30,30,12); //æ­£å¤šé¢é«”çš„æ£±è¾¹æ•°
+  SolidVct :array[1..6]of integer=(4, 8, 6,20,12, 8); //æ­£å¤šé¢é«”é¡¶é»žæ€»æ•°
   stAxisC :TstAxis=
-    (('Ô­µã O'),('Öá OX'),('Öá OY'),('Öá OZ'),('Æ½Ãæ YOZ'),('Æ½Ãæ XOZ'),('Æ½Ãæ XOY'));
+    (('åŽŸç‚¹ O'),('è½´ OX'),('è½´ OY'),('è½´ OZ'),('å¹³é¢ YOZ'),('å¹³é¢ XOZ'),('å¹³é¢ XOY'));
   stAxisT :TstAxis=
-    (('Ô­üc O'),('ÝS OX'),('ÝS OY'),('ÝS OZ'),('Æ½Ãæ YOZ'),('Æ½Ãæ XOZ'),('Æ½Ãæ XOY'));
+    (('åŽŸé»ž O'),('è»¸ OX'),('è»¸ OY'),('è»¸ OZ'),('å¹³é¢ YOZ'),('å¹³é¢ XOZ'),('å¹³é¢ XOY'));
   stAxisE :TstAxis=
     (('Origin O'),('Axis OX'),('Axis OY'),('Axis OZ'),('Plane YOZ'),('Plane XOZ'),('Plane XOY'));
-  SphereSlice:array[2..15,0..1]of integer= //ÇòÌå·Ö¸îÊý
+  SphereSlice:array[2..15,0..1]of integer= //çƒä½“åˆ†å‰²æ•°
     ((16,32),(18,32), (20,36),(20,42), (24,48),(28,56), (32,60),(36,70),
      (40,72),(44,84), (48,84),(52,98), (56,96),(60,112));
-  const AxisNum:array[0..1,0..111]of byte= //×ø±ê¿Ì¶ÈÊý×Ö
+  const AxisNum:array[0..1,0..111]of byte= //åæ ‡åˆ»åº¦æ•°å­—
     ((11,20,23,30,43,48,57,68,72,89,100,  0,1,3,4,4,3,1,0,0, 1,3,3, 0,1,3,4,4,0,4, 0,1,3,4,4,3,2,3,4,4,3,1,0, 4,0,0,3,3, 4,1,0,3,4,4,3,1,0,
                 4,3,1,0,0,1,3,4,4,3,0,   0,4,2,2,   0,1,3,4,4,3,1,0,0,1,3,4,4,3,1,0,0,   4,1,0,0,1,3,4,4,3,1,0,   1,2,2,1,0,1,2,5,5,5,6,7 ),
      ( 9, 3, 7,13, 5, 9,11, 4,17,11,12,  1,0,0,1,6,7,7,6,1, 2,0,7, 1,0,0,1,3,7,7, 1,0,0,1,2,3,3,3,4,6,7,7,6, 5,5,4,0,7, 0,0,3,3,4,6,7,7,6,
                 1,0,0,1,6,7,7,6,4,3,3,   0,0,5,7,   1,0,0,1,2,3,3,4,6,7,7,6,4,3,3,2,1,   4,4,3,1,0,0,1,6,7,7,6,   6,5,2,2,3,2,2,2,6,2,2,2));
 
-procedure setLanguage(bb:integer); //ÓïÑÔÞD»»
+procedure setLanguage(bb:integer); //è¯­è¨€è½‰æ¢
 
 implementation
 
 uses inRm3Dunit, DragImage;
 
-procedure setLanguage(bb:integer);//ÓïÑÔÞD»» bb: 1-¼òÌå 2-·±Ìå 3-English
+procedure setLanguage(bb:integer);//è¯­è¨€è½‰æ¢ bb: 1-ç®€ä½“ 2-ç¹ä½“ 3-English
   function IIfs(a:integer; b,c,d:string):string;
     begin case a of 0:result:=b; 1:result:=c; 2:result:=d; end; end;
   function IIFi(a:boolean; b,c:integer):integer;
@@ -448,514 +450,518 @@ begin
     case bb of 0:stMode:=stModeC; 1:stMode:=stModeT; 2:stMode:=stModeE; end;
     case bb of 0:stAxis:=stAxisC; 1:stAxis:=stAxisT; 2:stAxis:=stAxisE; end;
 
-    tlbMenu.Menu:=nil; //######### È¡Ïû²Ëµ¥¹ØÁª£¬±ä¸ü²Ëµ¥ÏîºóÔÙ¹ØÁª #########
-    menFile.Caption   :=IIFs(bb,' ÎÄ¼þ(&F)',' ÎÄ¼þ(&F)','&File');
-    menEdit.Caption   :=IIFs(bb,' ±à¼­(&E)',' ¾ŽÝ‹(&E)','&Edit');
-    menView.Caption   :=IIFs(bb,' ÏÔÊ¾(&D)',' ï@Ê¾(&D)','&Display');
-    menConst.Caption  :=IIFs(bb,' ¹¹Ôì(&C)',' ˜‹Ôì(&C)','&Construct');
-    menTrans.Caption  :=IIFs(bb,' ±ä»»(&T)',' ×ƒ“Q(&T)','&Transform');
-    menSize.Caption   :=IIFs(bb,' Êý¾Ý(&N)',' ”µ“þ(&N)','&Number');
-    menAnother.Caption:=IIFs(bb,' °ïÖú(&H)',' ŽÍÖú(&H)','&Help');
-    tlbMenu.Menu:=menMain; //######### È¡Ïû²Ëµ¥¹ØÁª£¬±ä¸ü²Ëµ¥ÏîºóÔÙ¹ØÁª #########
-//ÎÄ¼þ
-    menNew.Caption:=IIfs(bb,'ÐÂ½¨ (&N) ', 'ÐÂ½¨(&N) ', '&New');
-    menOpen.Caption:=IIFs(bb,'´ò¿ª (&O)... ', '´òé_(&O)... ', '&Open...');
-    menSave.Caption:=IIFs(bb,'±£´æ (&S) ','±£´æ(&S) ', 'Save(&S)');
-    menSaveAs.Caption:=IIFs(bb,'Áí´æÎª (&A)... ','Áí´æžé(A&)... ', 'S&ave as...');
-    menSaveImage.Caption:=IIfs(bb,'±£´æÍ¼Ïñ (&I)...','±£´æˆDÏñ (&I)...', 'Save &Image...');
-    menExit.Caption:=IIFs(bb,'ÍË³ö (&X) ','ÍË³ö (&X) ','E&xit');
-//Ò³Ãæ
-    menPage.Caption:=IIFs(bb,'Ò³ÃæÑ¡Ïî (&P)','í“Ãæßxí— (&P)','&Pages Options');
-    menPageNew.Caption:=IIFs(bb,'Ôö¼Ó¿Õ°×Ò³ (&A)','Ôö¼Ó¿Õ°×í“ (&A)','&Add a Blank Page');
-    menPageClone.Caption:=IIFs(bb,'¸´ÖÆµ±Ç°Ò³ (&C)','Ñ}Ñu®”Ç°í“ (&C)','&Clone Current Page');
-    menPageOpen.Caption:=IIFs(bb,'ÎÄ¼þ (&F)...','ÎÄ¼þ (&F)...','From a &File...');
-    menPageDelete.Caption:=IIFs(bb,'É¾³ýµ±Ç°Ò³ (&D)','É¾³ý®”Ç°í“ (&D)','&Delete Current Page');
-    menPageRename.Caption:=IIFs(bb,'ÖØÃüÃû (&R)','ÖØÃüÃû (&R)','&Rename');
+    {$IFNDEF FPC}
+    tlbMenu.Menu:=nil; //######### å–æ¶ˆèœå•å…³è”ï¼Œå˜æ›´èœå•é¡¹åŽå†å…³è” #########
+    {$ENDIF}
+    menFile.Caption   :=IIFs(bb,' æ–‡ä»¶(&F)',' æ–‡ä»¶(&F)','&File');
+    menEdit.Caption   :=IIFs(bb,' ç¼–è¾‘(&E)',' ç·¨è¼¯(&E)','&Edit');
+    menView.Caption   :=IIFs(bb,' æ˜¾ç¤º(&D)',' é¡¯ç¤º(&D)','&Display');
+    menConst.Caption  :=IIFs(bb,' æž„é€ (&C)',' æ§‹é€ (&C)','&Construct');
+    menTrans.Caption  :=IIFs(bb,' å˜æ¢(&T)',' è®Šæ›(&T)','&Transform');
+    menSize.Caption   :=IIFs(bb,' æ•°æ®(&N)',' æ•¸æ“š(&N)','&Number');
+    menAnother.Caption:=IIFs(bb,' å¸®åŠ©(&H)',' å¹«åŠ©(&H)','&Help');
+    {$IFNDEF FPC}
+    tlbMenu.Menu:=menMain; //######### å–æ¶ˆèœå•å…³è”ï¼Œå˜æ›´èœå•é¡¹åŽå†å…³è” #########
+    {$ENDIF}
+//æ–‡ä»¶
+    menNew.Caption:=IIfs(bb,'æ–°å»º (&N) ', 'æ–°å»º(&N) ', '&New');
+    menOpen.Caption:=IIFs(bb,'æ‰“å¼€ (&O)... ', 'æ‰“é–‹(&O)... ', '&Open...');
+    menSave.Caption:=IIFs(bb,'ä¿å­˜ (&S) ','ä¿å­˜(&S) ', 'Save(&S)');
+    menSaveAs.Caption:=IIFs(bb,'å¦å­˜ä¸º (&A)... ','å¦å­˜ç‚º(A&)... ', 'S&ave as...');
+    menSaveImage.Caption:=IIfs(bb,'ä¿å­˜å›¾åƒ (&I)...','ä¿å­˜åœ–åƒ (&I)...', 'Save &Image...');
+    menExit.Caption:=IIFs(bb,'é€€å‡º (&X) ','é€€å‡º (&X) ','E&xit');
+//é¡µé¢
+    menPage.Caption:=IIFs(bb,'é¡µé¢é€‰é¡¹ (&P)','é é¢é¸é … (&P)','&Pages Options');
+    menPageNew.Caption:=IIFs(bb,'å¢žåŠ ç©ºç™½é¡µ (&A)','å¢žåŠ ç©ºç™½é  (&A)','&Add a Blank Page');
+    menPageClone.Caption:=IIFs(bb,'å¤åˆ¶å½“å‰é¡µ (&C)','è¤‡è£½ç•¶å‰é  (&C)','&Clone Current Page');
+    menPageOpen.Caption:=IIFs(bb,'æ–‡ä»¶ (&F)...','æ–‡ä»¶ (&F)...','From a &File...');
+    menPageDelete.Caption:=IIFs(bb,'åˆ é™¤å½“å‰é¡µ (&D)','åˆ é™¤ç•¶å‰é  (&D)','&Delete Current Page');
+    menPageRename.Caption:=IIFs(bb,'é‡å‘½å (&R)','é‡å‘½å (&R)','&Rename');
     popPageNew.Caption:=menPageNew.Caption;
     popPageClone.Caption:=menPageClone.Caption;
     popPageOpen.Caption:=menPageOpen.Caption;
     popPageDelete.Caption:=menPageDelete.Caption;
     popPageRename.Caption:=menPageRename.Caption;
-//°ïÖú
-    menHelp.Caption:=IIfs(bb,'°ïÖú (&H) ', 'ŽÍÖú (&H) ', '&Help');
-    menNet.Caption:=IIfs(bb,'»­°åÂÛÌ³ (&S)...','®‹°åÕ“‰¯ (&S)...', '&Sketchpad Forum...');
-    menLanguage.Caption:=IIfs(bb,'ÖÐÎÄ(·±)/&English ', '&EngLish/ÖÐÎÄ(¼ò) ', 'ÖÐÎÄ(¼ò/·±) (&E) ');
+//å¸®åŠ©
+    menHelp.Caption:=IIfs(bb,'å¸®åŠ© (&H) ', 'å¹«åŠ© (&H) ', '&Help');
+    menNet.Caption:=IIfs(bb,'ç”»æ¿è®ºå› (&S)...','ç•«æ¿è«–å£‡ (&S)...', '&Sketchpad Forum...');
+    menLanguage.Caption:=IIfs(bb,'ä¸­æ–‡(ç¹)/&English ', '&EngLish/ä¸­æ–‡(ç®€) ', 'ä¸­æ–‡(ç®€/ç¹) (&E) ');
 //    menLanguage.ImageIndex:=IIfi(bb<2, 68, 69);
-    menAbout.Caption:=IIFs(bb,'¹ØÓÚ (&A)... ', 'êPì¶ (&A)... ', '&About...');
-//±à¼­
-    menUndo.Caption :=IIFs(bb,'³·Ïú (&U)', '³·äN (&U)', '&Undo');
-    menRedo.Caption :=IIFs(bb,'»Ö¸´ (&R)', '»ÖÍ (&R)', '&Redo');
-    menCopyObj.Caption :=IIFs(bb,'¸´ÖÆ (&C)', 'Ñ}Ñu (&C)', '&Copy');
-    menPasteObj.Caption :=IIFs(bb,'Õ³Ìù (&P)', 'Õ³ÙN (&P)', '&Paste');
-    menObjDel.Caption :=IIFs(bb,'É¾³ý (&D)', '„h³ý (&D)', '&Delete');
-    menPaintDel.Caption :=IIFs(bb,'Çå³ýÊÖ»æÏß (&H)', 'Çå³ýÊÖÀL¾€ (&H)', 'Delete &Hand Draw');
-    menControl.Caption :=IIFs(bb,'¿ØÖÆ°´Å¥ (&B)...', '¿ØÖÆ°´âo (&B)...', 'Action &Buttos');
-    menHide.Caption :=IIFs(bb,'Òþ²Ø/ÏÔÊ¾ (&H)', 'ë[²Ø/ï@Ê¾ (&H)', 'Show/&Hide');
-    menAnimation.Caption :=IIFs(bb,'¶¯»­ (&A)...', '„Ó®‹ (&A)...', '&Animation...');
-    menMove.Caption :=IIFs(bb,'ÒÆ¶¯ (&M)...', 'ÒÆ„Ó (&M)...', 'Movement...');
-    menSeries.Caption :=IIFs(bb,'ÏµÁÐ (&P)...', 'ÏµÁÐ (&P)...', '&Presentation...');
-    menLinkNet.Caption :=IIFs(bb,'Á´½Ó (&L)...', 'æœ½Ó (&L)...', '&Link...');
-    menObjAll.Caption :=IIFs(bb,'È«Ñ¡ (&A)', 'È«ßx (&A)', 'Select &All');
-    menSelDad.Caption :=IIFs(bb,'¸¸¶ÔÏó (&N)', '¸¸Œ¦Ïó (&N)', 'Pare&nts');
-    menSelSon.Caption :=IIFs(bb,'×Ó¶ÔÏó (&J)', '×ÓŒ¦Ïó (&J)', 'Sub&jects');
+    menAbout.Caption:=IIFs(bb,'å…³äºŽ (&A)... ', 'é—œæ–¼ (&A)... ', '&About...');
+//ç¼–è¾‘
+    menUndo.Caption :=IIFs(bb,'æ’¤é”€ (&U)', 'æ’¤éŠ· (&U)', '&Undo');
+    menRedo.Caption :=IIFs(bb,'æ¢å¤ (&R)', 'æ¢å¾© (&R)', '&Redo');
+    menCopyObj.Caption :=IIFs(bb,'å¤åˆ¶ (&C)', 'è¤‡è£½ (&C)', '&Copy');
+    menPasteObj.Caption :=IIFs(bb,'ç²˜è´´ (&P)', 'ç²˜è²¼ (&P)', '&Paste');
+    menObjDel.Caption :=IIFs(bb,'åˆ é™¤ (&D)', 'åˆªé™¤ (&D)', '&Delete');
+    menPaintDel.Caption :=IIFs(bb,'æ¸…é™¤æ‰‹ç»˜çº¿ (&H)', 'æ¸…é™¤æ‰‹ç¹ªç·š (&H)', 'Delete &Hand Draw');
+    menControl.Caption :=IIFs(bb,'æŽ§åˆ¶æŒ‰é’® (&B)...', 'æŽ§åˆ¶æŒ‰éˆ• (&B)...', 'Action &Buttos');
+    menHide.Caption :=IIFs(bb,'éšè—/æ˜¾ç¤º (&H)', 'éš±è—/é¡¯ç¤º (&H)', 'Show/&Hide');
+    menAnimation.Caption :=IIFs(bb,'åŠ¨ç”» (&A)...', 'å‹•ç•« (&A)...', '&Animation...');
+    menMove.Caption :=IIFs(bb,'ç§»åŠ¨ (&M)...', 'ç§»å‹• (&M)...', 'Movement...');
+    menSeries.Caption :=IIFs(bb,'ç³»åˆ— (&P)...', 'ç³»åˆ— (&P)...', '&Presentation...');
+    menLinkNet.Caption :=IIFs(bb,'é“¾æŽ¥ (&L)...', 'éˆæŽ¥ (&L)...', '&Link...');
+    menObjAll.Caption :=IIFs(bb,'å…¨é€‰ (&A)', 'å…¨é¸ (&A)', 'Select &All');
+    menSelDad.Caption :=IIFs(bb,'çˆ¶å¯¹è±¡ (&N)', 'çˆ¶å°è±¡ (&N)', 'Pare&nts');
+    menSelSon.Caption :=IIFs(bb,'å­å¯¹è±¡ (&J)', 'å­å°è±¡ (&J)', 'Sub&jects');
 
-    menCutting.Caption :=IIFs(bb,'ÇÐ¸î (&T)', 'ÇÐ¸î (&T)', 'Cu&tting');
-    menImage.Caption :=IIFs(bb,'Í¼Æ¬ (&I)...', 'ˆDÆ¬ (&I)...', 'P&icture...');
-    menJoin.Caption:=IIFs(bb,'ºÏ²¢/·ÖÀë (&M)', 'ºÏã/·Öëx (&M)', '&Merge/Split');
-    menMoveID.Caption:=IIFs(bb,'´ÎÐò (&E)...', '´ÎÐò (&E)...', 'Ord&er...');
-    menProp.Caption:=IIFs(bb,'ÊôÐÔ (&O)...', 'ŒÙÐÔ (&O)...', 'Pr&operty...');
-//ÏÔÊ¾
-    menDotStyle.Caption:=IIFs(bb,'µãÑùÊ½ (&P)', 'üc˜ÓÊ½ (&P)', '&Point Style');
-    menDotSize1.Caption:=IIFs(bb,'Ð¡ (&D)', 'Ð¡ (&D)', '&Dot');
-    menDotSize2.Caption:=IIFs(bb,'ÉÔÐ¡ (&S)', 'ÉÔÐ¡ (&S)', '&Small');
-    menDotSize3.Caption:=IIFs(bb,'ÖÐµÈ (&M)', 'ÖÐµÈ (&M)', '&Medium');
-    menDotSize4.Caption:=IIFs(bb,'ÉÔ´ó (&L)', 'ÉÔ´ó (&L)', '&Large');
-    menDotSize5.Caption:=IIFs(bb,'´ó (&G)', '´ó (&G)', 'Lar&ger');
+    menCutting.Caption :=IIFs(bb,'åˆ‡å‰² (&T)', 'åˆ‡å‰² (&T)', 'Cu&tting');
+    menImage.Caption :=IIFs(bb,'å›¾ç‰‡ (&I)...', 'åœ–ç‰‡ (&I)...', 'P&icture...');
+    menJoin.Caption:=IIFs(bb,'åˆå¹¶/åˆ†ç¦» (&M)', 'åˆä½µ/åˆ†é›¢ (&M)', '&Merge/Split');
+    menMoveID.Caption:=IIFs(bb,'æ¬¡åº (&E)...', 'æ¬¡åº (&E)...', 'Ord&er...');
+    menProp.Caption:=IIFs(bb,'å±žæ€§ (&O)...', 'å±¬æ€§ (&O)...', 'Pr&operty...');
+//æ˜¾ç¤º
+    menDotStyle.Caption:=IIFs(bb,'ç‚¹æ ·å¼ (&P)', 'é»žæ¨£å¼ (&P)', '&Point Style');
+    menDotSize1.Caption:=IIFs(bb,'å° (&D)', 'å° (&D)', '&Dot');
+    menDotSize2.Caption:=IIFs(bb,'ç¨å° (&S)', 'ç¨å° (&S)', '&Small');
+    menDotSize3.Caption:=IIFs(bb,'ä¸­ç­‰ (&M)', 'ä¸­ç­‰ (&M)', '&Medium');
+    menDotSize4.Caption:=IIFs(bb,'ç¨å¤§ (&L)', 'ç¨å¤§ (&L)', '&Large');
+    menDotSize5.Caption:=IIFs(bb,'å¤§ (&G)', 'å¤§ (&G)', 'Lar&ger');
 
-    menDotSize6.Caption:=IIFs(bb,'Ô²ÐÎ (&C)', 'ˆAÐÎ (&C)', '&Circle');
-    menDotSize7.Caption:=IIFs(bb,'ÇòÐÎ (&P)', 'ÇòÐÎ (&P)', 'S&phere');
-    menDotSize8.Caption:=IIFs(bb,'×êÐÎ (&A)', 'ã@ÐÎ (&A)', 'Di&amond');
-    menDotSize9.Caption:=IIFs(bb,'Á¢·½ÐÎ (&U)', 'Á¢·½ÐÎ (&U)', 'C&ube');
+    menDotSize6.Caption:=IIFs(bb,'åœ†å½¢ (&C)', 'åœ“å½¢ (&C)', '&Circle');
+    menDotSize7.Caption:=IIFs(bb,'çƒå½¢ (&P)', 'çƒå½¢ (&P)', 'S&phere');
+    menDotSize8.Caption:=IIFs(bb,'é’»å½¢ (&A)', 'é‰†å½¢ (&A)', 'Di&amond');
+    menDotSize9.Caption:=IIFs(bb,'ç«‹æ–¹å½¢ (&U)', 'ç«‹æ–¹å½¢ (&U)', 'C&ube');
 
-    menLineStyle.Caption:=IIFs(bb,'ÏßÑùÊ½ (&N)', '¾€˜ÓÊ½ (&N)', 'Li&ne Style');
-    menWidth1.Caption:=IIFs(bb,'Ï¸ (&H)', '¼š (&H)', '&HairLine');
-    menWidth2.Caption:=IIFs(bb,'ÉÔÏ¸ (&N)', 'ÉÔ¼š (&N)', 'Thi&n');
-    menWidth3.Caption:=IIFs(bb,'ÖÐ (&M)', 'ÖÐ (&M)', 'Mediu&m');
-    menWidth4.Caption:=IIFs(bb,'ÉÔ´Ö (&K)', 'ÉÔ´Ö (&K)', 'Thic&k');
-    menWidth5.Caption:=IIFs(bb,'´Ö (&T)', '´Ö (&T)', 'Mos&t');
+    menLineStyle.Caption:=IIFs(bb,'çº¿æ ·å¼ (&N)', 'ç·šæ¨£å¼ (&N)', 'Li&ne Style');
+    menWidth1.Caption:=IIFs(bb,'ç»† (&H)', 'ç´° (&H)', '&HairLine');
+    menWidth2.Caption:=IIFs(bb,'ç¨ç»† (&N)', 'ç¨ç´° (&N)', 'Thi&n');
+    menWidth3.Caption:=IIFs(bb,'ä¸­ (&M)', 'ä¸­ (&M)', 'Mediu&m');
+    menWidth4.Caption:=IIFs(bb,'ç¨ç²— (&K)', 'ç¨ç²— (&K)', 'Thic&k');
+    menWidth5.Caption:=IIFs(bb,'ç²— (&T)', 'ç²— (&T)', 'Mos&t');
 
-    menWidth7.Caption:=IIFs(bb,'ÊµÏß (&S)', 'Œ¾€ (&S)', '&Solid');
-    menWidth8.Caption:=IIFs(bb,'ÐéÏß (&D)', 'Ì“¾€ (&D)', '&Dashed');
-    menWidth9.Caption:=IIFs(bb,'µãÏß (&O)', 'üc¾€ (&O)', 'D&otted');
+    menWidth7.Caption:=IIFs(bb,'å®žçº¿ (&S)', 'å¯¦ç·š (&S)', '&Solid');
+    menWidth8.Caption:=IIFs(bb,'è™šçº¿ (&D)', 'è™›ç·š (&D)', '&Dashed');
+    menWidth9.Caption:=IIFs(bb,'ç‚¹çº¿ (&O)', 'é»žç·š (&O)', 'D&otted');
 
-    menFont.Caption:=IIFs(bb,'×ÖÌå (&F)...', '×Öów (&F)...', '&Font...');
-    menColor.Caption:=IIFs(bb,'ÑÕÉ« (&C)', 'îÉ« (&C)', '&Color');
-    menObjHide.Caption:=IIFs(bb,'Òþ²Ø/ÏÔÊ¾¶ÔÏó (&H)', 'ë[²Ø/ï@Ê¾Œ¦Ïó (&H)', 'Show/&Hide Objects');
-    menTagHide.Caption:=IIFs(bb,'Òþ²Ø/ÏÔÊ¾±êÇ© (&B)', 'ë[²Ø/ï@Ê¾˜Ë»`(&B)', 'Show/Hide Le&bels');
-    menLabel.Caption:=IIfs(bb,'±êÇ© (&L)...', '˜Ë»` (&L)...', '&Labels...',);
-    menTrace.Caption:=IIfs(bb,'×Ù¼£ (&T)', 'Û™ÛE (&T)', '&Trace',);
-    menTraceDel.Caption:=IIfs(bb,'Çå³ý×Ù¼£ (&E)', 'Û™ÛE (&E)', 'Trac&e',);
-    menSpin.Caption:=IIFs(bb,'³¡¾°Ðý×ª (&R)', 'ˆö¾°ÐýÞD (&R)', '&Rotate Scene');
-    menAll.Caption:=IIFs(bb,'È«ÏÔ (&A)', 'È«ï@ (&A)', 'Show &All');
-    menSport.Caption:=IIFs(bb,'ÔË¶¯ (&M)', 'ß\„Ó (&M)', 'Auto &Move');
-    menStart.Caption:=IIFs(bb,'ÖðµãÃè»æ (&D)', 'ÖðücÃèÀL (&D)', '&Drawing Gradually');
-    menMax.Caption:=IIFs(bb,'È«ÆÁ (&S)', 'È«ÆÁ (&S)', 'Full &Screen');
+    menFont.Caption:=IIFs(bb,'å­—ä½“ (&F)...', 'å­—é«” (&F)...', '&Font...');
+    menColor.Caption:=IIFs(bb,'é¢œè‰² (&C)', 'é¡è‰² (&C)', '&Color');
+    menObjHide.Caption:=IIFs(bb,'éšè—/æ˜¾ç¤ºå¯¹è±¡ (&H)', 'éš±è—/é¡¯ç¤ºå°è±¡ (&H)', 'Show/&Hide Objects');
+    menTagHide.Caption:=IIFs(bb,'éšè—/æ˜¾ç¤ºæ ‡ç­¾ (&B)', 'éš±è—/é¡¯ç¤ºæ¨™ç±¤(&B)', 'Show/Hide Le&bels');
+    menLabel.Caption:=IIFs(bb,'æ ‡ç­¾ (&L)...', 'æ¨™ç±¤ (&L)...', '&Labels...');
+    menTrace.Caption:=IIFs(bb,'è¸ªè¿¹ (&T)', 'è¹¤è·¡ (&T)', '&Trace');
+    menTraceDel.Caption:=IIFs(bb,'æ¸…é™¤è¸ªè¿¹ (&E)', 'è¹¤è·¡ (&E)', 'Trac&e');
+    menSpin.Caption:=IIFs(bb,'åœºæ™¯æ—‹è½¬ (&R)', 'å ´æ™¯æ—‹è½‰ (&R)', '&Rotate Scene');
+    menAll.Caption:=IIFs(bb,'å…¨æ˜¾ (&A)', 'å…¨é¡¯ (&A)', 'Show &All');
+    menSport.Caption:=IIFs(bb,'è¿åŠ¨ (&M)', 'é‹å‹• (&M)', 'Auto &Move');
+    menStart.Caption:=IIFs(bb,'é€ç‚¹æç»˜ (&D)', 'é€é»žæç¹ª (&D)', '&Drawing Gradually');
+    menMax.Caption:=IIFs(bb,'å…¨å± (&S)', 'å…¨å± (&S)', 'Full &Screen');
 
-    menPers.Caption:=IIFs(bb,'ÊÓµã (&V)', 'Ò•üc (&V) ', '&Viewpoint');
-    menXYZ.Caption:=IIFs(bb,'Éè¶¨ (&R)', 'ÔO¶¨ (&R) ', '&Seting');
-    menX.Caption:=IIFs(bb,'YOZÆ½Ãæ (&X)', 'YOZÆ½Ãæ (&X)', 'YOZ Plane(&X)');
-    menY.Caption:=IIFs(bb,'XOZÆ½Ãæ (&Y)', 'XOZÆ½Ãæ (&Y)', 'XOZ Plane(&Y)');
-    menZ.Caption:=IIFs(bb,'XOYÆ½Ãæ (&Z)', 'XOYÆ½Ãæ (&Z)', 'XOY Plane(&Z)');
-    menLock.Caption:=IIFs(bb,'Ëø¶¨ (&L)', 'æi¶¨ (&L)', '&Lock');
+    menPers.Caption:=IIFs(bb,'è§†ç‚¹ (&V)', 'è¦–é»ž (&V) ', '&Viewpoint');
+    menXYZ.Caption:=IIFs(bb,'è®¾å®š (&R)', 'è¨­å®š (&R) ', '&Seting');
+    menX.Caption:=IIFs(bb,'YOZå¹³é¢ (&X)', 'YOZå¹³é¢ (&X)', 'YOZ Plane(&X)');
+    menY.Caption:=IIFs(bb,'XOZå¹³é¢ (&Y)', 'XOZå¹³é¢ (&Y)', 'XOZ Plane(&Y)');
+    menZ.Caption:=IIFs(bb,'XOYå¹³é¢ (&Z)', 'XOYå¹³é¢ (&Z)', 'XOY Plane(&Z)');
+    menLock.Caption:=IIFs(bb,'é”å®š (&L)', 'éŽ–å®š (&L)', '&Lock');
     men2D.Caption:=IIFs(bb,'2D (&D)', '2D (&D)', '&2-&Dimensional');
 
-    menInterface.Caption:=IIFs(bb,'½çÃæ (&U)', '½çÃæ (&U)', 'S&urface');
-    menList.Caption:=IIFs(bb,'¶ÔÏóÁÐ±í (&L)', 'Œ¦ÏóÁÐ±í (&L)', 'Object &List');
-    menStatus.Caption:=IIFs(bb,'×´Ì¬À¸ (&S)', ' î‘B™Ú (&S)', '&Status Bar');
-    menTools.Caption :=IIFs(bb,'¹¤¾ßÀ¸ (&T)', '¹¤¾ß™Ú (&T)', '&Tools Bar');
-    menPages.Caption :=IIFs(bb,'Ò³ÃæÀ¸ (&P)', 'í“Ãæ™Ú (&P)', '&Pages Bar');
-    menMenuOnBottom.Caption :=IIFs(bb,'²Ëµ¥ÖÃÓÚµ×²¿(&B)', '²Ë†ÎÖÃì¶µ×²¿(&B)', 'Menu On &Bottom&');
-    menRecover.Caption:=IIFs(bb,'»Ö¸´Ô­Ê¼½çÃæ (&R)', '»ÖÍÔ­Ê¼½çÃæ (&R)', '&Restore Original Surface');
-//============== ¹¹Ôì =================
-//üc
-    menDot.Caption:=IIFs(bb,'µã (&P)', 'üc (&P)', '&Point');
-    men11.Caption:=IIFs(bb,'×ÔÓÉµã (&F)', '×ÔÓÉüc (&F)', '&Free Point');
-    men12.Caption:=IIFs(bb,'Ô¼Êøµã (&B)', 'Ô¼Êøüc (&B)', '&Bound Point');
-    men13.Caption:=IIFs(bb,'×î½üµã (&C)', '×î½üüc (&C)', '&Closest Point');
-    men14.Caption:=IIFs(bb,'½»µã (&I)', '½»üc (&I)', '&Intersaction Point');
-    men15.Caption:=IIFs(bb,'ÖÐµã (&M)', 'ÖÐüc (&M)', '&Middle Point');
-    men16.Caption:=IIFs(bb,'µÈ·Öµã (&P)', 'µÈ·Öüc (&P)', '&Points');
-//Ö±¾€
-    menLine.Caption:=IIFs(bb,'Ö±Ïß (&L)', 'Ö±¾€ (&L)', '&Line');
-    men21.Caption:=IIFs(bb,'Ïß¶Î (&S)', '¾€¶Î (&S)', 'Segment');
-    men23.Caption:=IIFs(bb,'Æ½ÐÐÏß (&E)', 'Æ½ÐÐ¾€ (&E)', '&Parall&el Line');
-    men24.Caption:=IIFs(bb,'´¹Ïß (&D)', '´¹¾€ (&D)', 'Perpen&dicular/&Tangent');
-    men25.Caption:=IIFs(bb,'ÖÐÏß (&M)', 'ÖÐ¾€ (&M)', '&Middle Line');
-    men26_2.Caption:=IIFs(bb,'Ïà¹áÏß/½¥½üÏß (&I)', 'Ïà¹á¾€/u½ü¾€ (&I)', '&Intersaction Curve/Asymptote');
-    men27.Caption:=IIFs(bb,'ÉäÏß (&Y)', 'Éäüc¾€ (&Y)', 'Ra&y');
-    men28.Caption:=IIFs(bb,'Ö±Ïß (&L)', 'Ö±¾€ (&L)', '&Line');
-    men29.Caption:=IIFs(bb,'ÇÐÏß (&T)', 'ÇÐ¾€ (&T)', '&Tangent');
-//ÏòÁ¿
-    menVector.Caption:=IIFs(bb,'Ê¸Á¿ (&V)', 'Ê¸Á¿ (&V)', '&Vector');
-    menVector0.Caption:=IIFs(bb,'½ÇÊ¸Á¿ (&A)', '½ÇÊ¸Á¿ (&A)', '&Angle Vector');
-    menVector1.Caption:=IIFs(bb,'Ê¸Á¿ (&V)', 'Ê¸Á¿ (&V)', '&Vector');
-    menVector2.Caption:=IIFs(bb,'ºÍ (&S)', 'ºÍ (&S)', '&Sum');
-    menVector3.Caption:=IIFs(bb,'²î (&D)', '²î (&D)', '&Differences');
-    menVector4.Caption:=IIFs(bb,'²æ»ý (&C)', '²æ·e (&C)', '&Cross Product');
+    menInterface.Caption:=IIFs(bb,'ç•Œé¢ (&U)', 'ç•Œé¢ (&U)', 'S&urface');
+    menList.Caption:=IIFs(bb,'å¯¹è±¡åˆ—è¡¨ (&L)', 'å°è±¡åˆ—è¡¨ (&L)', 'Object &List');
+    menStatus.Caption:=IIFs(bb,'çŠ¶æ€æ  (&S)', 'ç‹€æ…‹æ¬„ (&S)', '&Status Bar');
+    menTools.Caption :=IIFs(bb,'å·¥å…·æ  (&T)', 'å·¥å…·æ¬„ (&T)', '&Tools Bar');
+    menPages.Caption :=IIFs(bb,'é¡µé¢æ  (&P)', 'é é¢æ¬„ (&P)', '&Pages Bar');
+    menMenuOnBottom.Caption :=IIFs(bb,'èœå•ç½®äºŽåº•éƒ¨(&B)', 'èœå–®ç½®æ–¼åº•éƒ¨(&B)', 'Menu On &Bottom&');
+    menRecover.Caption:=IIFs(bb,'æ¢å¤åŽŸå§‹ç•Œé¢ (&R)', 'æ¢å¾©åŽŸå§‹ç•Œé¢ (&R)', '&Restore Original Surface');
+//============== æž„é€  =================
+//é»ž
+    menDot.Caption:=IIFs(bb,'ç‚¹ (&P)', 'é»ž (&P)', '&Point');
+    men11.Caption:=IIFs(bb,'è‡ªç”±ç‚¹ (&F)', 'è‡ªç”±é»ž (&F)', '&Free Point');
+    men12.Caption:=IIFs(bb,'çº¦æŸç‚¹ (&B)', 'çº¦æŸé»ž (&B)', '&Bound Point');
+    men13.Caption:=IIFs(bb,'æœ€è¿‘ç‚¹ (&C)', 'æœ€è¿‘é»ž (&C)', '&Closest Point');
+    men14.Caption:=IIFs(bb,'äº¤ç‚¹ (&I)', 'äº¤é»ž (&I)', '&Intersaction Point');
+    men15.Caption:=IIFs(bb,'ä¸­ç‚¹ (&M)', 'ä¸­é»ž (&M)', '&Middle Point');
+    men16.Caption:=IIFs(bb,'ç­‰åˆ†ç‚¹ (&P)', 'ç­‰åˆ†é»ž (&P)', '&Points');
+//ç›´ç·š
+    menLine.Caption:=IIFs(bb,'ç›´çº¿ (&L)', 'ç›´ç·š (&L)', '&Line');
+    men21.Caption:=IIFs(bb,'çº¿æ®µ (&S)', 'ç·šæ®µ (&S)', 'Segment');
+    men23.Caption:=IIFs(bb,'å¹³è¡Œçº¿ (&E)', 'å¹³è¡Œç·š (&E)', '&Parall&el Line');
+    men24.Caption:=IIFs(bb,'åž‚çº¿ (&D)', 'åž‚ç·š (&D)', 'Perpen&dicular/&Tangent');
+    men25.Caption:=IIFs(bb,'ä¸­çº¿ (&M)', 'ä¸­ç·š (&M)', '&Middle Line');
+    men26_2.Caption:=IIFs(bb,'ç›¸è´¯çº¿/æ¸è¿‘çº¿ (&I)', 'ç›¸è´¯ç·š/æ¼¸è¿‘ç·š (&I)', '&Intersaction Curve/Asymptote');
+    men27.Caption:=IIFs(bb,'å°„çº¿ (&Y)', 'å°„é»žç·š (&Y)', 'Ra&y');
+    men28.Caption:=IIFs(bb,'ç›´çº¿ (&L)', 'ç›´ç·š (&L)', '&Line');
+    men29.Caption:=IIFs(bb,'åˆ‡çº¿ (&T)', 'åˆ‡ç·š (&T)', '&Tangent');
+//å‘é‡
+    menVector.Caption:=IIFs(bb,'çŸ¢é‡ (&V)', 'çŸ¢é‡ (&V)', '&Vector');
+    menVector0.Caption:=IIFs(bb,'è§’çŸ¢é‡ (&A)', 'è§’çŸ¢é‡ (&A)', '&Angle Vector');
+    menVector1.Caption:=IIFs(bb,'çŸ¢é‡ (&V)', 'çŸ¢é‡ (&V)', '&Vector');
+    menVector2.Caption:=IIFs(bb,'å’Œ (&S)', 'å’Œ (&S)', '&Sum');
+    menVector3.Caption:=IIFs(bb,'å·® (&D)', 'å·® (&D)', '&Differences');
+    menVector4.Caption:=IIFs(bb,'å‰ç§¯ (&C)', 'å‰ç© (&C)', '&Cross Product');
 
-    butVector0.Caption:=IIFs(bb,'½ÇÏòÁ¿&', '½ÇÏòÁ¿&', 'Angle Vector');
-    butVector1.Caption:=IIFs(bb,'ÏòÁ¿&', 'ÏòÁ¿&', 'Vector');
-    butVector2.Caption:=IIFs(bb,'ºÍ&', 'ºÍ&', 'Sum');
-    butVector3.Caption:=IIFs(bb,'²î&', '²î&', 'Differences');
-    butVector4.Caption:=IIFs(bb,'²æ»ý&', '²æ·e&', 'Cross Product');
+    butVector0.Caption:=IIFs(bb,'è§’å‘é‡&', 'è§’å‘é‡&', 'Angle Vector');
+    butVector1.Caption:=IIFs(bb,'å‘é‡&', 'å‘é‡&', 'Vector');
+    butVector2.Caption:=IIFs(bb,'å’Œ&', 'å’Œ&', 'Sum');
+    butVector3.Caption:=IIFs(bb,'å·®&', 'å·®&', 'Differences');
+    butVector4.Caption:=IIFs(bb,'å‰ç§¯&', 'å‰ç©&', 'Cross Product');
 
-//ˆA ˆA»¡
-    menCircle.Caption:=IIFs(bb,'Ô²(»¡) (&C)', 'ˆA(»¡) (&C)', '&Circle/Arc');
-    men31.Caption:=IIFs(bb,'µã·¨Ô² (&C)', 'üc·¨ˆA (&C)', '&Circle by Center+Normal');
-    men32.Caption:=IIFs(bb,'ÈýµãÔ² (&T', 'ÈýücˆA (&T)', 'Circle &through 3 Points');
-    men33.Caption:=IIFs(bb,'µã·¨»¡ (&A)', 'üc·¨»¡ (&A)', '&Arc by Point+Normal');
-    men34.Caption:=IIFs(bb,'Èýµã»¡ (&3)', 'Èýüc»¡ (&3)', 'Arc through 3 Points');
-//Çú¾€
-    menCurve.Caption:=IIFs(bb,'ÇúÏß (&U)','Çú¾€ (&U)','C&urve');
-    men51.Caption:=IIFs(bb,'¹ì¼£Ïß (&L)','Ü‰ÛE¾€ (&L)','&Locus Line');
-    men26.Caption:=IIFs(bb,'Ïà¹áÏß (&I)','Ïà¹á¾€ (&I)','&Intersaction Curve');
-    men171.Caption:=IIFs(bb,'Â·¾¶ (&P)','Â·¾¶ (&P)','&Path');
-    men191.Caption:=IIFs(bb,'Ô²×¶ÇúÏß£¨µÚÒ»¶¨ÂÉ£©(&C)','Ô²×¶ÇúÏß£¨µÚÒ»¶¨ÂÉ£©(&C)','Conic &Curve(First Law)');
-    men192.Caption:=IIFs(bb,'Ô²×¶ÇúÏß£¨µÚ¶þ¶¨ÂÉ£©(&U)','ˆAåFÇú¾€£¨µÚ¶þ¶¨ÂÉ£©(&U)','Conic C&urve(First Law)');
-    menFuncCurve.Caption:=IIFs(bb,'º¯ÊýÇúÏß (&F)','º¯ÊýÇú¾€ (&F)','&Function Curve');
-//Æ½Ãæ
-    menPlane.Caption:=IIFs(bb,'Æ½Ãæ(&N)','Æ½Ãæ(&N)','Pla&ne');
-//    men41.Caption:=IIFs(bb,'Plane by 3-Point ','ÈýücÊ½Æ½Ãæ& ');
-    men42.Caption:=IIFs(bb,'Æ½Ãæ (&P)','Æ½Ãæ(&P)','&Plane');
-    men43.Caption:=IIFs(bb,'Æ½ÐÐÃæ (&E)','Æ½ÐÐÃæ(&E)','Parall&el Plane');
-    men44.Caption:=IIFs(bb,'´¹Ãæ (&D)','´¹Ãæ(&D)','Perpen&dicular Plane');
-    men45.Caption:=IIFs(bb,'ÖÐÃæ (&M)','ÖÐÃæ(&M)','&Middle Plane');
-//¶à±ßÐÎ
-    menPolygon.Caption:=IIFs(bb,'¶à±ßÐÎ (&Y)','¶àß…ÐÎ(&Y)','Pol&ygon');
-    menPoly03.Caption:=IIFs(bb,'ÕýÈý½ÇÐÎ (&3)','ÕýÈý½ÇÐÎ(&3)','&Equilateral Triangle');
-    menPoly04.Caption:=IIFs(bb,'Õý·½ÐÎ (&4)','Õý·½ÐÎ(&4)','&Square');
-    menPoly05.Caption:=IIFs(bb,'ÕýÎå±ßÐÎ (&5)','ÕýÎåß…ÐÎ(&5)','Regular &Pentagon');
-    menPoly06.Caption:=IIFs(bb,'ÕýÁù±ßÐÎ (&6)','ÕýÁùß…ÐÎ(&6)','Regular &Hexagon');
-    menPoly08.Caption:=IIFs(bb,'Õý°Ë±ßÐÎ (&8)','Õý°Ëß…ÐÎ(&8)','Regular &Octagon');
-    menPoly10.Caption:=IIFs(bb,'ÕýÊ®±ßÐÎ (&1)','ÕýÊ®ß…ÐÎ(&1)','Regular &Decagon');
-    menPoly12.Caption:=IIFs(bb,'ÕýÊ®¶þ±ßÐÎ (&2)','ÕýÊ®¶þß…ÐÎ(&2)','Regular Dodeca&gon');
-    menPolyN.Caption:=IIFs(bb,'ÕýN±ßÐÎ (&R)','ÕýNß…ÐÎ(&R)','&Regular Polygon');
-    menPoly99.Caption:=IIFs(bb,'¾ØÐÎ (&T)','¾ØÐÎ(&T)','Rec&tangle');
-    menPoly0.Caption:=IIFs(bb,'¶à±ßÐÎ (&Y)','¶àß…ÐÎ(&Y)','Pol&ygon');
+//åœ“ åœ“å¼§
+    menCircle.Caption:=IIFs(bb,'åœ†(å¼§) (&C)', 'åœ“(å¼§) (&C)', '&Circle/Arc');
+    men31.Caption:=IIFs(bb,'ç‚¹æ³•åœ† (&C)', 'é»žæ³•åœ“ (&C)', '&Circle by Center+Normal');
+    men32.Caption:=IIFs(bb,'ä¸‰ç‚¹åœ† (&T', 'ä¸‰é»žåœ“ (&T)', 'Circle &through 3 Points');
+    men33.Caption:=IIFs(bb,'ç‚¹æ³•å¼§ (&A)', 'é»žæ³•å¼§ (&A)', '&Arc by Point+Normal');
+    men34.Caption:=IIFs(bb,'ä¸‰ç‚¹å¼§ (&3)', 'ä¸‰é»žå¼§ (&3)', 'Arc through 3 Points');
+//æ›²ç·š
+    menCurve.Caption:=IIFs(bb,'æ›²çº¿ (&U)','æ›²ç·š (&U)','C&urve');
+    men51.Caption:=IIFs(bb,'è½¨è¿¹çº¿ (&L)','è»Œè·¡ç·š (&L)','&Locus Line');
+    men26.Caption:=IIFs(bb,'ç›¸è´¯çº¿ (&I)','ç›¸è´¯ç·š (&I)','&Intersaction Curve');
+    men171.Caption:=IIFs(bb,'è·¯å¾„ (&P)','è·¯å¾„ (&P)','&Path');
+    men191.Caption:=IIFs(bb,'åœ†é”¥æ›²çº¿ï¼ˆç¬¬ä¸€å®šå¾‹ï¼‰(&C)','åœ†é”¥æ›²çº¿ï¼ˆç¬¬ä¸€å®šå¾‹ï¼‰(&C)','Conic &Curve(First Law)');
+    men192.Caption:=IIFs(bb,'åœ†é”¥æ›²çº¿ï¼ˆç¬¬äºŒå®šå¾‹ï¼‰(&U)','åœ“éŒæ›²ç·šï¼ˆç¬¬äºŒå®šå¾‹ï¼‰(&U)','Conic C&urve(First Law)');
+    menFuncCurve.Caption:=IIFs(bb,'å‡½æ•°æ›²çº¿ (&F)','å‡½æ•°æ›²ç·š (&F)','&Function Curve');
+//å¹³é¢
+    menPlane.Caption:=IIFs(bb,'å¹³é¢(&N)','å¹³é¢(&N)','Pla&ne');
+//    men41.Caption:=IIFs(bb,'Plane by 3-Point ','ä¸‰é»žå¼å¹³é¢& ');
+    men42.Caption:=IIFs(bb,'å¹³é¢ (&P)','å¹³é¢(&P)','&Plane');
+    men43.Caption:=IIFs(bb,'å¹³è¡Œé¢ (&E)','å¹³è¡Œé¢(&E)','Parall&el Plane');
+    men44.Caption:=IIFs(bb,'åž‚é¢ (&D)','åž‚é¢(&D)','Perpen&dicular Plane');
+    men45.Caption:=IIFs(bb,'ä¸­é¢ (&M)','ä¸­é¢(&M)','&Middle Plane');
+//å¤šè¾¹å½¢
+    menPolygon.Caption:=IIFs(bb,'å¤šè¾¹å½¢ (&Y)','å¤šé‚Šå½¢(&Y)','Pol&ygon');
+    menPoly03.Caption:=IIFs(bb,'æ­£ä¸‰è§’å½¢ (&3)','æ­£ä¸‰è§’å½¢(&3)','&Equilateral Triangle');
+    menPoly04.Caption:=IIFs(bb,'æ­£æ–¹å½¢ (&4)','æ­£æ–¹å½¢(&4)','&Square');
+    menPoly05.Caption:=IIFs(bb,'æ­£äº”è¾¹å½¢ (&5)','æ­£äº”é‚Šå½¢(&5)','Regular &Pentagon');
+    menPoly06.Caption:=IIFs(bb,'æ­£å…­è¾¹å½¢ (&6)','æ­£å…­é‚Šå½¢(&6)','Regular &Hexagon');
+    menPoly08.Caption:=IIFs(bb,'æ­£å…«è¾¹å½¢ (&8)','æ­£å…«é‚Šå½¢(&8)','Regular &Octagon');
+    menPoly10.Caption:=IIFs(bb,'æ­£åè¾¹å½¢ (&1)','æ­£åé‚Šå½¢(&1)','Regular &Decagon');
+    menPoly12.Caption:=IIFs(bb,'æ­£åäºŒè¾¹å½¢ (&2)','æ­£åäºŒé‚Šå½¢(&2)','Regular Dodeca&gon');
+    menPolyN.Caption:=IIFs(bb,'æ­£Nè¾¹å½¢ (&R)','æ­£Né‚Šå½¢(&R)','&Regular Polygon');
+    menPoly99.Caption:=IIFs(bb,'çŸ©å½¢ (&T)','çŸ©å½¢(&T)','Rec&tangle');
+    menPoly0.Caption:=IIFs(bb,'å¤šè¾¹å½¢ (&Y)','å¤šé‚Šå½¢(&Y)','Pol&ygon');
 
-    butPoly03.Caption:=IIFs(bb,'ÕýÈý½ÇÐÎ&','ÕýÈý½ÇÐÎ&','Equilateral Triangle');
-    butPoly04.Caption:=IIFs(bb,'Õý·½ÐÎ&','Õý·½ÐÎ&','Square');
-    butPoly05.Caption:=IIFs(bb,'ÕýÎå±ßÐÎ&','ÕýÎåß…ÐÎ&','Regular Pentagon');
-    butPoly06.Caption:=IIFs(bb,'ÕýÁù±ßÐÎ&','ÕýÁùß…ÐÎ&','Regular Hexagon');
-    butPoly08.Caption:=IIFs(bb,'Õý°Ë±ßÐÎ&','Õý°Ëß…ÐÎ&','Regular Octagon');
-    butPoly10.Caption:=IIFs(bb,'ÕýÊ®±ßÐÎ&','ÕýÊ®ß…ÐÎ&','Regular Decagon');
-    butPoly12.Caption:=IIFs(bb,'ÕýÊ®¶þ±ßÐÎ&','ÕýÊ®¶þß…ÐÎ&','Regular Dodecagon');
-    butPolyN.Caption:=IIFs(bb,'ÕýN±ßÐÎ&','ÕýNß…ÐÎ&','Regular Polygon');
-    butPoly99.Caption:=IIFs(bb,'¾ØÐÎ&','¾ØÐÎ&','Rectangle');
-    butPoly.Caption:=IIFs(bb,'¶à±ßÐÎ&','¶àß…ÐÎ&','Polygon');
-//ÊµÌå
-    menSphere.Caption:=IIFs(bb,'Çò (&S)', 'Çò (&S)', '&Sphere');
-    menSphere3D.Caption:=IIFs(bb,'ÈýµãÇò (&H)', 'ÈýücÇò (&H)', 'Sphere throug&h 3 Point');
-    menCone.Caption:=IIFs(bb,'Ô²Ì¨ (&O)', 'ˆAÅ_ (&O)', 'C&one');
-    menTable.Caption:=IIFs(bb,'ÀâÌ¨ (&T)', 'ÀâÅ_ (&T)', '&Table');
-    menSolid.Caption:=IIFs(bb,'¶àÃæÌå (&D)', '¶àÃæów(&D)','Polyhe&dron');
-//ÀâÌ¨
-    menTable3.Caption:=IIFs(bb,'ÕýÈýÀâÌ¨ (&3)', 'ÕýÈýÀâÅ_ (&3)', '&3 Edge Table');
-    menTable4.Caption:=IIFs(bb,'ÕýËÄÀâÌ¨ (&4)', 'ÕýËÄÀâÅ_ (&4)', '&4 Edge Table');
-    menTable5.Caption:=IIFs(bb,'ÕýÎåÀâÌ¨ (&5)', 'ÕýÎåÀâÅ_ (&5)', '&5 Edge Table');
-    menTable6.Caption:=IIFs(bb,'ÕýÁùÀâÌ¨ (&6)', 'ÕýÁùÀâÅ_ (&6)', '&6 Edge Table');
-    menTable8.Caption:=IIFs(bb,'Õý°ËÀâÌ¨ (&8)', 'Õý°ËÀâÅ_ (&8)', '&8 Edge Table');
-    menTable10.Caption:=IIFs(bb,'ÕýÊ®ÀâÌ¨ (&1)', 'ÕýÊ®ÀâÅ_& (&1)', '&10 Edge Table');
-    menTable12.Caption:=IIFs(bb,'ÕýÊ®¶þÀâÌ¨ (&2)', 'ÕýÊ®¶þÀâÅ_& (&2)', '1&2 Edge Table');
-    menTableN.Caption:=IIFs(bb,'ÕýNÀâÌ¨ (&E)', 'ÕýNÀâÅ_ (&E)', '&Edge Table');
-    menTable0.Caption:=IIFs(bb,'ÀâÌ¨ (&T)', 'ÀâÅ_ (&T)', '&Table');
+    butPoly03.Caption:=IIFs(bb,'æ­£ä¸‰è§’å½¢&','æ­£ä¸‰è§’å½¢&','Equilateral Triangle');
+    butPoly04.Caption:=IIFs(bb,'æ­£æ–¹å½¢&','æ­£æ–¹å½¢&','Square');
+    butPoly05.Caption:=IIFs(bb,'æ­£äº”è¾¹å½¢&','æ­£äº”é‚Šå½¢&','Regular Pentagon');
+    butPoly06.Caption:=IIFs(bb,'æ­£å…­è¾¹å½¢&','æ­£å…­é‚Šå½¢&','Regular Hexagon');
+    butPoly08.Caption:=IIFs(bb,'æ­£å…«è¾¹å½¢&','æ­£å…«é‚Šå½¢&','Regular Octagon');
+    butPoly10.Caption:=IIFs(bb,'æ­£åè¾¹å½¢&','æ­£åé‚Šå½¢&','Regular Decagon');
+    butPoly12.Caption:=IIFs(bb,'æ­£åäºŒè¾¹å½¢&','æ­£åäºŒé‚Šå½¢&','Regular Dodecagon');
+    butPolyN.Caption:=IIFs(bb,'æ­£Nè¾¹å½¢&','æ­£Né‚Šå½¢&','Regular Polygon');
+    butPoly99.Caption:=IIFs(bb,'çŸ©å½¢&','çŸ©å½¢&','Rectangle');
+    butPoly.Caption:=IIFs(bb,'å¤šè¾¹å½¢&','å¤šé‚Šå½¢&','Polygon');
+//å®žä½“
+    menSphere.Caption:=IIFs(bb,'çƒ (&S)', 'çƒ (&S)', '&Sphere');
+    menSphere3D.Caption:=IIFs(bb,'ä¸‰ç‚¹çƒ (&H)', 'ä¸‰é»žçƒ (&H)', 'Sphere throug&h 3 Point');
+    menCone.Caption:=IIFs(bb,'åœ†å° (&O)', 'åœ“è‡º (&O)', 'C&one');
+    menTable.Caption:=IIFs(bb,'æ£±å° (&T)', 'æ£±è‡º (&T)', '&Table');
+    menSolid.Caption:=IIFs(bb,'å¤šé¢ä½“ (&D)', 'å¤šé¢é«”(&D)','Polyhe&dron');
+//æ£±å°
+    menTable3.Caption:=IIFs(bb,'æ­£ä¸‰æ£±å° (&3)', 'æ­£ä¸‰æ£±è‡º (&3)', '&3 Edge Table');
+    menTable4.Caption:=IIFs(bb,'æ­£å››æ£±å° (&4)', 'æ­£å››æ£±è‡º (&4)', '&4 Edge Table');
+    menTable5.Caption:=IIFs(bb,'æ­£äº”æ£±å° (&5)', 'æ­£äº”æ£±è‡º (&5)', '&5 Edge Table');
+    menTable6.Caption:=IIFs(bb,'æ­£å…­æ£±å° (&6)', 'æ­£å…­æ£±è‡º (&6)', '&6 Edge Table');
+    menTable8.Caption:=IIFs(bb,'æ­£å…«æ£±å° (&8)', 'æ­£å…«æ£±è‡º (&8)', '&8 Edge Table');
+    menTable10.Caption:=IIFs(bb,'æ­£åæ£±å° (&1)', 'æ­£åæ£±è‡º& (&1)', '&10 Edge Table');
+    menTable12.Caption:=IIFs(bb,'æ­£åäºŒæ£±å° (&2)', 'æ­£åäºŒæ£±è‡º& (&2)', '1&2 Edge Table');
+    menTableN.Caption:=IIFs(bb,'æ­£Næ£±å° (&E)', 'æ­£Næ£±è‡º (&E)', '&Edge Table');
+    menTable0.Caption:=IIFs(bb,'æ£±å° (&T)', 'æ£±è‡º (&T)', '&Table');
 
-    butTable03.Caption:=IIFs(bb,'ÕýÈýÀâÌ¨&','ÕýÈýÀâÅ_&','3 Edge Table');
-    butTable04.Caption:=IIFs(bb,'ÕýËÄÀâÌ¨&','ÕýËÄÀâÅ_&','4 Edge Table');
-    butTable05.Caption:=IIFs(bb,'ÕýÎåÀâÌ¨&','ÕýÎåÀâÅ_&','5 Edge Table');
-    butTable06.Caption:=IIFs(bb,'ÕýÁùÀâÌ¨&','ÕýÁùÀâÅ_&','6 Edge Table');
-    butTable08.Caption:=IIFs(bb,'Õý°ËÀâÌ¨&','Õý°ËÀâÅ_&','8 Edge Table');
-    butTable10.Caption:=IIFs(bb,'ÕýÊ®ÀâÌ¨&','ÕýÊ®ÀâÅ_&','10 Edge Table');
-    butTable12.Caption:=IIFs(bb,'ÕýÊ®¶þÀâÌ¨&','ÕýÊ®¶þÀâÅ_&','12 Edge Table');
-    butTableN.Caption:=IIFs(bb,'ÕýNÀâÌ¨', 'ÕýNÀâÅ_', 'Edge Table');
-//¶àÃæów
-    menSolid1.Caption:=IIFs(bb,'ÕýËÄÃæÌå (&T)','ÕýËÄÃæów (&T)','Tetrahedron');
-    menSolid2.Caption:=IIFs(bb,'ÕýÁùÃæÌå (&H)','ÕýÁùÃæów (&H)','Hexahedron');
-    menSolid3.Caption:=IIFs(bb,'Õý°ËÃæÌå (&O)','Õý°ËÃæów (&O)','Octahedron');
-    menSolid4.Caption:=IIFs(bb,'ÕýÊ®¶þÃæÌå (&D)','ÕýÊ®¶þÃæów (&D)','Dodecahedron');
-    menSolid5.Caption:=IIFs(bb,'Õý¶þÊ®ÃæÌå (&T)','Õý¶þÊ®Ãæów (&T)','Icosahedron');
-    menSolid6.Caption:=IIFs(bb,'³¤·½Ìå (&C)','éL·½ów (&C)','Cuboid');
-    menSolid65.Caption:=IIFs(bb,'Í¹¶àÃæÌå (&P)','Í¹¶àÃæów (&P)','Convex &Polyhedron');
+    butTable03.Caption:=IIFs(bb,'æ­£ä¸‰æ£±å°&','æ­£ä¸‰æ£±è‡º&','3 Edge Table');
+    butTable04.Caption:=IIFs(bb,'æ­£å››æ£±å°&','æ­£å››æ£±è‡º&','4 Edge Table');
+    butTable05.Caption:=IIFs(bb,'æ­£äº”æ£±å°&','æ­£äº”æ£±è‡º&','5 Edge Table');
+    butTable06.Caption:=IIFs(bb,'æ­£å…­æ£±å°&','æ­£å…­æ£±è‡º&','6 Edge Table');
+    butTable08.Caption:=IIFs(bb,'æ­£å…«æ£±å°&','æ­£å…«æ£±è‡º&','8 Edge Table');
+    butTable10.Caption:=IIFs(bb,'æ­£åæ£±å°&','æ­£åæ£±è‡º&','10 Edge Table');
+    butTable12.Caption:=IIFs(bb,'æ­£åäºŒæ£±å°&','æ­£åäºŒæ£±è‡º&','12 Edge Table');
+    butTableN.Caption:=IIFs(bb,'æ­£Næ£±å°', 'æ­£Næ£±è‡º', 'Edge Table');
+//å¤šé¢é«”
+    menSolid1.Caption:=IIFs(bb,'æ­£å››é¢ä½“ (&T)','æ­£å››é¢é«” (&T)','Tetrahedron');
+    menSolid2.Caption:=IIFs(bb,'æ­£å…­é¢ä½“ (&H)','æ­£å…­é¢é«” (&H)','Hexahedron');
+    menSolid3.Caption:=IIFs(bb,'æ­£å…«é¢ä½“ (&O)','æ­£å…«é¢é«” (&O)','Octahedron');
+    menSolid4.Caption:=IIFs(bb,'æ­£åäºŒé¢ä½“ (&D)','æ­£åäºŒé¢é«” (&D)','Dodecahedron');
+    menSolid5.Caption:=IIFs(bb,'æ­£äºŒåé¢ä½“ (&T)','æ­£äºŒåé¢é«” (&T)','Icosahedron');
+    menSolid6.Caption:=IIFs(bb,'é•¿æ–¹ä½“ (&C)','é•·æ–¹é«” (&C)','Cuboid');
+    menSolid65.Caption:=IIFs(bb,'å‡¸å¤šé¢ä½“ (&P)','å‡¸å¤šé¢é«” (&P)','Convex &Polyhedron');
 
-    butSolid1.Caption:=IIFs(bb,'ÕýËÄÃæÌå&','ÕýËÄÃæów&','Tetrahedron');
-    butSolid2.Caption:=IIFs(bb,'ÕýÁùÃæÌå&','ÕýÁùÃæów&','Hexahedron');
-    butSolid3.Caption:=IIFs(bb,'Õý°ËÃæÌå&','Õý°ËÃæów&','Octahedron');
-    butSolid4.Caption:=IIFs(bb,'ÕýÊ®¶þÃæÌå&','ÕýÊ®¶þÃæów&','Dodecahedron');
-    butSolid5.Caption:=IIFs(bb,'Õý¶þÊ®ÃæÌå&','Õý¶þÊ®Ãæów&','Icosahedron');
-    butSolid6.Caption:=IIFs(bb,'³¤·½Ìå&','éL·½ów&','Cuboid');
-    butSolid0.Caption:=IIFs(bb,'Í¹¶àÃæÌå&','Í¹¶àÃæów&','Convex Polyhedron');
-//ÇúÃæ
-    menFace.Caption:=IIFs(bb,'ÇúÃæ (&R)', 'ÇúÃæ (&R)', 'Su&rface');
-    men71.Caption:=IIFs(bb,'Ðý×ªÇúÃæ (&R)', 'ÐýÞDÇúÃæ (&R)', '&Rotate Surface');
-    men72.Caption:=IIFs(bb,'Ö±ÎÆÇúÃæ (&U)', 'Ö±ÎÆÇúÃæ (&U)', 'R&uled Surface');
-//    men73.Caption:=IIFs(bb,'Compound Surface','¸´ºÏÇúÃæ& ');
-    men74.Caption:=IIFs(bb,'¹ì¼£ÇúÃæ (&L)', 'Ü‰ÛEÇúÃæ (&L)', '&Locus Surface');
-    menFuncFace.Caption:=IIFs(bb,'º¯ÊýÇúÃæ(&E)...', 'º¯”µÇúÃæ(&E)...','Function Surfac&e');
-//×ƒ“Q
-//    menMark2.Caption:=IIFs(bb,'±ê¼ÇÖÐÐÄ/Öá& ','˜ËÓ›ÖÐÐÄ/ÝS& ','Mark Center/Axis');
-    menMark3.Caption:=IIFs(bb,'±ê¼ÇÖÐÐÄ (&M)', '˜ËÓ›ÖÐÐÄ(&M)','&Mark Center');
-    menMark6.Caption:=IIFs(bb,'±ê¼Ç½Ç¶È (&A)', '˜ËÓ›½Ç¶È(&C)','Mark &Angle');
-    menMark7.Caption:=IIFs(bb,'±ê¼Ç±È (&O)', '˜ËÓ›±È(&O)','Mark Rati&o');
-    menMark4.Caption:=IIFs(bb,'±ê¼ÇÏòÁ¿ (&V)', '˜ËÓ›ÏòÁ¿(&V)','Mark &Vector');
-    menMark5.Caption:=IIFs(bb,'±ê¼Ç¾àÀë (&S)', '˜ËÓ›¾àëx&S','Mark Di&stance');
-    menMark8.Caption:=IIFs(bb,'´´½¨×Ô¶¨Òå±ä»» (&C)', '„“½¨×Ô¶¨Áx×ƒ“Q(&C) ','&Create Custom Transform');
-    men125.Caption:=IIFs(bb,'Æ½ÒÆ (&T)', 'Æ½ÒÆ(&T)', '&Translate');
-    men121.Caption:=IIFs(bb,'Í¶Ó° (&P)', 'Í¶Ó°(&P)', '&Projecte');
-    men122.Caption:=IIFs(bb,'¶Ô³Æ (&Y)', 'Œ¦·Q(&Y)', 'S&ymmetry');
-    men123.Caption:=IIFs(bb,'Ðý×ª (&R)', 'ÐýÞD(&R)', '&Rotate');
-    men124.Caption:=IIFs(bb,'Ëõ·Å (&D)', '¿s·Å(&D)', '&Dilate');
-    men126.Caption:=IIFs(bb,'ÏòÁ¿±ä»» (&V)', 'ÏòÁ¿×ƒ“Q(&V)','&Vector');
-    men129.Caption:=IIFs(bb,'·´ÑÝ (&N)', '·´ÑÝ(&N)', 'I&nversion');
-    men131.Caption:=IIFs(bb,'µü´ú (&I)', '¯B´ú(&I)', '&Iterat...');
-    men128.Caption:=IIFs(bb,'×Ô¶¨Òå±ä»»&', '×Ô¶¨Áx×ƒ“Q&', 'Custom Transform&');
-    men172.Caption:=IIFs(bb,'ÈýÊÓÍ¼ (&W)','ÈýÒ•ˆD (&W)','3-Vie&w');
-//Êý¾Ý
-    men112.Caption:=IIFs(bb,'²ÎÊý (&W)...', '…¢”µ (&W)...', 'Ne&w Parameter...');
-    men111.Caption:=IIFs(bb,'¼ÆËã (&U)...', 'Ó‹Ëã (&U)...', 'Calc&ulator...');
-    menSize08.Caption:=IIFs(bb,'³¤¶È/ÖÜ³¤ (&L)', 'éL¶È/ÖÜéL (&L)', '&Length/Perimeter');
-    menSize14.Caption:=IIFs(bb,'Ö±¾¶ (&I)', 'Ö±½(&I)', 'D&iameter');
-    menSize03.Caption:=IIFs(bb,'Ãæ»ý (&E)', 'Ãæ·e(&E)', 'Ar&ea');
-    menSize04.Caption:=IIFs(bb,'Ìå»ý (&M)', 'ów·e&M', 'Volu&me');
-    menSize13.Caption:=IIFs(bb,'µãµÄÖµ (&P)', 'ücµÄÖµ&V', 'Value of &Point');
-    menSize05.Caption:=IIFs(bb,'¾àÀë (&D)', '¾àëx(&D)', '&Distance');
-    menSize06.Caption:=IIFs(bb,'½Ç¶È (&A)', '½Ç¶È(&A)', '&Angle');
-    menSize07.Caption:=IIFs(bb,'±ÈÖµ (&R)', '±ÈÖµ(&R)', '&Ratio');
-    menSize09.Caption:=IIFs(bb,'Ð±ÂÊ (&S)', 'Ð±ÂÊ(&S)', '&Slope');
-    menSize15.Caption:=IIFs(bb,'×ø±ê (&T)', '×ù˜Ë(&T)', 'Coordina&te');
-    menSize16.Caption:=IIFs(bb,'ÏòÁ¿ (&V)','ÏòÁ¿ (&V)', '&Vector');
-    menSize17.Caption:=IIFs(bb,'Ê¸Á¿ÔËËã(&O)', 'Ê¸Á¿ß\Ëã (&O)', 'Vector &Operations');
-    menSize19.Caption:=IIFs(bb,'·½³Ì (&F)', '·½³Ì (&F)', '&Functions');
-//    men81.Hint:=IIFs(bb,'Block','¿é');
-//¾²Ì¬¹¤¾ßÌõ
-    butPoint.Hint:=IIFs(bb,'µã|¹¹Ôìµã','üc|˜‹Ôìüc','Point|Construct Points');
-    butLine.Hint:=IIFs(bb,'Ö±Ïß|¹¹ÔìÖ±Ïß','Ö±¾€|˜‹ÔìÖ±¾€','Line|Construct Lines');
-    butCircle.Hint:=IIFs(bb,'Ô²|¹¹ÔìÔ²','ˆA|˜‹ÔìˆA','Circle|Construct Circles');
-    butPlane.Hint:=IIFs(bb,'Æ½Ãæ|¹¹ÔìÆ½Ãæ','Æ½Ãæ|˜‹ÔìÆ½Ãæ','Plane|Construct Planes');
-    butTxt.Hint:=IIFs(bb,'ÎÄ×Ö|Ìí¼ÓÎÄ×ÖËµÃ÷','ÎÄ×Ö|Ìí¼ÓÎÄ×ÖÕfÃ÷','Text|Write Captions');
-    butPen.Hint:=IIFs(bb,'±ê¼Ç|´´½¨ÊÖ»æÍ¼¡¢±ê¼ÇÖ±Ïß»ò½Ç¶È','˜ËÓ›|„“½¨ÊÖÀLˆD¡¢˜ËÓ›Ö±¾€»ò½Ç¶È','Graffiti, Mark the Line or Angle');
-//¶¯Ì¬¹¤¾ßÌõ
-    butSize08.Caption:=IIFs(bb,'³¤¶È/ÖÜ³¤&', 'éL¶È/ÖÜéL&','Length/Perimeter');
-    butSize14.Caption:=IIFs(bb,'Ö±¾¶&', 'Ö±½&', 'Diameter');
-    butSize03.Caption:=IIFs(bb,'Ãæ»ý&', 'Ãæ·e&', 'Area');
-    butSize04.Caption:=IIFs(bb,'Ìå»ý&', 'ów·e&', 'Volume');
-    butSize13.Caption:=IIFs(bb,'µãµÄÖµ& ','ücµÄÖµ&', 'Constraint Value');
-    butSize05.Caption:=IIFs(bb,'¾àÀë&', '¾àëx&', 'Distance');
-    butSize06.Caption:=IIFs(bb,'½Ç¶È&', '½Ç¶È&', 'Angle');
-    butSize07.Caption:=IIFs(bb,'±ÈÖµ&', '±ÈÖµ&', 'Ratio');
-    butSize09.Caption:=IIFs(bb,'Ð±ÂÊ&', 'Ð±ÂÊ&', 'Slope');
-    butSize15.Caption:=IIFs(bb,'×ø±ê&', '×ù˜Ë&', 'Coordinate');
-    butSize16.Caption:=IIFs(bb,'ÏòÁ¿&', 'ÏòÁ¿&',  'Vector');
-    butSize17.Caption:=IIFs(bb,'ÏòÁ¿ÔËËã&', 'ÏòÁ¿ß\Ëã&', 'Vector Operations');
-    butSize19.Caption:=IIFs(bb,'·½³Ì&', '·½³Ì&', 'Functions');
+    butSolid1.Caption:=IIFs(bb,'æ­£å››é¢ä½“&','æ­£å››é¢é«”&','Tetrahedron');
+    butSolid2.Caption:=IIFs(bb,'æ­£å…­é¢ä½“&','æ­£å…­é¢é«”&','Hexahedron');
+    butSolid3.Caption:=IIFs(bb,'æ­£å…«é¢ä½“&','æ­£å…«é¢é«”&','Octahedron');
+    butSolid4.Caption:=IIFs(bb,'æ­£åäºŒé¢ä½“&','æ­£åäºŒé¢é«”&','Dodecahedron');
+    butSolid5.Caption:=IIFs(bb,'æ­£äºŒåé¢ä½“&','æ­£äºŒåé¢é«”&','Icosahedron');
+    butSolid6.Caption:=IIFs(bb,'é•¿æ–¹ä½“&','é•·æ–¹é«”&','Cuboid');
+    butSolid0.Caption:=IIFs(bb,'å‡¸å¤šé¢ä½“&','å‡¸å¤šé¢é«”&','Convex Polyhedron');
+//æ›²é¢
+    menFace.Caption:=IIFs(bb,'æ›²é¢ (&R)', 'æ›²é¢ (&R)', 'Su&rface');
+    men71.Caption:=IIFs(bb,'æ—‹è½¬æ›²é¢ (&R)', 'æ—‹è½‰æ›²é¢ (&R)', '&Rotate Surface');
+    men72.Caption:=IIFs(bb,'ç›´çº¹æ›²é¢ (&U)', 'ç›´çº¹æ›²é¢ (&U)', 'R&uled Surface');
+//    men73.Caption:=IIFs(bb,'Compound Surface','å¤åˆæ›²é¢& ');
+    men74.Caption:=IIFs(bb,'è½¨è¿¹æ›²é¢ (&L)', 'è»Œè·¡æ›²é¢ (&L)', '&Locus Surface');
+    menFuncFace.Caption:=IIFs(bb,'å‡½æ•°æ›²é¢(&E)...', 'å‡½æ•¸æ›²é¢(&E)...','Function Surfac&e');
+//è®Šæ›
+//    menMark2.Caption:=IIFs(bb,'æ ‡è®°ä¸­å¿ƒ/è½´& ','æ¨™è¨˜ä¸­å¿ƒ/è»¸& ','Mark Center/Axis');
+    menMark3.Caption:=IIFs(bb,'æ ‡è®°ä¸­å¿ƒ (&M)', 'æ¨™è¨˜ä¸­å¿ƒ(&M)','&Mark Center');
+    menMark6.Caption:=IIFs(bb,'æ ‡è®°è§’åº¦ (&A)', 'æ¨™è¨˜è§’åº¦(&C)','Mark &Angle');
+    menMark7.Caption:=IIFs(bb,'æ ‡è®°æ¯” (&O)', 'æ¨™è¨˜æ¯”(&O)','Mark Rati&o');
+    menMark4.Caption:=IIFs(bb,'æ ‡è®°å‘é‡ (&V)', 'æ¨™è¨˜å‘é‡(&V)','Mark &Vector');
+    menMark5.Caption:=IIFs(bb,'æ ‡è®°è·ç¦» (&S)', 'æ¨™è¨˜è·é›¢&S','Mark Di&stance');
+    menMark8.Caption:=IIFs(bb,'åˆ›å»ºè‡ªå®šä¹‰å˜æ¢ (&C)', 'å‰µå»ºè‡ªå®šç¾©è®Šæ›(&C) ','&Create Custom Transform');
+    men125.Caption:=IIFs(bb,'å¹³ç§» (&T)', 'å¹³ç§»(&T)', '&Translate');
+    men121.Caption:=IIFs(bb,'æŠ•å½± (&P)', 'æŠ•å½±(&P)', '&Projecte');
+    men122.Caption:=IIFs(bb,'å¯¹ç§° (&Y)', 'å°ç¨±(&Y)', 'S&ymmetry');
+    men123.Caption:=IIFs(bb,'æ—‹è½¬ (&R)', 'æ—‹è½‰(&R)', '&Rotate');
+    men124.Caption:=IIFs(bb,'ç¼©æ”¾ (&D)', 'ç¸®æ”¾(&D)', '&Dilate');
+    men126.Caption:=IIFs(bb,'å‘é‡å˜æ¢ (&V)', 'å‘é‡è®Šæ›(&V)','&Vector');
+    men129.Caption:=IIFs(bb,'åæ¼” (&N)', 'åæ¼”(&N)', 'I&nversion');
+    men131.Caption:=IIFs(bb,'è¿­ä»£ (&I)', 'ç–Šä»£(&I)', '&Iterat...');
+    men128.Caption:=IIFs(bb,'è‡ªå®šä¹‰å˜æ¢&', 'è‡ªå®šç¾©è®Šæ›&', 'Custom Transform&');
+    men172.Caption:=IIFs(bb,'ä¸‰è§†å›¾ (&W)','ä¸‰è¦–åœ– (&W)','3-Vie&w');
+//æ•°æ®
+    men112.Caption:=IIFs(bb,'å‚æ•° (&W)...', 'åƒæ•¸ (&W)...', 'Ne&w Parameter...');
+    men111.Caption:=IIFs(bb,'è®¡ç®— (&U)...', 'è¨ˆç®— (&U)...', 'Calc&ulator...');
+    menSize08.Caption:=IIFs(bb,'é•¿åº¦/å‘¨é•¿ (&L)', 'é•·åº¦/å‘¨é•· (&L)', '&Length/Perimeter');
+    menSize14.Caption:=IIFs(bb,'ç›´å¾„ (&I)', 'ç›´å¾‘(&I)', 'D&iameter');
+    menSize03.Caption:=IIFs(bb,'é¢ç§¯ (&E)', 'é¢ç©(&E)', 'Ar&ea');
+    menSize04.Caption:=IIFs(bb,'ä½“ç§¯ (&M)', 'é«”ç©&M', 'Volu&me');
+    menSize13.Caption:=IIFs(bb,'ç‚¹çš„å€¼ (&P)', 'é»žçš„å€¼&V', 'Value of &Point');
+    menSize05.Caption:=IIFs(bb,'è·ç¦» (&D)', 'è·é›¢(&D)', '&Distance');
+    menSize06.Caption:=IIFs(bb,'è§’åº¦ (&A)', 'è§’åº¦(&A)', '&Angle');
+    menSize07.Caption:=IIFs(bb,'æ¯”å€¼ (&R)', 'æ¯”å€¼(&R)', '&Ratio');
+    menSize09.Caption:=IIFs(bb,'æ–œçŽ‡ (&S)', 'æ–œçŽ‡(&S)', '&Slope');
+    menSize15.Caption:=IIFs(bb,'åæ ‡ (&T)', 'åº§æ¨™(&T)', 'Coordina&te');
+    menSize16.Caption:=IIFs(bb,'å‘é‡ (&V)','å‘é‡ (&V)', '&Vector');
+    menSize17.Caption:=IIFs(bb,'çŸ¢é‡è¿ç®—(&O)', 'çŸ¢é‡é‹ç®— (&O)', 'Vector &Operations');
+    menSize19.Caption:=IIFs(bb,'æ–¹ç¨‹ (&F)', 'æ–¹ç¨‹ (&F)', '&Functions');
+//    men81.Hint:=IIFs(bb,'Block','å—');
+//é™æ€å·¥å…·æ¡
+    butPoint.Hint:=IIFs(bb,'ç‚¹|æž„é€ ç‚¹','é»ž|æ§‹é€ é»ž','Point|Construct Points');
+    butLine.Hint:=IIFs(bb,'ç›´çº¿|æž„é€ ç›´çº¿','ç›´ç·š|æ§‹é€ ç›´ç·š','Line|Construct Lines');
+    butCircle.Hint:=IIFs(bb,'åœ†|æž„é€ åœ†','åœ“|æ§‹é€ åœ“','Circle|Construct Circles');
+    butPlane.Hint:=IIFs(bb,'å¹³é¢|æž„é€ å¹³é¢','å¹³é¢|æ§‹é€ å¹³é¢','Plane|Construct Planes');
+    butTxt.Hint:=IIFs(bb,'æ–‡å­—|æ·»åŠ æ–‡å­—è¯´æ˜Ž','æ–‡å­—|æ·»åŠ æ–‡å­—èªªæ˜Ž','Text|Write Captions');
+    butPen.Hint:=IIFs(bb,'æ ‡è®°|åˆ›å»ºæ‰‹ç»˜å›¾ã€æ ‡è®°ç›´çº¿æˆ–è§’åº¦','æ¨™è¨˜|å‰µå»ºæ‰‹ç¹ªåœ–ã€æ¨™è¨˜ç›´ç·šæˆ–è§’åº¦','Graffiti, Mark the Line or Angle');
+//åŠ¨æ€å·¥å…·æ¡
+    butSize08.Caption:=IIFs(bb,'é•¿åº¦/å‘¨é•¿&', 'é•·åº¦/å‘¨é•·&','Length/Perimeter');
+    butSize14.Caption:=IIFs(bb,'ç›´å¾„&', 'ç›´å¾‘&', 'Diameter');
+    butSize03.Caption:=IIFs(bb,'é¢ç§¯&', 'é¢ç©&', 'Area');
+    butSize04.Caption:=IIFs(bb,'ä½“ç§¯&', 'é«”ç©&', 'Volume');
+    butSize13.Caption:=IIFs(bb,'ç‚¹çš„å€¼& ','é»žçš„å€¼&', 'Constraint Value');
+    butSize05.Caption:=IIFs(bb,'è·ç¦»&', 'è·é›¢&', 'Distance');
+    butSize06.Caption:=IIFs(bb,'è§’åº¦&', 'è§’åº¦&', 'Angle');
+    butSize07.Caption:=IIFs(bb,'æ¯”å€¼&', 'æ¯”å€¼&', 'Ratio');
+    butSize09.Caption:=IIFs(bb,'æ–œçŽ‡&', 'æ–œçŽ‡&', 'Slope');
+    butSize15.Caption:=IIFs(bb,'åæ ‡&', 'åº§æ¨™&', 'Coordinate');
+    butSize16.Caption:=IIFs(bb,'å‘é‡&', 'å‘é‡&',  'Vector');
+    butSize17.Caption:=IIFs(bb,'å‘é‡è¿ç®—&', 'å‘é‡é‹ç®—&', 'Vector Operations');
+    butSize19.Caption:=IIFs(bb,'æ–¹ç¨‹&', 'æ–¹ç¨‹&', 'Functions');
 
-    butSize.Hint:=IIFs(bb,'¶ÈÁ¿','¶ÈÁ¿','Measure');
-    butJoin.Hint:=IIFs(bb,'·ÖÀë','·Öëx','Separation');
-    but12.Hint:=IIFs(bb,'Ô¼Êøµã','¼sÊøüc','Bound Point');
-    but13.Hint:=IIFs(bb,'×î½üµã', '×î½üüc','Closest Point');
-    but14.Hint:=IIFs(bb,'½»µã','½»üc','Intersaction Point');
-    but15.Hint:=IIFs(bb,'ÖÐµã','ÖÐüc','Middle Point');
-    but16.Hint:=IIFs(bb,'µÈ·Öµã','µÈ·Öüc','Equidistant Points');
-    but21.Hint:=IIFs(bb,'Á½µãÊ½Ö±Ïß','Á½ücÊ½Ö±¾€','2-Point Line');
-    but22.Hint:=IIFs(bb,'ÏòÁ¿','ÏòÁ¿','Vector');
-    but23.Hint:=IIFs(bb,'Æ½ÐÐÏß','Æ½ÐÐ¾€','Parallel Line');
-    but24.Hint:=IIFs(bb,'´¹Ïß','´¹¾€','Perpendicular/Tangent');
-    but25.Hint:=IIFs(bb,'ÖÐÏß','ÖÐ¾€','Middle Line');
-    but26.Hint:=IIFs(bb,'Ïà¹áÏß','Ïà¹á¾€','Intersaction Line');
-    but27.Hint:=IIFs(bb,'ÉäÏß','Éä¾€','Ray');
-    but28.Hint:=IIFs(bb,'Ö±Ïß','Ö±¾€','Line');
-    but29.Hint:=IIFs(bb,'ÇÐÏß','ÇÐ¾€','Tangent');
-    but31.Hint:=IIFs(bb,'µã·¨Ô²','üc·¨ˆA','Point-Normal Circle');
-    but32.Hint:=IIFs(bb,'ÈýµãÔ²','ÈýücˆA','Three Point Circle');
-    but33.Hint:=IIFs(bb,'µã·¨»¡','üc·¨»¡','Point-Normal Arc');
-    but34.Hint:=IIFs(bb,'Èýµã»¡','Èýüc»¡','Three Point Arc');
-    but51.Hint:=IIFs(bb,'¹ì¼£Ïß','Ü‰ÛE¾€','Locus Line');
-    but41.Hint:=IIFs(bb,'ÈýµãÊ½Æ½Ãæ','ÈýücÊ½Æ½Ãæ','Three Point Plane');
-    but42.Hint:=IIFs(bb,'µãÏßÊ½Æ½Ãæ','üc¾€Ê½Æ½Ãæ','Point-Line Plane');
-    but43.Hint:=IIFs(bb,'Æ½ÐÐÃæ','Æ½ÐÐÃæ','Parallel Plane');
-    but44.Hint:=IIFs(bb,'´¹Ãæ','´¹Ãæ','Perpendicular Plane');
-    but45.Hint:=IIFs(bb,'ÖÐÃæ','ÖÐÃæ','Middle Plane');
-    but46.Hint:=IIFs(bb,'¶à±ßÐÎ','¶àß…ÐÎ','Polygon');
-    but61.Hint:=IIFs(bb,'Çò','Çò','Sphere');
-    but62.Hint:=IIFs(bb,'Ô²Ì¨','ˆAÅ_','Cone');
-    but63.Hint:=IIFs(bb,'ÀâÌ¨','ÀâÅ_','Table');
-    but64.Hint:=IIFs(bb,'¶àÃæÌå','¶àÃæów','Polyhedron');
-    but71.Hint:=IIFs(bb,'Ðý×ªÇúÃæ','ÐýÞDÇúÃæ','Rotate Surface');
-    but72.Hint:=IIFs(bb,'Ö±ÎÆÇúÃæ','Ö±¼yÇúÃæ','Ruled Surface');
-    but74.Hint:=IIFs(bb,'¹ì¼£ÇúÃæ','Ü‰ÛEÇúÃæ','Locus Surface');
-    but171.Hint:=IIFs(bb,'Â·¾¶','Â·½','Path');
+    butSize.Hint:=IIFs(bb,'åº¦é‡','åº¦é‡','Measure');
+    butJoin.Hint:=IIFs(bb,'åˆ†ç¦»','åˆ†é›¢','Separation');
+    but12.Hint:=IIFs(bb,'çº¦æŸç‚¹','ç´„æŸé»ž','Bound Point');
+    but13.Hint:=IIFs(bb,'æœ€è¿‘ç‚¹', 'æœ€è¿‘é»ž','Closest Point');
+    but14.Hint:=IIFs(bb,'äº¤ç‚¹','äº¤é»ž','Intersaction Point');
+    but15.Hint:=IIFs(bb,'ä¸­ç‚¹','ä¸­é»ž','Middle Point');
+    but16.Hint:=IIFs(bb,'ç­‰åˆ†ç‚¹','ç­‰åˆ†é»ž','Equidistant Points');
+    but21.Hint:=IIFs(bb,'ä¸¤ç‚¹å¼ç›´çº¿','ä¸¤é»žå¼ç›´ç·š','2-Point Line');
+    but22.Hint:=IIFs(bb,'å‘é‡','å‘é‡','Vector');
+    but23.Hint:=IIFs(bb,'å¹³è¡Œçº¿','å¹³è¡Œç·š','Parallel Line');
+    but24.Hint:=IIFs(bb,'åž‚çº¿','åž‚ç·š','Perpendicular/Tangent');
+    but25.Hint:=IIFs(bb,'ä¸­çº¿','ä¸­ç·š','Middle Line');
+    but26.Hint:=IIFs(bb,'ç›¸è´¯çº¿','ç›¸è´¯ç·š','Intersaction Line');
+    but27.Hint:=IIFs(bb,'å°„çº¿','å°„ç·š','Ray');
+    but28.Hint:=IIFs(bb,'ç›´çº¿','ç›´ç·š','Line');
+    but29.Hint:=IIFs(bb,'åˆ‡çº¿','åˆ‡ç·š','Tangent');
+    but31.Hint:=IIFs(bb,'ç‚¹æ³•åœ†','é»žæ³•åœ“','Point-Normal Circle');
+    but32.Hint:=IIFs(bb,'ä¸‰ç‚¹åœ†','ä¸‰é»žåœ“','Three Point Circle');
+    but33.Hint:=IIFs(bb,'ç‚¹æ³•å¼§','é»žæ³•å¼§','Point-Normal Arc');
+    but34.Hint:=IIFs(bb,'ä¸‰ç‚¹å¼§','ä¸‰é»žå¼§','Three Point Arc');
+    but51.Hint:=IIFs(bb,'è½¨è¿¹çº¿','è»Œè·¡ç·š','Locus Line');
+    but41.Hint:=IIFs(bb,'ä¸‰ç‚¹å¼å¹³é¢','ä¸‰é»žå¼å¹³é¢','Three Point Plane');
+    but42.Hint:=IIFs(bb,'ç‚¹çº¿å¼å¹³é¢','é»žç·šå¼å¹³é¢','Point-Line Plane');
+    but43.Hint:=IIFs(bb,'å¹³è¡Œé¢','å¹³è¡Œé¢','Parallel Plane');
+    but44.Hint:=IIFs(bb,'åž‚é¢','åž‚é¢','Perpendicular Plane');
+    but45.Hint:=IIFs(bb,'ä¸­é¢','ä¸­é¢','Middle Plane');
+    but46.Hint:=IIFs(bb,'å¤šè¾¹å½¢','å¤šé‚Šå½¢','Polygon');
+    but61.Hint:=IIFs(bb,'çƒ','çƒ','Sphere');
+    but62.Hint:=IIFs(bb,'åœ†å°','åœ“è‡º','Cone');
+    but63.Hint:=IIFs(bb,'æ£±å°','æ£±è‡º','Table');
+    but64.Hint:=IIFs(bb,'å¤šé¢ä½“','å¤šé¢é«”','Polyhedron');
+    but71.Hint:=IIFs(bb,'æ—‹è½¬æ›²é¢','æ—‹è½‰æ›²é¢','Rotate Surface');
+    but72.Hint:=IIFs(bb,'ç›´çº¹æ›²é¢','ç›´ç´‹æ›²é¢','Ruled Surface');
+    but74.Hint:=IIFs(bb,'è½¨è¿¹æ›²é¢','è»Œè·¡æ›²é¢','Locus Surface');
+    but171.Hint:=IIFs(bb,'è·¯å¾„','è·¯å¾‘','Path');
 
-    butPaintCircle.Hint:=IIFs(bb,'Ô²ÐÎ','ˆAÐÎ','Circle');
-    butPaintRect.Hint:=IIFs(bb,'¾ØÐÎ','¾ØÐÎ','Rectangle');
-    butPaintDel.Hint:=IIFs(bb,'ÏðÆ¤','ÏðÆ¤','Cleaner');
-//²Ëµ¥¹¤¾ßÌõ
-    butMax.Hint:=IIFs(bb,'È«ÆÁ _Shift Esc','È«ÆÁ _Shift Esc','Full Screen _Shift Esc');
-    butZoom.Hint:=IIFs(bb,'»Ö¸´ _Shift Esc','»ÖÍ _Shift Esc','Zoom9 Screen _Shift Esc');
-    butSpin.Hint:=IIFs(bb,'³¡¾°Ðý×ª _R','ˆö¾°ÐýÞD _R','Rotate Scene _R');
-    butAll.Hint:=IIFs(bb,'È«ÏÔ _A','È«ï@ _A','Show All Hidden _A');
-    butLock.Hint:=IIFs(bb,'Ëø¶¨ÊÓ½Ç _L','æi¶¨Ò•½Ç _L','Lock Scene _L');
-    butProp.Hint:=IIFs(bb,'ÊôÐÔ _P','ŒÙÐÔ _P','Property _P');
-    butList.Hint:=IIFs(bb,'¶ÔÏóÁÐ±í _I','Œ¦ÏóÁÐ±í _I','Project List _I');
-    UpDwPage.Hint:=IIfs(bb,'²åÈë/É¾³ý²ã','²åÈë/É¾³ýŒÓ','Insert/Delete a Layer');
-    barPage.Hint:=IIFs(bb,'²ã','ŒÓ','Layer');
-//º¯Êý²Ëµ¥
-    menFunc1.Caption:=IIFs(bb,'±ê×¼º¯Êý','˜ËœÊº¯”µ','Standard Function');
-    menFunc2.Caption:=IIFs(bb,'Èý½Çº¯Êý','Èý½Çº¯”µ','Trigonometric Function');
-    menFunc3.Caption:=IIFs(bb,'Âß¼­º¯Êý','ß‰Ý‹º¯”µ','Logic Function');
-    menFunc4.Caption:=IIFs(bb,'ÔËËã','ß\Ëã','Calculation');
-    menFunc5.Caption:=IIFs(bb,'³£Êý','³£”µ','Constant');
-    calcAbs.Hint:=IIFs(bb,'¾ø¶ÔÖµ','½^Œ¦Öµ','Absolute Value');
-    calcTrunc.Hint:=IIFs(bb,'ÕûÊý','Õû”µ','Truncate');
-    calcInt.Hint:=IIFs(bb,'ÏòÏÂÈ¡ÕûÊý','ÏòÏÂÈ¡Õû”µ','Truncate down');
-    calcFr.Hint:=IIFs(bb,'Ð¡Êý','Ð¡”µ','Decimal');
-    calcSqr.Hint:=IIFs(bb,'Æ½·½','Æ½·½','Square');
-    calcSqrt.Hint:=IIFs(bb,'Æ½·½¸ù','Æ½·½¸ù','Square Root');
-    calcExp.Hint:=IIFs(bb,'e µÄ³ËÃÝ','e µÄ³Ëƒç','Power of e');
-    calcLn.Hint:=IIFs(bb,'e Îªµ×µÄ×ÔÈ»¶ÔÊý','e žéµ×µÄ×ÔÈ»Œ¦”µ','Natural logarithm with e');
-    calcLog.Hint:=IIFs(bb,'³£ÓÃ¶ÔÊý','³£ÓÃŒ¦”µ','Common logarithm')+': log(n)=ln(n)/ln(10)';
-    calcRound.Hint:=IIFs(bb,'Ô²ÕûÊý','ˆAÕû”µ','Round to integer');
-    calcRandom.Hint:=IIFs(bb,'Ëæ»úÊý','ëS™C”µ','Random number');
-    calcFact.Hint:=IIFs(bb,'½×³Ë','½×³Ë','Factorial');
+    butPaintCircle.Hint:=IIFs(bb,'åœ†å½¢','åœ“å½¢','Circle');
+    butPaintRect.Hint:=IIFs(bb,'çŸ©å½¢','çŸ©å½¢','Rectangle');
+    butPaintDel.Hint:=IIFs(bb,'æ©¡çš®','æ©¡çš®','Cleaner');
+//èœå•å·¥å…·æ¡
+    butMax.Hint:=IIFs(bb,'å…¨å± _Shift Esc','å…¨å± _Shift Esc','Full Screen _Shift Esc');
+    butZoom.Hint:=IIFs(bb,'æ¢å¤ _Shift Esc','æ¢å¾© _Shift Esc','Zoom9 Screen _Shift Esc');
+    butSpin.Hint:=IIFs(bb,'åœºæ™¯æ—‹è½¬ _R','å ´æ™¯æ—‹è½‰ _R','Rotate Scene _R');
+    butAll.Hint:=IIFs(bb,'å…¨æ˜¾ _A','å…¨é¡¯ _A','Show All Hidden _A');
+    butLock.Hint:=IIFs(bb,'é”å®šè§†è§’ _L','éŽ–å®šè¦–è§’ _L','Lock Scene _L');
+    butProp.Hint:=IIFs(bb,'å±žæ€§ _P','å±¬æ€§ _P','Property _P');
+    butList.Hint:=IIFs(bb,'å¯¹è±¡åˆ—è¡¨ _I','å°è±¡åˆ—è¡¨ _I','Project List _I');
+    UpDwPage.Hint:=IIfs(bb,'æ’å…¥/åˆ é™¤å±‚','æ’å…¥/åˆ é™¤å±¤','Insert/Delete a Layer');
+    barPage.Hint:=IIFs(bb,'å±‚','å±¤','Layer');
+//å‡½æ•°èœå•
+    menFunc1.Caption:=IIFs(bb,'æ ‡å‡†å‡½æ•°','æ¨™æº–å‡½æ•¸','Standard Function');
+    menFunc2.Caption:=IIFs(bb,'ä¸‰è§’å‡½æ•°','ä¸‰è§’å‡½æ•¸','Trigonometric Function');
+    menFunc3.Caption:=IIFs(bb,'é€»è¾‘å‡½æ•°','é‚è¼¯å‡½æ•¸','Logic Function');
+    menFunc4.Caption:=IIFs(bb,'è¿ç®—','é‹ç®—','Calculation');
+    menFunc5.Caption:=IIFs(bb,'å¸¸æ•°','å¸¸æ•¸','Constant');
+    calcAbs.Hint:=IIFs(bb,'ç»å¯¹å€¼','çµ•å°å€¼','Absolute Value');
+    calcTrunc.Hint:=IIFs(bb,'æ•´æ•°','æ•´æ•¸','Truncate');
+    calcInt.Hint:=IIFs(bb,'å‘ä¸‹å–æ•´æ•°','å‘ä¸‹å–æ•´æ•¸','Truncate down');
+    calcFr.Hint:=IIFs(bb,'å°æ•°','å°æ•¸','Decimal');
+    calcSqr.Hint:=IIFs(bb,'å¹³æ–¹','å¹³æ–¹','Square');
+    calcSqrt.Hint:=IIFs(bb,'å¹³æ–¹æ ¹','å¹³æ–¹æ ¹','Square Root');
+    calcExp.Hint:=IIFs(bb,'e çš„ä¹˜å¹‚','e çš„ä¹˜å†ª','Power of e');
+    calcLn.Hint:=IIFs(bb,'e ä¸ºåº•çš„è‡ªç„¶å¯¹æ•°','e ç‚ºåº•çš„è‡ªç„¶å°æ•¸','Natural logarithm with e');
+    calcLog.Hint:=IIFs(bb,'å¸¸ç”¨å¯¹æ•°','å¸¸ç”¨å°æ•¸','Common logarithm')+': log(n)=ln(n)/ln(10)';
+    calcRound.Hint:=IIFs(bb,'åœ†æ•´æ•°','åœ“æ•´æ•¸','Round to integer');
+    calcRandom.Hint:=IIFs(bb,'éšæœºæ•°','éš¨æ©Ÿæ•¸','Random number');
+    calcFact.Hint:=IIFs(bb,'é˜¶ä¹˜','é˜¶ä¹˜','Factorial');
 
-    calcSin.Hint:=IIFs(bb,'ÕýÏÒ','ÕýÏÒ','Sinusoidal');
-    calcCos.Hint:=IIFs(bb,'ÓàÏÒ','ðNÏÒ','Cosine');
-    calcTan.Hint:=IIFs(bb,'ÕýÇÐ','ÕýÇÐ','Tangent');
-    calcSinh.Hint:=IIFs(bb,'Ë«ÇúÕýÏÒ','ëpÇúÕýÏÒ','Hyperbolic Sinusoidal');
-    calcCosh.Hint:=IIFs(bb,'Ë«ÇúÓàÏÒ','ëpÇúÕýÏÒ','Hyperbolic Cosine');
-    calcTanh.Hint:=IIFs(bb,'Ë«ÇúÕýÇÐ','ëpÇúÕýÇÐ','Hyperbolic tangent');
-    calcArcsin.Hint:=IIFs(bb,'·´ÕýÏÒ','·´ÕýÏÒ','Arcsine');
-    calcArccos.Hint:=IIFs(bb,'·´ÓàÏÒ','·´ðNÏÒ','Arccosine');
-    calcArctan.Hint:=IIFs(bb,'·´ÕýÇÐ','·´ÕýÇÐ','Arctangent');
-    calcArcsinh.Hint:=IIFs(bb,'·´Ë«ÇúÕýÏÒ','·´ëpÇúÕýÏÒ','Hyperbolic ArcSinusoidal');
-    calcArccosh.Hint:=IIFs(bb,'·´Ë«ÇúÓàÏÒ','·´ëpÇúÕýÏÒ','Hyperbolic ArcCosine');
-    calcArctanh.Hint:=IIFs(bb,'·´Ë«ÇúÕýÇÐ','·´ëpÇúÕýÇÐ','Hyperbolic Arctangent');
+    calcSin.Hint:=IIFs(bb,'æ­£å¼¦','æ­£å¼¦','Sinusoidal');
+    calcCos.Hint:=IIFs(bb,'ä½™å¼¦','é¤˜å¼¦','Cosine');
+    calcTan.Hint:=IIFs(bb,'æ­£åˆ‡','æ­£åˆ‡','Tangent');
+    calcSinh.Hint:=IIFs(bb,'åŒæ›²æ­£å¼¦','é›™æ›²æ­£å¼¦','Hyperbolic Sinusoidal');
+    calcCosh.Hint:=IIFs(bb,'åŒæ›²ä½™å¼¦','é›™æ›²æ­£å¼¦','Hyperbolic Cosine');
+    calcTanh.Hint:=IIFs(bb,'åŒæ›²æ­£åˆ‡','é›™æ›²æ­£åˆ‡','Hyperbolic tangent');
+    calcArcsin.Hint:=IIFs(bb,'åæ­£å¼¦','åæ­£å¼¦','Arcsine');
+    calcArccos.Hint:=IIFs(bb,'åä½™å¼¦','åé¤˜å¼¦','Arccosine');
+    calcArctan.Hint:=IIFs(bb,'åæ­£åˆ‡','åæ­£åˆ‡','Arctangent');
+    calcArcsinh.Hint:=IIFs(bb,'ååŒæ›²æ­£å¼¦','åé›™æ›²æ­£å¼¦','Hyperbolic ArcSinusoidal');
+    calcArccosh.Hint:=IIFs(bb,'ååŒæ›²ä½™å¼¦','åé›™æ›²æ­£å¼¦','Hyperbolic ArcCosine');
+    calcArctanh.Hint:=IIFs(bb,'ååŒæ›²æ­£åˆ‡','åé›™æ›²æ­£åˆ‡','Hyperbolic Arctangent');
 
-    calcMax.Hint:=IIFs(bb,'½Ï´óÖµ','Ý^´óÖµ','Greater Value');
-    calcMin.Hint:=IIFs(bb,'½ÏÐ¡Öµ','Ý^Ð¡Öµ','Smaller Value');
-    calcParity.Hint:=IIFs(bb,'ÆæÅ¼ÐÔ(ÆæÊýÎª1)','ÆæÅ¼ÐÔ(Ææ”µÎª1)','Parity');
-    calcSgn.Hint:=IIFs(bb,'Èôa<0Ôòsgn(a)=-1, Èôa=0Ôòsgn(a)=0, Èôa>0Ôòsgn(a)=1',
-                       'Èôa<0„tsgn(a)=-1, Èôa=0„tsgn(a)=0, Èôa>0„tsgn(a)=1',
+    calcMax.Hint:=IIFs(bb,'è¾ƒå¤§å€¼','è¼ƒå¤§å€¼','Greater Value');
+    calcMin.Hint:=IIFs(bb,'è¾ƒå°å€¼','è¼ƒå°å€¼','Smaller Value');
+    calcParity.Hint:=IIFs(bb,'å¥‡å¶æ€§(å¥‡æ•°ä¸º1)','å¥‡å¶æ€§(å¥‡æ•¸ä¸º1)','Parity');
+    calcSgn.Hint:=IIFs(bb,'è‹¥a<0åˆ™sgn(a)=-1, è‹¥a=0åˆ™sgn(a)=0, è‹¥a>0åˆ™sgn(a)=1',
+                       'è‹¥a<0å‰‡sgn(a)=-1, è‹¥a=0å‰‡sgn(a)=0, è‹¥a>0å‰‡sgn(a)=1',
                        'If a<0 then sgn(a)=-1, if a=0 then sgn(a)=0, if a>0 then sgn(a)=1');
-    calcHeav.Hint:=IIFs(bb,'Èôa>=0Ôòheav(a)=1','Èôa>=0„theav(a)=1','If a>=0 then heav(a)=1 else heav(a)=0');
-    calcEqual.Hint:=IIFs(bb,'Èôa=bÔòequal(a,b)=1','Èôa=b„tequal(a,b)=1','If a=b then equal(a,b)=1');
-    calcNote.Hint:=IIFs(bb,'Èôa<>bÔònote(a,b)=1','Èôa<>b„tnote(a,b)=1','If a<>b then note(a,b)=1');
-    calcLess.Hint:=IIFs(bb,'Èôa<bÔòless(a,b)=1','Èôa<b„tless(a,b)=1','If a<b then less(a,b)=1');
-    calcLesse.Hint:=IIFs(bb,'Èôa<=bÔòlesse(a,b)=1','Èôa<=b„tlesse(a,b)=1','If a<=b then lesse(a,b)=1');
-    calcMod.Hint:=IIFs(bb,'Ä£ÔËËã','Ä£ß\Ëã','Modulo Operation');
-    calcRad.Hint:=IIFs(bb,'Ð±±ß³¤','Ð±ß…éL','Length of the hypotenuse');
-    calcIif.Hint:=IIFs(bb,'Èôa=0Ôòiif(a,b,c)=b·ñÔòiif(a,b,c)=c','Èôa=0„tiif(a,b,c)=b·ñ„tiif(a,b,c)=c','If a=0 then iif(a,b,c)=b else iif(a,b,c)=c');
-    calcPi.Hint:=IIFs(bb,'Ô²ÖÜÂÊ=3.1415926...','ˆAÖÜÂÊ=3.1415926...','Pi=3.1415926...');
-    calcEi.Hint:=IIFs(bb,'×ÔÈ»¶ÔÊýµÄµ×=2.718282...','×ÔÈ»Œ¦”µµÄµ×=2.718282...','Euler''s number=2.718282...');
-//³¡¾°ÊôÐÔ
-    labScene.Caption:=IIFs(bb,'¾°É«','¾°É«','Scene Color');
-    labDeep.Caption:=IIFs(bb,'¾°Éî','¾°Éî','Scene Deep');
-    labPers.Caption:=IIFs(bb,'Í¸ÊÓ','Í¸Ò•','Perspective');
-    cheAxis.Caption:=IIFs(bb,'×ø±êÏµ','×ù˜ËÏµ','Coordinate');
-    cheAxisZ.Caption:=IIFs(bb,'ZÖá','ZÝS','Z-Axis');
-    chePlane.Caption:=IIFs(bb,'Æ½Ãæ','Æ½Ãæ','Plane');
-    cheMark.Caption:=IIFs(bb,'¿Ì¶È','¿Ì¶È','Graduation');
+    calcHeav.Hint:=IIFs(bb,'è‹¥a>=0åˆ™heav(a)=1','è‹¥a>=0å‰‡heav(a)=1','If a>=0 then heav(a)=1 else heav(a)=0');
+    calcEqual.Hint:=IIFs(bb,'è‹¥a=båˆ™equal(a,b)=1','è‹¥a=bå‰‡equal(a,b)=1','If a=b then equal(a,b)=1');
+    calcNote.Hint:=IIFs(bb,'è‹¥a<>båˆ™note(a,b)=1','è‹¥a<>bå‰‡note(a,b)=1','If a<>b then note(a,b)=1');
+    calcLess.Hint:=IIFs(bb,'è‹¥a<båˆ™less(a,b)=1','è‹¥a<bå‰‡less(a,b)=1','If a<b then less(a,b)=1');
+    calcLesse.Hint:=IIFs(bb,'è‹¥a<=båˆ™lesse(a,b)=1','è‹¥a<=bå‰‡lesse(a,b)=1','If a<=b then lesse(a,b)=1');
+    calcMod.Hint:=IIFs(bb,'æ¨¡è¿ç®—','æ¨¡é‹ç®—','Modulo Operation');
+    calcRad.Hint:=IIFs(bb,'æ–œè¾¹é•¿','æ–œé‚Šé•·','Length of the hypotenuse');
+    calcIif.Hint:=IIFs(bb,'è‹¥a=0åˆ™iif(a,b,c)=bå¦åˆ™iif(a,b,c)=c','è‹¥a=0å‰‡iif(a,b,c)=bå¦å‰‡iif(a,b,c)=c','If a=0 then iif(a,b,c)=b else iif(a,b,c)=c');
+    calcPi.Hint:=IIFs(bb,'åœ†å‘¨çŽ‡=3.1415926...','åœ“å‘¨çŽ‡=3.1415926...','Pi=3.1415926...');
+    calcEi.Hint:=IIFs(bb,'è‡ªç„¶å¯¹æ•°çš„åº•=2.718282...','è‡ªç„¶å°æ•¸çš„åº•=2.718282...','Euler''s number=2.718282...');
+//åœºæ™¯å±žæ€§
+    labScene.Caption:=IIFs(bb,'æ™¯è‰²','æ™¯è‰²','Scene Color');
+    labDeep.Caption:=IIFs(bb,'æ™¯æ·±','æ™¯æ·±','Scene Deep');
+    labPers.Caption:=IIFs(bb,'é€è§†','é€è¦–','Perspective');
+    cheAxis.Caption:=IIFs(bb,'åæ ‡ç³»','åº§æ¨™ç³»','Coordinate');
+    cheAxisZ.Caption:=IIFs(bb,'Zè½´','Zè»¸','Z-Axis');
+    chePlane.Caption:=IIFs(bb,'å¹³é¢','å¹³é¢','Plane');
+    cheMark.Caption:=IIFs(bb,'åˆ»åº¦','åˆ»åº¦','Graduation');
 
-    cheAngle.Caption:=IIFs(bb,'X»¡¶È','X»¡¶È','X Radian');
-    cheGrid.Caption:=IIFs(bb,'Íø¸ñ','¾W¸ñ','Grid');
-    cheOrigin.Caption:=IIFs(bb,'Ô­µã','Ô­üc','Origin');
-    cheFog.Caption:=IIFs(bb,'ÎíÐ§','ìFÐ§','Fog');
-    cheSmooth.Caption:=IIFs(bb,'·´¾â³Ý','·´äýX','Smooth');
-    cheFlash.Caption:=IIFs(bb,'Ë¢ÐÂÂÊ','Ë¢ÐÂÂÊ','Fresh Rate');
-    cheHint.Caption:=IIFs(bb,'ÌáÊ¾Ìõ','ÌáÊ¾—l','Show Hints');
-    cheTag.Caption:=IIFs(bb,'±êÇ©','˜Ë»`','Show Tag');
-    cheBottom.Caption:=IIFs(bb,'µ×±ßÊ½','µ×ß…Ê½','Bottom Adge');
-    labProp.Caption:=IIFs(bb,'ÏµÍ³²ÎÊý','Ïµ½y…¢”µ','Parameters');
-    labObj.Caption:=IIFs(bb,'¶ÔÏó','Œ¦Ïó','Component');
-    labObjSize.Caption:=IIFs(bb,'Ïß¾¶','¾€½','Lines Width');
-    butSaveDefault.Caption:=IIFs(bb,'±£´æ','±£´æ','Save');
-    butGetDefault.Caption:=IIFs(bb,'»Ö¸´','»ÖÍ','Resume');
-//¹¹¼þÊôÐÔ
-    labTag.Caption:=IIFs(bb,'±êÇ©','˜Ë»`','Tag');
-    labColor.Caption:=IIFs(bb,'ÑÕÉ«','îÉ«','Color');
-    labW.Caption:=IIFs(bb,'¿í¶È','Œ’¶È','Width');
-    labL.Caption:=IIFs(bb,'³¤¶È','éL¶È','Length');
-    labS.Caption:=IIFs(bb,'Ä£Ê½','Ä£Ê½','Style');
-    labR.Caption:=IIFs(bb,'×ª½Ç','ÞD½Ç','Angle');
-    labH.Caption:=IIFs(bb,'¸ß¶È','¸ß¶È','Height');
-    labShape.Caption:=IIFs(bb,'ÐÎ×´','ÐÎ î','Shape');
-    selWay0.Caption :=IIFs(bb,'¶¨±È','¶¨±È','Ratio');
-    selWay1.Caption :=IIFs(bb,'¶¨¾à','¶¨¾à','Distante');
-    labFill.Caption :=IIFs(bb,'ÏßÐÍ','¾€ÐÍ','Line Style');
-    labA.Caption:=IIFs(bb,'Í¸Ã÷','Í¸Ã÷','Transparent');
-    labT.Caption:=IIFs(bb,'²½³¤','²½éL','Step');
-    cheColor.Caption:=IIfs(bb,'Ëæµã','Ëæüc','Point Color');
-    cheMask.Caption :=IIFs(bb,'ÎÆÀí','¼yÀí','Texture');
-    cheWay.Caption:=IIFs(bb,'Ë«Ïò','ëpÏò','Tow-Way');
-    cheLock.Caption:=IIFs(bb,'Ëø¶¨','æi¶¨','Lock');
-    cheSel.Caption:=IIFs(bb,'¿ÉÑ¡','¿Éßx','Selectable');
-    cheSec.Caption:=IIFs(bb,'¼ô²Ã','¼ô²Ã','Section');
-    cheShow.Caption :=IIFs(bb,'ÏÔÊ¾','ï@Ê¾','Display');
-    cheBlock.Caption:=IIFs(bb,'ÕÚµ²','ÕÚ“õ','Mask');
-    labArrow.Caption:=IIFs(bb,'¶Ëµã','¶Ëüc','Arrow');
-    labColorfull.Caption:=IIFs(bb,'ìÅ²Ê','ìÅ²Ê','Colorful');
-    butTex.Hint:=IIFs(bb,'Í¼Æ¬','ˆDÆ¬','Picture');
-    butCutter.Hint:=IIFs(bb,'½ØÃæ','½ØÃæ','Section');
+    cheAngle.Caption:=IIFs(bb,'Xå¼§åº¦','Xå¼§åº¦','X Radian');
+    cheGrid.Caption:=IIFs(bb,'ç½‘æ ¼','ç¶²æ ¼','Grid');
+    cheOrigin.Caption:=IIFs(bb,'åŽŸç‚¹','åŽŸé»ž','Origin');
+    cheFog.Caption:=IIFs(bb,'é›¾æ•ˆ','éœ§æ•ˆ','Fog');
+    cheSmooth.Caption:=IIFs(bb,'åé”¯é½¿','åé‹¸é½’','Smooth');
+    cheFlash.Caption:=IIFs(bb,'åˆ·æ–°çŽ‡','åˆ·æ–°çŽ‡','Fresh Rate');
+    cheHint.Caption:=IIFs(bb,'æç¤ºæ¡','æç¤ºæ¢','Show Hints');
+    cheTag.Caption:=IIFs(bb,'æ ‡ç­¾','æ¨™ç±¤','Show Tag');
+    cheBottom.Caption:=IIFs(bb,'åº•è¾¹å¼','åº•é‚Šå¼','Bottom Adge');
+    labProp.Caption:=IIFs(bb,'ç³»ç»Ÿå‚æ•°','ç³»çµ±åƒæ•¸','Parameters');
+    labObj.Caption:=IIFs(bb,'å¯¹è±¡','å°è±¡','Component');
+    labObjSize.Caption:=IIFs(bb,'çº¿å¾„','ç·šå¾‘','Lines Width');
+    butSaveDefault.Caption:=IIFs(bb,'ä¿å­˜','ä¿å­˜','Save');
+    butGetDefault.Caption:=IIFs(bb,'æ¢å¤','æ¢å¾©','Resume');
+//æž„ä»¶å±žæ€§
+    labTag.Caption:=IIFs(bb,'æ ‡ç­¾','æ¨™ç±¤','Tag');
+    labColor.Caption:=IIFs(bb,'é¢œè‰²','é¡è‰²','Color');
+    labW.Caption:=IIFs(bb,'å®½åº¦','å¯¬åº¦','Width');
+    labL.Caption:=IIFs(bb,'é•¿åº¦','é•·åº¦','Length');
+    labS.Caption:=IIFs(bb,'æ¨¡å¼','æ¨¡å¼','Style');
+    labR.Caption:=IIFs(bb,'è½¬è§’','è½‰è§’','Angle');
+    labH.Caption:=IIFs(bb,'é«˜åº¦','é«˜åº¦','Height');
+    labShape.Caption:=IIFs(bb,'å½¢çŠ¶','å½¢ç‹€','Shape');
+    selWay0.Caption :=IIFs(bb,'å®šæ¯”','å®šæ¯”','Ratio');
+    selWay1.Caption :=IIFs(bb,'å®šè·','å®šè·','Distante');
+    labFill.Caption :=IIFs(bb,'çº¿åž‹','ç·šåž‹','Line Style');
+    labA.Caption:=IIFs(bb,'é€æ˜Ž','é€æ˜Ž','Transparent');
+    labT.Caption:=IIFs(bb,'æ­¥é•¿','æ­¥é•·','Step');
+    cheColor.Caption:=IIfs(bb,'éšç‚¹','éšé»ž','Point Color');
+    cheMask.Caption :=IIFs(bb,'çº¹ç†','ç´‹ç†','Texture');
+    cheWay.Caption:=IIFs(bb,'åŒå‘','é›™å‘','Tow-Way');
+    cheLock.Caption:=IIFs(bb,'é”å®š','éŽ–å®š','Lock');
+    cheSel.Caption:=IIFs(bb,'å¯é€‰','å¯é¸','Selectable');
+    cheSec.Caption:=IIFs(bb,'å‰ªè£','å‰ªè£','Section');
+    cheShow.Caption :=IIFs(bb,'æ˜¾ç¤º','é¡¯ç¤º','Display');
+    cheBlock.Caption:=IIFs(bb,'é®æŒ¡','é®æ“‹','Mask');
+    labArrow.Caption:=IIFs(bb,'ç«¯ç‚¹','ç«¯é»ž','Arrow');
+    labColorfull.Caption:=IIFs(bb,'ç‚«å½©','ç‚«å½©','Colorful');
+    butTex.Hint:=IIFs(bb,'å›¾ç‰‡','åœ–ç‰‡','Picture');
+    butCutter.Hint:=IIFs(bb,'æˆªé¢','æˆªé¢','Section');
 
-    butDad.Caption:=IIFs(bb,'¸¸¶ÔÏó','¸¸Œ¦Ïó','Parents');
-    butSon.Caption:=IIFs(bb,'×Ó¶ÔÏó','×ÓŒ¦Ïó','Children');
-    cheTrace.Caption:=IIFs(bb,'ºÛ¼£','ºÛÛE','Trace');
-    labTrace.Caption:=IIFs(bb,'ºÛ³¤','ºÛéL','Trace Length');
-    labAccuracy.Caption:=IIFs(bb,'¾«È·¶È','¾«È·¶È','Accuracy');
+    butDad.Caption:=IIFs(bb,'çˆ¶å¯¹è±¡','çˆ¶å°è±¡','Parents');
+    butSon.Caption:=IIFs(bb,'å­å¯¹è±¡','å­å°è±¡','Children');
+    cheTrace.Caption:=IIFs(bb,'ç—•è¿¹','ç—•è·¡','Trace');
+    labTrace.Caption:=IIFs(bb,'ç—•é•¿','ç—•é•·','Trace Length');
+    labAccuracy.Caption:=IIFs(bb,'ç²¾ç¡®åº¦','ç²¾ç¡®åº¦','Accuracy');
     with cmbObjKind do begin
       Clear;
-      AddItem(IIFs(bb,'µã','üc','Point'),nil);
-      AddItem(IIFs(bb,'Ö±Ïß','Ö±¾€','Line'),nil);
-      AddItem(IIFs(bb,'Ô²','ˆA','Circle'),nil);
-      AddItem(IIFs(bb,'Æ½Ãæ','Æ½Ãæ','Plane'),nil);
-      AddItem(IIFs(bb,'ÊµÌå','Œów','Solid'),nil);
-      AddItem(IIFs(bb,'ÇúÏß','Çú¾€','Curve'),nil);
-      AddItem(IIFs(bb,'ÇúÃæ','ÇúÃæ','Surface'),nil);
-      AddItem(IIFs(bb,'Êý¾Ý','”µ“þ','Data'),nil);
-      AddItem(IIFs(bb,'Ñ¡Ôñ','ßx“ñ','Axis'),nil);
-      AddItem(IIFs(bb,'±êÇ©','˜Ë»`','Tags'),nil);
+      AddItem(IIFs(bb,'ç‚¹','é»ž','Point'),nil);
+      AddItem(IIFs(bb,'ç›´çº¿','ç›´ç·š','Line'),nil);
+      AddItem(IIFs(bb,'åœ†','åœ“','Circle'),nil);
+      AddItem(IIFs(bb,'å¹³é¢','å¹³é¢','Plane'),nil);
+      AddItem(IIFs(bb,'å®žä½“','å¯¦é«”','Solid'),nil);
+      AddItem(IIFs(bb,'æ›²çº¿','æ›²ç·š','Curve'),nil);
+      AddItem(IIFs(bb,'æ›²é¢','æ›²é¢','Surface'),nil);
+      AddItem(IIFs(bb,'æ•°æ®','æ•¸æ“š','Data'),nil);
+      AddItem(IIFs(bb,'é€‰æ‹©','é¸æ“‡','Axis'),nil);
+      AddItem(IIFs(bb,'æ ‡ç­¾','æ¨™ç±¤','Tags'),nil);
       ItemIndex:=0;
       end;
     ObjListUpdate(0,false);
-//¼ÆËã¿ò
-    tabCalc.Caption:=IIFs(bb,' ¼ÆËã...','Ó‹Ëã...',' Calculator...');
-    cheRound.Caption:=IIFs(bb,'Ê×Î²ÏàÁ¬','Ê×Î²ÏàßB','Loop');
-    cheHide.Caption:=IIFs(bb,'¼ÆËãºó¹Ø±Õ','Ó‹ËãºóêPé]','Close when OK');
-//µü´ú
-    tabIterate.Caption:=IIFs(bb,' µü´ú¹æÔò...','¯B´úÒŽ„t...',' Iterative Rule...');
-    labLayer.Caption:=IIFs(bb,'²ã','ŒÓ','Layer');
-    labSour.Caption:=IIFs(bb,'Ô­Ïñ','Ô­Ïñ','Sour');
-    labDest.Caption:=IIFs(bb,'Ó³Ïñ1','Ó³Ïñ1','Dest1');
-    labDepth.Caption:=IIFs(bb,'Éî¶È','Éî¶È','Depth');
-    cheRand.Caption:=IIFs(bb,'Ëæ»ú','ëS™C','Random');
-    cheDot.Caption:=IIFs(bb,'º¬µã','º¬üc','Point');
-    cheLast.Caption:=IIFs(bb,'ÖÕÏñ','½KÏñ','Last');
-    butRand.Caption:=IIFs(bb,'Ëæ»ú','ëS™C','Random');
-//¿ØÖÆ¿ò
-    tabMove.Caption:=IIFs(bb,'¶ÔÏó´ÎÐò...','Œ¦Ïó´ÎÐò...',' Component Order...');
-    tabPath.Caption:=IIFs(bb,' Â·¾¶...','Â·½...',' Path...');
-    tabText.Caption:=IIFs(bb,' ÎÄ±¾...','ÎÄ±¾...',' Text...');
-    tabLabel.Caption:=IIfs(bb,'±êÇ©...','˜Ë»`...','Labels...',);
-    labLabel.Caption:=IIFs(bb,'ÆðÊ¼±êÇ©£º','ÆðÊ¼˜Ë»`£º','First Label:');
-    labColor.Caption:=IIFs(bb,'²ÎÊýÑÕÉ«...','…¢”µîÉ«...','Parametric Color');
-    butPathResume.Caption:=IIFs(bb,'»Ö ¸´','»Ö Í','Resume');
-    radPage.Caption:=IIFs(bb,'Ò³Ãæ','í“Ãæ','Page');
-    labButton.Caption:=IIFs(bb,'°´Å¥','°´âo','Button');
-    radLink.Caption:=IIFs(bb,'³¬Á´½Ó','³¬æœ½Ó','Linker');
-    butPathDel.Caption:=IIFs(bb,'ÒÆ ³ö','ÒÆ ³ö','Move Out');
-    butOK.Caption:=IIFs(bb,'È· ¶¨','È· ¶¨','OK');
-    butCalcCode.Hint:=IIFs(bb,'º¯Êý','º¯Êý','Functions');
-    butCalcPad.Hint:=IIFs(bb,'¼üÅÌ','æI±P','Keyboard');
+//è®¡ç®—æ¡†
+    tabCalc.Caption:=IIFs(bb,' è®¡ç®—...','è¨ˆç®—...',' Calculator...');
+    cheRound.Caption:=IIFs(bb,'é¦–å°¾ç›¸è¿ž','é¦–å°¾ç›¸é€£','Loop');
+    cheHide.Caption:=IIFs(bb,'è®¡ç®—åŽå…³é—­','è¨ˆç®—åŽé—œé–‰','Close when OK');
+//è¿­ä»£
+    tabIterate.Caption:=IIFs(bb,' è¿­ä»£è§„åˆ™...','ç–Šä»£è¦å‰‡...',' Iterative Rule...');
+    labLayer.Caption:=IIFs(bb,'å±‚','å±¤','Layer');
+    labSour.Caption:=IIFs(bb,'åŽŸåƒ','åŽŸåƒ','Sour');
+    labDest.Caption:=IIFs(bb,'æ˜ åƒ1','æ˜ åƒ1','Dest1');
+    labDepth.Caption:=IIFs(bb,'æ·±åº¦','æ·±åº¦','Depth');
+    cheRand.Caption:=IIFs(bb,'éšæœº','éš¨æ©Ÿ','Random');
+    cheDot.Caption:=IIFs(bb,'å«ç‚¹','å«é»ž','Point');
+    cheLast.Caption:=IIFs(bb,'ç»ˆåƒ','çµ‚åƒ','Last');
+    butRand.Caption:=IIFs(bb,'éšæœº','éš¨æ©Ÿ','Random');
+//æŽ§åˆ¶æ¡†
+    tabMove.Caption:=IIFs(bb,'å¯¹è±¡æ¬¡åº...','å°è±¡æ¬¡åº...',' Component Order...');
+    tabPath.Caption:=IIFs(bb,' è·¯å¾„...','è·¯å¾‘...',' Path...');
+    tabText.Caption:=IIFs(bb,' æ–‡æœ¬...','æ–‡æœ¬...',' Text...');
+    tabLabel.Caption:=IIFs(bb,'æ ‡ç­¾...','æ¨™ç±¤...','Labels...');
+    labLabel.Caption:=IIFs(bb,'èµ·å§‹æ ‡ç­¾ï¼š','èµ·å§‹æ¨™ç±¤ï¼š','First Label:');
+    labColor.Caption:=IIFs(bb,'å‚æ•°é¢œè‰²...','åƒæ•¸é¡è‰²...','Parametric Color');
+    butPathResume.Caption:=IIFs(bb,'æ¢ å¤','æ¢ å¾©','Resume');
+    radPage.Caption:=IIFs(bb,'é¡µé¢','é é¢','Page');
+    labButton.Caption:=IIFs(bb,'æŒ‰é’®','æŒ‰éˆ•','Button');
+    radLink.Caption:=IIFs(bb,'è¶…é“¾æŽ¥','è¶…éˆæŽ¥','Linker');
+    butPathDel.Caption:=IIFs(bb,'ç§» å‡º','ç§» å‡º','Move Out');
+    butOK.Caption:=IIFs(bb,'ç¡® å®š','ç¡® å®š','OK');
+    butCalcCode.Hint:=IIFs(bb,'å‡½æ•°','å‡½æ•°','Functions');
+    butCalcPad.Hint:=IIFs(bb,'é”®ç›˜','éµç›¤','Keyboard');
 
-//²ÎÊýÖá
-    tabPara.Caption :=IIFs(bb,'²ÎÊý¿ØÖÆ...','…¢”µ¿ØÖÆ...','Parameter Controler');
-    labParaValue.Caption:=IIFs(bb,'²ÎÊýÓò','…¢”µÓò','Parameter');
-    labParaObj.Caption  :=IIFs(bb,'¿ØÖÆ¶ÔÏó','¿ØÖÆŒ¦Ïó','Object');
-    labParaCtrl.Caption :=IIFs(bb,'¿ØÖÆÓò','¿ØÖÆÓò','Control Range');
-    butParaDel.Caption  :=IIFs(bb,'É¾ ³ý','„h ³ý','Delete');
-    butParaAdd.Caption  :=IIFs(bb,'Ìí ¼Ó','Ìí ¼Ó','Append');
-//²ÎÊýÑÕÉ«
-    grpPara.Caption :=IIFs(bb,'²Î Êý','…¢ ”µ','Parameter');
-    grpWare.Caption :=IIFs(bb,'²ÎÊýÖµÓò','…¢”µÖµÓò','Parameter Domain');
-    grpRepeat.Caption :=IIFs(bb,'Ñ­»·Ä£Ê½','Ñ­­hÄ£Ê½','Repeat Mode');
-    radGray.Caption :=IIFs(bb,'»Ò ¶È','»Ò ¶È','Grayscale');
-    radColor.Caption :=IIFs(bb,'¼tÉ«, ÂÌÉ«, À¶É«','¼tÉ«, ¾GÉ«, Ë{É«','Red, Green, Blue');
-    radLight.Caption :=IIFs(bb,'É«µ÷, ±¥ºÍ¶È, ÁÁ¶È','É«Õ{, ï–ºÍ¶È, ÁÁ¶È','Hue, Saturation, Value');
-    radNoWay.Caption :=IIFs(bb,'²»Ñ­»·','²»Ñ­»·','Dont Repeat');
-    radOneWay.Caption :=IIFs(bb,'µ¥ÏòÑ­»·','µ¥ÏòÑ­»·','Repeat One-Way');
-    radTwoWay.Caption :=IIFs(bb,'Ë«ÏòÑ­»·','Ë«ÏòÑ­»·','Repeat Bidirectionally');
-//ÊôÐÔ¿ò
-    pnlFPS.Caption:=IIFs(bb,' ÊôÐÔ',' ŒÙÐÔ',' Propertis');
-    tab0.Caption:=IIFs(bb,'¶ÔÏó','Œ¦Ïó','Object');
-    tab1.Caption:=IIFs(bb,'³¡¾°','ˆö¾°','Scene');
+//å‚æ•°è½´
+    tabPara.Caption :=IIFs(bb,'å‚æ•°æŽ§åˆ¶...','åƒæ•¸æŽ§åˆ¶...','Parameter Controler');
+    labParaValue.Caption:=IIFs(bb,'å‚æ•°åŸŸ','åƒæ•¸åŸŸ','Parameter');
+    labParaObj.Caption  :=IIFs(bb,'æŽ§åˆ¶å¯¹è±¡','æŽ§åˆ¶å°è±¡','Object');
+    labParaCtrl.Caption :=IIFs(bb,'æŽ§åˆ¶åŸŸ','æŽ§åˆ¶åŸŸ','Control Range');
+    butParaDel.Caption  :=IIFs(bb,'åˆ  é™¤','åˆª é™¤','Delete');
+    butParaAdd.Caption  :=IIFs(bb,'æ·» åŠ ','æ·» åŠ ','Append');
+//å‚æ•°é¢œè‰²
+    grpPara.Caption :=IIFs(bb,'å‚ æ•°','åƒ æ•¸','Parameter');
+    grpWare.Caption :=IIFs(bb,'å‚æ•°å€¼åŸŸ','åƒæ•¸å€¼åŸŸ','Parameter Domain');
+    grpRepeat.Caption :=IIFs(bb,'å¾ªçŽ¯æ¨¡å¼','å¾ªç’°æ¨¡å¼','Repeat Mode');
+    radGray.Caption :=IIFs(bb,'ç° åº¦','ç° åº¦','Grayscale');
+    radColor.Caption :=IIFs(bb,'ç´…è‰², ç»¿è‰², è“è‰²','ç´…è‰², ç¶ è‰², è—è‰²','Red, Green, Blue');
+    radLight.Caption :=IIFs(bb,'è‰²è°ƒ, é¥±å’Œåº¦, äº®åº¦','è‰²èª¿, é£½å’Œåº¦, äº®åº¦','Hue, Saturation, Value');
+    radNoWay.Caption :=IIFs(bb,'ä¸å¾ªçŽ¯','ä¸å¾ªçŽ¯','Dont Repeat');
+    radOneWay.Caption :=IIFs(bb,'å•å‘å¾ªçŽ¯','å•å‘å¾ªçŽ¯','Repeat One-Way');
+    radTwoWay.Caption :=IIFs(bb,'åŒå‘å¾ªçŽ¯','åŒå‘å¾ªçŽ¯','Repeat Bidirectionally');
+//å±žæ€§æ¡†
+    pnlFPS.Caption:=IIFs(bb,' å±žæ€§',' å±¬æ€§',' Propertis');
+    tab0.Caption:=IIFs(bb,'å¯¹è±¡','å°è±¡','Object');
+    tab1.Caption:=IIFs(bb,'åœºæ™¯','å ´æ™¯','Scene');
     pnlProp.Width:=IIFi(bb=2, 145,109);
     tabProp.TabWidth:=IIFi(bb=2, 66,46);
     selWay1.Left:=IIFi(bb=2,62,52);   selWay1.Width:=IIFi(bb=2,66,40);

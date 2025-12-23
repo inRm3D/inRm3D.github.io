@@ -2,18 +2,26 @@ unit Glut;
 
 interface
 
+{$MACRO ON}
+
 uses
-  GL;
+  cgGL;
+
+{$IFDEF MSWINDOWS}
+  {$DEFINE GLUTCALL := stdcall}
+{$ELSE}
+  {$DEFINE GLUTCALL := cdecl}
+{$ENDIF}
 
 type
   PInteger = ^Integer;            // These two really suck, but I didn't see any
   PPChar = ^PChar;                // other or better way to solve the glutInit issue.
-  TGlutVoidCallback = procedure; stdcall;
-  TGlut1IntCallback = procedure(value: Integer); stdcall;
-  TGlut2IntCallback = procedure(v1, v2: Integer); stdcall;
-  TGlut3IntCallback = procedure(v1, v2, v3: Integer); stdcall;
-  TGlut4IntCallback = procedure(v1, v2, v3, v4: Integer); stdcall;
-  TGlut1Char2IntCallback = procedure(c: Byte; v1, v2: Integer); stdcall;
+  TGlutVoidCallback = procedure; GLUTCALL;
+  TGlut1IntCallback = procedure(value: Integer); GLUTCALL;
+  TGlut2IntCallback = procedure(v1, v2: Integer); GLUTCALL;
+  TGlut3IntCallback = procedure(v1, v2, v3: Integer); GLUTCALL;
+  TGlut4IntCallback = procedure(v1, v2, v3, v4: Integer); GLUTCALL;
+  TGlut1Char2IntCallback = procedure(c: Byte; v1, v2: Integer); GLUTCALL;
 
 {$INCLUDE GLDRIVER.INC}
 
@@ -24,7 +32,11 @@ const
     {$IFDEF 3DFXGL}
       GLUTDLL = '';   //*** There is no 3dfxOpenGL version of GLUT!
     {$ELSE}
-      GLUTDLL = 'GLUT32.DLL';
+      {$IFDEF MSWINDOWS}
+        GLUTDLL = 'GLUT32.DLL';
+      {$ELSE}
+        GLUTDLL = 'glut';
+      {$ENDIF}
     {$ENDIF}
   {$ENDIF}
 
@@ -224,131 +236,131 @@ const
   GLUT_CURSOR_FULL_CROSSHAIR       = 102;
 
   // GLUT initialization sub-API.
-  procedure glutInit(argcp: PInteger; argv: PPChar); stdcall; external GLUTDLL;
-  procedure glutInitDisplayMode(mode: Word); stdcall; external GLUTDLL;
-  procedure glutInitDisplayString(const str: PChar); stdcall; external GLUTDLL;
-  procedure glutInitWindowPosition(x, y: Integer); stdcall; external GLUTDLL;
-  procedure glutInitWindowSize(width, height: Integer); stdcall; external GLUTDLL;
-  procedure glutMainLoop; stdcall; external GLUTDLL;
+  procedure glutInit(argcp: PInteger; argv: PPChar); GLUTCALL; external GLUTDLL;
+  procedure glutInitDisplayMode(mode: Word); GLUTCALL; external GLUTDLL;
+  procedure glutInitDisplayString(const str: PChar); GLUTCALL; external GLUTDLL;
+  procedure glutInitWindowPosition(x, y: Integer); GLUTCALL; external GLUTDLL;
+  procedure glutInitWindowSize(width, height: Integer); GLUTCALL; external GLUTDLL;
+  procedure glutMainLoop; GLUTCALL; external GLUTDLL;
 
   // GLUT window sub-API.
-  function glutCreateWindow(const title: PChar): Integer; stdcall; external GLUTDLL;
-  function glutCreateSubWindow(win, x, y, width, height: Integer): Integer; stdcall; external GLUTDLL;
-  procedure glutDestroyWindow(win: Integer); stdcall; external GLUTDLL;
-  procedure glutPostRedisplay; stdcall; external GLUTDLL;
-  procedure glutPostWindowRedisplay(win: Integer); stdcall; external GLUTDLL;
-  procedure glutSwapBuffers; stdcall; external GLUTDLL;
-  function glutGetWindow: Integer; stdcall; external GLUTDLL;
-  procedure glutSetWindow(win: Integer); stdcall; external GLUTDLL;
-  procedure glutSetWindowTitle(const title: PChar); stdcall; external GLUTDLL;
-  procedure glutSetIconTitle(const title: PChar); stdcall; external GLUTDLL;
-  procedure glutPositionWindow(x, y: Integer); stdcall; external GLUTDLL;
-  procedure glutReshapeWindow(width, height: Integer); stdcall; external GLUTDLL;
-  procedure glutPopWindow; stdcall; external GLUTDLL;
-  procedure glutPushWindow; stdcall; external GLUTDLL;
-  procedure glutIconifyWindow; stdcall; external GLUTDLL;
-  procedure glutShowWindow; stdcall; external GLUTDLL;
-  procedure glutHideWindow; stdcall; external GLUTDLL;
-  procedure glutFullScreen; stdcall; external GLUTDLL;
-  procedure glutSetCursor(cursor: Integer); stdcall; external GLUTDLL;
-  procedure glutWarpPointer(x, y: Integer); stdcall; external GLUTDLL;
+  function glutCreateWindow(const title: PChar): Integer; GLUTCALL; external GLUTDLL;
+  function glutCreateSubWindow(win, x, y, width, height: Integer): Integer; GLUTCALL; external GLUTDLL;
+  procedure glutDestroyWindow(win: Integer); GLUTCALL; external GLUTDLL;
+  procedure glutPostRedisplay; GLUTCALL; external GLUTDLL;
+  procedure glutPostWindowRedisplay(win: Integer); GLUTCALL; external GLUTDLL;
+  procedure glutSwapBuffers; GLUTCALL; external GLUTDLL;
+  function glutGetWindow: Integer; GLUTCALL; external GLUTDLL;
+  procedure glutSetWindow(win: Integer); GLUTCALL; external GLUTDLL;
+  procedure glutSetWindowTitle(const title: PChar); GLUTCALL; external GLUTDLL;
+  procedure glutSetIconTitle(const title: PChar); GLUTCALL; external GLUTDLL;
+  procedure glutPositionWindow(x, y: Integer); GLUTCALL; external GLUTDLL;
+  procedure glutReshapeWindow(width, height: Integer); GLUTCALL; external GLUTDLL;
+  procedure glutPopWindow; GLUTCALL; external GLUTDLL;
+  procedure glutPushWindow; GLUTCALL; external GLUTDLL;
+  procedure glutIconifyWindow; GLUTCALL; external GLUTDLL;
+  procedure glutShowWindow; GLUTCALL; external GLUTDLL;
+  procedure glutHideWindow; GLUTCALL; external GLUTDLL;
+  procedure glutFullScreen; GLUTCALL; external GLUTDLL;
+  procedure glutSetCursor(cursor: Integer); GLUTCALL; external GLUTDLL;
+  procedure glutWarpPointer(x, y: Integer); GLUTCALL; external GLUTDLL;
 
   // GLUT overlay sub-API.
-  procedure glutEstablishOverlay; stdcall; external GLUTDLL;
-  procedure glutRemoveOverlay; stdcall; external GLUTDLL;
-  procedure glutUseLayer(layer: GLenum); stdcall; external GLUTDLL;
-  procedure glutPostOverlayRedisplay; stdcall; external GLUTDLL;
-  procedure glutPostWindowOverlayRedisplay(win: Integer); stdcall; external GLUTDLL;
-  procedure glutShowOverlay; stdcall; external GLUTDLL;
-  procedure glutHideOverlay; stdcall; external GLUTDLL;
+  procedure glutEstablishOverlay; GLUTCALL; external GLUTDLL;
+  procedure glutRemoveOverlay; GLUTCALL; external GLUTDLL;
+  procedure glutUseLayer(layer: GLenum); GLUTCALL; external GLUTDLL;
+  procedure glutPostOverlayRedisplay; GLUTCALL; external GLUTDLL;
+  procedure glutPostWindowOverlayRedisplay(win: Integer); GLUTCALL; external GLUTDLL;
+  procedure glutShowOverlay; GLUTCALL; external GLUTDLL;
+  procedure glutHideOverlay; GLUTCALL; external GLUTDLL;
 
   // GLUT menu sub-API.
-  function glutCreateMenu(callback: TGlut1IntCallback): Integer; stdcall; external GLUTDLL;
-  procedure glutDestroyMenu(menu: Integer); stdcall; external GLUTDLL;
-  function glutGetMenu: Integer; stdcall; external GLUTDLL;
-  procedure glutSetMenu(menu: Integer); stdcall; external GLUTDLL;
-  procedure glutAddMenuEntry(const caption: PChar; value: Integer); stdcall; external GLUTDLL;
-  procedure glutAddSubMenu(const caption: PChar; submenu: Integer); stdcall; external GLUTDLL;
-  procedure glutChangeToMenuEntry(item: Integer; const caption: PChar; value: Integer); stdcall; external GLUTDLL;
-  procedure glutChangeToSubMenu(item: Integer; const caption: PChar; submenu: Integer); stdcall; external GLUTDLL;
-  procedure glutRemoveMenuItem(item: Integer); stdcall; external GLUTDLL;
-  procedure glutAttachMenu(button: Integer); stdcall; external GLUTDLL;
-  procedure glutDetachMenu(button: Integer); stdcall; external GLUTDLL;
+  function glutCreateMenu(callback: TGlut1IntCallback): Integer; GLUTCALL; external GLUTDLL;
+  procedure glutDestroyMenu(menu: Integer); GLUTCALL; external GLUTDLL;
+  function glutGetMenu: Integer; GLUTCALL; external GLUTDLL;
+  procedure glutSetMenu(menu: Integer); GLUTCALL; external GLUTDLL;
+  procedure glutAddMenuEntry(const caption: PChar; value: Integer); GLUTCALL; external GLUTDLL;
+  procedure glutAddSubMenu(const caption: PChar; submenu: Integer); GLUTCALL; external GLUTDLL;
+  procedure glutChangeToMenuEntry(item: Integer; const caption: PChar; value: Integer); GLUTCALL; external GLUTDLL;
+  procedure glutChangeToSubMenu(item: Integer; const caption: PChar; submenu: Integer); GLUTCALL; external GLUTDLL;
+  procedure glutRemoveMenuItem(item: Integer); GLUTCALL; external GLUTDLL;
+  procedure glutAttachMenu(button: Integer); GLUTCALL; external GLUTDLL;
+  procedure glutDetachMenu(button: Integer); GLUTCALL; external GLUTDLL;
 
   // GLUT  sub-API.
-  procedure glutDisplayFunc(f: TGlutVoidCallback); stdcall; external GLUTDLL;
-  procedure glutReshapeFunc(f: TGlut2IntCallback); stdcall; external GLUTDLL;
-  procedure glutKeyboardFunc(f: TGlut1Char2IntCallback); stdcall; external GLUTDLL;
-  procedure glutMouseFunc(f: TGlut4IntCallback); stdcall; external GLUTDLL;
-  procedure glutMotionFunc(f: TGlut2IntCallback); stdcall; external GLUTDLL;
-  procedure glutPassiveMotionFunc(f: TGlut2IntCallback); stdcall; external GLUTDLL;
-  procedure glutEntryFunc(f: TGlut1IntCallback); stdcall; external GLUTDLL;
-  procedure glutVisibilityFunc(f: TGlut1IntCallback); stdcall; external GLUTDLL;
-  procedure glutIdleFunc(f: TGlutVoidCallback); stdcall; external GLUTDLL;
-  procedure glutTimerFunc(millis: Word; f: TGlut1IntCallback; value: Integer); stdcall; external GLUTDLL;
-  procedure glutMenuStateFunc(f: TGlut1IntCallback); stdcall; external GLUTDLL;
-  procedure glutSpecialFunc(f: TGlut3IntCallback); stdcall; external GLUTDLL;
-  procedure glutSpaceballMotionFunc(f: TGlut3IntCallback); stdcall; external GLUTDLL;
-  procedure glutSpaceballRotateFunc(f: TGlut3IntCallback); stdcall; external GLUTDLL;
-  procedure glutSpaceballButtonFunc(f: TGlut2IntCallback); stdcall; external GLUTDLL;
-  procedure glutButtonBoxFunc(f: TGlut2IntCallback); stdcall; external GLUTDLL;
-  procedure glutDialsFunc(f: TGlut2IntCallback); stdcall; external GLUTDLL;
-  procedure glutTabletMotionFunc(f: TGlut2IntCallback); stdcall; external GLUTDLL;
-  procedure glutTabletButtonFunc(f: TGlut4IntCallback); stdcall; external GLUTDLL;
-  procedure glutMenuStatusFunc(f: TGlut3IntCallback); stdcall; external GLUTDLL;
-  procedure glutOverlayDisplayFunc(f:TGlutVoidCallback); stdcall; external GLUTDLL;
-  procedure glutWindowStatusFunc(f: TGlut1IntCallback); stdcall; external GLUTDLL;
+  procedure glutDisplayFunc(f: TGlutVoidCallback); GLUTCALL; external GLUTDLL;
+  procedure glutReshapeFunc(f: TGlut2IntCallback); GLUTCALL; external GLUTDLL;
+  procedure glutKeyboardFunc(f: TGlut1Char2IntCallback); GLUTCALL; external GLUTDLL;
+  procedure glutMouseFunc(f: TGlut4IntCallback); GLUTCALL; external GLUTDLL;
+  procedure glutMotionFunc(f: TGlut2IntCallback); GLUTCALL; external GLUTDLL;
+  procedure glutPassiveMotionFunc(f: TGlut2IntCallback); GLUTCALL; external GLUTDLL;
+  procedure glutEntryFunc(f: TGlut1IntCallback); GLUTCALL; external GLUTDLL;
+  procedure glutVisibilityFunc(f: TGlut1IntCallback); GLUTCALL; external GLUTDLL;
+  procedure glutIdleFunc(f: TGlutVoidCallback); GLUTCALL; external GLUTDLL;
+  procedure glutTimerFunc(millis: Word; f: TGlut1IntCallback; value: Integer); GLUTCALL; external GLUTDLL;
+  procedure glutMenuStateFunc(f: TGlut1IntCallback); GLUTCALL; external GLUTDLL;
+  procedure glutSpecialFunc(f: TGlut3IntCallback); GLUTCALL; external GLUTDLL;
+  procedure glutSpaceballMotionFunc(f: TGlut3IntCallback); GLUTCALL; external GLUTDLL;
+  procedure glutSpaceballRotateFunc(f: TGlut3IntCallback); GLUTCALL; external GLUTDLL;
+  procedure glutSpaceballButtonFunc(f: TGlut2IntCallback); GLUTCALL; external GLUTDLL;
+  procedure glutButtonBoxFunc(f: TGlut2IntCallback); GLUTCALL; external GLUTDLL;
+  procedure glutDialsFunc(f: TGlut2IntCallback); GLUTCALL; external GLUTDLL;
+  procedure glutTabletMotionFunc(f: TGlut2IntCallback); GLUTCALL; external GLUTDLL;
+  procedure glutTabletButtonFunc(f: TGlut4IntCallback); GLUTCALL; external GLUTDLL;
+  procedure glutMenuStatusFunc(f: TGlut3IntCallback); GLUTCALL; external GLUTDLL;
+  procedure glutOverlayDisplayFunc(f:TGlutVoidCallback); GLUTCALL; external GLUTDLL;
+  procedure glutWindowStatusFunc(f: TGlut1IntCallback); GLUTCALL; external GLUTDLL;
 
   // GLUT color index sub-API.
-  procedure glutSetColor(cell: Integer; red, green, blue: GLfloat); stdcall; external GLUTDLL;
-  function glutGetColor(ndx, component: Integer): GLfloat; stdcall; external GLUTDLL;
-  procedure glutCopyColormap(win: Integer); stdcall; external GLUTDLL;
+  procedure glutSetColor(cell: Integer; red, green, blue: GLfloat); GLUTCALL; external GLUTDLL;
+  function glutGetColor(ndx, component: Integer): GLfloat; GLUTCALL; external GLUTDLL;
+  procedure glutCopyColormap(win: Integer); GLUTCALL; external GLUTDLL;
 
   // GLUT state retrieval sub-API.
-  function glutGet(t: GLenum): Integer; stdcall; external GLUTDLL;
-  function glutDeviceGet(t: GLenum): Integer; stdcall; external GLUTDLL;
+  function glutGet(t: GLenum): Integer; GLUTCALL; external GLUTDLL;
+  function glutDeviceGet(t: GLenum): Integer; GLUTCALL; external GLUTDLL;
   // GLUT extension support sub-API
-  function glutExtensionSupported(const name: PChar): Integer; stdcall; external GLUTDLL;
-  function glutGetModifiers: Integer; stdcall; external GLUTDLL;
-  function glutLayerGet(t: GLenum): Integer; stdcall; external GLUTDLL;
+  function glutExtensionSupported(const name: PChar): Integer; GLUTCALL; external GLUTDLL;
+  function glutGetModifiers: Integer; GLUTCALL; external GLUTDLL;
+  function glutLayerGet(t: GLenum): Integer; GLUTCALL; external GLUTDLL;
 
   // GLUT font sub-API
-  procedure glutBitmapCharacter(font, character: Integer); stdcall; external GLUTDLL;
-  function glutBitmapWidth(font, character: Integer): Integer; stdcall; external GLUTDLL;
-  procedure glutStrokeCharacter(font, character: Integer); stdcall; external GLUTDLL;
-  function glutStrokeWidth(font, character: Integer): Integer; stdcall; external GLUTDLL;
-  function glutBitmapLength(font: Integer; const str: PChar): Integer; stdcall; external GLUTDLL;
-  function glutStrokeLength(font: Integer; const str: PChar): Integer; stdcall; external GLUTDLL;
+  procedure glutBitmapCharacter(font, character: Integer); GLUTCALL; external GLUTDLL;
+  function glutBitmapWidth(font, character: Integer): Integer; GLUTCALL; external GLUTDLL;
+  procedure glutStrokeCharacter(font, character: Integer); GLUTCALL; external GLUTDLL;
+  function glutStrokeWidth(font, character: Integer): Integer; GLUTCALL; external GLUTDLL;
+  function glutBitmapLength(font: Integer; const str: PChar): Integer; GLUTCALL; external GLUTDLL;
+  function glutStrokeLength(font: Integer; const str: PChar): Integer; GLUTCALL; external GLUTDLL;
 
   // GLUT pre-built models sub-API
-  procedure glutWireSphere(radius: GLdouble; slices, stacks: GLint); stdcall; external GLUTDLL;
-  procedure glutSolidSphere(radius: GLdouble; slices, stacks: GLint); stdcall; external GLUTDLL;
-  procedure glutWireCone(base, height: GLdouble; slices, stacks: GLint); stdcall; external GLUTDLL;
-  procedure glutSolidCone(base, height: GLdouble; slices, stacks: GLint); stdcall; external GLUTDLL;
-  procedure glutWireCube(size: GLdouble); stdcall; external GLUTDLL;
-  procedure glutSolidCube(size: GLdouble); stdcall; external GLUTDLL;
-  procedure glutWireTorus(innerRadius, outerRadius: GLdouble; sides, rings: GLint); stdcall; external GLUTDLL;
-  procedure glutSolidTorus(innerRadius, outerRadius: GLdouble; sides, rings: GLint); stdcall; external GLUTDLL;
-  procedure glutWireDodecahedron; stdcall; external GLUTDLL;
-  procedure glutSolidDodecahedron; stdcall; external GLUTDLL;
-  procedure glutWireTeapot(size: GLdouble); stdcall; external GLUTDLL;
-  procedure glutSolidTeapot(size: GLdouble); stdcall; external GLUTDLL;
-  procedure glutWireOctahedron; stdcall; external GLUTDLL;
-  procedure glutSolidOctahedron; stdcall; external GLUTDLL;
-  procedure glutWireTetrahedron; stdcall; external GLUTDLL;
-  procedure glutSolidTetrahedron; stdcall; external GLUTDLL;
-  procedure glutWireIcosahedron; stdcall; external GLUTDLL;
-  procedure glutSolidIcosahedron; stdcall; external GLUTDLL;
+  procedure glutWireSphere(radius: GLdouble; slices, stacks: GLint); GLUTCALL; external GLUTDLL;
+  procedure glutSolidSphere(radius: GLdouble; slices, stacks: GLint); GLUTCALL; external GLUTDLL;
+  procedure glutWireCone(base, height: GLdouble; slices, stacks: GLint); GLUTCALL; external GLUTDLL;
+  procedure glutSolidCone(base, height: GLdouble; slices, stacks: GLint); GLUTCALL; external GLUTDLL;
+  procedure glutWireCube(size: GLdouble); GLUTCALL; external GLUTDLL;
+  procedure glutSolidCube(size: GLdouble); GLUTCALL; external GLUTDLL;
+  procedure glutWireTorus(innerRadius, outerRadius: GLdouble; sides, rings: GLint); GLUTCALL; external GLUTDLL;
+  procedure glutSolidTorus(innerRadius, outerRadius: GLdouble; sides, rings: GLint); GLUTCALL; external GLUTDLL;
+  procedure glutWireDodecahedron; GLUTCALL; external GLUTDLL;
+  procedure glutSolidDodecahedron; GLUTCALL; external GLUTDLL;
+  procedure glutWireTeapot(size: GLdouble); GLUTCALL; external GLUTDLL;
+  procedure glutSolidTeapot(size: GLdouble); GLUTCALL; external GLUTDLL;
+  procedure glutWireOctahedron; GLUTCALL; external GLUTDLL;
+  procedure glutSolidOctahedron; GLUTCALL; external GLUTDLL;
+  procedure glutWireTetrahedron; GLUTCALL; external GLUTDLL;
+  procedure glutSolidTetrahedron; GLUTCALL; external GLUTDLL;
+  procedure glutWireIcosahedron; GLUTCALL; external GLUTDLL;
+  procedure glutSolidIcosahedron; GLUTCALL; external GLUTDLL;
 
   // GLUT video resize sub-API.
-  function glutVideoResizeGet(param: GLenum): Integer; stdcall; external GLUTDLL;
-  procedure glutSetupVideoResizing; stdcall; external GLUTDLL;
-  procedure glutStopVideoResizing; stdcall; external GLUTDLL;
-  procedure glutVideoResize(x, y, width, height: Integer); stdcall; external GLUTDLL;
-  procedure glutVideoPan(x, y, width, height: Integer); stdcall; external GLUTDLL;
+  function glutVideoResizeGet(param: GLenum): Integer; GLUTCALL; external GLUTDLL;
+  procedure glutSetupVideoResizing; GLUTCALL; external GLUTDLL;
+  procedure glutStopVideoResizing; GLUTCALL; external GLUTDLL;
+  procedure glutVideoResize(x, y, width, height: Integer); GLUTCALL; external GLUTDLL;
+  procedure glutVideoPan(x, y, width, height: Integer); GLUTCALL; external GLUTDLL;
 
   // GLUT debugging sub-API.
-  procedure glutReportErrors; stdcall; external GLUTDLL;
+  procedure glutReportErrors; GLUTCALL; external GLUTDLL;
 
 implementation
 

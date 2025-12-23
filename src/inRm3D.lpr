@@ -1,17 +1,10 @@
 program inRm3D;
 
-{$IFDEF FPC}
-  {$MODE Delphi}
-{$ENDIF}
+{$MODE Delphi}
 
 uses
-{$IFnDEF FPC}
-  Windows,
-{$ELSE}
-   Interfaces,
-{$ENDIF}
   Forms,
-  LCLIntf, LCLType, LMessages,
+  LCLIntf, LCLType, LMessages, Interfaces,
   inRm3Dunit in 'inRm3Dunit.pas' {frmMain},
   DArrays in 'cgLib\DArrays.pas',
   CgUtils in 'cglib\CgUtils.pas',
@@ -19,7 +12,7 @@ uses
   Express in 'cgLib\Express.pas',
   GLut in 'cglib\GLut.pas',
   GLu in 'cglib\GLu.pas',
-  cgGL in 'cglib\cgGL.pas',
+  GL in 'cglib\GL.pas',
   BMP in 'cgLib\BMP.pas',
   pars in 'cgLib\pars.pas',
   build in 'cgLib\build.pas',
@@ -42,15 +35,15 @@ uses
 begin
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
-  {$IFDEF MSWINDOWS}
+{$IFDEF MSWINDOWS}
   Application.CreateForm(TfrmDrag, frmDrag);
-  {$ELSE}
+{$ELSE}
   frmDrag := TfrmDrag.CreateNew(Application);
-  {$ENDIF}
-  {$IFDEF MSWINDOWS}
+{$ENDIF}
+{$IFDEF MSWINDOWS}
   Application.CreateForm(TfrmSplash, frmSplash);
-  {$ELSE}
+{$ELSE}
   frmSplash := TfrmSplash.CreateNew(Application);
-  {$ENDIF}
+{$ENDIF}
   Application.Run;
 end.
