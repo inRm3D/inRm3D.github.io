@@ -6,7 +6,8 @@ uses
   Windows, Forms, SysUtils, ExtCtrls, Classes, Controls, StdCtrls,
   Registry, jpeg;//, GIFimage; //   , jpeg
 {$ELSE}
-  Forms, SysUtils, ExtCtrls, Classes, Controls, StdCtrls, Dialogs;
+  Forms, SysUtils, ExtCtrls, Classes, Controls, StdCtrls, Dialogs,
+  Graphics;
 {$ENDIF}
 const RegFile='License.txt';
 type
@@ -41,7 +42,13 @@ type
   end;
 {$ELSE}
   TfrmSplash = class(TForm)
+  private
+    procedure BuildUi;
+  protected
+    procedure DoHide; override;
+    procedure KeyDown(var Key: Word; Shift: TShiftState); override;
   public
+    constructor CreateNew(AOwner: TComponent; Num: Integer = 0); override;
     procedure setWindow(bb:boolean);
     procedure butt1Click(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -64,10 +71,10 @@ var frmSplash: TfrmSplash;
   G: TextFile;
 implementation
 
+uses
+  inRm3Dunit;
 
 {$IFDEF MSWINDOWS}
-uses inRm3Dunit; // ;
-
 {$R *.DFM}
 
 procedure TfrmSplash.setWindow(bb :boolean);
@@ -294,13 +301,177 @@ end;
 
 {$ELSE}
 
+procedure TfrmSplash.BuildUi;
+var
+  Img: TImage;
+  InfoPanel, ButtonPanel: TPanel;
+  Lbl: TLabel;
+  Contacts: array[0..2] of string;
+  I, YPos: Integer;
+  ImgPath: string;
+  function FindSplashImage: string;
+  const
+    ImgNames: array[0..1] of string = ('Splash.jpg', 'Splash2.jpg');
+  var
+    Dirs: array[0..5] of string;
+    DirCount, d, n: Integer;
+
+    procedure AddDir(const Dir: string);
+    var
+      Actual: string;
+    begin
+      if (Dir = '') or (DirCount > High(Dirs)) then
+        Exit;
+      Actual := IncludeTrailingPathDelimiter(ExpandFileName(Dir));
+      if DirectoryExists(Actual) then
+      begin
+        Dirs[DirCount] := Actual;
+        Inc(DirCount);
+      end;
+    end;
+
+    function ExeDir: string;
+    begin
+      Result := ExtractFilePath(Application.ExeName);
+    end;
+
+  begin
+    DirCount := 0;
+    if exePath <> '' then
+      AddDir(exePath);
+    AddDir(ExeDir);
+    AddDir(ExeDir + '..' + PathDelim);
+    AddDir(ExeDir + '..' + PathDelim + '..' + PathDelim);
+    AddDir(GetCurrentDir);
+    for d := 0 to DirCount - 1 do
+      for n := Low(ImgNames) to High(ImgNames) do
+      begin
+        Result := Dirs[d] + 'SubUnit' + PathDelim + ImgNames[n];
+        if FileExists(Result) then
+          Exit;
+      end;
+    Result := '';
+  end;
+begin
+  Caption := 'About inRm3D';
+  Position := poScreenCenter;
+  BorderStyle := bsDialog;
+  KeyPreview := True;
+  ClientWidth := 640;
+  ClientHeight := 360;
+  Color := clWhite;
+
+  Img := TImage.Create(Self);
+  Img.Parent := Self;
+  Img.Align := alTop;
+  Img.Stretch := True;
+  Img.Proportional := True;
+  Img.Center := True;
+  Img.Height := 240;
+
+  ImgPath := FindSplashImage;
+  if FileExists(ImgPath) then
+    Img.Picture.LoadFromFile(ImgPath)
+  else
+    Img.Height := 0;
+  Img.OnMouseDown := Image0MouseDown;
+
+  ButtonPanel := TPanel.Create(Self);
+  ButtonPanel.Parent := Self;
+  ButtonPanel.Align := alBottom;
+  ButtonPanel.Height := 56;
+  ButtonPanel.BevelOuter := bvNone;
+
+  with TButton.Create(Self) do
+  begin
+    Parent := ButtonPanel;
+    Align := alRight;
+    Width := 120;
+    Caption := 'Close';
+    OnClick := butt2Click;
+  end;
+
+  with TButton.Create(Self) do
+  begin
+    Parent := ButtonPanel;
+    Align := alRight;
+    Width := 120;
+    Caption := 'Register';
+    OnClick := butt1Click;
+  end;
+
+  InfoPanel := TPanel.Create(Self);
+  InfoPanel.Parent := Self;
+  InfoPanel.Align := alClient;
+  InfoPanel.BevelOuter := bvNone;
+
+  YPos := 8;
+  Lbl := TLabel.Create(Self);
+  Lbl.Parent := InfoPanel;
+  Lbl.Left := 16;
+  Lbl.Top := YPos;
+  Lbl.Caption := 'inRm3D v2.869';
+  Lbl.Font.Style := [fsBold];
+  Lbl.AutoSize := True;
+  Inc(YPos, Lbl.Height + 6);
+
+  Lbl := TLabel.Create(Self);
+  Lbl.Parent := InfoPanel;
+  Lbl.Left := 16;
+  Lbl.Top := YPos;
+  Lbl.Caption := 'Interactive 3D geometry and teaching platform';
+  Lbl.AutoSize := True;
+  Inc(YPos, Lbl.Height + 12);
+
+  Lbl := TLabel.Create(Self);
+  Lbl.Parent := InfoPanel;
+  Lbl.Left := 16;
+  Lbl.Top := YPos;
+  Lbl.Caption := 'Contact:';
+  Lbl.Font.Style := [fsBold];
+  Lbl.AutoSize := True;
+  Inc(YPos, Lbl.Height + 4);
+
+  Contacts[0] := 'fangxq@live.cn';
+  Contacts[1] := 'zhchgao128@sina.com.cn';
+  Contacts[2] := '707691929@qq.com';
+  for I := 0 to High(Contacts) do
+  begin
+    Lbl := TLabel.Create(Self);
+    Lbl.Parent := InfoPanel;
+    Lbl.Left := 32;
+    Lbl.Top := YPos;
+    Lbl.Caption := Contacts[I];
+    Lbl.AutoSize := True;
+    Inc(YPos, Lbl.Height + 2);
+  end;
+end;
+
+constructor TfrmSplash.CreateNew(AOwner: TComponent; Num: Integer);
+begin
+  inherited CreateNew(AOwner, Num);
+  BuildUi;
+end;
+
+procedure TfrmSplash.DoHide;
+begin
+  inherited DoHide;
+  FormHide(Self);
+end;
+
+procedure TfrmSplash.KeyDown(var Key: Word; Shift: TShiftState);
+begin
+  inherited KeyDown(Key, Shift);
+  FormKeyDown(Self, Key, Shift);
+end;
+
 procedure TfrmSplash.setWindow(bb:boolean);
 begin
 end;
 
 procedure TfrmSplash.butt1Click(Sender: TObject);
 begin
-  Close;
+  MessageDlg('Registration is only available in the Windows version.', mtInformation, [mbOK], 0);
 end;
 
 procedure TfrmSplash.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -310,11 +481,12 @@ end;
 
 procedure TfrmSplash.FormHide(Sender: TObject);
 begin
+  if Assigned(frmMain) then
+    frmMain.Enabled:=true;
 end;
 
 procedure TfrmSplash.FormCreate(Sender: TObject);
 begin
-  Caption := 'Splash';
 end;
 
 procedure TfrmSplash.MakeTimer;
