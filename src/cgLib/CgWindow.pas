@@ -1,4 +1,5 @@
 unit CgWindow;
+{$codepage utf8}
 
 { CgLib: Window management. }
 

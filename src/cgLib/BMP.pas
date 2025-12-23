@@ -1,4 +1,5 @@
 unit BMP;
+{$codepage utf8}
 interface
 uses
   Classes, SysUtils, Graphics, Types, cgGL, cgMath;   // OpenGL,Dialogs,
@@ -141,10 +142,10 @@ begin
   for i:= 0 to H-1 do //
     for j:= 0 to W-1 do begin //
       k:=W*i+j;
-      pix1:= Pointer(Integer(pRGBA)+ k*4); //目标像素
+      pix1:= Pointer(PtrUInt(pRGBA) + PtrUInt(k)*SizeOf(TRGBA)); //目标像素
       if(i<h0)and(j<w0)then begin
         k0:=w0*i+j;
-        pix0:= Pointer(Integer(pRGB) + k0*3+i*L); //源像素
+        pix0:= Pointer(PtrUInt(pRGB) + PtrUInt(k0)*3 + PtrUInt(i)*L); //源像素
         pix1.R:=pix0.B;  pix1.G:=pix0.G;  pix1.B:=pix0.R;
         if(pix1.R=test.R)and(pix1.G=test.G)and(pix1.B=test.B)
           then Pix1.A:=bTrans else Pix1.A:=255;
@@ -160,13 +161,13 @@ begin
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
   FreeMem(pRGB);
 end;
-//========= 将屏幕图象转换为纹理 ===========
+//========= å°å±å¹å¾è±¡è½¬æ¢ä¸ºçº¹ç ===========
 function getTextureFromCRT(ID:integer; texID:Cardinal; pTex:pointer; w,h,l,t:integer;
             var kW,kH:single; trans:boolean):Cardinal;
 begin
   Result := 0;
 end;
-//============= 图像转换为文本 ==============
+//============= å¾åè½¬æ¢ä¸ºææ¬ ==============
 function ImgToTxt(ID:integer; ImgFile, sFormat :string): AnsiString;
   var
     FileStream     : TFileStream;
@@ -194,9 +195,9 @@ begin
       end;
     Result :=DataStr;
 {
-    AssignFile( G, 'MyText.txt'); //获取文件句柄
-    ReWrite( G);          //打开文本文件
-      WriteLn( G, ExtractFileExt(ImgFile));//扩展名
+    AssignFile( G, 'MyText.txt'); //è·åæä»¶å¥æ
+    ReWrite( G);          //æå¼ææ¬æä»¶
+      WriteLn( G, ExtractFileExt(ImgFile));//æ©å±å
       WriteLn( G, DataStr);
     closeFile( G); }
   finally
@@ -204,10 +205,10 @@ begin
     FreeAndNil(StringStream);
   end;
 end;
-//================= 文本转换为纹理 ====================
+//================= ææ¬è½¬æ¢ä¸ºçº¹ç ====================
 function TxtToImg(ID:integer; texID:Cardinal; sData, sFormat :AnsiString;
               var w0,h0:Integer; var kW,kH :single;
-              Trans:Boolean): Cardinal;//文本转换为纹理
+              Trans:Boolean): Cardinal;//ææ¬è½¬æ¢ä¸ºçº¹ç
   var
     buf       : array of Byte;
     ByteFile  : file of byte;
@@ -222,7 +223,7 @@ begin
     buf[i - 1] := StrToInt('$' + copy(sData, (i - 1) * 2 + 1, 2));
   tmpFileName := ExtractFilePath(ParamStr(0))+'tmp'+sFormat;
 
-  AssignFile(ByteFile, tmpFileName); //创建临时文件
+  AssignFile(ByteFile, tmpFileName); //åå»ºä¸´æ¶æä»¶
   Rewrite(ByteFile);
   for i := 0 to iSize - 1 do Write(ByteFile, buf[i]);
   CloseFile(ByteFile);
@@ -230,7 +231,7 @@ begin
     BMP:= GetBitmapFromFile(tmpFileName,sFormat);
   result:= myLoadTexture(ID,texID, '', BMP, w0,h0, kW,kH, trans); // BMP
   BMP.Free;
-  DeleteFile(tmpFileName); //删除临时文件
+  DeleteFile(tmpFileName); //å é¤ä¸´æ¶æä»¶
 end;
 
 end.

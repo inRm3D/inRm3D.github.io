@@ -1,4 +1,5 @@
 unit CgGeometry;
+{$codepage utf8}
 
 interface
 

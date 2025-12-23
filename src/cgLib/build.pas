@@ -1,4 +1,5 @@
 unit Build;
+{$codepage utf8}
 {$F+}
 {$IFDEF WIN32}
 {$H-}
