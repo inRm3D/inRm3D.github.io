@@ -161,7 +161,7 @@ begin
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
   FreeMem(pRGB);
 end;
-//========= å°å±å¹å¾è±¡è½¬æ¢ä¸ºçº¹ç ===========
+//========= 将屏幕图象转换为纹理 ===========
 function getTextureFromCRT(ID:integer; texID:Cardinal; pTex:pointer; w,h,l,t:integer;
             var kW,kH:single; trans:boolean):Cardinal;
 begin

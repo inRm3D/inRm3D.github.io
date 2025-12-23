@@ -23,7 +23,7 @@ OParse = object
   procedure f(x,y,z :extended; var r:extended; var fError :boolean);
   destructor done;
 end;
-var Infi,Null :boolean;  //Infi???????????????Null??????????????????
+var Infi,Null :boolean;  //Infiï¿½ï¿½ï¿½ï¿½ï¿½Nullï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 const EP=0.00001;
 
 implementation
@@ -173,7 +173,7 @@ end;
 procedure myArcTanH;
 begin
   with LastOp^ do
-  if abs(arg1^)<=1 then dest^:=ArcTanH(arg1^) //????????????????????(-1,1)
+  if abs(arg1^)<=1 then dest^:=ArcTanH(arg1^) //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª(-1,1)
   else begin dest^:=0; oError:=true; Infi:=true; Null:=true; end;
 end;
 
@@ -337,7 +337,7 @@ begin //  Randomize;
   with LastOp^ do dest^:=random(trunc(arg1^));
 end;
 
-procedure myParity; //??????????????
+procedure myParity; //ï¿½ï¿½Å¼ï¿½ï¿½
 begin
   with LastOp^ do begin
     arg1^:=round(arg1^);
@@ -345,7 +345,7 @@ begin
     end;
 end;
 
-procedure myFact;   //???¡Á????
+procedure myFact;   //ï¿½×³ï¿½
   var i, n:integer;
 begin
   with LastOp^ do begin 
@@ -377,7 +377,7 @@ constructor OParse.init(s:string;VarString:TVarString;
 var  lop:OperationPointer;
 const p:TParValues = (1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,1);
 begin
-    Infi:=false; Null:=false; //Infi???????????????Null??????????????????
+    Infi:=false; Null:=false; //Infiï¿½ï¿½ï¿½ï¿½ï¿½Nullï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     fString:=s;
     fop:=nil;
     parseFunction(s,VarString,ParString,fop,vars,Params,NumOp,Error);

@@ -406,8 +406,8 @@ begin
   // Initialize only the fields we need
   pfd.nSize       := SizeOf(PIXELFORMATDESCRIPTOR); // Size Of This Pixel Format Descriptor
   pfd.nVersion    := 1;                         // The version of this data structure
-  pfd.dwFlags      := PFD_DRAW_TO_WINDOW or     //æå®åç´ æ ¼å¼çå±æ§ä¸ºå¯ä»¥ç»å¶å¨å±å¹ä¸
-                    PFD_SUPPORT_OPENGL OR       //æ¯æOpenGLå½æ°
+  pfd.dwFlags      := PFD_DRAW_TO_WINDOW or     //指定像素格式的属性为可以绘制在屏幕上
+                    PFD_SUPPORT_OPENGL OR       //支持OpenGL函数
                     PFD_DOUBLEBUFFER;           // Flags
 //  pfd.dwFlags     := flags;                   // Set the window flags
                                                 // (set in property editor)

@@ -450,7 +450,9 @@ begin
     case bb of 0:stMode:=stModeC; 1:stMode:=stModeT; 2:stMode:=stModeE; end;
     case bb of 0:stAxis:=stAxisC; 1:stAxis:=stAxisT; 2:stAxis:=stAxisE; end;
 
+    {$IFNDEF FPC}
     tlbMenu.Menu:=nil; //######### 取消菜单关联，变更菜单项后再关联 #########
+    {$ENDIF}
     menFile.Caption   :=IIFs(bb,' 文件(&F)',' 文件(&F)','&File');
     menEdit.Caption   :=IIFs(bb,' 编辑(&E)',' 編輯(&E)','&Edit');
     menView.Caption   :=IIFs(bb,' 显示(&D)',' 顯示(&D)','&Display');
@@ -458,7 +460,9 @@ begin
     menTrans.Caption  :=IIFs(bb,' 变换(&T)',' 變換(&T)','&Transform');
     menSize.Caption   :=IIFs(bb,' 数据(&N)',' 數據(&N)','&Number');
     menAnother.Caption:=IIFs(bb,' 帮助(&H)',' 幫助(&H)','&Help');
+    {$IFNDEF FPC}
     tlbMenu.Menu:=menMain; //######### 取消菜单关联，变更菜单项后再关联 #########
+    {$ENDIF}
 //文件
     menNew.Caption:=IIfs(bb,'新建 (&N) ', '新建(&N) ', '&New');
     menOpen.Caption:=IIFs(bb,'打开 (&O)... ', '打開(&O)... ', '&Open...');
@@ -534,9 +538,9 @@ begin
     menColor.Caption:=IIFs(bb,'颜色 (&C)', '顏色 (&C)', '&Color');
     menObjHide.Caption:=IIFs(bb,'隐藏/显示对象 (&H)', '隱藏/顯示對象 (&H)', 'Show/&Hide Objects');
     menTagHide.Caption:=IIFs(bb,'隐藏/显示标签 (&B)', '隱藏/顯示標籤(&B)', 'Show/Hide Le&bels');
-    menLabel.Caption:=IIfs(bb,'标签 (&L)...', '標籤 (&L)...', '&Labels...',);
-    menTrace.Caption:=IIfs(bb,'踪迹 (&T)', '蹤跡 (&T)', '&Trace',);
-    menTraceDel.Caption:=IIfs(bb,'清除踪迹 (&E)', '蹤跡 (&E)', 'Trac&e',);
+    menLabel.Caption:=IIFs(bb,'标签 (&L)...', '標籤 (&L)...', '&Labels...');
+    menTrace.Caption:=IIFs(bb,'踪迹 (&T)', '蹤跡 (&T)', '&Trace');
+    menTraceDel.Caption:=IIFs(bb,'清除踪迹 (&E)', '蹤跡 (&E)', 'Trac&e');
     menSpin.Caption:=IIFs(bb,'场景旋转 (&R)', '場景旋轉 (&R)', '&Rotate Scene');
     menAll.Caption:=IIFs(bb,'全显 (&A)', '全顯 (&A)', 'Show &All');
     menSport.Caption:=IIFs(bb,'运动 (&M)', '運動 (&M)', 'Auto &Move');
@@ -925,7 +929,7 @@ begin
     tabMove.Caption:=IIFs(bb,'对象次序...','對象次序...',' Component Order...');
     tabPath.Caption:=IIFs(bb,' 路径...','路徑...',' Path...');
     tabText.Caption:=IIFs(bb,' 文本...','文本...',' Text...');
-    tabLabel.Caption:=IIfs(bb,'标签...','標籤...','Labels...',);
+    tabLabel.Caption:=IIFs(bb,'标签...','標籤...','Labels...');
     labLabel.Caption:=IIFs(bb,'起始标签：','起始標籤：','First Label:');
     labColor.Caption:=IIFs(bb,'参数颜色...','參數顏色...','Parametric Color');
     butPathResume.Caption:=IIFs(bb,'恢 复','恢 復','Resume');
