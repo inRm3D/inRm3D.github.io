@@ -30,6 +30,7 @@ const
   varBlockPos=12; // varBlockPos 参数滑块左边界
   PaintListCount= 127; //手绘曲线最大笔数
   PaintPointCount=1023;//手绘曲线最大点数
+  DefaultDesignDPI = 96; //设计期基准DPI
   objColor:Array[0..16]of TColor=( //颜色菜单
     $000000,$0000FF,$0088FF,$00FFFF, $00FF00,$FFFF00,$FF0000,$FF00FF,
     $E08080,$800080,$008000,$800000, $000080,$6080C0,$C0C0C0,$808080, $FFFFFF);
@@ -1002,6 +1003,10 @@ type
     procedure RequestGLRepaint;
     procedure EnsureGLContext;
     function ResolveFontName(const Requested: string): string;
+    procedure ApplyDPIScaling;
+    function GetTargetDPI: Integer;
+    procedure UpdateObjListMetrics(TargetPPI: Integer);
+    function GetObjListRowHeight: Integer;
   public
     BackColor, AxisColor, gridColor :TcgColorF;
     {--- view ---}
@@ -1248,6 +1253,7 @@ var
   SelRec  :Array[0..maxObj] of integer; //已选择的构件 0总数 1点数 2直线数 3圆数... 21开始被选择的构件ID
   JoinLink:Array[0..maxObj, 0..1]of integer;//两点合并时，统计子对象数目
   ObjListID:Array[0..maxObj]of TObjList; //构件列表项的对象ID
+  ObjListRowHeight: Integer = 16; //对象列表单行高度
   FlashSize: integer; //用于面对指定场景、合并
   rX,rY,rZ, rX0,rY0,rZ0, rX1,rY1,rZ1, rX2,rY2,rZ2, r0,rView :single; //水平视角、垂直视角、圆周上的约束点被拖动时的初始角度
   OldPage,NewPage,Layer :integer;
@@ -1277,6 +1283,26 @@ uses
 
 var
   PropValueColor: TColor = clWindow;
+
+procedure EnableHighDPIMode;
+{$IFDEF MSWINDOWS}
+type
+  TDPIAwareFunc = function: BOOL; stdcall;
+var
+  UserHandle: HMODULE;
+  SetDPIAware: TDPIAwareFunc;
+begin
+  UserHandle := GetModuleHandle('user32.dll');
+  if UserHandle = 0 then
+    Exit;
+  Pointer(SetDPIAware) := GetProcAddress(UserHandle, 'SetProcessDPIAware');
+  if Assigned(SetDPIAware) then
+    SetDPIAware;
+end;
+{$ELSE}
+begin
+end;
+{$ENDIF}
 
 function CalculateValueFieldColor: TColor;
 var
@@ -1328,6 +1354,93 @@ begin
   if tabProp.TabWidth < Scale96ToScreen(60) then
     tabProp.TabWidth := Scale96ToScreen(60);
 {$ENDIF}
+end;
+
+function TfrmMain.GetTargetDPI: Integer;
+{$IFDEF MSWINDOWS}
+var
+  ScreenDC: HDC;
+{$ENDIF}
+begin
+{$IFDEF MSWINDOWS}
+  Result := Screen.PixelsPerInch;
+  if Result <= 0 then
+  begin
+    ScreenDC := GetDC(0);
+    if ScreenDC <> 0 then
+      try
+        Result := GetDeviceCaps(ScreenDC, LOGPIXELSX);
+      finally
+        ReleaseDC(0, ScreenDC);
+      end;
+  end;
+{$ELSE}
+  Result := Screen.PixelsPerInch;
+{$ENDIF}
+  if Result <= 0 then
+    Result := DefaultDesignDPI;
+end;
+
+procedure TfrmMain.ApplyDPIScaling;
+var
+  targetPPI, currentPPI, newFontSize: Integer;
+begin
+  targetPPI := GetTargetDPI;
+  currentPPI := PixelsPerInch;
+  if currentPPI <= 0 then
+    currentPPI := DefaultDesignDPI;
+
+  if targetPPI = currentPPI then
+  begin
+    UpdateObjListMetrics(targetPPI);
+    AdjustPropertyPanelMetrics;
+    Exit;
+  end;
+
+  newFontSize := Font.Size;
+  if newFontSize = 0 then
+    newFontSize := 9;
+  newFontSize := (newFontSize * targetPPI + currentPPI div 2) div currentPPI;
+  if newFontSize <= 0 then
+    newFontSize := 1;
+
+  DisableAlign;
+  try
+    AutoAdjustLayout(lapAutoAdjustForDPI,
+      currentPPI, targetPPI, Font.Size, newFontSize);
+    Font.Size := newFontSize;
+    PixelsPerInch := targetPPI;
+  finally
+    EnableAlign;
+  end;
+  UpdateObjListMetrics(targetPPI);
+  AdjustPropertyPanelMetrics;
+end;
+
+procedure TfrmMain.UpdateObjListMetrics(TargetPPI: Integer);
+var
+  newHeight, textHeight: Integer;
+begin
+  if TargetPPI <= 0 then
+    TargetPPI := DefaultDesignDPI;
+  newHeight := (16 * TargetPPI + DefaultDesignDPI div 2) div DefaultDesignDPI;
+  if newHeight < 16 then
+    newHeight := 16;
+
+  textHeight := Abs(Font.Height);
+  if textHeight <= 0 then
+    textHeight := 12;
+  if newHeight < textHeight + 4 then
+    newHeight := textHeight + 4;
+
+  ObjListRowHeight := newHeight;
+end;
+
+function TfrmMain.GetObjListRowHeight: Integer;
+begin
+  Result := ObjListRowHeight;
+  if Result <= 0 then
+    Result := 16;
 end;
 
 function NeedsEncodingFix(const Value: AnsiString): Boolean; inline;
@@ -11134,17 +11247,25 @@ begin
 end;
 //================= 对象列表 ===============
 procedure TfrmMain.scrListChange(Sender: TObject);
+var
+  rowHeight: Integer;
 begin
+  if(scrList.PageSize<=0)then
+     scrList.PageSize:=1;
   if(scrList.Position> scrList.Max-scrList.PageSize)then
      scrList.Position:=scrList.Max-scrList.PageSize+1;
-  imgList.Top:=-scrList.Position*16;
+  rowHeight:=GetObjListRowHeight;
+  imgList.Top:=-scrList.Position*rowHeight;
 end;
 
 procedure TfrmMain.imgListDrawItem(ID,Index:integer; text:string;  isAppend,isUpdate:boolean);
-  var k :integer; myRect,mySour:TRect;
+  var
+    k,rowHeight,textY,lineTextHeight :integer;
+    myRect,mySour:TRect;
 begin
+  rowHeight:=GetObjListRowHeight;
   if isAppend then begin //添加表项
-    imgList.Height:=index*16;
+    imgList.Height:=index*rowHeight;
     ObjListID[index].State:='00000';
     k:=ObjListID[index].ID;
     if(Obj[k].Hot)           then ObjListID[index].State[1]:='1';
@@ -11159,14 +11280,20 @@ begin
     if(Obj[ID].Hot)then Brush.Color:=clHighlight; //clBlue; //选定时的颜色
     if(Obj[ID].Dad)then Brush.Color:=clGradientInactiveCaption; //父对象颜色
     if(Obj[ID].Son)then Brush.Color:=clMoneyGreen;//clSkyBlue; //子对象颜色
-    myRect:=Rect(14, (index-1)*16, imgList.Width, index*16);
+    myRect:=Rect(14, (index-1)*rowHeight, imgList.Width, index*rowHeight);
     FillRect(myRect);
     Font.Color:=clBlack;
     if(Obj[ID].Hot)then Font.Color:=clWhite;
     if(Obj[ID].Hide)then Font.Style:=[fsStrikeOut] else Font.Style:=[];
-    TextOut(16, (index-1)*16+2, text);
+    lineTextHeight:=TextHeight('Hg');
+    if lineTextHeight<=0 then
+      lineTextHeight:=rowHeight-4;
+    textY:=(index-1)*rowHeight + (rowHeight-lineTextHeight) div 2;
+    if textY < (index-1)*rowHeight then
+      textY:=(index-1)*rowHeight;
+    TextOut(16, textY, text);
 
-    myRect:=Rect(0, (index-1)*16, 14, index*16);
+    myRect:=Rect(0, (index-1)*rowHeight, 14, index*rowHeight);
     k:=IIFi(not Obj[ID].Hide and Obj[ID].ObjShow[Layer], 15, IIFi(Obj[ID].Hide,29,1) );
     mySour:=Rect(k, 0, k+14, 16);
     CopyRect(myRect, imgListMode.Canvas, mySour);
@@ -11200,8 +11327,11 @@ begin  // exit; // Lst.Clear;
     end;
 
   if(MarkObj>10)and isFromOther then begin //若当前选择的对象超出列表框
-    k:=Obj[MarkObj].ShowID;   p:=scrList.Position;  n:=pnlListBox.Height div 16;
+    k:=Obj[MarkObj].ShowID;   p:=scrList.Position;
+    n:=pnlListBox.Height div GetObjListRowHeight;
+    if n<=0 then n:=1;
     if(k<p)then p:=k-2 else if(p<0)then p:=0 else if(k>p)then p:=k-n+2;
+    if p<0 then p:=0;
     scrList.Position:=p;
     end;
   for i:=1 to j do begin
@@ -11228,7 +11358,9 @@ procedure TfrmMain.imgListMouseDown(Sender: TObject; Button: TMouseButton; Shift
 begin
   if bAdd then exit;
   j:=ObjListID[0].ID;   if(j=0)then exit;  //列表行数
-  index:=(Y div 16)+1;  imgList.Tag:=index; //记录行号，用于双击
+  i:=GetObjListRowHeight;
+  if i<=0 then i:=16;
+  index:=(Y div i)+1;  imgList.Tag:=index; //记录行号，用于双击
   if(index>j)then exit;
   iID:=ObjListID[Index].ID;  //列表项所对应的对象ID
   if(bSelLink)and(MarkObj>10)and not bDouble then begin //选择关联构件
@@ -11306,12 +11438,20 @@ begin
 end;
 
 procedure TfrmMain.scrListSet; //设置对象列表滚动条
+var
+  rowHeight: Integer;
 begin
   scrList.Visible:=imgList.Height >pnlListBox.Height;
   if scrList.Visible then begin
-    scrList.Max:=imgList.Height div 16;   scrList.Position:=0;
-    scrList.PageSize   := pnlListBox.Height div 16+1;
-    scrList.LargeChange:= pnlListBox.Height div 16-1;
+    rowHeight:=GetObjListRowHeight;
+    scrList.Max:=imgList.Height div rowHeight;
+    scrList.Position:=0;
+    scrList.PageSize   := pnlListBox.Height div rowHeight+1;
+    if scrList.PageSize<=0 then
+      scrList.PageSize:=1;
+    scrList.LargeChange:=scrList.PageSize-1;
+    if scrList.LargeChange<=0 then
+      scrList.LargeChange:=1;
     end;
 end;
 //====================== 更新对象列表 =======================
@@ -16613,6 +16753,8 @@ begin
   PropValueColor := CalculateValueFieldColor;
   NormalizeValueFieldColors;
   AdjustPropertyPanelMetrics;
+  Scaled := True;
+  ApplyDPIScaling;
   labHint.Top:=-20;   edtTemp.Top:=-20;// edtTemp的唯一用处是接受focus
   vFile:= Trim( ParamStr(1) ); //如果用"命令行+文件名"的形式或从资源管理器中直接打开“.sgf”文件
   i:=Pos('||',vFile); //"||"后跟参数串
@@ -25358,6 +25500,9 @@ begin
   ObjListUpdate( MarkObj, true); //更新对象列表
   if pnlProp.Visible then ShowObjProp(MarkObj, 0,0, true,true);  //显示属性框
 end;
+
+initialization
+  EnableHighDPIMode;
 
 end.
 {显示列表索引值的分配：
