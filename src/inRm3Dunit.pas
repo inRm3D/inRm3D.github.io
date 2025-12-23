@@ -15,7 +15,8 @@ uses
   Express, Pars, Parsglb, cgGeometry, DragImage, Splash, BMP
   {$IFNDEF FPC}, JPEG{$ENDIF}
   {$IFDEF MSWINDOWS}, PNGImage{$ENDIF},
-  Grids, CheckLst, ShellCtrls, Outline;//, RzTabs;
+  Grids, CheckLst, ShellCtrls, Outline
+  {$IFNDEF MSWINDOWS}, FPImage, FPWritePNG, FPWriteJPEG, FPWriteBMP{$ENDIF};//, RzTabs;
 const
   Version= 'inRm3D v2.869 '; //v字不可缺！
   maxObj=1000;    //最大对象数
@@ -1101,6 +1102,11 @@ type
     procedure AppendObj( t, kk:integer); //添加构件
     procedure AddingObj( t, kk:integer); //添加构件
     procedure ToolResponse(t:integer); //响应菜单或工具
+    procedure PerformSaveImage;
+    {$IFNDEF MSWINDOWS}
+    function PromptImageSaveFile(var FileName: string; var FormatIndex: Integer): boolean;
+    procedure SaveViewportImageNonWindows;
+    {$ENDIF}
     procedure BreckAdding; //中断添加过程
     procedure DeleteObj(ID :integer; bb:boolean);    //删除构件
     procedure PosDraw(ID :integer);      //坐标指示线
@@ -18876,7 +18882,7 @@ begin  //caption :=itos(ObjCount)+' '+itos(HotTool.Tag);
       {$ELSE}
       OpenURL('http://www.inrm3d.cn/index.php');
       {$ENDIF}
-    10:frmDrag.Show; //Save as Image
+    10:PerformSaveImage; //Save as Image
 
     11..132,161,171,181,191..194: AppendObj( t, 0);   // 添加构件  frmMain.Enabled:=false;
     141..146:begin //添加控制按纽
@@ -18977,6 +18983,240 @@ begin  //caption :=itos(ObjCount)+' '+itos(HotTool.Tag);
     SetProjection(false,false,7);
     end;
 end;
+
+procedure TfrmMain.PerformSaveImage;
+begin
+{$IFDEF MSWINDOWS}
+  frmDrag.Show;
+{$ELSE}
+  try
+    SaveViewportImageNonWindows;
+  except
+    on E: Exception do
+      MessageDlg(
+        SwitchS(iLanguage, '保存图像失败：', '保存圖像失敗：', 'Unable to save image: ', '') +
+        E.Message, mtError, [mbOK], 0);
+  end;
+{$ENDIF}
+end;
+
+{$IFNDEF MSWINDOWS}
+procedure TfrmMain.SaveViewportImageNonWindows;
+var
+  FileName, Ext, DefaultExt: string;
+  FormatIndex: Integer;
+  ViewWidth, ViewHeight, X, Y, TargetY: Integer;
+  PixelBuffer: array of Byte;
+  Src: PByte;
+  Image: TFPMemoryImage;
+  Writer: TFPCustomImageWriter;
+  WriterJPEG: TFPWriterJPEG;
+  Color: TFPColor;
+begin
+  FileName := '';
+  FormatIndex := 0;
+  if not PromptImageSaveFile(FileName, FormatIndex) then
+    Exit;
+
+  EnsureGLContext;
+  glFinish;
+  glReadBuffer(GL_FRONT);
+
+  ViewWidth := GetGLWidth;
+  ViewHeight := GetGLHeight;
+  if (ViewWidth <= 0) or (ViewHeight <= 0) then
+    raise Exception.Create('Invalid viewport size.');
+
+  SetLength(PixelBuffer, ViewWidth * ViewHeight * 3);
+  glPixelStorei(GL_PACK_ALIGNMENT, 1);
+  glReadPixels(0, 0, ViewWidth, ViewHeight, GL_RGB, GL_UNSIGNED_BYTE, @PixelBuffer[0]);
+
+  Image := TFPMemoryImage.Create(ViewWidth, ViewHeight);
+  try
+    for Y := 0 to ViewHeight - 1 do
+    begin
+      Src := @PixelBuffer[Y * ViewWidth * 3];
+      TargetY := ViewHeight - 1 - Y;
+      for X := 0 to ViewWidth - 1 do
+      begin
+        Color.red := Src^ * $0101; Inc(Src);
+        Color.green := Src^ * $0101; Inc(Src);
+        Color.blue := Src^ * $0101; Inc(Src);
+        Color.alpha := $FFFF;
+        Image.Colors[X, TargetY] := Color;
+      end;
+    end;
+
+    Ext := AnsiLowerCase(ExtractFileExt(FileName));
+    if Ext = '' then
+    begin
+      case FormatIndex of
+        1: DefaultExt := '.jpg';
+        2: DefaultExt := '.bmp';
+      else
+        DefaultExt := '.png';
+      end;
+      FileName := FileName + DefaultExt;
+      Ext := AnsiLowerCase(DefaultExt);
+    end;
+
+    if (Ext = '.jpg') or (Ext = '.jpeg') then
+    begin
+      WriterJPEG := TFPWriterJPEG.Create;
+      try
+        WriterJPEG.CompressionQuality := 90;
+        Image.SaveToFile(FileName, WriterJPEG);
+      finally
+        WriterJPEG.Free;
+      end;
+    end
+    else
+    begin
+      if Ext = '.bmp' then
+        Writer := TFPWriterBMP.Create
+      else
+        Writer := TFPWriterPNG.Create;
+      try
+        Image.SaveToFile(FileName, Writer);
+      finally
+        Writer.Free;
+      end;
+    end;
+  finally
+    Image.Free;
+  end;
+end;
+{$ENDIF}
+
+{$IFNDEF MSWINDOWS}
+function TfrmMain.PromptImageSaveFile(var FileName: string; var FormatIndex: Integer): boolean;
+var
+  dlg: TForm;
+  lblPath, lblFormat: TLabel;
+  edtPath: TEdit;
+  cmbFormat: TComboBox;
+  btnOk, btnCancel: TButton;
+  InitialDir, BaseName: string;
+  function ValidateSelection(out FinalName: string; out FormatIdx: Integer): boolean;
+  var
+    s, dir, ext, defExt: string;
+    idx: Integer;
+  begin
+    Result := False;
+    s := Trim(edtPath.Text);
+    if s = '' then
+    begin
+      MessageDlg(SwitchS(iLanguage, '请输入文件名。', '請輸入檔名。', 'Please enter a file name.', ''), mtWarning, [mbOK], 0);
+      Exit;
+    end;
+    idx := cmbFormat.ItemIndex;
+    if idx < 0 then
+      idx := 0;
+    ext := AnsiLowerCase(ExtractFileExt(s));
+    if ext = '' then
+    begin
+      case idx of
+        1: defExt := '.jpg';
+        2: defExt := '.bmp';
+      else
+        defExt := '.png';
+      end;
+      s := s + defExt;
+    end;
+    if (Length(s) > 1) and (s[1] = '~') and (s[2] = PathDelim) then
+      s := GetEnvironmentVariable('HOME') + Copy(s, 2, MaxInt);
+    dir := ExtractFilePath(s);
+    if dir <> '' then
+    begin
+      if not DirectoryExists(dir) then
+        if not ForceDirectories(dir) then
+        begin
+          MessageDlg(SwitchS(iLanguage, '无法创建目录：', '無法建立目錄：', 'Unable to create directory: ', '') +
+            dir, mtError, [mbOK], 0);
+          Exit;
+        end;
+    end;
+    FinalName := ExpandFileName(s);
+    FormatIdx := idx;
+    Result := True;
+  end;
+
+begin
+  dlg := TForm.CreateNew(Self);
+  try
+    dlg.BorderStyle := bsDialog;
+    dlg.Position := poScreenCenter;
+    dlg.Caption := SwitchS(iLanguage, '保存图像', '保存圖像', 'Save Image', '');
+    dlg.Width := 420;
+    dlg.Height := 170;
+
+    lblPath := TLabel.Create(dlg);
+    lblPath.Parent := dlg;
+    lblPath.Caption := SwitchS(iLanguage, '路径及文件名', '路徑與檔名', 'Path and file name', '');
+    lblPath.Left := 12;
+    lblPath.Top := 12;
+
+    edtPath := TEdit.Create(dlg);
+    edtPath.Parent := dlg;
+    edtPath.Left := 12;
+    edtPath.Top := 32;
+    edtPath.Width := dlg.Width - 40;
+
+    lblFormat := TLabel.Create(dlg);
+    lblFormat.Parent := dlg;
+    lblFormat.Caption := SwitchS(iLanguage, '格式', '格式', 'Format', '');
+    lblFormat.Left := 12;
+    lblFormat.Top := 68;
+
+    cmbFormat := TComboBox.Create(dlg);
+    cmbFormat.Parent := dlg;
+    cmbFormat.Left := 12;
+    cmbFormat.Top := 88;
+    cmbFormat.Width := 180;
+    cmbFormat.Style := csDropDownList;
+    cmbFormat.Items.Add('PNG (*.png)');
+    cmbFormat.Items.Add('JPEG (*.jpg)');
+    cmbFormat.Items.Add('BMP (*.bmp)');
+    cmbFormat.ItemIndex := FormatIndex;
+
+    btnOk := TButton.Create(dlg);
+    btnOk.Parent := dlg;
+    btnOk.Caption := SwitchS(iLanguage, '确定', '確定', 'OK', '');
+    btnOk.Left := dlg.ClientWidth - 200;
+    btnOk.Top := 120;
+    btnOk.Width := 80;
+    btnOk.Default := True;
+    btnOk.ModalResult := mrOK;
+
+    btnCancel := TButton.Create(dlg);
+    btnCancel.Parent := dlg;
+    btnCancel.Caption := SwitchS(iLanguage, '取消', '取消', 'Cancel', '');
+    btnCancel.Left := dlg.ClientWidth - 110;
+    btnCancel.Top := 120;
+    btnCancel.Width := 80;
+    btnCancel.ModalResult := mrCancel;
+    btnCancel.Cancel := True;
+
+    if sgfPath <> '' then
+      InitialDir := sgfPath
+    else
+      InitialDir := GetCurrentDir;
+    BaseName := Trim(ChangeFileExt(sgfName, ''));
+    if BaseName = '' then
+      BaseName := 'scene';
+    edtPath.Text := IncludeTrailingPathDelimiter(InitialDir) + BaseName + '.png';
+
+    repeat
+      if dlg.ShowModal <> mrOK then
+        Exit(False);
+    until ValidateSelection(FileName, FormatIndex);
+    Result := True;
+  finally
+    dlg.Free;
+  end;
+end;
+{$ENDIF}
+
 //======================== 中断添加构件过程 =====================
 procedure TfrmMain.BreckAdding;
   var i,j,k :integer;
