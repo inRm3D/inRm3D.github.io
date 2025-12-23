@@ -7,7 +7,7 @@ interface
 {$J-}
 
 uses
-  Windows, SysUtils;
+  SysUtils;
 
 type
   // Standard type for version numbers (xx.xx format).
@@ -33,9 +33,6 @@ function cgTimeSince(start: Comp): Single;
 procedure cgStartTiming;
 function cgTimeElapsed: Single;
 procedure cgIdle(delay: Single);
-
-function QueryPerformanceCounter(lpPerformanceCount: PComp): Boolean; stdcall; external 'KERNEL32.DLL';
-function QueryPerformanceFrequency(lpFrequency: PComp): Boolean; stdcall; external 'KERNEL32.DLL';
 
 implementation
 
@@ -126,58 +123,32 @@ end;
 
 var
   StartTime: Comp;
-  freq: Comp;
 
 function cgTime: Comp;
 begin
-
-  // Return the current performance counter value.
-  QueryPerformanceCounter(@Result);
-
+  Result := Comp(GetTickCount64);
 end;
 
 function cgTimeSince(start: Comp): Single;
-var
-  x: Comp;
 begin
-
-  // Return the time elapsed since start (get start with cgTime()).
-  QueryPerformanceCounter(@x);
-  Result := (x - start) * 1000 / freq;
-
+  Result := (cgTime - start);
 end;
 
 procedure cgStartTiming;
 begin
-
-  // Call this to start measuring elapsed time.
   StartTime := cgTime;
-
 end;
 
 function cgTimeElapsed: Single;
 begin
-
-  // Call this to measure the time elapsed since the last StartTiming call.
   Result := cgTimeSince(StartTime);
-
 end;
 
 procedure cgIdle(delay: Single);
 begin
-
-  // Do nothing for a specified time.
   cgStartTiming;
   while cgTimeElapsed < delay do
-  begin
-    // Don't just block everything, though!
     Application.ProcessMessages;
-  end;
-
 end;
-
-initialization
-
-  QueryPerformanceFrequency(@freq);
 
 end.

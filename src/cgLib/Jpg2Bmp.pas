@@ -3,7 +3,7 @@ unit Jpg2Bmp;
 interface
 
 uses
-  Graphics, Windows, JPEG;
+  Graphics, Types{$IFNDEF FPC}, JPEG{$ENDIF};
 
 type
   TJPEG = class(TJPEGImage)

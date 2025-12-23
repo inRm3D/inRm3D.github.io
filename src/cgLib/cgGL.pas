@@ -3,12 +3,16 @@
     component.
 --*)
 
-unit GL;
+unit cgGL;
 
 interface
 
 uses
+{$IFDEF MSWINDOWS}
   Windows;
+{$ELSE}
+  dynlibs;
+{$ENDIF}
 
 type
   GLenum     = Cardinal;      PGLenum     = ^GLenum;

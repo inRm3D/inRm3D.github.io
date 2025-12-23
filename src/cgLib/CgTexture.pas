@@ -5,7 +5,7 @@ unit CgTexture;
 interface
 
 uses
-  Classes, Windows, CgTypes, Graphics, JPEG, DArrays;
+  Classes, CgTypes, Graphics{$IFNDEF FPC}, JPEG{$ENDIF}, DArrays;
 
 type
   TCGTextureOptions = (toHTile, toVTile, toMinLinear, toMagLinear);
@@ -108,7 +108,7 @@ function cgIsPowerOf2(n: Integer): Boolean;
 implementation
 
 uses
-  SysUtils, GL, CgUtils;
+  SysUtils, cgGL, CgUtils;
 
 function cgIsPowerOf2(n: Integer): Boolean;
 var
@@ -182,7 +182,7 @@ begin
     // Move each scanline to the appropriate location.
     src := PixelPtr(0, i);
     dst := Pointer(i * w * FItemSize);
-    CopyMemory(dst, src, FWidth * FItemSize);
+    Move(src^, dst^, FWidth * FItemSize);
   end;
   FWidth := w;
 
@@ -659,7 +659,7 @@ begin
     Count := Textures[i].Count;
     FWidth := Textures[i].Width;
     FHeight := Textures[i].Height;
-    CopyMemory(Data, Textures[i].Data, Count * FItemSize);
+    Move(Textures[i].Data^, Data^, Count * FItemSize);
   end;
 
 end;

@@ -1,11 +1,17 @@
 unit DragImage;
+{$codepage utf8}
 
 interface
 uses
+{$IFDEF MSWINDOWS}
   Windows, SysUtils, Classes, Controls, Forms, Messages,  ToolWin,
   ExtCtrls, ComCtrls, Dialogs, Gauges, StdCtrls, Clipbrd, Buttons,
   Graphics, JPEG, GIFimage, PNGimage, Printers;
+{$ELSE}
+  Classes, SysUtils, Forms, Dialogs;
+{$ENDIF}
 type
+{$IFDEF MSWINDOWS}
   TfrmDrag = class(TForm)
     pnlProp: TPanel;
     SaveImg: TSaveDialog;
@@ -57,6 +63,15 @@ type
     procedure CopyImg(bFresh, bAnimat :boolean);
     procedure Convert( out bmp:TBitmap; format:integer);
   end;
+{$ELSE}
+  TfrmDrag = class(TForm)
+  public
+    procedure setLanguage(bb:integer);
+    procedure setWindows(bHole:boolean);
+    procedure setEnable(bb,Sport,View:boolean);
+    procedure CopyImg(bFresh, bAnimat:boolean);
+  end;
+{$ENDIF}
   PtsType = array [0..9, 0..1] of Integer; //
 var
   frmDrag: TfrmDrag;
@@ -64,6 +79,7 @@ var
   TitleH :integer; //窗口标题栏高度
 implementation
 
+{$IFDEF MSWINDOWS}
 uses inRm3Dunit;
 {$R *.dfm}
 
@@ -354,5 +370,26 @@ begin
   end;
     end;
 end;
+
+{$ELSE}
+
+procedure TfrmDrag.setLanguage(bb:integer);
+begin
+end;
+
+procedure TfrmDrag.setWindows(bHole:boolean);
+begin
+end;
+
+procedure TfrmDrag.setEnable(bb,Sport,View:boolean);
+begin
+end;
+
+procedure TfrmDrag.CopyImg(bFresh, bAnimat:boolean);
+begin
+  MessageDlg('Image capture is not available on this platform.', mtInformation, [mbOK], 0);
+end;
+
+{$ENDIF}
 
 end.

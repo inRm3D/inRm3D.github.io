@@ -1,7 +1,7 @@
 unit BMP;
 interface
 uses
-  Windows, SysUtils,  Graphics, GL, JPEG, GIFimage;   // OpenGL,Dialogs,
+  Windows, SysUtils,  Graphics, cgGL, JPEG, GIFimage;   // OpenGL,Dialogs,
                                                                            
 type TRGBA= Record R,G,B,A :Byte; end;
      TRGB = Record B,G,R :Byte; end;

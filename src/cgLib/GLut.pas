@@ -3,7 +3,7 @@ unit Glut;
 interface
 
 uses
-  GL;
+  cgGL;
 
 type
   PInteger = ^Integer;            // These two really suck, but I didn't see any

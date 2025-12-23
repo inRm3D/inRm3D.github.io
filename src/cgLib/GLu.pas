@@ -18,7 +18,7 @@ unit GLu;
 interface
 
 uses
-  GL;
+  cgGL;
 
 {$INCLUDE GLDRIVER.INC}
 

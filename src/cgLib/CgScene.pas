@@ -5,7 +5,7 @@ unit CgScene;
 interface
 
 uses
-  Windows, GL, GLu, CgTypes, CgObject, CgLight, CgMaterials, CgTexture, CgUtils,
+  Windows, cgGL, GLu, CgTypes, CgObject, CgLight, CgMaterials, CgTexture, CgUtils,
   CgGeometry, DArrays;
 
 type

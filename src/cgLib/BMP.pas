@@ -1,19 +1,18 @@
 unit BMP;
 interface
 uses
-  Windows, Classes, SysUtils,  Graphics, GL, JPEG, GIFimage, PNGImage, Math;   // OpenGL,Dialogs,
+  Classes, SysUtils, Graphics, Types, cgGL, cgMath;   // OpenGL,Dialogs,
 
 type TRGBA= Record R,G,B,A :Byte; end;
      TRGB = Record B,G,R :Byte; end;
 type
   pRGBArray = ^TRGBArray;
-  TRGBArray = array[0..32767] of TRGBTriple;
+  TRGBArray = array[0..32767] of TRGB;
 function GetBitmapFromFile(FileName, format:String):TBitmap;
 function getTexture(texID:Cardinal; TexFile: String; BMP1:TBitmap; var pTex :pointer;
             var w0,h0, W,H :integer; format:string): Cardinal;
 function myLoadTexture(ID:integer; texID:Cardinal; TexFile :string; BMP:TBitmap;
             var w0,h0:integer; var kW,kH:single; Trans:boolean):Cardinal; //载入纹理并设置透明色的Alpha值
-procedure glGenTextures(n: integer; var textures: Cardinal); stdcall; external opengl32;
 
 function ImgToTxt(ID:integer; ImgFile, sFormat :string): AnsiString; //图像转换为文本
 function TxtToImg(ID:integer; texID:Cardinal; sData, sFormat :AnsiString;
@@ -51,71 +50,58 @@ end;
 
 function GetBitmapFromFile(FileName, format:String):TBitmap;
 var
-  BMP: TBitmap;
-  JPG: TJpegImage;
-  GIF: TGIFImage;
-  PNG: TPNGObject;
+  Pic: TPicture;
 begin
-  BMP:=TBitMap.Create; //BMP:=TBitMap.Create;
-  if format='.BMP' then
-    BMP.LoadFromFile(FileName);
-  if format='.JPG' then begin
-    JPG:=TJpegImage.Create;
-    JPG.LoadFromFile(FileName);
-    BMP.Assign(JPG);
-    JPG.free;
-    end;
-  if format='.GIF' then begin
-    GIF:=TGIFImage.Create;
-    GIF.LoadFromFile(FileName);
-    BMP.Assign(GIF);
-    GIF.free;
-    end;
-  if format='.PNG' then begin
-    PNG:=TPNGObject.Create;
-    PNG.LoadFromFile(FileName);
-    BMP.Assign(PNG);
-    PNG.free;
-    end;
-  result:=BMP;
+  Pic := TPicture.Create;
+  try
+    Pic.LoadFromFile(FileName);
+    Result := TBitmap.Create;
+    Result.Assign(Pic.Graphic);
+  finally
+    Pic.Free;
+  end;
 end;
 
 function getTexture(texID:Cardinal; TexFile: String; BMP1:TBitmap;  var pTex :Pointer;
                 var w0,h0, W,H:integer; format:string): Cardinal;
 var
-  BMP: TBitmap;
-  BMInfo : TBitmapInfo;
-  MemDC : HDC;
+  SourceBmp, WorkingBmp: TBitmap;
   Tex: Pointer;
+  y: Integer;
+  SrcLine, DstLine: PByte;
 begin
-  if(texID=0)then glGenTextures(1, texID);
+  if(texID=0)then glGenTextures(1, @texID);
   result:=texID;
   glBindTexture(GL_TEXTURE_2D, Result);
 
   if TexFile>''then
-    BMP:= GetBitmapFromFile(TexFile,format)
+    SourceBmp:= GetBitmapFromFile(TexFile,format)
   else
-    BMP:=BMP1;
-  with BMinfo.bmiHeader do begin
-    FillChar (BMInfo, SizeOf(BMInfo), 0);
-    biSize := sizeof (TBitmapInfoHeader);
-    biBitCount := 24;
-    biWidth := BMP.Width;
-    biHeight := BMP.Height;
-    biPlanes := 1;
-    biCompression := bi_RGB; //bi_RGB=0
-    MemDC := CreateCompatibleDC( 0 );
-    w0:=biWidth;   h0:=biHeight;
-    setNewSize( w0,h0, W,H); //将图片尺寸圆整到2的整数幂
-    GetMem( Tex, W * H *3);
-    pTex:=Tex;
-    try
-      GetDIBits( MemDC, BMP.Handle, 0, H, Tex, BMInfo, DIB_RGB_COLORS);
-    finally
-      DeleteDC (MemDC);
-      end;
-  end; // with  BMinfo.bmiHeader
-  if TexFile>''then BMP.Free;
+    SourceBmp:=BMP1;
+  SourceBmp.PixelFormat := pf24bit;
+  w0:=SourceBmp.Width;
+  h0:=SourceBmp.Height;
+  setNewSize( w0,h0, W,H); //将图片尺寸圆整到2的整数幂
+  WorkingBmp := SourceBmp;
+  if (W <> w0) or (H <> h0) then
+  begin
+    WorkingBmp := TBitmap.Create;
+    WorkingBmp.PixelFormat := pf24bit;
+    WorkingBmp.SetSize(W, H);
+    WorkingBmp.Canvas.Brush.Color := clBlack;
+    WorkingBmp.Canvas.FillRect(Rect(0,0,W,H));
+    WorkingBmp.Canvas.Draw(0, H - h0, SourceBmp);
+  end;
+  GetMem(Tex, W * H *3);
+  pTex:=Tex;
+  for y := 0 to H - 1 do
+  begin
+    DstLine := PByte(Tex) + y * W * 3;
+    SrcLine := WorkingBmp.ScanLine[(WorkingBmp.Height - 1) - y];
+    Move(SrcLine^, DstLine^, W * 3);
+  end;
+  if TexFile>''then SourceBmp.Free;
+  if WorkingBmp <> SourceBmp then WorkingBmp.Free;
 end;
 
 procedure mySetAlpha(out RGB, RGBA:TBitmap; w0,h0,W,H:integer; Trans:boolean);
@@ -177,19 +163,8 @@ end;
 //========= 将屏幕图象转换为纹理 ===========
 function getTextureFromCRT(ID:integer; texID:Cardinal; pTex:pointer; w,h,l,t:integer;
             var kW,kH:single; trans:boolean):Cardinal;
-  var vas :TCanvas; bmp :TBitmap;  w0,h0,w1,h1:integer;
 begin
-  vas:= TCanvas.Create;   //创建画布
-  vas.Handle:=GetDC( 0);  //画布句柄等于桌面句柄
-
-  bmp:= TBitmap.Create;
-  bmp.Width:=W;  bmp.Height:= H;
-  bmp.Canvas.CopyRect( Rect( 0,0, W,H), vas,  Rect( L,T, L+W, T+H));
-  vas.Free;
-
-  bmp.HandleType:= bmDIB;
-  result:= myLoadTexture(ID,texID, '', bmp, w0,h0, kW,kH, trans); // BMP
-  bmp.Free;
+  Result := 0;
 end;
 //============= 图像转换为文本 ==============
 function ImgToTxt(ID:integer; ImgFile, sFormat :string): AnsiString;

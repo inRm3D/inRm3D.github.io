@@ -1,10 +1,20 @@
-unit inRm3Dunit; //v2.869  2019.08.23
+unit inRm3Dunit;
+{$codepage utf8}
+ //v2.869  2019.08.23
 interface
 uses
-  Windows, Messages, SysUtils, Variants, Classes, ImgList, Forms, Graphics,
-  Dialogs, ExtCtrls, ComCtrls, Controls, Buttons, ToolWin, Menus, ShellApi,
-  CgTypes, StdCtrls, Clipbrd,  GL, GLu,  Tabs, Math, // // OpenGL, Glut,
-  Express, Pars, Parsglb, cgGeometry, DragImage, Splash, BMP, JPEG, PNGImage,
+  {$IFDEF MSWINDOWS}
+  Windows, Messages,
+  {$ELSE}
+  LCLIntf, LCLType, LMessages, OpenGLContext,
+  {$ENDIF}
+  SysUtils, Variants, Classes, ImgList, Forms, Graphics,
+  Dialogs, ExtCtrls, ComCtrls, Controls, Buttons, ToolWin, Menus
+  {$IFDEF MSWINDOWS}, ShellApi{$ENDIF},
+  CgTypes, StdCtrls, Clipbrd,  cgGL, GLu,  Tabs, cgMath, // // OpenGL, Glut,
+  Express, Pars, Parsglb, cgGeometry, DragImage, Splash, BMP
+  {$IFNDEF FPC}, JPEG{$ENDIF}
+  {$IFDEF MSWINDOWS}, PNGImage{$ENDIF},
   Grids, CheckLst, ShellCtrls, Outline;//, RzTabs;
 const
   Version= 'inRm3D v2.869 '; //v字不可缺！
@@ -909,7 +919,7 @@ type
     procedure FormDestroy( Sender: TObject);
     procedure menEditClick( Sender: TObject);
     procedure setPaintList( setHot:boolean);
-    procedure butPaintColorEDrawItem(Sender: TObject; ACanvas: TCanvas; ARect: TRect; Selected: Boolean);
+    procedure butPaintColorEDrawItem(Sender: TObject; ACanvas: TCanvas; ARect: TRect; State: TOwnerDrawState);
     procedure butPaintColorEMeasureItem( Sender: TObject; ACanvas: TCanvas; var Width, Height: Integer);
     procedure butPaintColorFClick( Sender: TObject);
     procedure butPaintCircleClick( Sender: TObject);
@@ -968,10 +978,30 @@ type
     procedure imgListDblClick(Sender: TObject);
     procedure scrListChange(Sender: TObject);
   private
+  {$IFDEF MSWINDOWS}
     rc : HGLRC;   // Rendering Context
     dc : HDC;
+  {$ENDIF}
+  {$IFNDEF MSWINDOWS}
+    FGLControl: TOpenGLControl;
+    function GLToFormPoint(X, Y: Integer): TPoint;
+    procedure GLControlMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure GLControlMouseMove(Sender: TObject; Shift: TShiftState;
+      X, Y: Integer);
+    procedure GLControlMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure GLControlDblClick(Sender: TObject);
+    procedure GLControlMouseWheel(Sender: TObject; Shift: TShiftState;
+      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+  {$ENDIF}
     procedure MenuItemAdvancedDrawItem(Sender: TObject; ACanvas: TCanvas;
       ARect: TRect; State: TOwnerDrawState); //设置菜单项的热键下划线
+    function GetGLWidth: Integer;
+    function GetGLHeight: Integer;
+    procedure RequestGLRepaint;
+    procedure EnsureGLContext;
+    function ResolveFontName(const Requested: string): string;
   public
     BackColor, AxisColor, gridColor :TcgColorF;
     {--- view ---}
@@ -1019,7 +1049,9 @@ type
     expr:string; //计算框中的表达式
     stArray :Array of string; //批量设置标签
 
+  {$IFDEF MSWINDOWS}
     procedure WMDropFiles(var Msg:TWMDropFiles);message WM_DROPFILES; //拖入文件
+  {$ENDIF}
     procedure setMem( n :integer; bb :boolean); //动态数组内存分配
     procedure SetFont( ID:integer; bEnable, FontToObj:boolean);
     function TransCustom( ID:integer):integer; //自定义变换
@@ -1177,11 +1209,13 @@ type
   TMenuItemAccess = class(TMenuItem);
 var
   frmMain: TfrmMain;
+{$IFDEF MSWINDOWS}
   DCh:HDC;
   HRC: HGLRC;
   WindowHandle:Thandle;
 //  Quadric :PGLUquadric;  // cylinder
   Palette :HPALETTE;
+{$ENDIF}
   fontBase:Cardinal;
   bPW:boolean;    //注册与否
   bAnimat :boolean; //bCopy:连续复制
@@ -1230,8 +1264,54 @@ var
 
 implementation
 
-{$R *.DFM}
+{$IFDEF FPC}
+{$R *.lfm}
+{$ELSE}
+{$R *.dfm}
+{$ENDIF}
 
+uses
+  LConvEncoding, LazUTF8;
+
+function NeedsEncodingFix(const Value: AnsiString): Boolean; inline;
+begin
+  Result := (Value <> '') and (FindInvalidUTF8Codepoint(PChar(Value), Length(Value)) <> -1);
+end;
+
+function NormalizeLegacyText(const Value: AnsiString): UTF8String;
+var
+  EncodingName: string;
+begin
+  Result := Value;
+  if not NeedsEncodingFix(Value) then
+    Exit;
+
+  EncodingName := NormalizeEncoding(GuessEncoding(Value));
+  if (EncodingName = '') or SameText(EncodingName, EncodingUTF8)
+    or SameText(EncodingName, EncodingAnsi) then
+    EncodingName := EncodingCP936;
+
+  try
+    Result := ConvertEncoding(Value, EncodingName, EncodingUTF8);
+  except
+    if not SameText(EncodingName, EncodingCP936) then
+      try
+        Result := ConvertEncoding(Value, EncodingCP936, EncodingUTF8);
+      except
+        Result := Value;
+      end
+    else
+      Result := Value;
+  end;
+end;
+
+procedure ReadLnUtf8(var F: TextFile; out Line: AnsiString);
+begin
+  System.ReadLn(F, Line);
+  Line := NormalizeLegacyText(Line);
+end;
+
+{$IFDEF MSWINDOWS}
 procedure TfrmMain.MenuItemAdvancedDrawItem(Sender: TObject; ACanvas: TCanvas; ARect: TRect; State: TOwnerDrawState);
   var vWin32Platform: Integer;
 begin //设置菜单项的热键下划线
@@ -1246,6 +1326,158 @@ begin //设置菜单项的热键下划线
     PInteger(@Win32Platform)^ := vWin32Platform;
   end;
 end;
+{$ELSE}
+procedure TfrmMain.MenuItemAdvancedDrawItem(Sender: TObject; ACanvas: TCanvas; ARect: TRect; State: TOwnerDrawState);
+begin
+  // Not supported on non-Windows platforms; rely on default drawing.
+end;
+{$ENDIF}
+
+function TfrmMain.GetGLWidth: Integer;
+begin
+{$IFDEF MSWINDOWS}
+  Result := ClientWidth;
+{$ELSE}
+  if Assigned(FGLControl) then
+    Result := FGLControl.Width
+  else
+    Result := ClientWidth;
+{$ENDIF}
+  if Result <= 0 then
+    Result := 1;
+end;
+
+function TfrmMain.GetGLHeight: Integer;
+begin
+{$IFDEF MSWINDOWS}
+  Result := ClientHeight;
+{$ELSE}
+  if Assigned(FGLControl) then
+    Result := FGLControl.Height
+  else
+    Result := ClientHeight;
+{$ENDIF}
+  if Result <= 0 then
+    Result := 1;
+end;
+
+procedure TfrmMain.RequestGLRepaint;
+begin
+{$IFDEF MSWINDOWS}
+  InvalidateRect(Handle, nil, False);
+{$ELSE}
+  if Assigned(FGLControl) then
+    FGLControl.Invalidate
+  else
+    Invalidate;
+{$ENDIF}
+end;
+
+procedure TfrmMain.EnsureGLContext;
+begin
+{$IFDEF MSWINDOWS}
+  if rc = 0 then
+    SetDCPixelFormat
+  else
+    wglMakeCurrent(DC, rc);
+{$ELSE}
+  if Assigned(FGLControl) then
+  begin
+    if not FGLControl.MakeCurrent then
+      raise Exception.Create('Unable to activate OpenGL context');
+  end;
+{$ENDIF}
+end;
+
+function TfrmMain.ResolveFontName(const Requested: string): string;
+const
+{$IFNDEF MSWINDOWS}
+  CFallbackFonts: array[0..4] of string = (
+    'Noto Sans CJK SC',
+    'Noto Sans CJK TC',
+    'WenQuanYi Zen Hei',
+    'Droid Sans Fallback',
+    'DejaVu Sans'
+  );
+{$ENDIF}
+var
+  fallback: string;
+begin
+  Result := Trim(Requested);
+  if (Result = '') and (Screen <> nil) then
+    Result := Screen.SystemFont.Name;
+  if Result = '' then
+    Result := 'Sans';
+{$IFNDEF MSWINDOWS}
+  if (Screen <> nil) and (Screen.Fonts.IndexOf(Result) = -1) then
+  begin
+    for fallback in CFallbackFonts do
+      if Screen.Fonts.IndexOf(fallback) <> -1 then
+      begin
+        Result := fallback;
+        Exit;
+      end;
+    if Screen.Fonts.Count > 0 then
+      Result := Screen.Fonts[0]
+    else
+      Result := 'Sans';
+  end;
+{$ENDIF}
+end;
+
+{$IFNDEF MSWINDOWS}
+function TfrmMain.GLToFormPoint(X, Y: Integer): TPoint;
+begin
+  Result.X := X;
+  Result.Y := Y;
+  if Assigned(FGLControl) then
+  begin
+    Inc(Result.X, FGLControl.Left);
+    Inc(Result.Y, FGLControl.Top);
+  end;
+end;
+
+procedure TfrmMain.GLControlMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+var
+  pt: TPoint;
+begin
+  pt := GLToFormPoint(X, Y);
+  FormMouseDown(Self, Button, Shift, pt.X, pt.Y);
+end;
+
+procedure TfrmMain.GLControlMouseMove(Sender: TObject; Shift: TShiftState;
+  X, Y: Integer);
+var
+  pt: TPoint;
+begin
+  pt := GLToFormPoint(X, Y);
+  FormMouseMove(Self, Shift, pt.X, pt.Y);
+end;
+
+procedure TfrmMain.GLControlMouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+var
+  pt: TPoint;
+begin
+  pt := GLToFormPoint(X, Y);
+  FormMouseUp(Self, Button, Shift, pt.X, pt.Y);
+end;
+
+procedure TfrmMain.GLControlDblClick(Sender: TObject);
+begin
+  FormDblClick(Self);
+end;
+
+procedure TfrmMain.GLControlMouseWheel(Sender: TObject; Shift: TShiftState;
+  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+var
+  pt: TPoint;
+begin
+  pt := GLToFormPoint(MousePos.X, MousePos.Y);
+  FormMouseWheel(Self, Shift, WheelDelta, pt, Handled);
+end;
+{$ENDIF}
 
 //================== 基本常用函数 ===================
 function EP( a:single):boolean;
@@ -1728,7 +1960,7 @@ begin
   with BMP do begin
 //    PixelFormat := pf24bit;         Color:=512; //
     with Canvas.Font do begin
-      Name:=Obj[ID].TagN;
+      Name:=frmMain.ResolveFontName(Obj[ID].TagN);
       Size:=trunc(Obj[ID].TagS*subRatio);
       Color:=Obj[ID].TagC;  if(Color=frmMain.Color)then Color:=Color xor $FFFF;
       if Obj[ID].TagT[1]='1'then Style:=Style+[fsBold];
@@ -1946,6 +2178,7 @@ procedure TfrmMain.TextAndImage(ID:integer; bIterate,isPosition,isImage,isNewTex
       t, x0,y0,x1,y1,x2,y2,x3,y3, kx,ky,tx,ty, fSin,fCos :single;
   label notImage;
 begin
+  EnsureGLContext;
   with Obj[ID]do begin
   if(Kind=11)and(isImage)then begin
     if(Mode=1)then hide:=not calcFunc( ID, res, false,false); //计算式
@@ -2156,7 +2389,7 @@ begin
       if(Assigned(butID))then with butID do begin
         left:=trunc( Obj[i].p0.x);  width :=trunc( Obj[i].W);
         height:=trunc( Obj[i].H);   top :=trunc( Obj[i].p0.y)-height-TitleHeight;
-        font.Name:=Obj[i].TagN;     font.Size:=Obj[i].TagS; //font.Style:=fsBold; //
+        font.Name:=ResolveFontName(Obj[i].TagN);     font.Size:=Obj[i].TagS; //font.Style:=fsBold; //
         font.Color:= cgColorFtoTColor(Obj[i].Color);
         caption:= Obj[i].Tag;       Obj[i].F:=false;   Tag:=i;
         Visible:=ObjShow[Layer]or bAll;
@@ -9418,9 +9651,9 @@ begin // Lst.Clear;
     end;
   for i:=N To ID-1 do with Obj[i]do begin //查找有没有平面使用数值纹理
     k:=Link[10];
-    if(Kind=4)and(k>10)and((Obj[k].Kind=11)and(Obj[k].Mode<>2)or(Obj[k].Kind=10)and(Obj[k].Mode=1))then begin
+      if(Kind=4)and(k>10)and((Obj[k].Kind=11)and(Obj[k].Mode<>2)or(Obj[k].Kind=10)and(Obj[k].Mode=1))then begin
       Obj[k].Way:= D or(Obj[k].Kind=10); //D平面贴图 Way需要刷新纹理的标记
-      glGenTextures(1, Obj[k].texID);//
+      glGenTextures(1, @Obj[k].texID);//
       end;
     end;
   for i:= 0 to He do with Obj[objArray[i,0]] do begin //He原象数 Wi初象数
@@ -10264,7 +10497,7 @@ begin
     case iLanguage of
       0:MyMessage('表达式 '+ expr +' 有错！');
       1:MyMessage('表達式 '+ expr +' 有错！');
-      2:MyMessage('Expression '+ expr +' Error!',)
+      2:MyMessage('Expression '+ expr +' Error!')
       end;
 end;
 //================== 插入字符串 ====================
@@ -10834,7 +11067,9 @@ begin
       ss:=st+'. '+ Tag+ ' '+ ss;
       end;
     itm.Caption:=IIFs(ID>7, ss, stAxis[ID] );
+    {$IFDEF MSWINDOWS}
     if bBreak then itm.Break:=mbBreak;
+    {$ENDIF}
     itm.Tag:=ID;
     end;
   popObj.Items.Add( itm);
@@ -10912,7 +11147,10 @@ begin  // exit; // Lst.Clear;
     scrList.Position:=p;
     end;
   for i:=1 to j do begin
-    k:=ObjListID[i].ID;  st:=ObjListID[i].State; 
+    k:=ObjListID[i].ID;
+    st:=ObjListID[i].State;
+    if Length(st)<5 then
+      st:='00000';
     if ((st[1]='1')<>Obj[k].Hot)            or((st[2]='1')<>Obj[k].Dad)
      or((st[3]='1')<>Obj[k].ObjShow[Layer]) or((st[4]='1')<>Obj[k].Hide)
      or((st[5]='1')<>Obj[k].Son)
@@ -13380,6 +13618,7 @@ procedure TfrmMain.AxisList;
   var i, x,x0,x1,y,y0,y1 :integer;  cL,cR:single;  bz:boolean;
       p:array[0..6]of TcgVector;
 begin
+  EnsureGLContext;
   setFog;
   AxisColor:= getScrColor(backColor);
   for i:=9 to 10 do with Obj[i]do begin
@@ -13929,6 +14168,7 @@ procedure TfrmMain.MainDraw( ModOrRender :GLEnum; isFlash:boolean; func:char);
     glEnable(gl_depth_test); //打开深度缓存
   end;
 begin
+  EnsureGLContext;
   bName:= ModOrRender=GL_SELECT;//选择状态时以命名方式绘图
   glClear( GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
   glLoadIdentity;
@@ -14080,17 +14320,32 @@ begin
 isSelect:
   glPopAttrib;
   if(not bName)then begin
-    SwapBuffers(DC); glFinish;
-    if cheFlash.Checked then UpdateFPS(getTickCount); //计算刷新率
+    {$IFDEF MSWINDOWS}
+    SwapBuffers(DC);
+    {$ELSE}
+    if Assigned(FGLControl) then
+      FGLControl.SwapBuffers
+    else
+      glFlush;
+    {$ENDIF}
+    glFinish;
+    if cheFlash.Checked then UpdateFPS(Integer(GetTickCount64 and $7FFFFFFF)); //计算刷新率
     end; // Display the scene
 end;
 {====================Select object===========================}
 function TfrmMain.DoSelect(x,y:integer):integer;
   var i,j,k :integer;
       vp :TViewPortArray; //当前的视区边界
+      viewW, viewH: Integer;
+      aspect: Double;
 begin
+  EnsureGLContext;
   result:=-1;
   lastHit:=0;
+  viewW := GetGLWidth;
+  viewH := GetGLHeight;
+  if viewH = 0 then viewH := 1;
+  aspect := viewW / viewH;
   glSelectBuffer( 63, @SelectBuf);
   glRenderMode( GL_SELECT);
   glInitNames;
@@ -14100,7 +14355,7 @@ begin
     glMatrixMode( GL_PROJECTION);
     glLoadIdentity;
     gluPickMatrix( x, Height-y- titleHeight, 7, 7, vp); // 拾取精度为8个象素
-    gluPerspective( Pers+2, Width/Height, 0.1, 4000);
+    gluPerspective( Pers+2, aspect, 0.1, 4000);
     glMatrixMode(GL_MODELVIEW);
     MainDraw( GL_SELECT, false, 'a');
   glPopMatrix;
@@ -14324,6 +14579,7 @@ end;
 procedure TfrmMain.Start( New :boolean); // new: 打开新文件
   var i,j :integer;
 begin
+  EnsureGLContext;
   if(not New)and(not bPW) then if(not checkSaved)then exit;
 //  Screen.cursor:=crHourGlass;
   j:= ObjCount;   Origin:=cgOrigin;
@@ -14526,7 +14782,7 @@ begin
   try
   try
     ReSet( G);
-    readLn( G, st);   //打开文件 读取版本号
+    ReadLnUtf8(G, st);   //打开文件 读取版本号
     if(copy(st,1,8)<>'inRm3D v')then begin
       closeFile( G); ObjCount:=10; exit;
       end;
@@ -14534,12 +14790,12 @@ begin
 //    if ver[1]='.'then ver:=RightStr(st,5); //版本号
     if(ver<'2.820')and(not AddPage)then tabPage.Tabs[0]:=temp;
     if(ver>='2.820')then begin //从v2.820版开始加入页面控件
-      readLn( G, st);  Pages:=sti(st,7,4); NowPage:=sti(st,11,4); //
+      ReadLnUtf8(G, st);  Pages:=sti(st,7,4); NowPage:=sti(st,11,4); //
       end;
     for N:=0 to Pages-1 do begin
       if(ver<'2.820')and(AddPage)then tabPage.Tabs.Add(temp);
       repeat //环境变量
-        readLn( G, st); Len:=Length(st); t:= LeftStr(st,6);  //标志串
+        ReadLnUtf8(G, st); Len:=Length(st); t:= LeftStr(st,6);  //标志串
         if(trim(st)='')then begin
           closeFile( G); result:=10;  ObjCount:=10; exit;
           end;
@@ -14627,7 +14883,7 @@ begin
       until t='End';
       ID:=10; if(isFile)then backObj.maxName:=ID;
       repeat //构件数据
-        readLn( G, st); //构件序号
+        ReadLnUtf8(G, st); //构件序号
         if(st='Finish')or(trim(st)='')then break;
         inc(ID);  //构件ID
         Obj[ID]:= BlankObj;
@@ -14638,7 +14894,7 @@ begin
         with Obj[ID] do begin
           TagT:='0000'; parent:=ID;
           repeat
-            readLn( G, st);   t:=LeftStr(st,6); //标志串
+            ReadLnUtf8(G, st);   t:=LeftStr(st,6); //标志串
             len:= Length(st)-6;
             if t='Kind  'then begin Kind:=getInt(st,1); Mode:=getInt(st,2); end;
             if(ver<='2.5')and(Kind=1)then
@@ -14758,7 +15014,7 @@ begin
               end;
             if t='Image 'then begin //纹理数据
               sImage.sFormat:= copy(st,9,5); //格式
-              readLn( G, sImage.sData ); //数据
+              ReadLnUtf8(G, sImage.sData); //数据
               end;
             if(Kind=1)and(Mode=2)and(Obj[Link[1]].Kind<4)and(p2.z=0)then p2.z:=1;//约束点的终止值
             if(Kind=7)and(Mode=1)and(H<=0)then H:=6.2832; //旋转曲面的转角
@@ -16134,6 +16390,7 @@ end;
 {======================= 设置雾效 =======================}
 procedure TfrmMain.setFog;
 begin
+  EnsureGLContext;
   fogL:= Deep*40/(Pers+2); //雾气起点
   setEnable( cheFog.Checked, GL_FOG);
   glFogfv(GL_FOG_COLOR, @BackColor);
@@ -16168,6 +16425,7 @@ begin
   glGetIntegerv(GL_SAMPLES, &samples);
   glEnable(GL_MULTISAMPLE);
 }
+  EnsureGLContext;
   if(Height=0)then Height:=1; // 防止被零除
   glClearColor(1,1,1,1); //在MainDraw过程中将重新定义环境背景
 
@@ -16208,16 +16466,24 @@ begin
 end;
 {================ Resize and Refresh window =================}
 procedure TfrmMain.SetProjection( Draw,isFlash:boolean; func:integer);
+  var viewW, viewH: Integer;
 begin
+  EnsureGLContext;
+  viewW := GetGLWidth;
+  viewH := GetGLHeight;
+  if viewH = 0 then
+    viewH := 1;
+  rView := viewW / viewH;
   glMatrixMode( GL_PROJECTION);
   glLoadIdentity;
   gluPerspective( Pers+2, rView, 0.1, 4000); // rView:= Width/Height;
-  glViewport( 0, 0, Width, Height);
+  glViewport( 0, 0, viewW, viewH);
   glMatrixMode( GL_MODELVIEW);
-  InvalidateRect( Handle, nil, False);
+  RequestGLRepaint;
   if Draw then MainDraw( GL_RENDER, isFlash, 'd');
 end;
 procedure TfrmMain.SetDCPixelFormat;
+{$IFDEF MSWINDOWS}
 var
   pfd: TPixelFormatDescriptor;
   nPixelFormat: Integer;
@@ -16240,6 +16506,11 @@ begin
   rc := wglCreateContext(DC);
   wglMakeCurrent(DC, rc);
 end;
+{$ELSE}
+begin
+  EnsureGLContext;
+end;
+{$ENDIF}
 procedure TfrmMain.set2Dstyle; // 设置2D状态
 begin
   with Obj[1]do begin
@@ -16263,7 +16534,7 @@ end;
 {==================== Start work application ====================}
 procedure TfrmMain.FormCreate(Sender: TObject);
   var i,j :integer; st,t,tmp, vFile, vFileVar :string;
-      tempPath: Array[1..127]of Char;
+      tempDir: string;
       isEnd,isFromFile :boolean;
       G :TextFile; //文本文件句柄
       lab :array[1..22]of TLabel;
@@ -16278,6 +16549,10 @@ procedure TfrmMain.FormCreate(Sender: TObject);
     var st:string;
     begin st:=trim(copy(s,p,l)); if st='' then result:=0 else result:= StrToInt(st); end;
 begin
+{$IFNDEF MSWINDOWS}
+  Screen.SystemFont.Name := ResolveFontName(Screen.SystemFont.Name);
+  Font.Name := Screen.SystemFont.Name;
+{$ENDIF}
   labHint.Top:=-20;   edtTemp.Top:=-20;// edtTemp的唯一用处是接受focus
   vFile:= Trim( ParamStr(1) ); //如果用"命令行+文件名"的形式或从资源管理器中直接打开“.sgf”文件
   i:=Pos('||',vFile); //"||"后跟参数串
@@ -16291,11 +16566,40 @@ begin
     if(Pos('r',vFileVar)>0)then isReadOnly:=true;             //只读，不允许保存文件
     if(Pos('f',vFileVar)>0)then frmMain.BorderStyle:=bsNone;  //隐藏边框
     end;
+{$IFNDEF MSWINDOWS}
+  if not Assigned(FGLControl) then
+  begin
+    FGLControl := TOpenGLControl.Create(Self);
+    FGLControl.Parent := Self;
+    FGLControl.Align := alClient;
+    FGLControl.AutoResizeViewport := False;
+    FGLControl.DepthBits := 24;
+    FGLControl.StencilBits := 8;
+    FGLControl.TabStop := True;
+    FGLControl.Visible := True;
+    FGLControl.OnPaint := FormPaint;
+    FGLControl.OnMouseDown := GLControlMouseDown;
+    FGLControl.OnMouseMove := GLControlMouseMove;
+    FGLControl.OnMouseUp := GLControlMouseUp;
+    FGLControl.OnDblClick := GLControlDblClick;
+    FGLControl.OnMouseWheel := GLControlMouseWheel;
+    FGLControl.OnKeyDown := FormKeyDown;
+    FGLControl.OnKeyUp := FormKeyUp;
+    FGLControl.OnKeyPress := FormKeyPress;
+    FGLControl.SendToBack;
+  end;
+  EnsureGLContext;
+{$ENDIF}
+{$IFDEF MSWINDOWS}
   st:= format('%d.%d' ,[Win32MajorVersion, Win32MinorVersion]); //Syetem Verson
   isWin7or8:=st>='6.1';
+{$ELSE}
+  isWin7or8:=false;
+{$ENDIF}
 //  menWin7.Visible:=isWin7;
 //  if isWin7 then //取消Win7中的Aero效果
 //  WinExec('command.com /C net stop uxsms',SW_Hide);
+{$IFDEF MSWINDOWS}
   for I := 0 to ComponentCount - 1 do //设置菜单项的热键下划线
     if Components[I] is TMenuItem then
       TMenuItem(Components[I]).OnAdvancedDrawItem := MenuItemAdvancedDrawItem
@@ -16303,7 +16607,9 @@ begin
       TMenu(Components[I]).OwnerDraw := True;
   DragAcceptFiles(Handle,True); //允许图片拖入窗体
   frmMain.Icon.Handle := LoadIcon(hInstance, 'HPOINT');
+{$ENDIF}
   Application.OnHint:=WhenHint; //捕捉鼠标信息并显示于状态条
+{$IFDEF MSWINDOWS}
   SetDCPixelFormat;
 //  Quadric:= gluNewQuadric;  gluQuadricDrawStyle(Quadric, GLU_FILL);
   InitLights; //材质和光线 创建字体
@@ -16311,6 +16617,9 @@ begin
   fontBase := 700; // 为每个字符制作显示列表
   wglUseFontBitmaps (DC, 0, 255, fontBase);
   glListBase(fontBase); // 设置字符串显示列表的基值
+{$ELSE}
+  InitLights;
+{$ENDIF}
 //属性控件数组
   pnlArray[ 0]:=pnl0;   pnlArray[ 1]:=pnl1;   pnlArray[ 2]:=pnl2;
   pnlArray[ 3]:=pnl3;   pnlArray[ 4]:=pnl4;   pnlArray[ 5]:=pnl5;
@@ -16333,19 +16642,25 @@ begin
     with txtArray[i,j] do begin
       Parent:=pnlIterate;   Tag:=i*21+j;  Text:='?';  ReadOnly:=i<8; //不接受键盘，必须从右键菜单选择对象或从屏幕点击对象
       Left:=j*36+IIFi(j=0, 4,18);  Top:= i*22+18; Width:=30;  Height:=18;
-      Color:=clBtnFace;   Ctl3D:=false;   imeMode:=imSAlpha;  //imSAlpha 半角状态 即自动切换至英文
-      Font.Name:='Aril';  Font.Size:=9;   Font.Style:=[fsBold];//
+      Color:=clBtnFace;
+      {$IFDEF MSWINDOWS}
+      Ctl3D:=false;   imeMode:=imSAlpha;  //imSAlpha 半角状态 即自动切换至英文
+      {$ENDIF}
+      Font.Name:=ResolveFontName('Arial');  Font.Size:=9;   Font.Style:=[fsBold];//
       PopupMenu:= popObj;
       OnEnter:=frmMain.txtDepthEnter;
       OnMouseDown:=frmMain.txtDepth0MouseDown;
+      {$IFDEF MSWINDOWS}
       SetWindowLong(Handle,GWL_STYLE,GetWindowLong(Handle,GWL_STYLE) or Es_Center); //内容居中
+      {$ENDIF}
       end;
     end;
   for i:= 1 to 19 do begin //迭代窗口中的映像序号
     lab[i]:=TLabel.Create(self);
     with lab[i] do begin
       Parent:=pnlIterate;  AutoSize:=false;
-      if iLanguage>1 then font.Name:='Aril' else font.Name:='宋体';
+      if iLanguage>1 then font.Name:=ResolveFontName('Arial')
+                     else font.Name:=ResolveFontName('宋体');
       font.Size:=9;   font.Style:=LabSour.Font.Style;
       Width:=16;  Height:=12; Left:=i*36+64; top:=4;
       Caption:=itos(i+1);
@@ -16357,7 +16672,9 @@ begin
       Left:=j*64+46;  Top:=i*26+6;  Width:=42;  Height:=14;
       OnExit:=frmMain.txtDepthExit;
       OnKeyPress:=frmMain.posEdit1KeyPress;
+      {$IFDEF MSWINDOWS}
       SetWindowLong(Handle,GWL_STYLE,GetWindowLong(Handle,GWL_STYLE) or Es_right); //内容靠右
+      {$ENDIF}
       end;
     end;
 
@@ -16410,12 +16727,16 @@ begin
   cmbFontN.Items.AddStrings(Screen.Fonts);  //创建字体列表
 //  hotLabel:=TLabel.Create(self);
   popChar:=TpopupMenu.Create(self); //创建弹出式菜单
+  {$IFDEF MSWINDOWS}
   popChar.AutoHotkeys:=maManual; //不考虑热键
+  {$ENDIF}
   memText.PopupMenu:=popChar;  //链接到文本输入框
   for i:=0 to 32 do begin //文本框右键菜单
     itmColor:=TMenuItem.Create(self); //创建菜单项
     itmColor.Caption:=txtChar[i+1];   //读入字符
+    {$IFDEF MSWINDOWS}
     if(i in[8,16,24])then itmColor.Break:=mbBreak;
+    {$ENDIF}
     itmColor.OnClick:=N27Click;       //链接处理过程
     popChar.Items.Add( itmColor);     //添加到菜单
     end;
@@ -16429,7 +16750,7 @@ begin
   pnlList.Top:=26; pnlList.Left:=26; pnlList.Width:=80; pnlList.Height:=80;//对象列表
     With imgList.Picture.Bitmap do begin
       Width:=imgList.Width; Height:=imgList.Height;
-      canvas.Font.Name:='宋体'; canvas.Font.Size:=9;
+      canvas.Font.Name:=ResolveFontName('宋体'); canvas.Font.Size:=9;
       end;
 
   menMax.ShortCut:=   ShortCut(27,[ssShift]); //全屏 Shift+Q 8219;
@@ -16447,8 +16768,8 @@ begin
   OpenBox.InitialDir:= exePath; //文件框的默认路径
   initFile:=exePath+'inRm3D.ini';
   if not FileExists(initFile)then begin
-    GetTempPath(127, @tempPath); //系统Temp目录
-    initFile:= trim(tempPath) + 'inRm3D.ini';
+    tempDir:=IncludeTrailingPathDelimiter(GetTempDir(False)); //系统Temp目录
+    initFile:= tempDir + 'inRm3D.ini';
     end;
   isFromFile:=(vFile>'');
   FileCount:=-1;
@@ -16458,7 +16779,7 @@ begin
       try
         ReSet( G);              //打开SysFile (只读)
         repeat
-          readLn( G, st);        //从文件G中读取一行文本s
+          ReadLnUtf8(G, st);        //从文件G中读取一行文本s
           isEnd:=(st='End')or EOF(G);
           if FileExists(st)and not isEnd then begin //如果文件s存在
             Inc( FileCount);
@@ -16467,7 +16788,7 @@ begin
         until isEnd;
         with Obj[8] do
         repeat
-          readLn( G, st); t:=copy(st,1,6);  // showmessage(st);
+          ReadLnUtf8(G, st); t:=copy(st,1,6);  // showmessage(st);
           if t='Point 'then begin p1.x:=stf(st,7, 5); Link[1]:=sti(st,12,10); p1.r:=sti(st,22,3); end; //点径、颜色
           if t='Line  'then begin p1.y:=stf(st,7, 5); Link[2]:=sti(st,12,10); end; //线径、颜色
           if t='Circle'then begin p1.z:=stf(st,7, 5); Link[3]:=sti(st,12,10); end; //线径、颜色
@@ -16529,8 +16850,11 @@ begin
   setLanguage(iLanguage);
   case iLanguage of 0:stMode:=stModeC; 1:stMode:=stModeT; 2:stMode:=stModeE; end; //构件名称
   case iLanguage of 0:stAxis:=stAxisC; 1:stAxis:=stAxisT; 2:stMode:=stModeE; end;
+{$IFDEF MSWINDOWS}
   case iLanguage of 0,1:mNum:=mNumC; 2:mNum:=mNumE; end;
-  for i:= 1 to 26 do screen.Cursors[i]:= LoadCursor( HInstance, mNum[i]); //鼠标文件详见资源文件Hand.res
+  for i:= 1 to 26 do
+    Screen.Cursors[i] := LoadCursor(HInstance, mNum[i]); //鼠标文件详见资源文件Hand.res
+{$ENDIF}
   frmMain.Show; //必须先Show，否则下面的TitleHeight就读不到
   if isUseToControler then begin //如果用于控件
     ShowWindow(Application.Handle, SW_HIDE); //隐藏任务栏里的程序图标
@@ -16561,8 +16885,10 @@ end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
-    DragAcceptFiles(Handle,   False);
-    ClipBoard.Free;
+  {$IFDEF MSWINDOWS}
+  DragAcceptFiles(Handle,   False);
+  {$ENDIF}
+  ClipBoard.Free;
 end;
 //============ 右击重叠构件时，从弹出菜单中选择构件
 procedure TfrmMain.SelObjFromMultMenu(Sender:TObject);
@@ -18145,7 +18471,7 @@ end;
 procedure TfrmMain.FormResize(Sender: TObject);
   var i:integer;
 begin
-  rView:= Width/Height;
+  rView:= GetGLWidth/GetGLHeight;
   titleHeight:= Height-ClientHeight+2;
   tlbMain.Width:=frmMain.ClientWidth-tlbMenu.Width+2;
   stbBar.Width:=frmMain.ClientWidth+2;
@@ -18179,6 +18505,7 @@ procedure TfrmMain.FormClose(Sender: TObject; var Action: TCloseAction);
   function its( v:integer):string;
     begin if v>9999 then v:=9999; if v<-999 then v:=-999; str( v:4, result); end;
 begin
+  EnsureGLContext;
   AssignFile( G, initFile);//获取UseFile的句柄
   try
     try
@@ -18258,7 +18585,12 @@ begin  //caption :=itos(ObjCount)+' '+itos(HotTool.Tag);
     6:Undo( true);        //Undo
     7:Undo( false);       //Redo
     8:begin ch:='A'; FormKeyPress(nil, ch); end; //显示全部
-    9: Shellexecute(0,nil,'inRm3D Help.chm',nil,nil, SW_SHOWDEFAULT);
+    9:
+      {$IFDEF MSWINDOWS}
+      Shellexecute(0,nil,'inRm3D Help.chm',nil,nil, SW_SHOWDEFAULT);
+      {$ELSE}
+      OpenURL('http://www.inrm3d.cn/index.php');
+      {$ENDIF}
     10:frmDrag.Show; //Save as Image
 
     11..132,161,171,181,191..194: AppendObj( t, 0);   // 添加构件  frmMain.Enabled:=false;
@@ -18313,11 +18645,19 @@ begin  //caption :=itos(ObjCount)+' '+itos(HotTool.Tag);
         setLanguage(iLanguage); //parsglb单元
         case iLanguage of 0:stMode:=stModeC; 1:stMode:=stModeT; 2:stMode:=stModeE; end; //构件名称
         case iLanguage of 0:stAxis:=stAxisC; 1:stAxis:=stAxisT; 2:stAxis:=stAxisE; end;
+{$IFDEF MSWINDOWS}
         if iLanguage>1 then mNum:=mNumE else mNum:=mNumC;
-        for i:= 1 to 26 do screen.Cursors[i]:= LoadCursor( Hinstance, mNum[i]); //鼠标文件详见资源文件Hand.res
+        for i:= 1 to 26 do
+          Screen.Cursors[i] := LoadCursor(HInstance, mNum[i]); //鼠标文件详见资源文件Hand.res
+{$ENDIF}
         ClearSelRec(0); //清除选择队列
         end;
-    202:ShellExecute(handle,nil, 'http://www.inrm3d.cn/index.php',nil,nil,sw_ShowNormal); //打开帮助文件
+    202:
+      {$IFDEF MSWINDOWS}
+      ShellExecute(handle,nil, 'http://www.inrm3d.cn/index.php',nil,nil,sw_ShowNormal); //打开帮助文件
+      {$ELSE}
+      OpenURL('http://www.inrm3d.cn/index.php');
+      {$ENDIF}
     203:begin frmMain.Enabled:=false; //关于...
         frmSplash.Show;
         frmSplash.Left:= Left+ (Width-frmSplash.Width)div 2;
@@ -20345,6 +20685,7 @@ begin
   if(t<>100)and Draw then begin SetProjection(false,false,14); end;
 end;
 
+{$IFDEF MSWINDOWS}
 procedure TfrmMain.setWindowStyle; //全屏切换
   var i :integer;  Saved :LongInt;
 begin
@@ -20394,6 +20735,11 @@ begin
     Refresh;
 //    SetProjection(false,false,14);
 end;
+{$ELSE}
+procedure TfrmMain.setWindowStyle;
+begin
+end;
+{$ENDIF}
 //======================= KeyDown =======================
 procedure TfrmMain.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   const FontSizes:array[0..17]of Integer=(8,9,10,11,12,14,16,18,20,22,24,26,28,36,48,56,64,72);
@@ -20651,7 +20997,12 @@ begin  //itos(TextToShortCut('Alt+Up')); //32808
       end;
     48..58:if not(bc or bs)then barPage.Position:=IIFi(Key=48, 9, Key-49); //叶面跳转1-10
     81:menXYZClick(menViewer);    //Ctrl+Q 面对指定平面
-    112:Shellexecute(0,nil,'inRm3D Help.chm',nil,nil, SW_SHOWDEFAULT);//[F1]
+    112:
+      {$IFDEF MSWINDOWS}
+      Shellexecute(0,nil,'inRm3D Help.chm',nil,nil, SW_SHOWDEFAULT);//[F1]
+      {$ELSE}
+      OpenURL('http://www.inrm3d.cn/index.php');
+      {$ENDIF}
 {F2}113:if(menMark8.Enabled)then menMarkClick(menMark8); //[F2]定义变换
 {F3}114:menTransClick(men128); //[F3]执行变换
     115:set2Dstyle; //[F4] 2D/3D状态 相当于按Z+L并隐藏z轴
@@ -21566,12 +21917,14 @@ end;
 
 procedure TfrmMain.pnlCalcMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
+  {$IFDEF MSWINDOWS}
   ReleaseCapture;
   case TComponent(Sender).Tag of
     0:SendMessage((Sender as TPanel).Handle, WM_SYSCOMMAND, $f012,0);
     1:SendMessage((Sender as TPanel).Parent.Handle, WM_SYSCOMMAND, $f012,0);
     9..11,17:begin x0:=x; y0:=y; end;  //用于改变“计算”窗口宽度
-    end;
+  end;
+  {$ENDIF}
 end;
 
 procedure TfrmMain.appendExpr(ID:integer);  //创建[计算器]控件
@@ -21931,7 +22284,10 @@ begin
     with butID do begin
       Parent:=frmMain;   Tag:= ID;  Cursor:=crHandPoint;
       OnMouseDown:=butIDMouseDown;  OnMouseUp:=butIDMouseUp;
-      BorderStyle:=bsSingle; Ctl3D:=false;
+      BorderStyle:=bsSingle;
+      {$IFDEF MSWINDOWS}
+      Ctl3D:=false;
+      {$ENDIF}
       end;
     if not New then begin TagN:='Arial'; TagS:=9; end;
     runID:=TSpeedButton.Create(self);
@@ -22202,7 +22558,13 @@ begin
     if U then begin //超链接
       st:=PAnsiChar(trim(edtLink.Text));  stL:=copy(st,1,4);
       if(stL='http')or(stL='www.')or FileExists(st)then
+      begin
+        {$IFDEF MSWINDOWS}
         ShellExecute(handle,nil, st, nil,nil,sw_ShowNormal);
+        {$ELSE}
+        OpenURL(st);
+        {$ENDIF}
+      end;
       end
     else begin //换页
       for i:=11 to ObjCount do with Obj[i]do if(Kind=14)then begin
@@ -23534,6 +23896,7 @@ begin
   menObjDel.Enabled:=true; 
 end;
 //================ 直接拖入图片、文件 =================
+{$IFDEF MSWINDOWS}
 procedure TfrmMain.WMDropFiles(var Msg: TWMDropFiles);//拦截WM_DROPFILES消息
   var fName :TDropFile;
       sForm, fromFile, tmpFile :string;
@@ -23619,6 +23982,7 @@ begin
   reRelate(MarkObj,MarkObj,false,true,false);
   SetProjection(true,false,8);
 end;
+{$ENDIF}
 
 procedure TfrmMain.menEditClick(Sender: TObject); //菜单：编辑
   var i,j,k :integer;  bb:boolean;
@@ -23678,11 +24042,12 @@ begin
   menTraceDel.Enabled:=(i<=ObjCount); //踪迹
 end;
 //================== 绘制颜色菜单 ====================
-procedure TfrmMain.butPaintColorEDrawItem(Sender: TObject; ACanvas: TCanvas; ARect: TRect; Selected: Boolean);
-  var i,t :integer;  c0,c1 :TColor;
+procedure TfrmMain.butPaintColorEDrawItem(Sender: TObject; ACanvas: TCanvas; ARect: TRect; State: TOwnerDrawState);
+  var i,t :integer;  c0,c1 :TColor; isSelected:boolean;
 begin
   t:=(Sender as TComponent).Tag;
-  if Selected then ACanvas.Brush.Color:= clHighlight
+  isSelected:=odSelected in State;
+  if isSelected then ACanvas.Brush.Color:= clHighlight
               else ACanvas.Brush.Color:= clMenu;
   ACanvas.FillRect(ARect);
   InflateRect(ARect, -1,-1); ARect.Left:=16;
@@ -23866,7 +24231,7 @@ begin
       setConstraints(550, IIFi(butCalcPad.NumGlyphs=1,166,140), 550,140);
       end;
     10:begin //文本
-      memText.Font.Name:=Obj[MarkObj].TagN;
+      memText.Font.Name:=ResolveFontName(Obj[MarkObj].TagN);
       memText.Font.Size:=Obj[MarkObj].TagS;
       memText.Font.Color:=Obj[MarkObj].TagC;
       setConstraints(380,140, 200,80);
@@ -23892,6 +24257,8 @@ begin
   pagControl.Height:=pnlControl.Height- IIFi(pnlCalcPad.Visible, 53,29);
 
   tabSheet.TabVisible:=true;
+  if pagControl.ActivePage <> tabSheet then
+    pagControl.ActivePage := tabSheet;
   if(Obj[ID].Kind in[14,17])then tabPath.Caption:=stMode[Obj[ID].Kind,Obj[ID].Mode];
 
   cheHide.Visible:= butTag in[9,11,13,16,30,40];
@@ -24010,8 +24377,10 @@ end;
 
 procedure TfrmMain.pnlControlMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
+  {$IFDEF MSWINDOWS}
   ReleaseCapture;
   SendMessage(pnlControl.Handle, WM_SYSCOMMAND, $f012,0);
+  {$ENDIF}
   x0:=x; y0:=y;
 end;
 
@@ -24409,7 +24778,7 @@ begin //
     for i:=0 to Count do stArray[i]:=stArray[i]+ copy(st,xPos,1);//合并尾字串
 
   imgLabel.Canvas.Font.Size:=12;
-  imgLabel.Canvas.Font.Name:='Arial';
+  imgLabel.Canvas.Font.Name:=ResolveFontName('Arial');
   imgLabel.Canvas.Rectangle(2,2, imgLabel.Width, imgLabel.Height);
   xPos:=10;
   for k:=0 to 4 do begin
@@ -24766,7 +25135,7 @@ begin
     end
   else begin //设置控件字体
     if(pnlFont.Tag=-3)then with Obj[1] do begin // 默认标签字体
-      tagFont.Name:=info[1];
+      tagFont.Name:=ResolveFontName(info[1]);
       tagFont.Size:=trunc(TagP.z);
       tagFont.Color:=Link[10];      ;
       tagFont.Style:=[];
@@ -24775,7 +25144,8 @@ begin
       if TagT[3]='1' then tagFont.Style:=tagFont.Style+[fsUnderline];
       end
     else with Obj[ID] do begin //对象字体
-      if TagN='' then TagN:='Arial';  tagFont.Name:= TagN;
+      if TagN='' then TagN:='Arial';
+      tagFont.Name:= ResolveFontName(TagN);
       if TagS<6  then TagS:=9;        tagFont.Size:= TagS;
       tagFont.Color:= TagC;
       tagFont.Style:=[];

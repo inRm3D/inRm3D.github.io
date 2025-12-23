@@ -5,7 +5,7 @@ unit Pars;
 {$ENDIF}
 interface
 
-uses Build, Parsglb, SysUtils, Math;
+uses Build, Parsglb, SysUtils, cgMath;
 
 type
 

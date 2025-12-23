@@ -3,7 +3,7 @@ unit CgGeometry;
 interface
 
 uses
-  SysUtils, CgTypes, CgUtils, Menus, Math;
+  SysUtils, CgTypes, CgUtils, Menus, cgMath;
 
 function EP(a:single):boolean;
 procedure cgSetPrecision(_eps: Single);
@@ -1159,4 +1159,3 @@ begin
 end;
 
 end.
-

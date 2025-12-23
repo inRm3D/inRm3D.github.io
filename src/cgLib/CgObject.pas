@@ -86,7 +86,7 @@ function cgCone(r, height: Single; segs: Integer): TCGObject;
 implementation
 
 uses
-  GL, Glut, CgGeometry, SysUtils;
+  cgGL, Glut, CgGeometry, SysUtils;
 
 {******************************************************************************}
 { TCGVERTEXARRAY IMPLEMENTATION                                                }

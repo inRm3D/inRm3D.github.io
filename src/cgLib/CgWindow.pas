@@ -5,7 +5,7 @@ unit CgWindow;
 interface
 
 uses
-  Forms, Classes, Windows, GL;
+  Forms, Classes, Windows, cgGL;
 
 type
   TCGForm = class(TForm)

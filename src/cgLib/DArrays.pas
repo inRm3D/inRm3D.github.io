@@ -23,7 +23,7 @@ type
 implementation
 
 uses
-  Windows, SysUtils;
+  SysUtils;
 
 constructor TDArray.Create;
 begin
@@ -56,7 +56,7 @@ end;
 
 procedure TDArray.GetItem(i: Integer; var Result);
 var
-  p: Pointer;
+  p: PByte;
 begin
 
   { Retrieve an item using a little pointer arithmetic. Make sure SizeOf(Result)
@@ -64,25 +64,28 @@ begin
     accepting only parameters of the correct type and then calling GetItem(). This
     method is protected, so you HAVE to write a descendant class to interface
     GetItem(). }
-  if i >= Count then raise Exception.Create('Array index out of bounds.')
-  else begin
-    p := FData;
-    INC(Integer(p), i * FItemSize);
-    CopyMemory(@Result, p, FItemSize);
+  if i >= Count then
+    raise Exception.Create('Array index out of bounds.')
+  else
+  begin
+    p := PByte(FData);
+    Inc(p, i * FItemSize);
+    Move(p^, Result, FItemSize);
   end;
 
 end;
 
 procedure TDArray.SetItem(i: Integer; var value);
 var
-  p: Pointer;
+  p: PByte;
 begin
 
   { Set an item. The comments on GetItem() apply here, too! }
-  if i >= Count then SetCount(i+1);
-  p := FData;
-  INC(Integer(p), FItemSize * i);
-  CopyMemory(p, @value, FItemSize);
+  if i >= Count then
+    SetCount(i + 1);
+  p := PByte(FData);
+  Inc(p, FItemSize * i);
+  Move(value, p^, FItemSize);
 
 end;
 

@@ -50,7 +50,7 @@ unit AES;
 interface
 
 uses
-  SysUtils, Classes, Math, ElAES;
+  SysUtils, Classes, cgMath, ElAES;
 
 const
   SDestStreamNotCreated = 'Dest stream not created.';

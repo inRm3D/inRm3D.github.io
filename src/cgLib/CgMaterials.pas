@@ -44,7 +44,7 @@ function cgDefaultMaterial: TCGMaterial;
 implementation
 
 uses
-  GL;
+  cgGL;
 
 function cgMaterial(mAmbient, mDiffuse, mSpecular: TCGColorF; mShininess: Single;
                     mEmission: TCGColorF): TCGMaterial;

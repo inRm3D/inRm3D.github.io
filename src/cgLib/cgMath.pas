@@ -7,7 +7,7 @@
 {                                                                         }
 { *********************************************************************** }
 
-unit Math;
+unit cgMath;
 
 { This unit contains high-performance arithmetic, trigonometric, logarithmic,
   statistical, financial calculation and FPU routines which supplement the math
@@ -40,7 +40,7 @@ unit Math;
 
 interface
 
-uses SysUtils, Types;
+uses SysUtils;
 
 const   { Ranges of the IEEE floating point types, including denormals }
   MinSingle   =  1.5e-45;
