@@ -1152,6 +1152,8 @@ type
     procedure OpenPicture( ID:integer; isPicture, bDraw:boolean);
     procedure ReRelate( first,last :integer; bBlock,bOnlyDraw,bTextDraw :boolean);      //重建关联构件
     procedure ShowProp( ID :integer; isMove:boolean);        //显示构件属性值
+    procedure NormalizeValueFieldColors;
+    procedure AdjustPropertyPanelMetrics;
     procedure ShowObjProp(ID,x,y :integer; bL,bR :boolean); //属性控件显示状态 返回属性框高度
     procedure setPopMenu( bOpen :boolean; name :string);//更新文件菜单
     procedure AddItem( ID,t:integer;  bFist,bEnable,bBreak:boolean);
@@ -1272,6 +1274,61 @@ implementation
 
 uses
   LConvEncoding, LazUTF8;
+
+var
+  PropValueColor: TColor = clWindow;
+
+function CalculateValueFieldColor: TColor;
+var
+  rgb: TColorRef;
+  lum: Integer;
+begin
+  rgb := ColorToRGB(clWindow);
+  lum := (GetRValue(rgb) * 299 + GetGValue(rgb) * 587 + GetBValue(rgb) * 114) div 1000;
+  if lum < 120 then
+    Result := RGBToColor(245, 245, 245)
+  else
+    Result := clWindow;
+end;
+
+procedure TfrmMain.NormalizeValueFieldColors;
+  procedure ApplyColor(Parent: TWinControl);
+  var
+    i: Integer;
+    lbl: TLabel;
+  begin
+    for i := 0 to Parent.ControlCount - 1 do
+    begin
+      if Parent.Controls[i] is TLabel then
+      begin
+        lbl := TLabel(Parent.Controls[i]);
+        if (not lbl.Transparent) and (not lbl.ParentColor) and (lbl.Color = clWindow) then
+          lbl.Color := PropValueColor;
+      end;
+      if Parent.Controls[i] is TWinControl then
+        ApplyColor(TWinControl(Parent.Controls[i]));
+    end;
+  end;
+begin
+  if (tabProp = nil) or (PropValueColor = clWindow) then
+    Exit;
+  ApplyColor(tabProp);
+end;
+
+procedure TfrmMain.AdjustPropertyPanelMetrics;
+var
+  minWidth: Integer;
+begin
+{$IFNDEF MSWINDOWS}
+  minWidth := Scale96ToScreen(220);
+  if pnlProp.Constraints.MinWidth < minWidth then
+    pnlProp.Constraints.MinWidth := minWidth;
+  if pnlProp.Width < minWidth then
+    pnlProp.Width := minWidth;
+  if tabProp.TabWidth < Scale96ToScreen(60) then
+    tabProp.TabWidth := Scale96ToScreen(60);
+{$ENDIF}
+end;
 
 function NeedsEncodingFix(const Value: AnsiString): Boolean; inline;
 begin
@@ -1962,7 +2019,8 @@ begin
     with Canvas.Font do begin
       Name:=frmMain.ResolveFontName(Obj[ID].TagN);
       Size:=trunc(Obj[ID].TagS*subRatio);
-      Color:=Obj[ID].TagC;  if(Color=frmMain.Color)then Color:=Color xor $FFFF;
+      Color:=Obj[ID].TagC;
+      if(Color=Obj[1].LinkName[0])then Color:=Color xor $FFFF;
       if Obj[ID].TagT[1]='1'then Style:=Style+[fsBold];
       if Obj[ID].TagT[2]='1'then Style:=Style+[fsItalic];
       if Obj[ID].TagT[3]='1'then Style:=Style+[fsUnderline];
@@ -12586,9 +12644,9 @@ begin
     if(ii>0)then varC.Caption:=varC.Caption+','+IDtoS(ii);
     end;
   if Kind in[10,14]  //[文字]、[计算]
-    then begin varC.Color:= clWindow;   varC.Font.Color:= clBlack; end
+    then begin varC.Color:= PropValueColor;   varC.Font.Color:= clBlack; end
     else begin
-      if(gg>0)and bb then varC.Color:= clWindow else varC.color:=cgColorFToTColor( Color);
+      if(gg>0)and bb then varC.Color:= PropValueColor else varC.color:=cgColorFToTColor( Color);
       end;
   if(Kind in[3,4,6,7,9,11])then varC1.Color:=cgColorFToTColor( ColorB);
   varC1.Caption:=varC.Caption;
@@ -14505,7 +14563,6 @@ begin
   with Obj[1] do begin //
     if NewPos and(info[0][17]='0')and not isUseToControler then //
       setWindowFrame(true);
-    frmMain.Color:=LinkName[0];
     varScreen.Color:=LinkName[0];
     backColor:=cgTColorToCGColorF( LinkName[0], 1); //背景色
     glClearColor( BackColor.R, BackColor.G, BackColor.B, 1.0);
@@ -16553,6 +16610,9 @@ begin
   Screen.SystemFont.Name := ResolveFontName(Screen.SystemFont.Name);
   Font.Name := Screen.SystemFont.Name;
 {$ENDIF}
+  PropValueColor := CalculateValueFieldColor;
+  NormalizeValueFieldColors;
+  AdjustPropertyPanelMetrics;
   labHint.Top:=-20;   edtTemp.Top:=-20;// edtTemp的唯一用处是接受focus
   vFile:= Trim( ParamStr(1) ); //如果用"命令行+文件名"的形式或从资源管理器中直接打开“.sgf”文件
   i:=Pos('||',vFile); //"||"后跟参数串
@@ -19141,7 +19201,7 @@ begin
     -1:begin //varC 颜色关联
       len:=IIFf(j=0, p4.w, (Obj[g].L-trunc(Obj[g].L))*200);
       Link[6]:= j; //连接构件
-      if j>0 then varC.Color:=clWindow
+      if j>0 then varC.Color:=PropValueColor
              else begin color:=cgTColorToCGColorF( trunc(len), StrToFloat( varA.Caption));
                         varC.Color:=cgColorFToTColor(color);
                         end;
@@ -21404,8 +21464,8 @@ begin
       GetTextList(MarkObj);
       end
   else begin //背景色
-    frmMain.Color:=Color;
     Obj[1].LinkName[0]:=Color;
+    varScreen.Color:=Color;
     BackColor:=cgTColorToCGColorF( Color, 1.0);
     glClearColor( BackColor.R, BackColor.G, BackColor.B, 1.0);
     AxisColor:= getScrColor( BackColor);
@@ -24425,13 +24485,13 @@ begin
     Canvas.Rectangle(0,0,Width,Height); //填充背景色
 
     Canvas.Pen.Color:=cgColorFToTColor(Obj[ID].Color);//
-    if Canvas.Pen.Color=frmMain.Color then Canvas.Pen.Color:=frmMain.Color xor $FFFF;
+    if Canvas.Pen.Color=varScreen.Color then Canvas.Pen.Color:=varScreen.Color xor $FFFF;
 
     Canvas.Brush.Color:=Canvas.Pen.Color;
     Canvas.RoundRect(varBlockPos, 2, Width, 7, 2,2); //滑竿
 
     Canvas.Pen.Color:=cgColorFToTColor(Obj[ID].ColorB);//clRed;
-    if Canvas.Pen.Color=frmMain.Color then Canvas.Pen.Color:=frmMain.Color xor $FFFF;
+    if Canvas.Pen.Color=varScreen.Color then Canvas.Pen.Color:=varScreen.Color xor $FFFF;
     Canvas.Brush.Color:=Canvas.Pen.Color;
     with Obj[ID]do
       p:= trunc((L-p2.x)/(p2.z-p2.x) *maxTrace)+ varBlockPos;

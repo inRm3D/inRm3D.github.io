@@ -14,7 +14,9 @@
 (* 以下函数方法 作者:                                         *)
 (*                    杨泽晖      2004.12.04                  *)
 (*                                                            *)
-(* function StrToHex(Value: string): string;                  *)
+(* function StrToHex(Value: string): string;
+{$codepage utf8}
+                  *)
 (* function HexToStr(Value: string): string;                  *)
 (* function EncryptString(Value: string; Key: string;         *)
 (*   KeyBit: TKeyBit = kb128): string;                        *)

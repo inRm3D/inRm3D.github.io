@@ -1,4 +1,5 @@
 unit BMP;
+{$codepage utf8}
 interface
 uses
   Windows, SysUtils,  Graphics, cgGL, JPEG, GIFimage;   // OpenGL,Dialogs,
