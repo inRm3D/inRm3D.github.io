@@ -15031,6 +15031,7 @@ function TfrmMain.OpenFile( FileName :string; isFile,addPage :boolean):integer; 
       if st='' then result:=0 else result:= StrToInt(st);
     end;
 begin
+  FillChar(blankObj, SizeOf(blankObj), 0);
   result:=0;   bOpenFile:=true;
   j:=High(Obj)-1;
   for i:=1 to j do with Obj[i]do begin
