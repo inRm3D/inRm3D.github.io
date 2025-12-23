@@ -167,7 +167,7 @@ function getTextureFromCRT(ID:integer; texID:Cardinal; pTex:pointer; w,h,l,t:int
 begin
   Result := 0;
 end;
-//============= å¾åè½¬æ¢ä¸ºææ¬ ==============
+//============= 图像转换为文本 ==============
 function ImgToTxt(ID:integer; ImgFile, sFormat :string): AnsiString;
   var
     FileStream     : TFileStream;
@@ -195,9 +195,9 @@ begin
       end;
     Result :=DataStr;
 {
-    AssignFile( G, 'MyText.txt'); //è·åæä»¶å¥æ
-    ReWrite( G);          //æå¼ææ¬æä»¶
-      WriteLn( G, ExtractFileExt(ImgFile));//æ©å±å
+    AssignFile( G, 'MyText.txt'); //获取文件句柄
+    ReWrite( G);          //打开文本文件
+      WriteLn( G, ExtractFileExt(ImgFile));//扩展名
       WriteLn( G, DataStr);
     closeFile( G); }
   finally
@@ -205,10 +205,10 @@ begin
     FreeAndNil(StringStream);
   end;
 end;
-//================= ææ¬è½¬æ¢ä¸ºçº¹ç ====================
+//================= 文本转换为纹理 ====================
 function TxtToImg(ID:integer; texID:Cardinal; sData, sFormat :AnsiString;
               var w0,h0:Integer; var kW,kH :single;
-              Trans:Boolean): Cardinal;//ææ¬è½¬æ¢ä¸ºçº¹ç
+              Trans:Boolean): Cardinal;//文本转换为纹理
   var
     buf       : array of Byte;
     ByteFile  : file of byte;
@@ -223,7 +223,7 @@ begin
     buf[i - 1] := StrToInt('$' + copy(sData, (i - 1) * 2 + 1, 2));
   tmpFileName := ExtractFilePath(ParamStr(0))+'tmp'+sFormat;
 
-  AssignFile(ByteFile, tmpFileName); //åå»ºä¸´æ¶æä»¶
+  AssignFile(ByteFile, tmpFileName); //创建临时文件
   Rewrite(ByteFile);
   for i := 0 to iSize - 1 do Write(ByteFile, buf[i]);
   CloseFile(ByteFile);
@@ -231,7 +231,7 @@ begin
     BMP:= GetBitmapFromFile(tmpFileName,sFormat);
   result:= myLoadTexture(ID,texID, '', BMP, w0,h0, kW,kH, trans); // BMP
   BMP.Free;
-  DeleteFile(tmpFileName); //å é¤ä¸´æ¶æä»¶
+  DeleteFile(tmpFileName); //删除临时文件
 end;
 
 end.

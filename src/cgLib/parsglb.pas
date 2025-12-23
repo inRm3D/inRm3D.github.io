@@ -1,4 +1,5 @@
 unit Parsglb;
+{$codepage utf8}
 {$O+,F+}
 {$IFDEF WIN32}
 {$H-}
@@ -322,8 +323,9 @@ const
 
 type
   TPlaneStiple=array[2..9,0..31]of longword;
-  TstMode=array[1..20, 1..19]of string[24];
-  TstAxis=array[1..7]of string[10];
+  TUTF8Str = UTF8String;
+  TstMode=array[1..20, 1..19]of TUTF8Str;
+  TstAxis=array[1..7]of TUTF8Str;
   TmNum=array[1..26]of pAnsiChar;
 const
   mNumC:TmNum  //中文光标名称

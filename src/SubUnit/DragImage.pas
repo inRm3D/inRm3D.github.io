@@ -172,7 +172,7 @@ end;
 procedure TfrmDrag.CopyImg(bFresh, bAnimat :boolean);
   var vas :TCanvas;   BMP :TBitmap;  DC :HDC; //桌面句柄
 begin
-  frmDrag.Color:=frmMain.Color;
+  frmDrag.Color:=Obj[1].LinkName[0];
   IMG.Picture.Graphic := nil;
   if not bAnimat then begin
     setWindows(true); //窗口上挖个洞
