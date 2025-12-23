@@ -1006,7 +1006,14 @@ type
     procedure ApplyDPIScaling;
     function GetTargetDPI: Integer;
     procedure UpdateObjListMetrics(TargetPPI: Integer);
+    function GetObjListTextHeight: Integer;
     function GetObjListRowHeight: Integer;
+    procedure UpdatePropertyLayoutMetrics;
+    function ScaleDesignValue(Value: Integer): Integer;
+    {$IFNDEF MSWINDOWS}
+    procedure PanelDragMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+    procedure PanelDragMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    {$ENDIF}
   public
     BackColor, AxisColor, gridColor :TcgColorF;
     {--- view ---}
@@ -1254,6 +1261,13 @@ var
   JoinLink:Array[0..maxObj, 0..1]of integer;//两点合并时，统计子对象数目
   ObjListID:Array[0..maxObj]of TObjList; //构件列表项的对象ID
   ObjListRowHeight: Integer = 16; //对象列表单行高度
+  PropertyRowHeight: Integer = 15;
+  PropertyBaseHeight: Integer = 74;
+  PropertyCollapsedHeight: Integer = 44;
+{$IFNDEF MSWINDOWS}
+  DraggingPanel: TWinControl;
+  DraggingPanelOffset: TPoint;
+{$ENDIF}
   FlashSize: integer; //用于面对指定场景、合并
   rX,rY,rZ, rX0,rY0,rZ0, rX1,rY1,rZ1, rX2,rY2,rZ2, r0,rView :single; //水平视角、垂直视角、圆周上的约束点被拖动时的初始角度
   OldPage,NewPage,Layer :integer;
@@ -1381,6 +1395,14 @@ begin
     Result := DefaultDesignDPI;
 end;
 
+function TfrmMain.ScaleDesignValue(Value: Integer): Integer;
+begin
+  if PixelsPerInch <= 0 then
+    Result := Value
+  else
+    Result := (Value * PixelsPerInch + DefaultDesignDPI div 2) div DefaultDesignDPI;
+end;
+
 procedure TfrmMain.ApplyDPIScaling;
 var
   targetPPI, currentPPI, newFontSize: Integer;
@@ -1393,6 +1415,7 @@ begin
   if targetPPI = currentPPI then
   begin
     UpdateObjListMetrics(targetPPI);
+    UpdatePropertyLayoutMetrics;
     AdjustPropertyPanelMetrics;
     Exit;
   end;
@@ -1414,12 +1437,26 @@ begin
     EnableAlign;
   end;
   UpdateObjListMetrics(targetPPI);
+  UpdatePropertyLayoutMetrics;
   AdjustPropertyPanelMetrics;
+end;
+
+procedure TfrmMain.UpdatePropertyLayoutMetrics;
+begin
+  PropertyRowHeight := ScaleDesignValue(15);
+  if PropertyRowHeight < 15 then
+    PropertyRowHeight := 15;
+  PropertyBaseHeight := ScaleDesignValue(74);
+  if PropertyBaseHeight <= PropertyRowHeight then
+    PropertyBaseHeight := PropertyRowHeight + ScaleDesignValue(20);
+  PropertyCollapsedHeight := ScaleDesignValue(44);
+  if PropertyCollapsedHeight < PropertyRowHeight then
+    PropertyCollapsedHeight := PropertyRowHeight;
 end;
 
 procedure TfrmMain.UpdateObjListMetrics(TargetPPI: Integer);
 var
-  newHeight, textHeight: Integer;
+  newHeight, textHeight, padding: Integer;
 begin
   if TargetPPI <= 0 then
     TargetPPI := DefaultDesignDPI;
@@ -1427,13 +1464,43 @@ begin
   if newHeight < 16 then
     newHeight := 16;
 
-  textHeight := Abs(Font.Height);
+  textHeight := GetObjListTextHeight;
+  if textHeight <= 0 then
+    textHeight := Abs(Font.Height);
   if textHeight <= 0 then
     textHeight := 12;
-  if newHeight < textHeight + 4 then
-    newHeight := textHeight + 4;
+  padding := ScaleDesignValue(6);
+  if padding < 4 then
+    padding := 4;
+  if newHeight < textHeight + padding then
+    newHeight := textHeight + padding;
 
   ObjListRowHeight := newHeight;
+end;
+
+function TfrmMain.GetObjListTextHeight: Integer;
+var
+  measureBitmap: TBitmap;
+begin
+  Result := 0;
+  if Assigned(imgList) and Assigned(imgList.Picture) then
+  begin
+    if imgList.Picture.Bitmap.Width = 0 then
+      imgList.Picture.Bitmap.SetSize(1, 1);
+    imgList.Picture.Bitmap.Canvas.Font.Assign(Font);
+    Result := imgList.Picture.Bitmap.Canvas.TextHeight('Hg');
+  end;
+  if Result <= 0 then
+  begin
+    measureBitmap := TBitmap.Create;
+    try
+      measureBitmap.SetSize(1, 1);
+      measureBitmap.Canvas.Font.Assign(Font);
+      Result := measureBitmap.Canvas.TextHeight('Hg');
+    finally
+      measureBitmap.Free;
+    end;
+  end;
 end;
 
 function TfrmMain.GetObjListRowHeight: Integer;
@@ -11202,7 +11269,7 @@ end;
 procedure TfrmMain.HideAllPanel;
 begin
   pnlControl.Hide;
-  pnlProp.Visible:=bNail;   pnlProp.Height:=44;
+  pnlProp.Visible:=bNail;   pnlProp.Height:=PropertyCollapsedHeight;
   pnlShow.Enabled:=true;
   tlbMain.Enabled:=true;    tlbMenu.Enabled:=true;
   cheCutter.Hide;
@@ -11275,6 +11342,7 @@ begin
     if(Obj[k].Son)           then ObjListID[index].State[5]:='1';
     With imgList.Picture.Bitmap do begin Width:=imgList.Width; Height:=imgList.Height; end;
     end;
+  imgList.Picture.Bitmap.Canvas.Font.Assign(Font);
   With imgList.Picture.Bitmap.Canvas do begin
     Brush.Color:=clWhite; //clSkyBlue; //clGreen;//
     if(Obj[ID].Hot)then Brush.Color:=clHighlight; //clBlue; //选定时的颜色
@@ -13714,12 +13782,15 @@ begin
   if ID>0 then //设置属性控件的位置
     for i:= 0 to 31 do
       if pnlArray[i].Visible then begin
-        inc(CtrlNum); pnlArray[i].Top:= CtrlNum*15;
+        inc(CtrlNum); pnlArray[i].Top:= CtrlNum*PropertyRowHeight;
         end;
   end; //with
 Next:
   with pnlProp do begin
-    pnlProp.Height:= IIFi(ID>0, CtrlNum*15+74, 343); //属性框高度 341 230
+    if ID>0 then
+      pnlProp.Height:=CtrlNum*PropertyRowHeight+PropertyBaseHeight
+    else
+      pnlProp.Height:=ScaleDesignValue(343); //属性框高度
     if(Top+Height>frmMain.ClientHeight)or(Top<0)then Top:=24;
     if(Left+Width>frmMain.ClientWidth)or(Left<0)then Left:=frmMain.ClientWidth-Width;
     Visible:=bNail or butProp.Down;
@@ -13729,7 +13800,10 @@ end;
 procedure TfrmMain.tabPropChange(Sender: TObject);
 begin
   if bAdd then BreckAdding;
-  pnlProp.Height:=IIFi(tabProp.TabIndex=0,IIFi(MarkObj<11,44,CtrlNum*15+74),343);
+  if tabProp.TabIndex=0 then
+    pnlProp.Height:=IIFi(MarkObj<11,PropertyCollapsedHeight,CtrlNum*PropertyRowHeight+PropertyBaseHeight)
+  else
+    pnlProp.Height:=ScaleDesignValue(343);
   posEdit.Hide;  pnlColorPad.Hide;  
 end;
 //======================= 坐标指示线 ========================
@@ -15722,7 +15796,7 @@ begin
     end;//for...with...if...begin
   ObjListUpdate(0,false);
   MarkObj:=0; pnlShow.Visible:=false;
-  pnlProp.Visible:=bNail; pnlProp.Height:=44;
+  pnlProp.Visible:=bNail; pnlProp.Height:=PropertyCollapsedHeight;
 OnlyDelPaint:
   if(PaintListNum>0)then PaintDel; //删除手绘线
   SetProjection(true,false,2);
@@ -16755,6 +16829,14 @@ begin
   AdjustPropertyPanelMetrics;
   Scaled := True;
   ApplyDPIScaling;
+{$IFNDEF MSWINDOWS}
+  pnlFPS.OnMouseMove:=PanelDragMouseMove;
+  pnlFPS.OnMouseUp:=PanelDragMouseUp;
+  pnlListTitle.OnMouseMove:=PanelDragMouseMove;
+  pnlListTitle.OnMouseUp:=PanelDragMouseUp;
+  pnlResult.OnMouseMove:=PanelDragMouseMove;
+  pnlResult.OnMouseUp:=PanelDragMouseUp;
+{$ENDIF}
   labHint.Top:=-20;   edtTemp.Top:=-20;// edtTemp的唯一用处是接受focus
   vFile:= Trim( ParamStr(1) ); //如果用"命令行+文件名"的形式或从资源管理器中直接打开“.sgf”文件
   i:=Pos('||',vFile); //"||"后跟参数串
@@ -16944,7 +17026,7 @@ begin
     end;
 //  setLength(BackObj, UndoTime+1);
   hotEdit:=edtZ;      hotID:=0;
-  pnlProp.Top:=24;    pnlProp.Height:=44;
+  pnlProp.Top:=24;    pnlProp.Height:=PropertyCollapsedHeight;
   edtZmin.EditLabel.Caption:='z=';
   pnlShow.Left:=tlbMain.Left+ barPage.Left+2;   pnlShow.top:= 1;
   pnlControl.Left:=28;      pnlControl.Top:= 60;
@@ -18577,7 +18659,7 @@ begin
     lastSel:=MarkObj;
     SelMultyObj(MarkObj,hit,hits,x,y);
     if not bR and(SelRec[0]=0)then begin
-      butProp.Down:=false; pnlProp.Visible:=bNail; pnlProp.Height:=44;
+      butProp.Down:=false; pnlProp.Visible:=bNail; pnlProp.Height:=PropertyCollapsedHeight;
       end;
     end;
   if bDouble then begin
@@ -22118,6 +22200,11 @@ begin
 end;
 
 procedure TfrmMain.pnlCalcMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+{$IFNDEF MSWINDOWS}
+var
+  ctrl: TWinControl;
+  origin: TPoint;
+{$ENDIF}
 begin
   {$IFDEF MSWINDOWS}
   ReleaseCapture;
@@ -22127,7 +22214,59 @@ begin
     9..11,17:begin x0:=x; y0:=y; end;  //用于改变“计算”窗口宽度
   end;
   {$ENDIF}
+  {$IFNDEF MSWINDOWS}
+  if Button=mbLeft then begin
+    ctrl:=nil;
+    if Sender is TWinControl then
+      case TComponent(Sender).Tag of
+        0:ctrl:=Sender as TWinControl;
+        1:if (Sender as TWinControl).Parent is TWinControl then
+             ctrl:=(Sender as TWinControl).Parent as TWinControl;
+      end;
+    if Assigned(ctrl) then begin
+      DraggingPanel:=ctrl;
+      origin:=ctrl.ClientToScreen(Point(0,0));
+      DraggingPanelOffset.X:=Mouse.CursorPos.X-origin.X;
+      DraggingPanelOffset.Y:=Mouse.CursorPos.Y-origin.Y;
+    end;
+  end;
+  {$ENDIF}
 end;
+
+{$IFNDEF MSWINDOWS}
+procedure TfrmMain.PanelDragMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+var
+  ctrl: TWinControl;
+  parentPos, screenPos: TPoint;
+begin
+  if (DraggingPanel=nil) then
+    Exit;
+  if not(ssLeft in Shift) then begin
+    DraggingPanel:=nil;
+    Exit;
+  end;
+  ctrl:=DraggingPanel;
+  if ctrl.Parent=nil then
+    Exit;
+  screenPos:=Mouse.CursorPos;
+  Dec(screenPos.X, DraggingPanelOffset.X);
+  Dec(screenPos.Y, DraggingPanelOffset.Y);
+  parentPos:=ctrl.Parent.ScreenToClient(screenPos);
+  if parentPos.X<0 then parentPos.X:=0;
+  if parentPos.Y<0 then parentPos.Y:=0;
+  if parentPos.X>ctrl.Parent.ClientWidth-ctrl.Width then
+    parentPos.X:=ctrl.Parent.ClientWidth-ctrl.Width;
+  if parentPos.Y>ctrl.Parent.ClientHeight-ctrl.Height then
+    parentPos.Y:=ctrl.Parent.ClientHeight-ctrl.Height;
+  ctrl.Left:=parentPos.X;
+  ctrl.Top:=parentPos.Y;
+end;
+
+procedure TfrmMain.PanelDragMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  DraggingPanel:=nil;
+end;
+{$ENDIF}
 
 procedure TfrmMain.appendExpr(ID:integer);  //创建[计算器]控件
   var i:integer;  he,wi:single; pp:TcgVector;
