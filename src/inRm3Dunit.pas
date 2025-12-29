@@ -1500,12 +1500,33 @@ begin
         for k := 0 to row.ControlCount - 1 do
         begin
           ctrl := row.Controls[k];
-          if (ctrl.Align = alNone) and (ctrl.Height < rowHeight)
-            and (ctrl.Anchors * [akTop, akBottom] = [akTop]) then
+          if (ctrl.Align = alNone) and (ctrl.Anchors * [akTop, akBottom] = [akTop]) then
           begin
-            delta := (rowHeight - ctrl.Height) div 2;
-            if ctrl.Top <> delta then
-              ctrl.Top := delta;
+            if (ctrl is TLabel) and (TLabel(ctrl).Cursor = crHandPoint)
+              and (not TLabel(ctrl).AutoSize) then
+            begin
+              delta := rowHeight - ScaleDesignValue(4);
+              if delta < ctrl.Height then
+                delta := ctrl.Height;
+              if delta > rowHeight then
+                delta := rowHeight;
+              if ctrl.Height <> delta then
+                ctrl.Height := delta;
+            end;
+            if ctrl.Height < rowHeight then
+            begin
+              delta := (rowHeight - ctrl.Height) div 2;
+              if (ctrl is TLabel) and (TLabel(ctrl).Cursor = crHandPoint)
+                and (not TLabel(ctrl).AutoSize) then
+              begin
+                if delta > 0 then
+                  Dec(delta, ScaleDesignValue(2));
+                if delta < 0 then
+                  delta := 0;
+              end;
+              if ctrl.Top <> delta then
+                ctrl.Top := delta;
+            end;
           end;
         end;
       end;
@@ -20529,11 +20550,11 @@ begin
   if(ssLeft in shift)and(t<>26)then with posEdit do begin
     Text:=TLabel(Sender).Caption;
     lbl:=TControl(Sender);
-    if Assigned(Parent) then begin
-      p:=lbl.ClientToScreen(Point(0,0));
+    if Assigned(Parent) and Assigned(lbl.Parent) then begin
+      p:=lbl.Parent.ClientToScreen(Point(0,0));
       p:=Parent.ScreenToClient(p);
-      Left:=p.X;
-      Top:=p.Y + (lbl.Height-Height) div 2;
+      Left:=p.X + lbl.Left;
+      Top:=p.Y + (lbl.Parent.Height-Height) div 2 - ScaleDesignValue(1);
       Width:=lbl.Width;
     end else begin
       Left:=lbl.Left;
