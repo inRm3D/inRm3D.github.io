@@ -8,7 +8,7 @@ then `./lib/x86\_64-linux/inRm3D`
 
 currrent bug:
 
-1. all the text become || ||| , maybe bmp is the problem.
+1. ~~all the text become || ||| , maybe bmp is the problem.~~ thanks for GPT-5.2-Codex xhigh
 2. the shortcut is conflict with input box, e.g. type `i`.
 3. Property\_P is too narrow.
 

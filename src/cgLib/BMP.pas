@@ -21,6 +21,56 @@ function TxtToImg(ID:integer; texID:Cardinal; sData, sFormat :AnsiString;
 
 implementation
 //uses inRm3Dunit;
+{$IFDEF FPC}
+function CopyBitmapToBGR(const Src: TBitmap; Dest: Pointer): Boolean;
+var
+  bitsPerPixel, bytesPerPixel, bytesPerLine: Integer;
+  x, y: Integer;
+  srcLine, dstLine: PByte;
+begin
+  Result := False;
+  if (Src.Width <= 0) or (Src.Height <= 0) or (Dest = nil) then
+    Exit;
+  bytesPerLine := 0;
+  if Src.Height > 1 then
+    bytesPerLine := Abs(PtrInt(Src.ScanLine[1]) - PtrInt(Src.ScanLine[0]));
+  if bytesPerLine >= Src.Width * 4 then
+    bytesPerPixel := 4
+  else if bytesPerLine >= Src.Width * 3 then
+    bytesPerPixel := 3
+  else
+  begin
+    bitsPerPixel := Src.RawImage.Description.BitsPerPixel;
+    if bitsPerPixel = 0 then
+    begin
+      case Src.PixelFormat of
+        pf32bit: bitsPerPixel := 32;
+        pf24bit: bitsPerPixel := 24;
+      else
+        bitsPerPixel := 32;
+      end;
+    end;
+    bytesPerPixel := (bitsPerPixel + 7) div 8;
+  end;
+  if not (bytesPerPixel in [3,4]) then
+    Exit;
+  for y := 0 to Src.Height - 1 do
+  begin
+    srcLine := PByte(Src.ScanLine[Src.Height - 1 - y]);
+    dstLine := PByte(Dest) + y * Src.Width * 3;
+    if bytesPerPixel = 3 then
+      Move(srcLine^, dstLine^, Src.Width * 3)
+    else
+      for x := 0 to Src.Width - 1 do
+      begin
+        dstLine[x * 3    ] := srcLine[x * 4    ]; // B
+        dstLine[x * 3 + 1] := srcLine[x * 4 + 1]; // G
+        dstLine[x * 3 + 2] := srcLine[x * 4 + 2]; // R
+      end;
+  end;
+  Result := True;
+end;
+{$ENDIF}
 procedure SwapRGB(data : Pointer; Size : Integer);
 var
   Pixels: ^TRGB;
@@ -79,7 +129,8 @@ begin
     SourceBmp:= GetBitmapFromFile(TexFile,format)
   else
     SourceBmp:=BMP1;
-  SourceBmp.PixelFormat := pf24bit;
+  if not (SourceBmp.PixelFormat in [pf24bit, pf32bit]) then
+    SourceBmp.PixelFormat := pf32bit;
   w0:=SourceBmp.Width;
   h0:=SourceBmp.Height;
   setNewSize( w0,h0, W,H); //将图片尺寸圆整到2的整数幂
@@ -87,19 +138,27 @@ begin
   if (W <> w0) or (H <> h0) then
   begin
     WorkingBmp := TBitmap.Create;
-    WorkingBmp.PixelFormat := pf24bit;
+    if SourceBmp.PixelFormat in [pf24bit, pf32bit] then
+      WorkingBmp.PixelFormat := SourceBmp.PixelFormat
+    else
+      WorkingBmp.PixelFormat := pf32bit;
     WorkingBmp.SetSize(W, H);
     WorkingBmp.Canvas.Brush.Color := clBlack;
     WorkingBmp.Canvas.FillRect(Rect(0,0,W,H));
     WorkingBmp.Canvas.Draw(0, H - h0, SourceBmp);
   end;
-  GetMem(Tex, W * H *3);
+  GetMem(Tex, W * H * 3);
   pTex:=Tex;
-  for y := 0 to H - 1 do
+{$IFDEF FPC}
+  if not CopyBitmapToBGR(WorkingBmp, Tex) then
+{$ENDIF}
   begin
-    DstLine := PByte(Tex) + y * W * 3;
-    SrcLine := WorkingBmp.ScanLine[(WorkingBmp.Height - 1) - y];
-    Move(SrcLine^, DstLine^, W * 3);
+    for y := 0 to H - 1 do
+    begin
+      DstLine := PByte(Tex) + y * W * 3;
+      SrcLine := WorkingBmp.ScanLine[(WorkingBmp.Height - 1) - y];
+      Move(SrcLine^, DstLine^, W * 3);
+    end;
   end;
   if TexFile>''then SourceBmp.Free;
   if WorkingBmp <> SourceBmp then WorkingBmp.Free;
@@ -113,9 +172,10 @@ end;
        //载入纹理并设置透明色的Alpha值
 function myLoadTexture(ID:integer; texID:Cardinal; TexFile :string; BMP:TBitmap;
               var w0,h0:integer; var kW,kH:single; Trans:boolean):Cardinal;
-  var i,j,k0,k,L,W,H :integer; bTrans:byte;
+  var i,j,k0,k,W,H :integer; bTrans:byte;
       format :string;
-      pix0, pix1 :^TRGBA;
+      pix0 :^TRGB;
+      pix1 :^TRGBA;
       pRGB, pRGBA :pointer; //源纹理和目标纹理的指针
       test :TRGBA;
 begin
@@ -136,17 +196,16 @@ begin
 
   if trans then bTrans:=0 else bTrans:=255; //透明纹理 为每个像素添加Alpha分量
   GetMem( pRGBA, W*H* 4);  //分配目标纹理的内存
-  pix0:= pRGB; //读取图片左下角的颜色 注意：纹理的格式是RGB，而BMP图象格式是BGR。
-  test.R:=pix0.B;   test.G:=pix0.G;   test.B:=pix0.R; //
-  L:=0; if W>w0 then L:=(w0-trunc(W/2)) mod 4; //当图片宽度不是2的整数幂时,每行之间用数目不等的0区分
+  pix0:= pRGB; //读取图片左下角的颜色 注意：纹理的格式是BGR。
+  test.R:=pix0.R;   test.G:=pix0.G;   test.B:=pix0.B; //
   for i:= 0 to H-1 do //
     for j:= 0 to W-1 do begin //
       k:=W*i+j;
       pix1:= Pointer(PtrUInt(pRGBA) + PtrUInt(k)*SizeOf(TRGBA)); //目标像素
       if(i<h0)and(j<w0)then begin
-        k0:=w0*i+j;
-        pix0:= Pointer(PtrUInt(pRGB) + PtrUInt(k0)*3 + PtrUInt(i)*L); //源像素
-        pix1.R:=pix0.B;  pix1.G:=pix0.G;  pix1.B:=pix0.R;
+        k0:=W*i+j;
+        pix0:= Pointer(PtrUInt(pRGB) + PtrUInt(k0)*3); //源像素
+        pix1.R:=pix0.R;  pix1.G:=pix0.G;  pix1.B:=pix0.B;
         if(pix1.R=test.R)and(pix1.G=test.G)and(pix1.B=test.B)
           then Pix1.A:=bTrans else Pix1.A:=255;
         end
