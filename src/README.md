@@ -16,8 +16,8 @@ Thanks for gpt5-codex-high for porting this old codebase.
 
 ---
 
-Use Delphi 7 to build.
+~~Use Delphi 7 to build.~~
 
-Now is migrating to Delphi 11, with embarcadero.
+~~Now is migrating to Delphi 11, with embarcadero.~~
 
-All right reserved. Old code is just for display.
+~~All right reserved. Old code is just for display.~~

@@ -20405,7 +20405,7 @@ begin //
 end;
 
 procedure TfrmMain.varAMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-  var i,j,t,k,iID:integer;  bb:boolean;   tmpColor:TColor;
+  var i,j,t,k,iID:integer;  bb:boolean;   tmpColor:TColor; p:TPoint; lbl:TControl;
   function ItoS( i:integer):string; begin str( i:3, result); end;
   procedure apendItem(labelTag :integer);
     var i:integer;  bBreak,isSolid:boolean;
@@ -20528,7 +20528,17 @@ begin
   if(bC or bS)then exit;
   if(ssLeft in shift)and(t<>26)then with posEdit do begin
     Text:=TLabel(Sender).Caption;
-    Top:= TLabel(Sender).Parent.Top+ 47;
+    lbl:=TControl(Sender);
+    if Assigned(Parent) then begin
+      p:=lbl.ClientToScreen(Point(0,0));
+      p:=Parent.ScreenToClient(p);
+      Left:=p.X;
+      Top:=p.Y + (lbl.Height-Height) div 2;
+      Width:=lbl.Width;
+    end else begin
+      Left:=lbl.Left;
+      Top:=lbl.Top;
+    end;
     bSelLink:=(t<>4)or(t=4)and(K4 or K13 or K6); //点径、线宽不能关联
     Visible:=true;    SetFocus;
     for i:=0 to ObjCount do Obj[i].Edited:=(i=MarkObj);
