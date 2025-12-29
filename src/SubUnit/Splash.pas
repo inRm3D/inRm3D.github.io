@@ -74,6 +74,10 @@ implementation
 uses
   inRm3Dunit;
 
+{$IFNDEF MSWINDOWS}
+{$I SplashImage.inc}
+{$ENDIF}
+
 {$IFDEF MSWINDOWS}
 {$R *.DFM}
 
@@ -301,6 +305,28 @@ end;
 
 {$ELSE}
 
+function LoadEmbeddedSplash(Pic: TPicture): Boolean;
+var
+  Stream: TMemoryStream;
+begin
+  Result := False;
+  if SplashJpgSize <= 0 then
+    Exit;
+  Stream := TMemoryStream.Create;
+  try
+    Stream.WriteBuffer(SplashJpgData[0], SplashJpgSize);
+    Stream.Position := 0;
+    try
+      Pic.LoadFromStream(Stream);
+      Result := True;
+    except
+      Result := False;
+    end;
+  finally
+    Stream.Free;
+  end;
+end;
+
 procedure TfrmSplash.BuildUi;
 var
   Img: TImage;
@@ -372,7 +398,7 @@ begin
   ImgPath := FindSplashImage;
   if FileExists(ImgPath) then
     Img.Picture.LoadFromFile(ImgPath)
-  else
+  else if not LoadEmbeddedSplash(Img.Picture) then
     Img.Height := 0;
   Img.OnMouseDown := Image0MouseDown;
 

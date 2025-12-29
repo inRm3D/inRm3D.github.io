@@ -2,9 +2,9 @@
 
 install https://aur.archlinux.org/packages/lazarus-gtk2
 
-then `lazbuild -B inRm3D.lpi`
+then `lazbuild inRm3D.lpi`
 
-then `./lib/x86\_64-linux/inRm3D`
+then `./lib/x86_64-linux/inRm3D`
 
 current bug:
 
@@ -15,6 +15,10 @@ current bug:
 Thanks for gpt5-codex-high for porting this old codebase.
 
 ---
+
+You can use `makepkg -si` to install it on Arch
+
+Provide a vibe code flake.nix since I don't have nix env.
 
 ~~Use Delphi 7 to build.~~
 

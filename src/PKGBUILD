@@ -1,0 +1,50 @@
+pkgname=inrm3d-git
+pkgver=2.869.r26.g6f19a6e
+pkgrel=1
+pkgdesc="inRm3D"
+arch=('x86_64')
+url="https://github.com/inRm3D/inRm3D.github.io"
+license=('custom')
+depends=(
+	'gdk-pixbuf2'
+	'glib2'
+	'gtk2'
+	'libx11'
+	'libxext'
+	freeglut
+	glu
+	libglvnd
+	glibc
+	at-spi2-core
+	pango
+	cairo
+)
+makedepends=('git' 'lazarus' 'fpc')
+provides=('inrm3d')
+conflicts=('inrm3d')
+source=("git+https://github.com/inRm3D/inRm3D.github.io.git")
+sha256sums=('SKIP')
+
+pkgver() {
+	if git describe --tags --long --abbrev=7 >/dev/null 2>&1; then
+		git describe --tags --long --abbrev=7 | sed 's/^v//; s/-/.r/; s/-/./'
+	else
+		printf "2.869.r%s.g%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+	fi
+}
+
+build() {
+	if [ -f inRm3D.lpi ]; then
+		srcdir_build="."
+	elif [ -f inRm3D/src/inRm3D.lpi ]; then
+		srcdir_build="inRm3D/src/"
+	else
+		echo "inRm3D.lpi not found"
+		exit 1
+	fi
+	(cd "$srcdir_build" && lazbuild inRm3D.lpi)
+}
+
+package() {
+	find . -name "inRm3D" -print -type f -exec install -Dm755 -t $pkgdir/usr/bin/ {} \;
+}
