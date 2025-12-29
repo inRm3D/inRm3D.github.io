@@ -1011,10 +1011,13 @@ type
     function GetObjListRowHeight: Integer;
     procedure UpdatePropertyLayoutMetrics;
     function ScaleDesignValue(Value: Integer): Integer;
+    function IsTextInputActive: Boolean;
     {$IFNDEF MSWINDOWS}
     procedure PanelDragMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     procedure PanelDragMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     {$ENDIF}
+  protected
+    function IsShortcut(var Message: TLMKey): Boolean; override;
   public
     BackColor, AxisColor, gridColor :TcgColorF;
     {--- view ---}
@@ -1630,6 +1633,33 @@ begin
       raise Exception.Create('Unable to activate OpenGL context');
   end;
 {$ENDIF}
+end;
+
+function TfrmMain.IsTextInputActive: Boolean;
+var
+  ctrl: TWinControl;
+begin
+  if not KeyPreview then
+    Exit(True);
+  ctrl := ActiveControl;
+  if ctrl = nil then
+    ctrl := Screen.ActiveControl;
+  if ctrl = edtTemp then
+    ctrl := nil;
+  if (ctrl <> nil) and ((ctrl is TCustomEdit) or (ctrl is TCustomComboBox) or (ctrl is TStringGrid)) then
+    Exit(True);
+  if (hotEdit <> nil) and hotEdit.Focused then
+    Exit(True);
+  if (HotText <> nil) and HotText.Focused then
+    Exit(True);
+  Result := False;
+end;
+
+function TfrmMain.IsShortcut(var Message: TLMKey): Boolean;
+begin
+  if IsTextInputActive then
+    Exit(False);
+  Result := inherited IsShortcut(Message);
 end;
 
 function TfrmMain.ResolveFontName(const Requested: string): string;
@@ -21306,7 +21336,7 @@ procedure TfrmMain.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftStat
         end; //case Kind
     end;
 begin  //itos(TextToShortCut('Alt+Up')); //32808
-  if pnlControl.Visible then // posEdit.Visible or pnlCalc.Visible or pnlText.Visible
+  if pnlControl.Visible or IsTextInputActive then // posEdit.Visible or pnlCalc.Visible or pnlText.Visible
     exit;
   if bS and(Key=27)then begin //Shift+Esc 全屏切换
     setWindowStyle;
@@ -21751,7 +21781,7 @@ end;
 procedure TfrmMain.FormKeyPress(Sender: TObject; var Key: Char);
   var i,j,p:integer; ch:char;  st:string;  isShow:boolean;
 begin
-  if bAdd or posEdit.Visible then exit; //
+  if bAdd or posEdit.Visible or IsTextInputActive then exit; //
   ch:= upcase(Key);
   case ch of
   'A':if not(bC or bS)then begin bAll:=not bAll; butAll.Down:=bAll; //显示全部隐藏的对象
