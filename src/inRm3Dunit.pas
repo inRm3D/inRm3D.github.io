@@ -888,6 +888,7 @@ type
     procedure varAMouseDown( Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure varAMouseMove( Sender: TObject; Shift: TShiftState; X,Y: Integer);
     procedure varTMouseUp( Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure cheTraceClick(Sender: TObject);
 //    procedure butMoveClick( Sender: TObject);
     procedure cmbMoveSelect( Sender: TObject);
     procedure memExprKeyDown( Sender: TObject; var Key: Word;Shift: TShiftState);
@@ -20922,6 +20923,10 @@ begin
   if not posEdit.Visible then
     frmMain.KeyPreview:=true;
 end;
+procedure TfrmMain.cheTraceClick(Sender: TObject);
+begin
+  cheSolidMouseUp(Sender, mbLeft, [], 0, 0);
+end;
 //====================== ↑编辑数值属性↑ ========================
 procedure TfrmMain.cheSolidMouseUp(Sender: TObject; Button: TMouseButton;Shift: TShiftState; X, Y: Integer);
   var i,k,t,p, w0,h0:integer;  st:string;  dx,dy,dz,dr:single;   Key:char;
@@ -21141,7 +21146,11 @@ begin
           if Trace and(maxTrace=0)then begin
             maxTrace:=10;   varTrace.Caption:=itos(maxTrace);
             end;
-          if not Trace then glDeleteLists( tracList, 200);
+          if (not Trace) and (tracList <> 0) then
+          begin
+            glDeleteLists(tracList, 200);
+            tracList := 0;
+          end;
           end;
         end;
     19:D:=cheRound.Checked; //函数曲线首尾相连
