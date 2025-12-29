@@ -24986,7 +24986,7 @@ begin
   with pnlControl do
   case butTag of
     9,16:begin Left:=26; Top:=24;  //函数曲线、函数曲面
-      setConstraints(550, IIFi(butCalcPad.NumGlyphs=1,166,140), 550,140);
+      setConstraints(692, IIFi(butCalcPad.NumGlyphs=1,166,140), 692,140);
       end;
     10:begin //文本
       memText.Font.Name:=ResolveFontName(Obj[MarkObj].TagN);
