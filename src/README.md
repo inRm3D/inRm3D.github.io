@@ -10,7 +10,7 @@ currrent bug:
 
 1. ~~all the text become || ||| , maybe bmp is the problem.~~ thanks for GPT-5.2-Codex xhigh
 2. ~~the shortcut is conflict with input box, e.g. type `i`.~~ thanks for GPT-5.2-Codex xhigh
-3. Property\_P is too narrow.
+3. ~~Property\_P is too narrow.~~ thanks for GPT-5.2-Codex xhigh
 
 Thanks for gpt5-codex-high for porting this old codebase.
 

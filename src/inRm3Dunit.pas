@@ -1010,6 +1010,7 @@ type
     function GetObjListTextHeight: Integer;
     function GetObjListRowHeight: Integer;
     procedure UpdatePropertyLayoutMetrics;
+    procedure ApplyPropertyRowMetrics;
     function ScaleDesignValue(Value: Integer): Integer;
     function IsTextInputActive: Boolean;
     {$IFNDEF MSWINDOWS}
@@ -1273,6 +1274,7 @@ var
   PropertyRowHeight: Integer = 15;
   PropertyBaseHeight: Integer = 74;
   PropertyCollapsedHeight: Integer = 44;
+  PropertySceneHeight: Integer = 343;
 {$IFNDEF MSWINDOWS}
   DraggingPanel: TWinControl;
   DraggingPanelOffset: TPoint;
@@ -1368,15 +1370,15 @@ procedure TfrmMain.AdjustPropertyPanelMetrics;
 var
   minWidth: Integer;
 begin
-{$IFNDEF MSWINDOWS}
-  minWidth := Scale96ToScreen(220);
+  minWidth := ScaleDesignValue(220);
+  if minWidth < 220 then
+    minWidth := 220;
   if pnlProp.Constraints.MinWidth < minWidth then
     pnlProp.Constraints.MinWidth := minWidth;
   if pnlProp.Width < minWidth then
     pnlProp.Width := minWidth;
-  if tabProp.TabWidth < Scale96ToScreen(60) then
-    tabProp.TabWidth := Scale96ToScreen(60);
-{$ENDIF}
+  if tabProp.TabWidth < ScaleDesignValue(60) then
+    tabProp.TabWidth := ScaleDesignValue(60);
 end;
 
 function TfrmMain.GetTargetDPI: Integer;
@@ -1452,15 +1454,119 @@ end;
 
 procedure TfrmMain.UpdatePropertyLayoutMetrics;
 begin
-  PropertyRowHeight := ScaleDesignValue(15);
-  if PropertyRowHeight < 15 then
-    PropertyRowHeight := 15;
+  PropertyRowHeight := ScaleDesignValue(26);
+  if PropertyRowHeight < 26 then
+    PropertyRowHeight := 26;
   PropertyBaseHeight := ScaleDesignValue(74);
   if PropertyBaseHeight <= PropertyRowHeight then
     PropertyBaseHeight := PropertyRowHeight + ScaleDesignValue(20);
   PropertyCollapsedHeight := ScaleDesignValue(44);
   if PropertyCollapsedHeight < PropertyRowHeight then
     PropertyCollapsedHeight := PropertyRowHeight;
+  ApplyPropertyRowMetrics;
+end;
+
+procedure TfrmMain.ApplyPropertyRowMetrics;
+var
+  i, j, k, rowHeight, delta, topPos, gap, maxBottom, offset: Integer;
+  sheet: TTabSheet;
+  row: TPanel;
+  ctrl: TControl;
+  sceneTab: TTabSheet;
+  procedure LayoutScenePanel(Panel: TPanel);
+  begin
+    if Panel = nil then
+      Exit;
+    Panel.Height := rowHeight;
+    Panel.Top := topPos;
+    Inc(topPos, rowHeight);
+  end;
+begin
+  if tabProp = nil then
+    Exit;
+  rowHeight := PropertyRowHeight;
+  for i := 0 to tabProp.PageCount - 1 do
+  begin
+    sheet := tabProp.Pages[i];
+    for j := 0 to sheet.ControlCount - 1 do
+      if sheet.Controls[j] is TPanel then
+      begin
+        row := TPanel(sheet.Controls[j]);
+        if row.BorderStyle <> bsSingle then
+          Continue;
+        if row.Height <> rowHeight then
+          row.Height := rowHeight;
+        for k := 0 to row.ControlCount - 1 do
+        begin
+          ctrl := row.Controls[k];
+          if (ctrl.Align = alNone) and (ctrl.Height < rowHeight)
+            and (ctrl.Anchors * [akTop, akBottom] = [akTop]) then
+          begin
+            delta := (rowHeight - ctrl.Height) div 2;
+            if ctrl.Top <> delta then
+              ctrl.Top := delta;
+          end;
+        end;
+      end;
+  end;
+  gap := ScaleDesignValue(6);
+  if gap < 4 then
+    gap := 4;
+  topPos := 0;
+  LayoutScenePanel(pnl40);
+  LayoutScenePanel(pnl30);
+  LayoutScenePanel(pnl31);
+  LayoutScenePanel(pnl33);
+  LayoutScenePanel(pnl32);
+  LayoutScenePanel(pnl44);
+  LayoutScenePanel(pnl45);
+  LayoutScenePanel(pnl46);
+  LayoutScenePanel(pnl34);
+  LayoutScenePanel(pnl35);
+  LayoutScenePanel(pnl36);
+  LayoutScenePanel(pnl37);
+  LayoutScenePanel(pnl38);
+  LayoutScenePanel(pnl39);
+  LayoutScenePanel(pnl41);
+  if labProp <> nil then
+  begin
+    labProp.Height := rowHeight;
+    labProp.Layout := tlCenter;
+    labProp.Top := topPos + gap;
+    topPos := labProp.Top + labProp.Height + gap;
+  end;
+  LayoutScenePanel(pnl42);
+  LayoutScenePanel(pnl43);
+  if butSaveDefault <> nil then
+    butSaveDefault.Top := topPos + gap;
+  if butGetDefault <> nil then
+    butGetDefault.Top := topPos + gap;
+  sceneTab := nil;
+  if Assigned(tab1) then
+    sceneTab := tab1
+  else if (tabProp <> nil) and (tabProp.PageCount > 1) then
+    sceneTab := tabProp.Pages[1];
+  maxBottom := 0;
+  if sceneTab <> nil then
+  begin
+    for i := 0 to sceneTab.ControlCount - 1 do
+    begin
+      ctrl := sceneTab.Controls[i];
+      if ctrl.Top + ctrl.Height > maxBottom then
+        maxBottom := ctrl.Top + ctrl.Height;
+    end;
+  end;
+  if maxBottom > 0 then
+  begin
+    offset := 0;
+    if (pnlProp <> nil) and (tabProp <> nil) then
+      offset := pnlProp.Height - tabProp.Height;
+    if (tabProp <> nil) and (offset < tabProp.Top) then
+      offset := tabProp.Top;
+    PropertySceneHeight := maxBottom + gap + offset;
+    if PropertySceneHeight < ScaleDesignValue(343) then
+      PropertySceneHeight := ScaleDesignValue(343);
+  end;
 end;
 
 procedure TfrmMain.UpdateObjListMetrics(TargetPPI: Integer);
@@ -13826,7 +13932,7 @@ Next:
     if ID>0 then
       pnlProp.Height:=CtrlNum*PropertyRowHeight+PropertyBaseHeight
     else
-      pnlProp.Height:=ScaleDesignValue(343); //属性框高度
+      pnlProp.Height:=PropertySceneHeight; //属性框高度
     if(Top+Height>frmMain.ClientHeight)or(Top<0)then Top:=24;
     if(Left+Width>frmMain.ClientWidth)or(Left<0)then Left:=frmMain.ClientWidth-Width;
     Visible:=bNail or butProp.Down;
@@ -13839,7 +13945,7 @@ begin
   if tabProp.TabIndex=0 then
     pnlProp.Height:=IIFi(MarkObj<11,PropertyCollapsedHeight,CtrlNum*PropertyRowHeight+PropertyBaseHeight)
   else
-    pnlProp.Height:=ScaleDesignValue(343);
+    pnlProp.Height:=PropertySceneHeight;
   posEdit.Hide;  pnlColorPad.Hide;  
 end;
 //======================= 坐标指示线 ========================
