@@ -654,6 +654,9 @@ type
         popPageRename: TMenuItem;
         popPageOpen: TMenuItem;
     popMultObj: TPopupMenu;
+    popMeasureMenu: TMenuItem;
+    popParamMenu: TMenuItem;
+    popCalcMenu: TMenuItem;
     imgZoom: TImage;
     imgDrag: TImage;
 
@@ -896,6 +899,11 @@ type
     procedure butSaveDefaultClick( Sender: TObject);
     procedure cmbObjKindChange( Sender: TObject);
     procedure N27Click( Sender: TObject);
+    procedure InsertTagToken(objIdx: integer);
+    procedure popMeasureClick( Sender: TObject);
+    procedure popParamClick( Sender: TObject);
+    procedure popCalcClick( Sender: TObject);
+    procedure popCharPopup( Sender: TObject);
     procedure selFuncChange( Sender: TObject);
     procedure timSpinTimer( Sender: TObject);
     procedure radMoveClick( Sender: TObject);
@@ -2513,7 +2521,7 @@ begin //
 end;
 //=========== 将文本字符串转换成图像纹理 ===================
 function TfrmMain.TextToBMP(ID:integer; st:AnsiString; isNewText:boolean):Cardinal;
-  var i,N, len, w0,h0, wi,he :integer;  isPlus,bEnd :boolean;
+  var i,j,N, len, w0,h0, wi,he :integer;  isPlus :boolean;
       aStr:array of AnsiString;   ss:AnsiString;
       BMP:Tbitmap;
   function getValue(ID:integer; ss:AnsiString; isPlus,isNewText:boolean):AnsiString;
@@ -2533,28 +2541,46 @@ begin
   if(Obj[ID].Kind=10)then begin //文本 寻找换行符
     if isNewText then
       for i:=13 to LinkTime do Obj[ID].Link[i]:=0;
-    i:=0; aStr[0]:='';
-    repeat
-      inc(i); isPlus:=false;
-      if(ord(st[i])=92)then begin //92="\"两个反斜杠之间为欲插入的数值标签
-        inc(i);
-        isPlus:=(ord(st[i])=43); if isPlus then inc(i); //43="+"号
-        ss:=''; bEnd:=false;
-        repeat
-          if(ord(st[i])=92)then begin //92="\"
-            if(ss>'')then aStr[N]:=aStr[N]+getValue(ID,ss,isPlus,isNewText);
-            bEnd:=true;
+    aStr[0]:='';  i:=1;
+    while i<=Len do begin
+      case ord(st[i]) of
+        10,13:begin //换行符 支持 CR/LF
+          inc(N);  setLength(aStr,N+1);  aStr[N]:='';
+          if(ord(st[i])=13)and(i<Len)and(ord(st[i+1])=10)then inc(i)
+          else if(ord(st[i])=10)and(i<Len)and(ord(st[i+1])=13)then inc(i);
+          end;
+        92:begin // "\" 插入数值或输出字面反斜杠
+          if(i<Len)and(ord(st[i+1])=92)then begin
+            aStr[N]:=aStr[N]+'\';
+            inc(i);
             end
           else begin
-            if(st[i]>'')then ss:=ss+st[i];
+            j:=i+1;  isPlus:=false;
+            if(j<=Len)and(ord(st[j])=43)then begin //43 "+"
+              isPlus:=true;  inc(j);
+              end;
+            ss:='';
+            while(j<=Len)and(ord(st[j])<>92)and not(ord(st[j]) in[10,13])do begin
+              ss:=ss+st[j];  inc(j);
+              end;
+            if(j<=Len)and(ord(st[j])=92)then begin
+              if(ss>'')then aStr[N]:=aStr[N]+getValue(ID,ss,isPlus,isNewText);
+              i:=j;
+              end
+            else begin
+              // 没有闭合的 "\"，按字面输出
+              aStr[N]:=aStr[N]+'\';
+              if isPlus then aStr[N]:=aStr[N]+'+';
+              aStr[N]:=aStr[N]+ss;
+              i:=j-1;
+              end;
             end;
-          inc(i);
-          until bEnd or(i>Len)or(ord(st[i])=13); //
+          end;
+        else
+          aStr[N]:=aStr[N]+st[i];
         end;
-      if(i<Len)and(ord(st[i])=13) //换行符
-        then begin inc(N); setLength(aStr,N+1); aStr[N]:=''; inc(i); end
-        else if(i<=Len)then aStr[N]:=aStr[N]+st[i]
-      until i>Len;
+      inc(i);
+      end;
     end;
   BMP:=TBitmap.Create;
   setBMPformat(ID, BMP, 1, true);
@@ -17189,6 +17215,23 @@ begin
     itmColor.OnClick:=N27Click;       //链接处理过程
     popChar.Items.Add( itmColor);     //添加到菜单
     end;
+  itmColor:=TMenuItem.Create(self);
+  itmColor.Caption:='-';
+  itmColor.Enabled:=false;
+  popChar.Items.Add(itmColor);
+  popMeasureMenu:=TMenuItem.Create(self);
+  popMeasureMenu.Caption:=SwitchS(iLanguage,'插入度量','插入度量','Insert Measure','');
+  popMeasureMenu.Enabled:=false;
+  popChar.Items.Add(popMeasureMenu);
+  popParamMenu:=TMenuItem.Create(self);
+  popParamMenu.Caption:=SwitchS(iLanguage,'插入参数','插入參數','Insert Parameter','');
+  popParamMenu.Enabled:=false;
+  popChar.Items.Add(popParamMenu);
+  popCalcMenu:=TMenuItem.Create(self);
+  popCalcMenu.Caption:=SwitchS(iLanguage,'插入计算值','插入計算值','Insert Calculation','');
+  popCalcMenu.Enabled:=false;
+  popChar.Items.Add(popCalcMenu);
+  popChar.OnPopup:=popCharPopup;
 //  setLength(BackObj, UndoTime+1);
   hotEdit:=edtZ;      hotID:=0;
   pnlProp.Top:=24;    pnlProp.Height:=PropertyCollapsedHeight;
@@ -23985,6 +24028,81 @@ begin
     memText.Text:=insExpr( st, memText.Text, memText.SelStart, Len );
     memText.SelStart:=Len-1;
     end;
+end;
+
+procedure TfrmMain.InsertTagToken(objIdx: integer);
+  var Len:integer; token:string;
+begin
+  if(memText=nil)or(not memText.Visible)then exit;
+  if(objIdx<=10)or(objIdx>ObjCount)then exit;
+  if Obj[objIdx].Tag='' then exit;
+  token:='\'+Obj[objIdx].Tag+'\';
+  memText.Text:=insExpr( token, memText.Text, memText.SelStart, Len );
+  memText.SelStart:=Len-1;
+end;
+
+procedure TfrmMain.popMeasureClick(Sender: TObject);
+begin
+  if not Assigned(Sender) then exit;
+  InsertTagToken((Sender as TMenuItem).Tag);
+end;
+
+procedure TfrmMain.popParamClick(Sender: TObject);
+begin
+  if not Assigned(Sender) then exit;
+  InsertTagToken((Sender as TMenuItem).Tag);
+end;
+
+procedure TfrmMain.popCalcClick(Sender: TObject);
+begin
+  if not Assigned(Sender) then exit;
+  InsertTagToken((Sender as TMenuItem).Tag);
+end;
+
+procedure TfrmMain.popCharPopup(Sender: TObject);
+  var captionMeasure,captionParam,captionCalc,emptySuffix:string;
+  procedure UpdateMenu(root:TMenuItem; modeFilter:integer; const captionBase:string; clickHandler:TNotifyEvent);
+    var i:integer; item:TMenuItem; ok:boolean;
+    function FormatValue(idx:integer):string;
+    begin
+      result:=Obj[idx].Tag+' = '+FtoS(Obj[idx].L, Obj[idx].S);
+    end;
+  begin
+    if root=nil then exit;
+    root.Clear;
+    for i:=11 to ObjCount do
+      if(Obj[i].Kind=11)and(Obj[i].Tag>'')and(Obj[i].delID=0)then begin
+        case modeFilter of
+          1: ok:=Obj[i].Mode=1;  //计算
+          2: ok:=Obj[i].Mode=2;  //参数
+          3: ok:=Obj[i].Mode>2;  //度量
+        else ok:=false;
+        end;
+        if ok then begin
+          item:=TMenuItem.Create(self);
+          item.Caption:=FormatValue(i);
+          item.Tag:=i;
+          item.OnClick:=clickHandler;
+          root.Add(item);
+          end;
+      end;
+    if root.Count=0 then begin
+      root.Caption:=captionBase+emptySuffix;
+      root.Enabled:=false;
+      end
+    else begin
+      root.Caption:=captionBase;
+      root.Enabled:=true;
+      end;
+  end;
+begin
+  emptySuffix:=SwitchS(iLanguage,' (无可用)',' (無可用)',' (None)','');
+  captionMeasure:=SwitchS(iLanguage,'插入度量','插入度量','Insert Measure','');
+  captionParam:=SwitchS(iLanguage,'插入参数','插入參數','Insert Parameter','');
+  captionCalc:=SwitchS(iLanguage,'插入计算值','插入計算值','Insert Calculation','');
+  UpdateMenu(popMeasureMenu,3,captionMeasure,popMeasureClick);
+  UpdateMenu(popParamMenu,2,captionParam,popParamClick);
+  UpdateMenu(popCalcMenu,1,captionCalc,popCalcClick);
 end;
 //================== 场景自动旋转 =======================
 procedure TfrmMain.timSpinTimer(Sender: TObject);
