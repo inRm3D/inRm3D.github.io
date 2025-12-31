@@ -13049,7 +13049,7 @@ begin
   if Kind in[10,14]  //[文字]、[计算]
     then begin varC.Color:= PropValueColor;   varC.Font.Color:= clBlack; end
     else begin
-      if(gg>0)and bb then varC.Color:= PropValueColor else varC.color:=cgColorFToTColor( Color);
+  if(gg>10)and bb then varC.Color:= PropValueColor else varC.color:=cgColorFToTColor( Color);
       end;
   if(Kind in[3,4,6,7,9,11])then varC1.Color:=cgColorFToTColor( ColorB);
   varC1.Caption:=varC.Caption;
@@ -17025,6 +17025,11 @@ begin
   AdjustPropertyPanelMetrics;
   Scaled := True;
   ApplyDPIScaling;
+  if Assigned(varC) then begin varC.Transparent := False; varC.ParentColor := False; end;
+  if Assigned(varC1) then begin varC1.Transparent := False; varC1.ParentColor := False; end;
+  if Assigned(varColor) then begin varColor.Transparent := False; varColor.ParentColor := False; end;
+  if Assigned(varObjColor) then begin varObjColor.Transparent := False; varObjColor.ParentColor := False; end;
+  if Assigned(varScreen) then begin varScreen.Transparent := False; varScreen.ParentColor := False; end;
 {$IFNDEF MSWINDOWS}
   pnlFPS.OnMouseMove:=PanelDragMouseMove;
   pnlFPS.OnMouseUp:=PanelDragMouseUp;
@@ -19872,7 +19877,7 @@ begin
     -1:begin //varC 颜色关联
       len:=IIFf(j=0, p4.w, (Obj[g].L-trunc(Obj[g].L))*200);
       Link[6]:= j; //连接构件
-      if j>0 then varC.Color:=PropValueColor
+      if j>10 then varC.Color:=PropValueColor
              else begin color:=cgTColorToCGColorF( trunc(len), StrToFloat( varA.Caption));
                         varC.Color:=cgColorFToTColor(color);
                         end;
