@@ -17008,6 +17008,8 @@ procedure TfrmMain.FormCreate(Sender: TObject);
       itmColor :TMenuItem;
       popChar :TPopupMenu;
       itmChar :array[0..23]of TMenuItem;
+      rgb: TColorRef;
+      lum: Integer;
   const txtChar :WideString='∠°π△⊙∥～≈≡≠≥≤÷－±·∞∫∑→∵∴℃‰αβγΔδεθφ';
   function stf( s:string; p,l:integer):single;
     var st:string;
@@ -17025,6 +17027,15 @@ begin
   AdjustPropertyPanelMetrics;
   Scaled := True;
   ApplyDPIScaling;
+  if Assigned(pnlFPS) then
+  begin
+    rgb := ColorToRGB(pnlFPS.Color);
+    lum := (GetRValue(rgb) * 299 + GetGValue(rgb) * 587 + GetBValue(rgb) * 114) div 1000;
+    if lum > 140 then
+      pnlFPS.Font.Color := clBlack
+    else
+      pnlFPS.Font.Color := clWhite;
+  end;
   if Assigned(varC) then begin varC.Transparent := False; varC.ParentColor := False; end;
   if Assigned(varC1) then begin varC1.Transparent := False; varC1.ParentColor := False; end;
   if Assigned(varColor) then begin varColor.Transparent := False; varColor.ParentColor := False; end;
