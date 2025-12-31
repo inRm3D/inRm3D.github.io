@@ -1593,7 +1593,12 @@ begin
       offset := pnlProp.Height - tabProp.Height;
     if (tabProp <> nil) and (offset < tabProp.Top) then
       offset := tabProp.Top;
-    PropertySceneHeight := maxBottom + gap + offset;
+    delta := 0;
+    if (tabProp <> nil) and (tabProp.ClientHeight > 0) then
+      delta := tabProp.Height - tabProp.ClientHeight; // tabs + border
+    if delta < 0 then
+      delta := 0;
+    PropertySceneHeight := maxBottom + gap + offset + delta;
     if PropertySceneHeight < ScaleDesignValue(343) then
       PropertySceneHeight := ScaleDesignValue(343);
   end;
